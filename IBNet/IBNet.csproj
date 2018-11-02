@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FD56AEAF-C610-4EBE-ACB5-A0E41C86149C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Krs.Ats.IBNet</RootNamespace>
+    <AssemblyName>IBNet</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>LoraQuant.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EventArgs\AccountSummaryEventArgs.cs" />
+    <Compile Include="Contracts\Equity.cs" />
+    <Compile Include="Contracts\Forex.cs" />
+    <Compile Include="Contracts\Future.cs" />
+    <Compile Include="Contracts\Indice.cs" />
+    <Compile Include="Contracts\Option.cs" />
+    <Compile Include="EnumDescConverter.cs" />
+    <Compile Include="Enums\ActionSide.cs" />
+    <Compile Include="Enums\AgentDescription.cs" />
+    <Compile Include="Enums\AuctionStrategy.cs" />
+    <Compile Include="Enums\BarSize.cs" />
+    <Compile Include="Enums\ComboOpenClose.cs" />
+    <Compile Include="Enums\AccountSummary.cs" />
+    <Compile Include="Enums\ErrorMessage.cs" />
+    <Compile Include="Enums\ExecutionSide.cs" />
+    <Compile Include="Enums\FADataType.cs" />
+    <Compile Include="Enums\FinancialAdvisorAllocationMethod.cs" />
+    <Compile Include="Enums\GenericTickType.cs" />
+    <Compile Include="Enums\HistoricalDataType.cs" />
+    <Compile Include="Enums\IncomingMessage.cs" />
+    <Compile Include="Enums\LogLevel.cs" />
+    <Compile Include="Enums\MarketDataType.cs" />
+    <Compile Include="Enums\MarketDepthOperation.cs" />
+    <Compile Include="Enums\MarketDepthSide.cs" />
+    <Compile Include="Enums\MinServerVersion.cs" />
+    <Compile Include="Enums\NewsType.cs" />
+    <Compile Include="Enums\OCAType.cs" />
+    <Compile Include="Enums\OrderOrigin.cs" />
+    <Compile Include="Enums\OrderStatus.cs" />
+    <Compile Include="Enums\OrderType.cs" />
+    <Compile Include="Enums\OutgoingMessage.cs" />
+    <Compile Include="Enums\RealTimeBarType.cs" />
+    <Compile Include="Enums\RightType.cs" />
+    <Compile Include="Enums\SecurityIdType.cs" />
+    <Compile Include="Enums\SecurityType.cs" />
+    <Compile Include="Enums\ShortSaleSlot.cs" />
+    <Compile Include="Enums\TickType.cs" />
+    <Compile Include="Enums\TimeInForce.cs" />
+    <Compile Include="Enums\TriggerMethod.cs" />
+    <Compile Include="Enums\VolatilityType.cs" />
+    <Compile Include="EventArgs\AccountDownloadEndEventArgs.cs" />
+    <Compile Include="EventArgs\AccountUpdateMultiEventArgs.cs" />
+    <Compile Include="EventArgs\BondContractDetailsEventArgs.cs" />
+    <Compile Include="EventArgs\ConnectionClosedEventArgs.cs" />
+    <Compile Include="EventArgs\ContractDetailsEndEventArgs.cs" />
+    <Compile Include="EventArgs\ContractDetailsEventArgs.cs" />
+    <Compile Include="EventArgs\CommissionReportEventArgs.cs" />
+    <Compile Include="EventArgs\CurrentTimeEventArgs.cs" />
+    <Compile Include="EventArgs\DeltaNuetralValidationEventArgs.cs" />
+    <Compile Include="EventArgs\DisplayGroupListEventArgs.cs" />
+    <Compile Include="EventArgs\DisplayGroupUpdatedEventArgs.cs" />
+    <Compile Include="EventArgs\ErrorEventArgs.cs" />
+    <Compile Include="EventArgs\ExecDetailsEndEventArgs.cs" />
+    <Compile Include="EventArgs\ExecDetailsEventArgs.cs" />
+    <Compile Include="EventArgs\FamilyCodesEventArgs.cs" />
+    <Compile Include="EventArgs\FundamentalDetailsEventArgs.cs" />
+    <Compile Include="EventArgs\HeadTimestampEventArgs.cs" />
+    <Compile Include="EventArgs\HistogramDataEventArgs.cs" />
+    <Compile Include="EventArgs\HistoricalDataEventArgs.cs" />
+    <Compile Include="EventArgs\HistoricalNewsEndEventArgs.cs" />
+    <Compile Include="EventArgs\HistoricalNewsEventArgs.cs" />
+    <Compile Include="EventArgs\ManagedAccountsEventArgs.cs" />
+    <Compile Include="EventArgs\MarketDataTypeEventArgs.cs" />
+    <Compile Include="EventArgs\MarketRuleEventArgs.cs" />
+    <Compile Include="EventArgs\MktDepthExchangesEventArgs.cs" />
+    <Compile Include="EventArgs\NewsArticleEventArgs.cs" />
+    <Compile Include="EventArgs\NewsProvidersEventArgs.cs" />
+    <Compile Include="EventArgs\NextValidIdEventArgs.cs" />
+    <Compile Include="EventArgs\OpenOrderEventArgs.cs" />
+    <Compile Include="EventArgs\OrderStatusEventArgs.cs" />
+    <Compile Include="EventArgs\PnlEventArgs.cs" />
+    <Compile Include="EventArgs\PnlSingleEventArgs.cs" />
+    <Compile Include="EventArgs\PositionEventArgs.cs" />
+    <Compile Include="EventArgs\PositionMultiEventArgs.cs" />
+    <Compile Include="EventArgs\RealTimeBarEventArgs.cs" />
+    <Compile Include="EventArgs\ReceiveFAEventArgs.cs" />
+    <Compile Include="EventArgs\ReportExceptionEventArgs.cs" />
+    <Compile Include="EventArgs\RequestEndEventArgs.cs" />
+    <Compile Include="EventArgs\RerouteMktDataReqEventArgs.cs" />
+    <Compile Include="EventArgs\RerouteMktDepthReqEventArgs.cs" />
+    <Compile Include="EventArgs\ScannerDataEndEventArgs.cs" />
+    <Compile Include="EventArgs\ScannerDataEventArgs.cs" />
+    <Compile Include="EventArgs\ScannerParametersEventArgs.cs" />
+    <Compile Include="EventArgs\SecurityDefinitionOptionParameterEventArgs.cs" />
+    <Compile Include="EventArgs\SmartComponentsEventArgs.cs" />
+    <Compile Include="EventArgs\SoftDollarTiersEventArgs.cs" />
+    <Compile Include="EventArgs\SymbolSamplesEventArgs.cs" />
+    <Compile Include="EventArgs\TickEFPEventArgs.cs" />
+    <Compile Include="EventArgs\TickGenericEventArgs.cs" />
+    <Compile Include="EventArgs\TickNewsEventArgs.cs" />
+    <Compile Include="EventArgs\TickOptionComputationEventArgs.cs" />
+    <Compile Include="EventArgs\TickPriceEventArgs.cs" />
+    <Compile Include="EventArgs\TickReqParamsEventArgs.cs" />
+    <Compile Include="EventArgs\TickSizeEventArgs.cs" />
+    <Compile Include="EventArgs\TickSnapshotEndEventArgs.cs" />
+    <Compile Include="EventArgs\TickStringEventArgs.cs" />
+    <Compile Include="EventArgs\UpdateAccountTimeEventArgs.cs" />
+    <Compile Include="EventArgs\UpdateAccountValueEventArgs.cs" />
+    <Compile Include="EventArgs\UpdateMktDepthEventArgs.cs" />
+    <Compile Include="EventArgs\UpdateMktDepthL2EventArgs.cs" />
+    <Compile Include="EventArgs\UpdateNewsBulletinEventArgs.cs" />
+    <Compile Include="EventArgs\UpdatePortfolioEventArgs.cs" />
+    <Compile Include="EventArgs\VerifyAndAuthCompletedEventArgs.cs" />
+    <Compile Include="EventArgs\VerifyAndAuthMessageApiEventArgs.cs" />
+    <Compile Include="EventArgs\VerifyCompletedEventArgs.cs" />
+    <Compile Include="EventArgs\VerifyMessageApiEventArgs.cs" />
+    <Compile Include="GeneralTracer.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IBClient.cs" />
+    <Compile Include="IBClient.ESocket.cs" />
+    <Compile Include="IBClient.EWrapper.cs" />
+    <Compile Include="KrsExecutionFilter.cs" />
+    <Compile Include="KrsOrder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LoraQuant.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\tws-api\source\csharpclient\client\CSharpAPI.csproj">
+      <Project>{8ede0744-96c2-40b0-a8dc-37df79370203}</Project>
+      <Name>CSharpAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
