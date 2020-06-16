@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
-    /// Order  Action Side. Specifies whether securities should be bought or sold.
+    /// 
     /// </summary>
     [Serializable]
     [Flags]

@@ -1,13 +1,14 @@
 using System;
 using IBApi;
+using IBNet.Enums;
 
-namespace Krs.Ats.IBNet.Contracts
+namespace IBNet.Contracts
 {
     /// <summary>
     /// Forex Currency Contract
     /// for use on the IdealPro or Ideal exchanges
     /// </summary>
-    [Serializable()]
+    [Serializable]
     public class Forex : Contract
     {
         /// <summary>
@@ -21,7 +22,7 @@ namespace Krs.Ats.IBNet.Contracts
             Symbol = currency;
             Currency = baseCurrency;
             Exchange = exchange;
-            SecType = EnumDescConverter.GetEnumDescription(SecurityType.Cash);
+            SecType = SecurityType.Cash.Value;
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Krs.Ats.IBNet.Contracts
             Symbol = currency;
             Currency = baseCurrency;
             Exchange = "IDEALPRO";
-            SecType = EnumDescConverter.GetEnumDescription(SecurityType.Cash);            
+            SecType = SecurityType.Cash.Value;            
         }
     }
 }

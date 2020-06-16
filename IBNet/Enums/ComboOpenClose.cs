@@ -1,31 +1,34 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Retail Customers are restricted to "SAME"
     /// Institutional Customers may use "SAME", "OPEN", "CLOSE", "UNKNOWN"
     /// </summary>
-    [Serializable()] 
-    public enum ComboOpenClose : int
+    [Serializable] 
+    public class ComboOpenClose : Enumeration<ComboOpenClose, string>
     {
         /// <summary>
         /// open/close leg value is same as combo
         /// This value is always used for retail accounts
         /// </summary>
-        [Description("SAME")] Same = 0,
+        public static ComboOpenClose Same = new ComboOpenClose("SAME", nameof(Same));
         /// <summary>
         /// Institutional Accounts Only
         /// </summary>
-        [Description("OPEN")] Open = 1,
+        public static ComboOpenClose Open = new ComboOpenClose("OPEN", nameof(Open));
         /// <summary>
         /// Institutional Accounts Only
         /// </summary>
-        [Description("CLOSE")] Close = 2,
+        public static ComboOpenClose Close = new ComboOpenClose("CLOSE", nameof(Close));
         /// <summary>
         /// Institutional Accounts Only
         /// </summary>
-        [Description("UNKNOWN")] Unknown = 3
+        public static ComboOpenClose Unknown = new ComboOpenClose("UNKNOWN", nameof(Unknown));
+
+        public ComboOpenClose(string value, string name) : base(value, name)
+        { }
     }
 }

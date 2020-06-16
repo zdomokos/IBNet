@@ -1,41 +1,49 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Order Time in Force Values
     /// </summary>
-    [Serializable()] 
-    public enum TimeInForce
+    [Serializable]
+    public class TimeInForce : Enumeration<TimeInForce, string>
     {
         /// <summary>
         /// Day
         /// </summary>
-        [Description("DAY")] Day,
+        public static TimeInForce Day = new TimeInForce("DAY", nameof(Day));
+
         /// <summary>
         /// Good Till Cancel
         /// </summary>
-        [Description("GTC")] GoodTillCancel,
+        public static TimeInForce GoodTillCancel = new TimeInForce("GTC", nameof(GoodTillCancel));
+
         /// <summary>
         /// You can set the time in force for MARKET or LIMIT orders as IOC. This dictates that any portion of the order not executed immediately after it becomes available on the market will be cancelled.
         /// </summary>
-        [Description("IOC")] ImmediateOrCancel,
+        public static TimeInForce ImmediateOrCancel = new TimeInForce("IOC", nameof(ImmediateOrCancel));
+
         /// <summary>
         /// Setting FOK as the time in force dictates that the entire order must execute immediately or be canceled.
         /// </summary>
-        [Description("FOK")] FillOrKill,
+        public static TimeInForce FillOrKill = new TimeInForce("FOK", nameof(FillOrKill));
+
         /// <summary>
         /// Good Till Date
         /// </summary>
-        [Description("GTD")] GoodTillDate,
+        public static TimeInForce GoodTillDate = new TimeInForce("GTD", nameof(GoodTillDate));
+
         /// <summary>
         /// Market On Open
         /// </summary>
-        [Description("OPG")] MarketOnOpen,
+        public static TimeInForce MarketOnOpen = new TimeInForce("OPG", nameof(MarketOnOpen));
+
         /// <summary>
         /// Undefined
         /// </summary>
-        [Description("")] Undefined
+        public static TimeInForce Undefined = new TimeInForce("", nameof(Undefined));
+
+        public TimeInForce(string value, string name) : base(value, name) { }
     }
 }

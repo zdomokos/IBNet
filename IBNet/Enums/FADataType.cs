@@ -1,29 +1,19 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Financial Advisor Data Message
     /// </summary>
-    [Serializable()] 
-    public enum FADataType : int
+    [Serializable]
+    public class FADataType : Enumeration<FADataType, int>
     {
-        /// <summary>
-        /// Undefined FA Message Type
-        /// </summary>
-        [Description("")] Undefined = 0,
-        /// <summary>
-        /// Financial Advisor Groups
-        /// </summary>
-        [Description("GROUPS")] Groups = 1,
-        /// <summary>
-        /// Financial Advisor Profiles
-        /// </summary>
-        [Description("PROFILES")] Profiles = 2,
-        /// <summary>
-        /// Financial Advisor Aliases
-        /// </summary>
-        [Description("ALIASES")] Aliases = 3
+        public static FADataType Groups = new FADataType(1, nameof(Groups));
+        public static FADataType Profiles = new FADataType(2, nameof(Profiles));
+        public static FADataType Aliases = new FADataType(3, nameof(Aliases));
+
+        public FADataType(int value, string name) : base(value, name)
+        { }
     }
 }

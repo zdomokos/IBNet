@@ -1,34 +1,36 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Order  Action Side. Specifies whether securities should be bought or sold.
     /// </summary>
-    [Serializable()]
-    public enum ActionSide
+    [Serializable]
+    public class ActionSide : Enumeration<ActionSide, string>
     {
         /// <summary>
         /// Security is to be bought.
         /// </summary>
-        [Description("BUY")] Buy,
+        public static ActionSide Buy = new ActionSide("BUY", nameof(Buy));
         /// <summary>
         /// Security is to be sold.
         /// </summary>
-        [Description("SELL")] Sell,
+        public static ActionSide Sell = new ActionSide("SELL", nameof(Sell));
         /// <summary>
         /// Undefined
         /// </summary>
-        [Description("")] Undefined,
+        public static ActionSide Undefined = new ActionSide("", nameof(Undefined));
         /// <summary>
         /// Sell Short as part of a combo leg
         /// </summary>
-        [Description("SSHORT")] SShort,
+        public static ActionSide SShort = new ActionSide("SSHORT", nameof(SShort));
         /// <summary>
         /// Short Sale Exempt action.
         /// SSHORTX allows some orders to be marked as exempt from the new SEC Rule 201
         /// </summary>
-        [Description("SSHORTX")] SShortX
+        public static ActionSide SShortX = new ActionSide("SSHORTX", nameof(SShortX));
+        
+        public ActionSide(string value, string name) : base(value, name) {}
     }
 }

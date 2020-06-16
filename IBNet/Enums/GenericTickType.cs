@@ -1,79 +1,36 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Generic Ticks
     /// </summary>
-    [Serializable()] 
-    public enum GenericTickType : int
+    [Serializable]
+    public class GenericTickType : Enumeration<GenericTickType, int>
     {
-        /// <summary>
-        /// Undefined Generic Tick Type
-        /// </summary>
-        [Description("")] Undefined = 0,
-        /// <summary>
-        /// Option Volume
-        /// For stocks only.
-        /// Returns TickType.OptionCallVolume and TickType.OptionPutVolume 
-        /// </summary>
-        [Description("OptionVolume")] OptionVolume = 100,
-        /// <summary>
-        /// Option Open Interest
-        /// For stocks only.
-        /// Returns TickType.OptionCallOpenInterest and TickType.OptionPutOpenInterest
-        /// </summary>
-        [Description("OptionOpenInterest")] OptionOpenInterest = 101,
-        /// <summary>
-        /// Historical Volatility
-        /// For stocks only.
-        /// Returns TickType.OptionHistoricalVol
-        /// </summary>
-        [Description("HistoricalVolatility")] HistoricalVolatility = 104,
-        /// <summary>
-        /// Option Implied Volatility
-        /// For stocks only.
-        /// Returns TickType.OptionImpliedVol
-        /// </summary>
-        [Description("OptionImpliedVolatility")] OptionImpliedVolatility = 106,
-        /// <summary>
-        /// Index Future Premium
-        /// Returns TickType.IndexFuturePremium
-        /// </summary>
-        [Description("IndexFuturePremium")] IndexFuturePremium = 162,
-        /// <summary>
-        /// Miscellaneous Stats
-        /// Returns TickType.Low13Week, TickType.High13Week, TickType.Low26Week, TickType.High26Week, TickType.Low52Week, TickType.High52Week and TickType.AverageVolume
-        /// </summary>
-        [Description("MiscellaneousStats")] MiscellaneousStats = 165,
-        /// <summary>
-        /// Mark Price
-        /// Used in TWS P/L Computations
-        /// Returns TickType.MarkPrice
-        /// </summary>
-        [Description("MarkPrice")] MarkPrice = 221,
-        /// <summary>
-        /// Auction Price
-        /// Auction values (volume, price and imbalance)
-        /// Returns TickType.AuctionVolume, TickType.AuctionPrice, TickType.AuctionImbalance
-        /// </summary>
-        [Description("AuctionPrice")] AuctionPrice = 225,
-        /// <summary>
-        /// Shortable Ticks
-        /// </summary>
-        [Description("Shortable")] Shortable = 236,
-        /// <summary>
-        /// Real Time Volume Tick Type
-        /// </summary>
-        [Description("RTVolume")] RealTimeVolume = 233,
-        /// <summary>
-        /// Inventory Type
-        /// </summary>
-        [Description("Inventory")] Inventory = 256,
-        /// <summary>
-        /// Fundamental Ratios Tick Type
-        /// </summary>
-        [Description("FundamentalRatios")] FundamentalRatios = 258
+        public static GenericTickType Undefined               = new GenericTickType(0, nameof(Undefined), "");
+        public static GenericTickType OptionVolume            = new GenericTickType(100, nameof(OptionVolume), "Option Volume (currently for stocks)");
+        public static GenericTickType OptionOpenInterest      = new GenericTickType(101, nameof(OptionOpenInterest), "Option Open Interest (currently for stocks)");
+        public static GenericTickType HistoricalVolatility    = new GenericTickType(104, nameof(HistoricalVolatility), "Historical Volatility (currently for stocks)");
+        public static GenericTickType AvgOptionVolume         = new GenericTickType(105, nameof(AvgOptionVolume), "Average Option Volume (currently for stocks)");
+        public static GenericTickType OptionImpliedVolatility = new GenericTickType(106, nameof(OptionImpliedVolatility), "Option Implied Volatility (currently for stocks)");
+        public static GenericTickType IndexFuturePremium      = new GenericTickType(162, nameof(IndexFuturePremium), "Index Future Premium");
+        public static GenericTickType MiscellaneousStats      = new GenericTickType(165, nameof(MiscellaneousStats), "Miscellaneous Stats");
+        public static GenericTickType MarkPrice               = new GenericTickType(221, nameof(MarkPrice), "Mark Price (used in TWS P&L computations)");
+        public static GenericTickType AuctionPrice            = new GenericTickType(225, nameof(AuctionPrice), "Auction values (volume, price and imbalance)");
+        public static GenericTickType RTVolume                = new GenericTickType(233, nameof(RTVolume), "RTVolume - contains the last trade price, last trade size, last trade time, total volume, VWAP, and single trade flag.");
+        public static GenericTickType Shortable               = new GenericTickType(236, nameof(Shortable), "Shortable");
+        public static GenericTickType Inventory               = new GenericTickType(256, nameof(Inventory), "Inventory");
+        public static GenericTickType FundamentalRatios       = new GenericTickType(258, nameof(FundamentalRatios), "Fundamental Ratios");
+        public static GenericTickType RTHistVol               = new GenericTickType(411, nameof(RTHistVol), "Realtime Historical Volatility");
+        public static GenericTickType IBDividends             = new GenericTickType(456, nameof(IBDividends), "IBDividends");
+
+        public GenericTickType(int value, string name, string description) : base(value, name)
+        {
+            Description = description;
+        }
+
+        public string Description { get; }
     }
 }

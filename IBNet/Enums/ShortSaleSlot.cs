@@ -1,12 +1,12 @@
 using System;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Used in a combination leg for Short Sale Orders.
     /// </summary>
-    [Serializable()]
-    public enum ShortSaleSlot : int
+    [Serializable]
+    public enum ShortSaleSlot
     {
         /// <summary>
         /// e.g. retail customer or not SSHORT leg

@@ -1,12 +1,12 @@
 using System;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Order Auction Strategy
     /// </summary>
-    [Serializable()] 
-    public enum AuctionStrategy : int
+    [Serializable] 
+    public enum AuctionStrategy
     {
         /// <summary>
         /// Undefined

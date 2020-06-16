@@ -1,20 +1,21 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Order Status reported by enum order status.
     /// </summary>
-    [Serializable()] 
-    public enum OrderStatus
+    [Serializable]
+    public class OrderStatus : Enumeration<OrderStatus, string>
     {
         /// <summary>
         /// indicates that you have transmitted the order, but have not yet received
         /// confirmation that it has been accepted by the order destination.
         /// This order status is not sent by TWS and should be explicitly set by the API developer when an order is submitted.
         /// </summary>
-        [Description("PendingSubmit")] PendingSubmit,
+        public static OrderStatus PendingSubmit = new OrderStatus("PendingSubmit", nameof(PendingSubmit));
+
         /// <summary>
         /// PendingCancel - indicates that you have sent a request to cancel the order
         /// but have not yet received cancel confirmation from the order destination.
@@ -22,7 +23,8 @@ namespace Krs.Ats.IBNet
         /// an execution while your cancellation request is pending.
         /// This order status is not sent by TWS and should be explicitly set by the API developer when an order is canceled.
         /// </summary>
-        [Description("PendingCancel")] PendingCancel,
+        public static OrderStatus PendingCancel = new OrderStatus("PendingCancel", nameof(PendingCancel));
+
         /// <summary>
         /// indicates that a simulated order type has been accepted by the IB system and
         /// that this order has yet to be elected. The order is held in the IB system
@@ -30,45 +32,56 @@ namespace Krs.Ats.IBNet
         /// At that time the order is transmitted to the order destination as specified
         /// (and the order status color will change).
         /// </summary>
-        [Description("PreSubmitted")] PreSubmitted,
+        public static OrderStatus PreSubmitted = new OrderStatus("PreSubmitted", nameof(PreSubmitted));
+
         /// <summary>
         /// indicates that your order has been accepted at the order destination and is working.
         /// </summary>
-        [Description("Submitted")] Submitted,
+        public static OrderStatus Submitted = new OrderStatus("Submitted", nameof(Submitted));
+
         /// <summary>
         /// indicates that the balance of your order has been confirmed canceled by the IB system.
         /// This could occur unexpectedly when IB or the destination has rejected your order.
         /// </summary>
-        [Description("Cancelled")] Canceled,
+        public static OrderStatus Canceled = new OrderStatus("Cancelled", nameof(Canceled));
+
         /// <summary>
         /// The order has been completely filled.
         /// </summary>
-        [Description("Filled")] Filled,
+        public static OrderStatus Filled = new OrderStatus("Filled", nameof(Filled));
+
         /// <summary>
         /// The Order is inactive
         /// </summary>
-        [Description("Inactive")] Inactive,
+        public static OrderStatus Inactive = new OrderStatus("Inactive", nameof(Inactive));
+
         /// <summary>
         /// The order is Partially Filled
         /// </summary>
-        [Description("PartiallyFilled")] PartiallyFilled,
+        public static OrderStatus PartiallyFilled = new OrderStatus("PartiallyFilled", nameof(PartiallyFilled));
+
         /// <summary>
         /// Api Pending
         /// </summary>
-        [Description("ApiPending")] ApiPending,
+        public static OrderStatus ApiPending = new OrderStatus("ApiPending", nameof(ApiPending));
+
         /// <summary>
         /// Api Cancelled
         /// </summary>
-        [Description("ApiCancelled")] ApiCancelled,
+        public static OrderStatus ApiCancelled = new OrderStatus("ApiCancelled", nameof(ApiCancelled));
+
         /// <summary>
         /// Indicates that there is an error with this order
         /// This order status is not sent by TWS and should be explicitly set by the API developer when an error has occured.
         /// </summary>
-        [Description("Error")]
-        Error,
+        public static OrderStatus Error = new OrderStatus("Error", nameof(Error));
+
         /// <summary>
         /// No Order Status
         /// </summary>
-        [Description("")] None
+        public static OrderStatus None = new OrderStatus("", nameof(None));
+
+        public OrderStatus(string value, string name) : base(value, name)
+        { }
     }
 }

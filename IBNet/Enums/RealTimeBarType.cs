@@ -1,33 +1,20 @@
 using System;
 using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Real Time Bar Type - "What to Show"
     /// </summary>
-    [Serializable()]
-    public enum RealTimeBarType
+    [Serializable]
+    public class RealTimeBarType : Enumeration<RealTimeBarType, string>
     {
-        /// <summary>
-        /// Trades
-        /// </summary>
-        [Description("TRADES")]
-        Trades,
-        /// <summary>
-        /// Bid
-        /// </summary>
-        [Description("BID")]
-        Bid,
-        /// <summary>
-        /// Ask
-        /// </summary>
-        [Description("ASK")]
-        Ask,
-        /// <summary>
-        /// Mid Point
-        /// </summary>
-        [Description("MIDPOINT")]
-        Midpoint
+        public static RealTimeBarType Trades   = new RealTimeBarType("TRADES", nameof(Trades));
+        public static RealTimeBarType Midpoint = new RealTimeBarType("MIDPOINT", nameof(Midpoint));
+        public static RealTimeBarType Bid      = new RealTimeBarType("BID", nameof(Bid));
+        public static RealTimeBarType Ask      = new RealTimeBarType("ASK", nameof(Ask));
+
+        public RealTimeBarType(string value, string name) : base(value, name) { }
     }
 }

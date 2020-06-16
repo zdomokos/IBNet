@@ -1,13 +1,14 @@
 using System;
 using IBApi;
+using IBNet.Enums;
 
-namespace Krs.Ats.IBNet.Contracts
+namespace IBNet.Contracts
 {
     /// <summary>
     /// Create a contract with the default parameters for an indice
     /// </summary>
     /// <seealso cref="Contract"/>
-    [Serializable()]
+    [Serializable]
     public class Index : Contract
     {
         /// <summary>
@@ -19,7 +20,7 @@ namespace Krs.Ats.IBNet.Contracts
         {
             Symbol = symbol;
             Exchange = exchange;
-            SecType = EnumDescConverter.GetEnumDescription(SecurityType.Index);
+            SecType = SecurityType.Index.Value;
             Currency = "USD";
         }
     }

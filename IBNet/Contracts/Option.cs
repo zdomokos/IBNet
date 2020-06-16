@@ -1,14 +1,15 @@
 using System;
 using System.Text;
 using IBApi;
+using IBNet.Enums;
 
-namespace Krs.Ats.IBNet.Contracts
+namespace IBNet.Contracts
 {
     /// <summary>
     /// Option Class - uses default constructors for creating an option contract.
     /// </summary>
     /// <seealso cref="Contract"/>
-    [Serializable()]
+    [Serializable]
     public class Option : Contract
     {
         /// <summary>
@@ -23,16 +24,16 @@ namespace Krs.Ats.IBNet.Contracts
         {
             ConId       = 0;
             Symbol      = equitySymbol;
-            SecType     = EnumDescConverter.GetEnumDescription(SecurityType.Option);
-            LastTradeDateOrContractMonth = expiry;
+            SecType     = SecurityType.Option.Value;
+            LastTradeDateOrContractMonth      = expiry;
             Strike      = strike;
-            Right       = EnumDescConverter.GetEnumDescription(right);
+            Right       = right.Value;
             Multiplier  = "100";
             Exchange    = "SMART";
             Currency    = "USD";
             LocalSymbol = optionSymbol;
             PrimaryExch = "SMART";
-            SecIdType   = EnumDescConverter.GetEnumDescription(SecurityIdType.None);
+            SecIdType   = SecurityIdType.None.Value;
             SecId       = string.Empty;
         }
 
@@ -49,16 +50,16 @@ namespace Krs.Ats.IBNet.Contracts
         {
             ConId       = 0;
             Symbol      = equitySymbol;
-            SecType     = EnumDescConverter.GetEnumDescription(SecurityType.Option);
+            SecType     = SecurityType.Option.Value;
             LastTradeDateOrContractMonth = "";
             Strike      = strike;
-            Right       = EnumDescConverter.GetEnumDescription(right);
+            Right       = right.Value;
             Multiplier  = "100";
             Exchange    = "SMART";
             Currency    = "USD";
             LocalSymbol = optionSymbol;
             PrimaryExch = "SMART";
-            SecIdType   = EnumDescConverter.GetEnumDescription(SecurityIdType.None);
+            SecIdType   = SecurityIdType.None.Value;
             SecId       = string.Empty;
 
             var ExpirationString = new StringBuilder();
@@ -80,16 +81,16 @@ namespace Krs.Ats.IBNet.Contracts
         {
             ConId       = 0;
             Symbol      = symbol;
-            SecType     = EnumDescConverter.GetEnumDescription(securityType);
+            SecType     = securityType.Value;
             LastTradeDateOrContractMonth = expiry;
             Strike      = strike;
-            Right       = EnumDescConverter.GetEnumDescription(right);
+            Right       = right.Value;
             Multiplier  = null;
             Exchange    = exchange;
             Currency    = currency;
             LocalSymbol = null;
             PrimaryExch = null;
-            SecIdType   = EnumDescConverter.GetEnumDescription(SecurityIdType.None);
+            SecIdType   = SecurityIdType.None.Value;
             SecId       = string.Empty;
 
 

@@ -1,248 +1,119 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
+using IBTick = IBApi.TickType;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Incoming Tick Types
     /// </summary>
-    [Serializable()] 
-    public enum TickType : int
+    [Serializable]
+    public class TickType : Enumeration<TickType>
     {
-        /// <summary>
-        /// Bid Size
-        /// </summary>
-        [Description("BID_SIZE")] BidSize = 0,
-        /// <summary>
-        /// Bid Price
-        /// </summary>
-        [Description("BID")] BidPrice = 1,
-        /// <summary>
-        /// Ask Price
-        /// </summary>
-        [Description("ASK")] AskPrice = 2,
-        /// <summary>
-        /// Ask Size
-        /// </summary>
-        [Description("ASK_SIZE")] AskSize = 3,
-        /// <summary>
-        /// Last Price
-        /// </summary>
-        [Description("LAST")] LastPrice = 4,
-        /// <summary>
-        /// Last Size
-        /// </summary>
-        [Description("LAST_SIZE")] LastSize = 5,
-        /// <summary>
-        /// High Price
-        /// </summary>
-        [Description("HIGH")] HighPrice = 6,
-        /// <summary>
-        /// Low Price
-        /// </summary>
-        [Description("LOW")] LowPrice = 7,
-        /// <summary>
-        /// Volume
-        /// </summary>
-        [Description("VOLUME")] Volume = 8,
-        /// <summary>
-        /// Close Price
-        /// </summary>
-        [Description("CLOSE")] ClosePrice = 9,
-        /// <summary>
-        /// Bid Option
-        /// </summary>
-        [Description("BID_OPTION")] BidOption = 10,
-        /// <summary>
-        /// Ask Option
-        /// </summary>
-        [Description("ASK_OPTION")] AskOption = 11,
-        /// <summary>
-        /// Last Option
-        /// </summary>
-        [Description("LAST_OPTION")] LastOption = 12,
-        /// <summary>
-        /// Model Option
-        /// </summary>
-        [Description("MODEL_OPTION")] ModelOption = 13,
-        /// <summary>
-        /// Open Price
-        /// </summary>
-        [Description("OPEN")] OpenPrice = 14,
-        /// <summary>
-        /// Low Price over last 13 weeks
-        /// </summary>
-        [Description("LOW_13_WEEK")] Low13Week = 15,
-        /// <summary>
-        /// High Price over last 13 weeks
-        /// </summary>
-        [Description("HIGH_13_WEEK")] High13Week = 16,
-        /// <summary>
-        /// Low Price over last 26 weeks
-        /// </summary>
-        [Description("LOW_26_WEEK")] Low26Week = 17,
-        /// <summary>
-        /// High Price over last 26 weeks
-        /// </summary>
-        [Description("HIGH_26_WEEK")] High26Week = 18,
-        /// <summary>
-        /// Low Price over last 52 weeks
-        /// </summary>
-        [Description("LOW_52_WEEK")] Low52Week = 19,
-        /// <summary>
-        /// High Price over last 52 weeks
-        /// </summary>
-        [Description("HIGH_52_WEEK")] High52Week = 20,
-        /// <summary>
-        /// Average Volume
-        /// </summary>
-        [Description("AVG_VOLUME")] AverageVolume = 21,
-        /// <summary>
-        /// Open Interest
-        /// </summary>
-        [Description("OPEN_INTEREST")] OpenInterest = 22,
-        /// <summary>
-        /// Option Historical Volatility
-        /// </summary>
-        [Description("OPTION_HISTORICAL_VOL")] OptionHistoricalVolatility = 23,
-        /// <summary>
-        /// Option Implied Volatility
-        /// </summary>
-        [Description("OPTION_IMPLIED_VOL")] OptionImpliedVolatility = 24,
-        /// <summary>
-        /// Option Bid Exchange
-        /// </summary>
-        [Description("OPTION_BID_EXCH")] OptionBidExchange = 25,
-        /// <summary>
-        /// Option Ask Exchange
-        /// </summary>
-        [Description("OPTION_ASK_EXCH")] OptionAskExchange = 26,
-        /// <summary>
-        /// Option Call Open Interest
-        /// </summary>
-        [Description("OPTION_CALL_OPEN_INTEREST")] OptionCallOpenInterest = 27,
-        /// <summary>
-        /// Option Put Open Interest
-        /// </summary>
-        [Description("OPTION_PUT_OPEN_INTEREST")] OptionPutOpenInterest = 28,
-        /// <summary>
-        /// Option Call Volume
-        /// </summary>
-        [Description("OPTION_CALL_VOLUME")] OptionCallVolume = 29,
-        /// <summary>
-        /// Option Put Volume
-        /// </summary>
-        [Description("OPTION_PUT_VOLUME")] OptionPutVolume = 30,
-        /// <summary>
-        /// Index Future Premium
-        /// </summary>
-        [Description("INDEX_FUTURE_PREMIUM")] IndexFuturePremium = 31,
-        /// <summary>
-        /// Bid Exchange
-        /// </summary>
-        [Description("BID_EXCH")] BidExchange = 32,
-        /// <summary>
-        /// Ask Exchange
-        /// </summary>
-        [Description("ASK_EXCH")] AskExchange = 33,
-        /// <summary>
-        /// Auction Volume
-        /// </summary>
-        [Description("AUCTION_VOLUME")] AuctionVolume = 34,
-        /// <summary>
-        /// Auction Price
-        /// </summary>
-        [Description("AUCTION_PRICE")] AuctionPrice = 35,
-        /// <summary>
-        /// Auction Imbalance
-        /// </summary>
-        [Description("AUCTION_IMBALANCE")] AuctionImbalance = 36,
-        /// <summary>
-        /// Mark Price
-        /// </summary>
-        [Description("MARK_PRICE")] MarkPrice = 37,
-        /// <summary>
-        /// Bid EFP Computation
-        /// </summary>
-        [Description("BID_EFP_COMPUTATION")] BidEfpComputation = 38,
-        /// <summary>
-        /// Ask EFP Computation
-        /// </summary>
-        [Description("ASK_EFP_COMPUTATION")] AskEfpComputation = 39,
-        /// <summary>
-        /// Last EFP Computation
-        /// </summary>
-        [Description("LAST_EFP_COMPUTATION")] LastEfpComputation = 40,
-        /// <summary>
-        /// Open EFP Computation
-        /// </summary>
-        [Description("OPEN_EFP_COMPUTATION")] OpenEfpComputation = 41,
-        /// <summary>
-        /// High EFP Computation
-        /// </summary>
-        [Description("HIGH_EFP_COMPUTATION")] HighEfpComputation = 42,
-        /// <summary>
-        /// Low EFP Computation
-        /// </summary>
-        [Description("LOW_EFP_COMPUTATION")] LowEfpComputation = 43,
-        /// <summary>
-        /// Close EFP Computation
-        /// </summary>
-        [Description("CLOSE_EFP_COMPUTATION")] CloseEfpComputation = 44,
-        /// <summary>
-        /// Last Time Stamp
-        /// </summary>
-        [Description("LAST_TIMESTAMP")] LastTimestamp = 45,
-        /// <summary>
-        /// Shortable
-        /// </summary>
-        [Description("SHORTABLE")] Shortable = 46,
-        /// <summary>
-        /// Fundamental Ratios
-        /// </summary>
-        [Description("FUNDAMENTAL_RATIOS")] FundamentalRatios = 47,
-        /// <summary>
-        /// Real Time Volume
-        /// </summary>
-        [Description("RTVOLUME")] RealTimeVolume = 48,
-        /// <summary>
-        /// When trading is halted for a contract, TWS receives a special tick: haltedLast=1. When trading is resumed, TWS receives haltedLast=0. A new tick type, HALTED, tick ID = 49, is now available in regular market data via the API to indicate this halted state.
-        /// Possible values for this new tick type are:
-        /// 0 = Not halted 
-        /// 1 = Halted. 
-        ///  </summary>
-        [Description("HALTED")] Halted = 49,
-        /// <summary>
-        /// Bond Yield for Bid Price
-        /// </summary>
-        [Description("BID_YIELD")] BidYield = 50,
-        /// <summary>
-        /// Bond Yield for Ask Price
-        /// </summary>
-        [Description("ASK_YIELD")] AskYield = 51,
-        /// <summary>
-        /// Bond Yield for Last Price
-        /// </summary>
-        [Description("LAST_YIELD")] LastYield = 52,
-        /// <summary>
-        /// returns calculated implied volatility as a result of an calculateImpliedVolatility( ) request.
-        /// </summary>
-        [Description("CUST_OPTION_COMPUTATION")] CustOptionComputation = 53,
-        /// <summary>
-        /// Trades
-        /// </summary>
-        [Description("TRADE_COUNT")] TradeCount = 54,
-        /// <summary>
-        /// Trades per Minute
-        /// </summary>
-        [Description("TRADE_RATE")] TradeRate = 55,
-        /// <summary>
-        /// Volume per Minute
-        /// </summary>
-        [Description("VOLUME_RATE")] VolumeRate = 56,
-        /// <summary>
-        /// Last Regular Trading Hours Trade
-        /// </summary>
-        [Description("LAST_RTH_TRADE")] LastRthTrade = 57
+        public static TickType BidSize                = new TickType(IBTick.BID_SIZE, nameof(BidSize));
+        public static TickType Bid                    = new TickType(IBTick.BID, nameof(Bid));
+        public static TickType Ask                    = new TickType(IBTick.ASK, nameof(Ask));
+        public static TickType AskSize                = new TickType(IBTick.ASK_SIZE, nameof(AskSize));
+        public static TickType Last                   = new TickType(IBTick.LAST, nameof(Last));
+        public static TickType LastSize               = new TickType(IBTick.LAST_SIZE, nameof(LastSize));
+        public static TickType High                   = new TickType(IBTick.HIGH, nameof(High));
+        public static TickType Low                    = new TickType(IBTick.LOW, nameof(Low));
+        public static TickType Volume                 = new TickType(IBTick.VOLUME, nameof(Volume));
+        public static TickType Close                  = new TickType(IBTick.CLOSE, nameof(Close));
+        public static TickType BidOption              = new TickType(IBTick.BID_OPTION, nameof(BidOption));
+        public static TickType AskOption              = new TickType(IBTick.ASK_OPTION, nameof(AskOption));
+        public static TickType LastOption             = new TickType(IBTick.LAST_OPTION, nameof(LastOption));
+        public static TickType ModelOption            = new TickType(IBTick.MODEL_OPTION, nameof(ModelOption));
+        public static TickType Open                   = new TickType(IBTick.OPEN, nameof(Open));
+        public static TickType Low13Week              = new TickType(IBTick.LOW_13_WEEK, nameof(Low13Week));
+        public static TickType High13Week             = new TickType(IBTick.HIGH_13_WEEK, nameof(High13Week));
+        public static TickType Low26Week              = new TickType(IBTick.LOW_26_WEEK, nameof(Low26Week));
+        public static TickType High26Week             = new TickType(IBTick.HIGH_26_WEEK, nameof(High26Week));
+        public static TickType Low52Week              = new TickType(IBTick.LOW_52_WEEK, nameof(Low52Week));
+        public static TickType High52Week             = new TickType(IBTick.HIGH_52_WEEK, nameof(High52Week));
+        public static TickType AvgVolume              = new TickType(IBTick.AVG_VOLUME, nameof(AvgVolume));
+        public static TickType OpenInterest           = new TickType(IBTick.OPEN_INTEREST, nameof(OpenInterest));
+        public static TickType OptionHistoricalVol    = new TickType(IBTick.OPTION_HISTORICAL_VOL, nameof(OptionHistoricalVol));
+        public static TickType OptionImpliedVol       = new TickType(IBTick.OPTION_IMPLIED_VOL, nameof(OptionImpliedVol));
+        public static TickType OptionBidExch          = new TickType(IBTick.OPTION_BID_EXCH, nameof(OptionBidExch));
+        public static TickType OptionAskExch          = new TickType(IBTick.OPTION_ASK_EXCH, nameof(OptionAskExch));
+        public static TickType OptionCallOpenInterest = new TickType(IBTick.OPTION_CALL_OPEN_INTEREST, nameof(OptionCallOpenInterest));
+        public static TickType OptionPutOpenInterest  = new TickType(IBTick.OPTION_PUT_OPEN_INTEREST, nameof(OptionPutOpenInterest));
+        public static TickType OptionCallVolume       = new TickType(IBTick.OPTION_CALL_VOLUME, nameof(OptionCallVolume));
+        public static TickType OptionPutVolume        = new TickType(IBTick.OPTION_PUT_VOLUME, nameof(OptionPutVolume));
+        public static TickType IndexFuturePremium     = new TickType(IBTick.INDEX_FUTURE_PREMIUM, nameof(IndexFuturePremium));
+        public static TickType BidExch                = new TickType(IBTick.BID_EXCH, nameof(BidExch));
+        public static TickType AskExch                = new TickType(IBTick.ASK_EXCH, nameof(AskExch));
+        public static TickType AuctionVolume          = new TickType(IBTick.AUCTION_VOLUME, nameof(AuctionVolume));
+        public static TickType AuctionPrice           = new TickType(IBTick.AUCTION_PRICE, nameof(AuctionPrice));
+        public static TickType AuctionImbalance       = new TickType(IBTick.AUCTION_IMBALANCE, nameof(AuctionImbalance));
+        public static TickType MarkPrice              = new TickType(IBTick.MARK_PRICE, nameof(MarkPrice));
+        public static TickType BidEfpComputation      = new TickType(IBTick.BID_EFP_COMPUTATION, nameof(BidEfpComputation));
+        public static TickType AskEfpComputation      = new TickType(IBTick.ASK_EFP_COMPUTATION, nameof(AskEfpComputation));
+        public static TickType LastEfpComputation     = new TickType(IBTick.LAST_EFP_COMPUTATION, nameof(LastEfpComputation));
+        public static TickType OpenEfpComputation     = new TickType(IBTick.OPEN_EFP_COMPUTATION, nameof(OpenEfpComputation));
+        public static TickType HighEfpComputation     = new TickType(IBTick.HIGH_EFP_COMPUTATION, nameof(HighEfpComputation));
+        public static TickType LowEfpComputation      = new TickType(IBTick.LOW_EFP_COMPUTATION, nameof(LowEfpComputation));
+        public static TickType CloseEfpComputation    = new TickType(IBTick.CLOSE_EFP_COMPUTATION, nameof(CloseEfpComputation));
+        public static TickType LastTimestamp          = new TickType(IBTick.LAST_TIMESTAMP, nameof(LastTimestamp));
+        public static TickType Shortable              = new TickType(IBTick.SHORTABLE, nameof(Shortable));
+        public static TickType FundamentalRatios      = new TickType(IBTick.FUNDAMENTAL_RATIOS, nameof(FundamentalRatios));
+        public static TickType RtVolume               = new TickType(IBTick.RT_VOLUME, nameof(RtVolume));
+        public static TickType Halted                 = new TickType(IBTick.HALTED, nameof(Halted));
+        public static TickType BidYield               = new TickType(IBTick.BID_YIELD, nameof(BidYield));
+        public static TickType AskYield               = new TickType(IBTick.ASK_YIELD, nameof(AskYield));
+        public static TickType LastYield              = new TickType(IBTick.LAST_YIELD, nameof(LastYield));
+        public static TickType CustOptionComputation  = new TickType(IBTick.CUST_OPTION_COMPUTATION, nameof(CustOptionComputation));
+        public static TickType TradeCount             = new TickType(IBTick.TRADE_COUNT, nameof(TradeCount));
+        public static TickType TradeRate              = new TickType(IBTick.TRADE_RATE, nameof(TradeRate));
+        public static TickType VolumeRate             = new TickType(IBTick.VOLUME_RATE, nameof(VolumeRate));
+        public static TickType LastRthTrade           = new TickType(IBTick.LAST_RTH_TRADE, nameof(LastRthTrade));
+        public static TickType RtHistoricalVol        = new TickType(IBTick.RT_HISTORICAL_VOL, nameof(RtHistoricalVol));
+        public static TickType IbDividends            = new TickType(IBTick.IB_DIVIDENDS, nameof(IbDividends));
+        public static TickType BondFactorMultiplier   = new TickType(IBTick.BOND_FACTOR_MULTIPLIER, nameof(BondFactorMultiplier));
+        public static TickType RegulatoryImbalance    = new TickType(IBTick.REGULATORY_IMBALANCE, nameof(RegulatoryImbalance));
+        public static TickType NewsTick               = new TickType(IBTick.NEWS_TICK, nameof(NewsTick));
+        public static TickType ShortTermVolume3Min    = new TickType(IBTick.SHORT_TERM_VOLUME_3_MIN, nameof(ShortTermVolume3Min));
+        public static TickType ShortTermVolume5Min    = new TickType(IBTick.SHORT_TERM_VOLUME_5_MIN, nameof(ShortTermVolume5Min));
+        public static TickType ShortTermVolume10Min   = new TickType(IBTick.SHORT_TERM_VOLUME_10_MIN, nameof(ShortTermVolume10Min));
+        public static TickType DelayedBid             = new TickType(IBTick.DELAYED_BID, nameof(DelayedBid));
+        public static TickType DelayedAsk             = new TickType(IBTick.DELAYED_ASK, nameof(DelayedAsk));
+        public static TickType DelayedLast            = new TickType(IBTick.DELAYED_LAST, nameof(DelayedLast));
+        public static TickType DelayedBidSize         = new TickType(IBTick.DELAYED_BID_SIZE, nameof(DelayedBidSize));
+        public static TickType DelayedAskSize         = new TickType(IBTick.DELAYED_ASK_SIZE, nameof(DelayedAskSize));
+        public static TickType DelayedLastSize        = new TickType(IBTick.DELAYED_LAST_SIZE, nameof(DelayedLastSize));
+        public static TickType DelayedHigh            = new TickType(IBTick.DELAYED_HIGH, nameof(DelayedHigh));
+        public static TickType DelayedLow             = new TickType(IBTick.DELAYED_LOW, nameof(DelayedLow));
+        public static TickType DelayedVolume          = new TickType(IBTick.DELAYED_VOLUME, nameof(DelayedVolume));
+        public static TickType DelayedClose           = new TickType(IBTick.DELAYED_CLOSE, nameof(DelayedClose));
+        public static TickType DelayedOpen            = new TickType(IBTick.DELAYED_OPEN, nameof(DelayedOpen));
+        public static TickType RtTrdVolume            = new TickType(IBTick.RT_TRD_VOLUME, nameof(RtTrdVolume));
+        public static TickType CreditmanMarkPrice     = new TickType(IBTick.CREDITMAN_MARK_PRICE, nameof(CreditmanMarkPrice));
+        public static TickType CreditmanSlowMarkPrice = new TickType(IBTick.CREDITMAN_SLOW_MARK_PRICE, nameof(CreditmanSlowMarkPrice));
+        public static TickType DelayedBidOption       = new TickType(IBTick.DELAYED_BID_OPTION, nameof(DelayedBidOption));
+        public static TickType DelayedAskOption       = new TickType(IBTick.DELAYED_ASK_OPTION, nameof(DelayedAskOption));
+        public static TickType DelayedLastOption      = new TickType(IBTick.DELAYED_LAST_OPTION, nameof(DelayedLastOption));
+        public static TickType DelayedModelOption     = new TickType(IBTick.DELAYED_MODEL_OPTION, nameof(DelayedModelOption));
+        public static TickType LastExch               = new TickType(IBTick.LAST_EXCH, nameof(LastExch));
+        public static TickType LastRegTime            = new TickType(IBTick.LAST_REG_TIME, nameof(LastRegTime));
+        public static TickType FuturesOpenInterest    = new TickType(IBTick.FUTURES_OPEN_INTEREST, nameof(FuturesOpenInterest));
+        public static TickType AvgOptVolume           = new TickType(IBTick.AVG_OPT_VOLUME, nameof(AvgOptVolume));
+        public static TickType DelayedLastTimestamp   = new TickType(IBTick.DELAYED_LAST_TIMESTAMP, nameof(DelayedLastTimestamp));
+        public static TickType ShortableShares        = new TickType(IBTick.SHORTABLE_SHARES, nameof(ShortableShares));
+        public static TickType DelayedHalted          = new TickType(IBTick.DELAYED_HALTED, nameof(DelayedHalted));
+        public static TickType Reuters2MutualFunds    = new TickType(IBTick.REUTERS_2_MUTUAL_FUNDS, nameof(Reuters2MutualFunds));
+        public static TickType EtfNavClose            = new TickType(IBTick.ETF_NAV_CLOSE, nameof(EtfNavClose));
+        public static TickType EtfNavPriorClose       = new TickType(IBTick.ETF_NAV_PRIOR_CLOSE, nameof(EtfNavPriorClose));
+        public static TickType EtfNavBid              = new TickType(IBTick.ETF_NAV_BID, nameof(EtfNavBid));
+        public static TickType EtfNavAsk              = new TickType(IBTick.ETF_NAV_ASK, nameof(EtfNavAsk));
+        public static TickType EtfNavLast             = new TickType(IBTick.ETF_NAV_LAST, nameof(EtfNavLast));
+        public static TickType EtfFrozenNavLast       = new TickType(IBTick.ETF_FROZEN_NAV_LAST, nameof(EtfFrozenNavLast));
+        public static TickType EtfNavHigh             = new TickType(IBTick.ETF_NAV_HIGH, nameof(EtfNavHigh));
+        public static TickType EtfNavLow              = new TickType(IBTick.ETF_NAV_LOW, nameof(EtfNavLow));
+
+        public TickType(int value, string name) : base(value, name)
+        { }
+
+        public string FieldName => IBTick.getField(Value);
     }
 }

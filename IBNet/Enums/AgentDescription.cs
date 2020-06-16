@@ -1,53 +1,26 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Used for Rule 80A describes the type of trader.
     /// </summary>
-    [Serializable()] 
-    public enum AgentDescription
+    [Serializable]
+    public class AgentDescription : Enumeration<AgentDescription, string>
     {
-        /// <summary>
-        /// An individual
-        /// </summary>
-        [Description("I")] Individual,
-        /// <summary>
-        /// An Agency
-        /// </summary>
-        [Description("A")] Agency,
-        /// <summary>
-        /// An Agent or Other Member
-        /// </summary>
-        [Description("W")] AgentOtherMember,
-        /// <summary>
-        /// Individual PTIA
-        /// </summary>
-        [Description("J")] IndividualPTIA,
-        /// <summary>
-        /// Agency PTIA
-        /// </summary>
-        [Description("U")] AgencyPTIA,
-        /// <summary>
-        /// Agether or Other Member PTIA
-        /// </summary>
-        [Description("M")] AgentOtherMemberPTIA,
-        /// <summary>
-        /// Individual PT
-        /// </summary>
-        [Description("K")] IndividualPT,
-        /// <summary>
-        /// Agency PT
-        /// </summary>
-        [Description("Y")] AgencyPT,
-        /// <summary>
-        /// Agent Other Member PT
-        /// </summary>
-        [Description("N")] AgentOtherMemberPT,
-        /// <summary>
-        /// No Description Provided
-        /// </summary>
-        [Description("")] None
+        public static AgentDescription Individual = new AgentDescription("I", nameof(Individual));
+        public static AgentDescription Agency = new AgentDescription("A", nameof(Agency));
+        public static AgentDescription AgentOtherMember = new AgentDescription("W", nameof(AgentOtherMember));
+        public static AgentDescription IndividualPTIA = new AgentDescription("J", nameof(IndividualPTIA));
+        public static AgentDescription AgencyPTIA = new AgentDescription("U", nameof(AgencyPTIA));
+        public static AgentDescription AgentOtherMemberPTIA = new AgentDescription("M", nameof(AgentOtherMemberPTIA));
+        public static AgentDescription IndividualPT = new AgentDescription("K", nameof(IndividualPT));
+        public static AgentDescription AgencyPT = new AgentDescription("Y", nameof(AgencyPT));
+        public static AgentDescription AgentOtherMemberPT = new AgentDescription("N", nameof(AgentOtherMemberPT));
+        public static AgentDescription None = new AgentDescription("", nameof(None));
+
+        public AgentDescription(string value, string name) : base(value, name)
+        { }
     }
 }

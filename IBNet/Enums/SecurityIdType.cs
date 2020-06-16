@@ -1,33 +1,39 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
-    /// Historical Bar Size Requests
+    /// Security Id Type
     /// </summary>
-    [Serializable()]
-    public enum SecurityIdType : int
+    [Serializable]
+    public class SecurityIdType : Enumeration<SecurityIdType, string>
     {
         /// <summary>
         /// No Security Id Type
         /// </summary>
-        [Description("")] None,
+        public static SecurityIdType None = new SecurityIdType("", nameof(None));
+
         /// <summary>
         /// Example: Apple: US0378331005
         /// </summary>
-        [Description("ISIN")] ISIN,
+        public static SecurityIdType ISIN = new SecurityIdType("ISIN", nameof(ISIN));
+
         /// <summary>
         /// Example: Apple: 037833100
         /// </summary>
-        [Description("CUSIP")] CUSIP,
+        public static SecurityIdType CUSIP = new SecurityIdType("CUSIP", nameof(CUSIP));
+
         /// <summary>
         /// Consists of 6-AN + check digit. Example: BAE: 0263494
         /// </summary>
-        [Description("SEDOL")] SEDOL,
+        public static SecurityIdType SEDOL = new SecurityIdType("SEDOL", nameof(SEDOL));
+
         /// <summary>
         /// Consists of exchange-independent RIC Root and a suffix identifying the exchange. Example: AAPL.O for Apple on NASDAQ.
         /// </summary>
-        [Description("RIC")] RIC
+        public static SecurityIdType RIC = new SecurityIdType("RIC", nameof(RIC));
+
+        public SecurityIdType(string value, string name) : base(value, name) { }
     }
 }

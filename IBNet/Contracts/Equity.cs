@@ -1,13 +1,14 @@
 using System;
 using IBApi;
+using IBNet.Enums;
 
-namespace Krs.Ats.IBNet.Contracts
+namespace IBNet.Contracts
 {
     /// <summary>
     /// Equity Class - uses default constructors for creating an equity contract.
     /// </summary>
     /// <seealso cref="Contract"/>
-    [Serializable()]
+    [Serializable]
     public class Equity : Contract
     {
         /// <summary>
@@ -18,7 +19,7 @@ namespace Krs.Ats.IBNet.Contracts
         {
             Symbol = symbol;
             Exchange = "SMART";
-            SecType = EnumDescConverter.GetEnumDescription(SecurityType.Stock);
+            SecType = SecurityType.Stock.Value;
             Currency = "USD";
         }
 
@@ -31,7 +32,7 @@ namespace Krs.Ats.IBNet.Contracts
         {
             Symbol = symbol;
             Exchange = exchange;
-            SecType = EnumDescConverter.GetEnumDescription(SecurityType.Stock);
+            SecType = SecurityType.Stock.Value;
             Currency = "USD";
         }
     }

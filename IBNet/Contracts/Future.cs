@@ -1,13 +1,14 @@
 using System;
 using IBApi;
+using IBNet.Enums;
 
-namespace Krs.Ats.IBNet.Contracts
+namespace IBNet.Contracts
 {
     /// <summary>
     /// Future Class - uses default constructors for creating an future contract.
     /// </summary>
     /// <seealso cref="Contract"/>
-    [Serializable()]
+    [Serializable]
     public class Future : Contract
     {
         /// <summary>
@@ -20,7 +21,7 @@ namespace Krs.Ats.IBNet.Contracts
         {
             Symbol = symbol;
             Exchange = exchange;
-            SecType = EnumDescConverter.GetEnumDescription(SecurityType.Future);
+            SecType = SecurityType.Future.Value;
             Currency = "USD";
             LastTradeDateOrContractMonth = expiry;
         }
@@ -36,7 +37,7 @@ namespace Krs.Ats.IBNet.Contracts
         {
             Symbol = symbol;
             Exchange = exchange;
-            SecType = EnumDescConverter.GetEnumDescription(SecurityType.Future);
+            SecType = SecurityType.Future.Value;
             Currency = currency;
             LastTradeDateOrContractMonth = expiry;
         }
@@ -53,7 +54,7 @@ namespace Krs.Ats.IBNet.Contracts
         {
             Symbol = symbol;
             Exchange = exchange;
-            SecType = EnumDescConverter.GetEnumDescription(SecurityType.Future);
+            SecType = SecurityType.Future.Value;
             Currency = currency;
             LastTradeDateOrContractMonth = expiry;
             Multiplier = multiplier.ToString();

@@ -1,12 +1,12 @@
 using System;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// News Message Type
     /// </summary>
-    [Serializable()]
-    public enum NewsType : int
+    [Serializable]
+    public enum NewsType
     {
         /// <summary>
         /// Reqular news bulletin

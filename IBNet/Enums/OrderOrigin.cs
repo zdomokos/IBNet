@@ -1,12 +1,12 @@
 using System;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Order Origin Fields
     /// </summary>
-    [Serializable()] 
-    public enum OrderOrigin : int
+    [Serializable] 
+    public enum OrderOrigin
     {
         /// <summary>
         /// Order originated from the customer

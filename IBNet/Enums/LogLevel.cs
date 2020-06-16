@@ -1,17 +1,13 @@
 using System;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Used for the set server log level
     /// </summary>
-    [Serializable()] 
-    public enum LogLevel
+    [Serializable] 
+    public enum ServerLogLevel
     {
-        /// <summary>
-        /// Undefined Log Level
-        /// </summary>
-        Undefined = 0,
         /// <summary>
         /// System Messages
         /// </summary>

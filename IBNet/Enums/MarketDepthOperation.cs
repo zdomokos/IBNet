@@ -1,12 +1,12 @@
 using System;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Market Depth Operation
     /// </summary>
-    [Serializable()] 
-    public enum MarketDepthOperation : int
+    [Serializable] 
+    public enum MarketDepthOperation
     {
         /// <summary>
         /// Insert  (insert this new order into the row identified by 'position')

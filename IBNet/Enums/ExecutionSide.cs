@@ -1,22 +1,19 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
-    /// Describes wether a security was bought or sold in an execution.
+    /// Describes whether a security was bought or sold in an execution.
     /// The past tense equivalent of ActionSide.
     /// </summary>
-    [Serializable()] 
-    public enum ExecutionSide
+    [Serializable]
+    public class ExecutionSide : Enumeration<ExecutionSide, string>
     {
-        /// <summary>
-        /// Securities were bought.
-        /// </summary>
-        [Description("BOT")] Bought,
-        /// <summary>
-        /// Securities were sold.
-        /// </summary>
-        [Description("SLD")] Sold
+        public static ExecutionSide Bought = new ExecutionSide("BOT", nameof(Bought));
+        public static ExecutionSide Sold = new ExecutionSide("SLD", nameof(Sold));
+
+        public ExecutionSide(string value, string name) : base(value, name)
+        { }
     }
 }

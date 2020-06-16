@@ -1,161 +1,54 @@
 using System;
 using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Outgoing Message Ids
     /// </summary>
-    [Serializable()]
-    public enum OutgoingMessage
+    [Serializable]
+    public class OutgoingMessage : Enumeration<OutgoingMessage, string>
     {
-        /// <summary>
-        /// Undefined Outgoing Message
-        /// </summary>
-        [Description("")] Undefined = 0,
-        /// <summary>
-        /// Request Market Data
-        /// </summary>
-        [Description("REQ_MKT_DATA")] RequestMarketData = 1,
-        /// <summary>
-        /// Cancel Market Data
-        /// </summary>
-        [Description("CANCEL_MKT_DATA")] CancelMarketData = 2,
-        /// <summary>
-        /// Place Order
-        /// </summary>
-        [Description("PLACE_ORDER")] PlaceOrder = 3,
-        /// <summary>
-        /// Cancel Order
-        /// </summary>
-        [Description("CANCEL_ORDER")] CancelOrder = 4,
-        /// <summary>
-        /// Request Open Orders
-        /// </summary>
-        [Description("REQ_OPEN_ORDERS")] RequestOpenOrders = 5,
-        /// <summary>
-        /// Request Account Data
-        /// </summary>
-        [Description("REQ_ACCOUNT_DATA")] RequestAccountData = 6,
-        /// <summary>
-        /// Request Executions
-        /// </summary>
-        [Description("REQ_EXECUTIONS")] RequestExecutions = 7,
-        /// <summary>
-        /// Request IDS
-        /// </summary>
-        [Description("REQ_IDS")] RequestIds = 8,
-        /// <summary>
-        /// Request Contract Data
-        /// </summary>
-        [Description("REQ_CONTRACT_DATA")] RequestContractData = 9,
-        /// <summary>
-        /// Request Market Depth
-        /// </summary>
-        [Description("REQ_MKT_DEPTH")] RequestMarketDepth = 10,
-        /// <summary>
-        /// Cancel Market Depth
-        /// </summary>
-        [Description("CANCEL_MKT_DEPTH")] CancelMarketDepth = 11,
-        /// <summary>
-        /// Request News Bullestins
-        /// </summary>
-        [Description("REQ_NEWS_BULLETINS")] RequestNewsBulletins = 12,
-        /// <summary>
-        /// Cancel News Bulletins
-        /// </summary>
-        [Description("CANCEL_NEWS_BULLETINS")] CancelNewsBulletins = 13,
-        /// <summary>
-        /// Set Server Log Level
-        /// </summary>
-        [Description("SET_SERVER_LOGLEVEL")] SetServerLogLevel = 14,
-        /// <summary>
-        /// Request Auto Open Orders
-        /// </summary>
-        [Description("REQ_AUTO_OPEN_ORDERS")] RequestAutoOpenOrders = 15,
-        /// <summary>
-        /// Request All Open Orders
-        /// </summary>
-        [Description("REQ_ALL_OPEN_ORDERS")] RequestAllOpenOrders = 16,
-        /// <summary>
-        /// Request Managed Accounts
-        /// </summary>
-        [Description("REQ_MANAGED_ACCTS")] RequestManagedAccounts = 17,
-        /// <summary>
-        /// Request Financial Advisor
-        /// </summary>
-        [Description("REQ_FA")] RequestFA = 18,
-        /// <summary>
-        /// Replace Financial Advisor
-        /// </summary>
-        [Description("REPLACE_FA")] ReplaceFA = 19,
-        /// <summary>
-        /// Request Historical Data
-        /// </summary>
-        [Description("REQ_HISTORICAL_DATA")] RequestHistoricalData = 20,
-        /// <summary>
-        /// Exercise Options
-        /// </summary>
-        [Description("EXERCISE_OPTIONS")] ExerciseOptions = 21,
-        /// <summary>
-        /// Request Scanner Subscription
-        /// </summary>
-        [Description("REQ_SCANNER_SUBSCRIPTION")] RequestScannerSubscription = 22,
-        /// <summary>
-        /// Cancel Scanner Subscription
-        /// </summary>
-        [Description("CANCEL_SCANNER_SUBSCRIPTION")] CancelScannerSubscription = 23,
-        /// <summary>
-        /// Request Scanner Parameters
-        /// </summary>
-        [Description("REQ_SCANNER_PARAMETERS")] RequestScannerParameters = 24,
-        /// <summary>
-        /// Cancel Historical Data
-        /// </summary>
-        [Description("CANCEL_HISTORICAL_DATA")] CancelHistoricalData = 25,
-        /// <summary>
-        /// Request Current Time
-        /// </summary>
-        [Description("REQ_CURRENT_TIME")] RequestCurrentTime = 49,
-        /// <summary>
-        /// Request Real Time Bars
-        /// </summary>
-        [Description("REQ_REAL_TIME_BARS")] RequestRealTimeBars = 50,
-        /// <summary>
-        /// Cancel Real Time Bars
-        /// </summary>
-        [Description("CANCEL_REAL_TIME_BARS")] CancelRealTimeBars = 51,
-        /// <summary>
-        /// Request Fundamental Data
-        /// </summary>
-        [Description("REQ_FUNDAMENTAL_DATA")] RequestFundamentalData = 52,
-        /// <summary>
-        /// Cancel Fundamental Data
-        /// </summary>
-        [Description("CANCEL_FUNDAMENTAL_DATA")] CancelFundamentalData = 53,
-        /// <summary>
-        /// Request Calculated Implied Volatility
-        /// </summary>
-        [Description("REQ_CALC_IMPLIED_VOLAT")] RequestCalcImpliedVolatility = 54,
-        /// <summary>
-        /// Request Calculated Option Price
-        /// </summary>
-        [Description("REQ_CALC_OPTION_PRICE")] RequestCalcOptionPrice = 55,
-        /// <summary>
-        /// Cancel Calculated Implied Volatility
-        /// </summary>
-        [Description("CANCEL_CALC_IMPLIED_VOLAT")] CancelCalcImpliedVolatility = 56,
-        /// <summary>
-        /// Cancel Calculated Option Price
-        /// </summary>
-        [Description("CANCEL_CALC_OPTION_PRICE")] CancelCalcOptionPrice = 57,
-        /// <summary>
-        /// Request Global Cancel
-        /// </summary>
-        [Description("REQ_GLOBAL_CANCEL")] RequestGlobalCancel = 58,
-        /// <summary>
-        /// Request Market Data Type
-        /// </summary>
-        [Description("REQ_MARKET_DATA_TYPE")] RequestMarketDataType = 59
+        public static OutgoingMessage Undefined                    = new OutgoingMessage("", nameof(Undefined));
+        public static OutgoingMessage RequestMarketData            = new OutgoingMessage("REQ_MKT_DATA", nameof(RequestMarketData));
+        public static OutgoingMessage CancelMarketData             = new OutgoingMessage("CANCEL_MKT_DATA", nameof(CancelMarketData));
+        public static OutgoingMessage PlaceOrder                   = new OutgoingMessage("PLACE_ORDER", nameof(PlaceOrder));
+        public static OutgoingMessage CancelOrder                  = new OutgoingMessage("CANCEL_ORDER", nameof(CancelOrder));
+        public static OutgoingMessage RequestOpenOrders            = new OutgoingMessage("REQ_OPEN_ORDERS", nameof(RequestOpenOrders));
+        public static OutgoingMessage RequestAccountData           = new OutgoingMessage("REQ_ACCOUNT_DATA", nameof(RequestAccountData));
+        public static OutgoingMessage RequestExecutions            = new OutgoingMessage("REQ_EXECUTIONS", nameof(RequestExecutions));
+        public static OutgoingMessage RequestIds                   = new OutgoingMessage("REQ_IDS", nameof(RequestIds));
+        public static OutgoingMessage RequestContractData          = new OutgoingMessage("REQ_CONTRACT_DATA", nameof(RequestContractData));
+        public static OutgoingMessage RequestMarketDepth           = new OutgoingMessage("REQ_MKT_DEPTH", nameof(RequestMarketDepth));
+        public static OutgoingMessage CancelMarketDepth            = new OutgoingMessage("CANCEL_MKT_DEPTH", nameof(CancelMarketDepth));
+        public static OutgoingMessage RequestNewsBulletins         = new OutgoingMessage("REQ_NEWS_BULLETINS", nameof(RequestNewsBulletins));
+        public static OutgoingMessage CancelNewsBulletins          = new OutgoingMessage("CANCEL_NEWS_BULLETINS", nameof(CancelNewsBulletins));
+        public static OutgoingMessage SetServerLogLevel            = new OutgoingMessage("SET_SERVER_LOGLEVEL", nameof(SetServerLogLevel));
+        public static OutgoingMessage RequestAutoOpenOrders        = new OutgoingMessage("REQ_AUTO_OPEN_ORDERS", nameof(RequestAutoOpenOrders));
+        public static OutgoingMessage RequestAllOpenOrders         = new OutgoingMessage("REQ_ALL_OPEN_ORDERS", nameof(RequestAllOpenOrders));
+        public static OutgoingMessage RequestManagedAccounts       = new OutgoingMessage("REQ_MANAGED_ACCTS", nameof(RequestManagedAccounts));
+        public static OutgoingMessage RequestFA                    = new OutgoingMessage("REQ_FA", nameof(RequestFA));
+        public static OutgoingMessage ReplaceFA                    = new OutgoingMessage("REPLACE_FA", nameof(ReplaceFA));
+        public static OutgoingMessage RequestHistoricalData        = new OutgoingMessage("REQ_HISTORICAL_DATA", nameof(RequestHistoricalData));
+        public static OutgoingMessage ExerciseOptions              = new OutgoingMessage("EXERCISE_OPTIONS", nameof(ExerciseOptions));
+        public static OutgoingMessage RequestScannerSubscription   = new OutgoingMessage("REQ_SCANNER_SUBSCRIPTION", nameof(RequestScannerSubscription));
+        public static OutgoingMessage CancelScannerSubscription    = new OutgoingMessage("CANCEL_SCANNER_SUBSCRIPTION", nameof(CancelScannerSubscription));
+        public static OutgoingMessage RequestScannerParameters     = new OutgoingMessage("REQ_SCANNER_PARAMETERS", nameof(RequestScannerParameters));
+        public static OutgoingMessage CancelHistoricalData         = new OutgoingMessage("CANCEL_HISTORICAL_DATA", nameof(CancelHistoricalData));
+        public static OutgoingMessage RequestCurrentTime           = new OutgoingMessage("REQ_CURRENT_TIME", nameof(RequestCurrentTime));
+        public static OutgoingMessage RequestRealTimeBars          = new OutgoingMessage("REQ_REAL_TIME_BARS", nameof(RequestRealTimeBars));
+        public static OutgoingMessage CancelRealTimeBars           = new OutgoingMessage("CANCEL_REAL_TIME_BARS", nameof(CancelRealTimeBars));
+        public static OutgoingMessage RequestFundamentalData       = new OutgoingMessage("REQ_FUNDAMENTAL_DATA", nameof(RequestFundamentalData));
+        public static OutgoingMessage CancelFundamentalData        = new OutgoingMessage("CANCEL_FUNDAMENTAL_DATA", nameof(CancelFundamentalData));
+        public static OutgoingMessage RequestCalcImpliedVolatility = new OutgoingMessage("REQ_CALC_IMPLIED_VOLAT", nameof(RequestCalcImpliedVolatility));
+        public static OutgoingMessage RequestCalcOptionPrice       = new OutgoingMessage("REQ_CALC_OPTION_PRICE", nameof(RequestCalcOptionPrice));
+        public static OutgoingMessage CancelCalcImpliedVolatility  = new OutgoingMessage("CANCEL_CALC_IMPLIED_VOLAT", nameof(CancelCalcImpliedVolatility));
+        public static OutgoingMessage CancelCalcOptionPrice        = new OutgoingMessage("CANCEL_CALC_OPTION_PRICE", nameof(CancelCalcOptionPrice));
+        public static OutgoingMessage RequestGlobalCancel          = new OutgoingMessage("REQ_GLOBAL_CANCEL", nameof(RequestGlobalCancel));
+        public static OutgoingMessage RequestMarketDataType        = new OutgoingMessage("REQ_MARKET_DATA_TYPE", nameof(RequestMarketDataType));
+
+        public OutgoingMessage(string value, string name) : base(value, name)
+        { }
     }
 }

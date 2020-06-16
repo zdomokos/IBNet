@@ -1,29 +1,16 @@
 using System;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
 using IBApi;
+using System.Threading;
 
-namespace Krs.Ats.IBNet
+namespace IBNet
 {
     /// <summary>
     /// Interactive Brokers Client
     /// Handles all communications to and from the TWS.
+    /// https://interactivebrokers.github.io/tws-api/historical_bars.html
     /// </summary>
     public partial class IBClient : EWrapper, IDisposable
     {
-
-        public readonly EReaderSignal Signal;
-
-        public IBClient()
-        {
-            Signal = new EReaderMonitorSignal();
-            _socket = new EClientSocket(this, Signal);
-            ibTrace.Level = TraceLevel.Verbose;
-        }
-
         public void Dispose()
         {
             Dispose(true);
@@ -34,6 +21,7 @@ namespace Krs.Ats.IBNet
             // from executing a second time.
             GC.SuppressFinalize(this);
         }
+
         /// <summary>
         /// The bulk of the clean-up code is implemented in Dispose(bool)
         /// </summary>
@@ -43,14 +31,21 @@ namespace Krs.Ats.IBNet
             if (disposing)
             {
                 GeneralTracer.WriteLineIf(ibTrace.TraceInfo, "IBClient Dispose");
-                _socket.eDisconnect();
-                _socket.Close();
+                ClientSocket.eDisconnect();
+                ClientSocket.Close();
             }
         }
 
-        #region Tracer
-        private GeneralTracer ibTrace = new GeneralTracer("ibInfo", "Interactive Brokers Parameter Info");
-        private GeneralTracer ibTickTrace = new GeneralTracer("ibTicks", "Interactive Brokers Tick Info");
-        #endregion
+        private void FireEvent(SendOrPostCallback action, object state)
+        {
+            if (_sc != null)
+                _sc.Post(action, state);
+            else
+                action(state);
+        }
+
+        private GeneralTracer        ibTrace     = new GeneralTracer("ibInfo", "Interactive Brokers Parameter Info");
+        private EReaderMonitorSignal _signal     = new EReaderMonitorSignal();
+        private Thread               _messageDispatchThread;
     }
 }

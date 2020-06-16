@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Krs.Ats.IBNet
+namespace IBNet
 {
     /// <summary>
     /// General Tracer handles the switch and writeline functions

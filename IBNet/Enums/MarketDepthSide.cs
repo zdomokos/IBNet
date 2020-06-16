@@ -1,12 +1,12 @@
 using System;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Market Depth Side
     /// </summary>
-    [Serializable()] 
-    public enum MarketDepthSide : int
+    [Serializable] 
+    public enum MarketDepthSide
     {
         /// <summary>
         /// Ask Price Side

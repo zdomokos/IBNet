@@ -1,27 +1,17 @@
 using System;
-using System.ComponentModel;
+using Ztg.Common.DataStructures.Enums;
 
-namespace Krs.Ats.IBNet
+namespace IBNet.Enums
 {
     /// <summary>
     /// Option Right Type (Put or Call)
     /// </summary>
-    [Serializable()]
-    public enum RightType
+    [Serializable]
+    public class RightType : Enumeration<RightType, string>
     {
-        /// <summary>
-        /// Option type is a Put (Right to sell)
-        /// </summary>
-        /// Description tag used to be "PUT"
-        [Description("P")] Put,
-        /// <summary>
-        /// Option type is a Call (Right to buy)
-        /// </summary>
-        /// Description tag used to be "CALL"
-        [Description("C")] Call,
-        /// <summary>
-        /// Option type is not defined (contract is not an option).
-        /// </summary>
-        [Description("")] Undefined
+        public static RightType Put = new RightType("P", nameof(Put));
+        public static RightType Call = new RightType("C", nameof(Call));
+
+        public RightType(string value, string name) : base(value, name) { }
     }
 }
