@@ -96,6 +96,14 @@
       <Project>{3c4cc1c4-8ec1-428a-bc61-12538214e3c9}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\tws-api\source\csharpclient\client\CSharpAPI.csproj">
+      <Project>{8ede0744-96c2-40b0-a8dc-37df79370203}</Project>
+      <Name>CSharpAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBNet\IBNet.csproj">
+      <Project>{96d49ede-4480-434c-b0d9-7eea4b98b4d4}</Project>
+      <Name>IBNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NUnit">
