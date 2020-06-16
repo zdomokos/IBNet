@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FD56AEAF-C610-4EBE-ACB5-A0E41C86149C}</ProjectGuid>
+    <ProjectGuid>{96D49EDE-4480-434C-B0D9-7EEA4B98B4D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IBNet</RootNamespace>
@@ -193,10 +193,6 @@
     <ProjectReference Include="..\..\..\Common\Ztg.Common\Common.csproj">
       <Project>{3c4cc1c4-8ec1-428a-bc61-12538214e3c9}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\tws-api\source\csharpclient\client\CSharpAPI.csproj">
-      <Project>{8ede0744-96c2-40b0-a8dc-37df79370203}</Project>
-      <Name>CSharpAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

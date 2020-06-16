@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6991EC5C-B18D-42BA-87B0-7A696F78AC77}</ProjectGuid>
+    <ProjectGuid>{C2530DB5-B25A-48B5-8E79-1DEAAD3D0BD4}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IBNet.TestApp</RootNamespace>
@@ -95,14 +95,6 @@
     <ProjectReference Include="..\..\..\Common\Ztg.Common\Common.csproj">
       <Project>{3c4cc1c4-8ec1-428a-bc61-12538214e3c9}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\tws-api\source\csharpclient\client\CSharpAPI.csproj">
-      <Project>{8ede0744-96c2-40b0-a8dc-37df79370203}</Project>
-      <Name>CSharpAPI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IBNet\IBNet.csproj">
-      <Project>{fd56aeaf-c610-4ebe-acb5-a0e41c86149c}</Project>
-      <Name>IBNet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
