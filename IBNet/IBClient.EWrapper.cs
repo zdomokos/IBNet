@@ -142,12 +142,11 @@ namespace IBNet
 
         void EWrapper.nextValidId(int orderId)
         {
+            NextOrderId = orderId;
             var tmp = NextValidId;
 
             if (tmp != null)
                 FireEvent(t => tmp(new ConnectionStatusMessage(true)), null);
-
-            NextOrderId = orderId;
         }
 
         public event Action<int, DeltaNeutralContract> DeltaNeutralValidation;
