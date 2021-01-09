@@ -44,8 +44,8 @@ namespace IBNet
                 action(state);
         }
 
-        private GeneralTracer        ibTrace     = new GeneralTracer("ibInfo", "Interactive Brokers Parameter Info");
-        private EReaderMonitorSignal _signal     = new EReaderMonitorSignal();
+        private GeneralTracer        ibTrace = new GeneralTracer("ibInfo", "Interactive Brokers Parameter Info");
+        private EReaderMonitorSignal _signal = new EReaderMonitorSignal();
         private Thread               _messageDispatchThread;
     }
 }

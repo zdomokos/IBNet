@@ -55,7 +55,7 @@ namespace IBNet
             if (!ClientSocket.IsConnected())
             {
                 if (host == null || host.Equals(""))
-                    host = "192.168.50.12";
+                    host = "127.0.0.1";
                 try
                 {
                     ClientId = clientId;
@@ -557,16 +557,17 @@ namespace IBNet
         /// <summary>
         /// Call this method to request FA configuration information from TWS. The data returns in an XML string via a "receiveFA" ActiveX event.  
         /// </summary>
+        /// <param name="requestId">Request Id</param>
         /// <param name="faDataType">
         /// specifies the type of Financial Advisor configuration data being requested. Valid values include:
         /// 1 = GROUPS
         /// 2 = PROFILE
         /// 3 = ACCOUNT ALIASES</param>
         /// <param name="xml">the XML string containing the new FA configuration information.</param>
-        public void ReplaceFA(FADataType faDataType, string xml)
+        public void ReplaceFA(int requestId, FADataType faDataType, string xml)
         {
             lock (this)
-                ClientSocket.replaceFA(faDataType.Value, xml);
+                ClientSocket.replaceFA(requestId, faDataType.Value, xml);
         }
         #endregion
 
