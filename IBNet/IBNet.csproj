@@ -5,10 +5,6 @@
     <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Ztg.Common\Common.csproj" />
     <ProjectReference Include="..\..\tws-api\source\csharpclient\client\CSharpAPI.csproj" />
   </ItemGroup>
