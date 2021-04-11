@@ -8,4 +8,7 @@
     <ProjectReference Include="..\..\..\Common\Ztg.Common\Common.csproj" />
     <ProjectReference Include="..\..\tws-api\source\csharpclient\client\CSharpAPI.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Biehler.EnumParser" Version="1.1.0" />
+  </ItemGroup>
 </Project>
