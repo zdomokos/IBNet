@@ -17,7 +17,7 @@
 
         public ConversionRates ConversionRates { get; set; }
 
-        public string CorporateActions { get; set; }
+        public CorporateActions CorporateActions { get; set; }
 
         public EquitySummaryInBase EquitySummaryInBase { get; set; }
 

@@ -56,7 +56,7 @@ namespace IBSamples
             Console.WriteLine("Tick Price. Ticker Id:"+tickerId+", Field: "+field+", Price: "+price+", CanAutoExecute: "+attribs.CanAutoExecute+"\n");
         }
         
-        public override void tickSize(int tickerId, int field, int size)
+        public override void tickSize(int tickerId, int field, long size)
         {
             Console.WriteLine("Tick Size. Ticker Id:" + tickerId + ", Field: " + field + ", Size: " + size+"\n");
         }
@@ -204,13 +204,13 @@ namespace IBSamples
             Console.WriteLine("MarketDataType. "+reqId+", Type: "+marketDataType+"\n");
         }
 
-        public override void updateMktDepth(int tickerId, int position, int operation, int side, double price, int size)
+        public override void updateMktDepth(int tickerId, int position, int operation, int side, double price, long size)
         {
             Console.WriteLine("UpdateMarketDepth. " + tickerId + " - Position: " + position + ", Operation: " + operation + ", Side: " + side + ", Price: " + price + ", Size" + size+"\n");
         }
 
         //WARN: Could not test!
-        public override void updateMktDepthL2(int tickerId, int position, string marketMaker, int operation, int side, double price, int size, bool isSmartDepth)
+        public override void updateMktDepthL2(int tickerId, int position, string marketMaker, int operation, int side, double price, long size, bool isSmartDepth)
         {
             Console.WriteLine("UpdateMarketDepthL2. " + tickerId + " - Position: " + position + ", Operation: " + operation + ", Side: " + side + ", Price: " + price + ", Size" + size+"\n");
         }

@@ -81,8 +81,9 @@ namespace IbFlexReader.Contracts.Ib
                     DateTime dt        = DateTime.ParseExact($"{TradeDate}:{TradeTime}", "yyyyMMdd:HHmmss", CultureInfo.InvariantCulture);
                     return dt;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
+                    // ignored
                 }
 
                 return null;

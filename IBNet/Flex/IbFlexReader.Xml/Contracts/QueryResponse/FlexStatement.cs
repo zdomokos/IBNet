@@ -24,7 +24,7 @@
         public ConversionRates ConversionRates { get; set; }
 
         [XmlElement(ElementName = "CorporateActions")]
-        public string CorporateActions { get; set; }
+        public CorporateActions CorporateActions { get; set; }
 
         [XmlElement(ElementName = "EquitySummaryInBase")]
         public EquitySummaryInBase EquitySummaryInBase { get; set; }
