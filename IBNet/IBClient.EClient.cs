@@ -195,7 +195,7 @@ namespace IBNet
         /// <summary>
         /// Call this method to request that newly created TWS orders be implicitly associated with the client. When a new TWS order is created, the order will be associated with the client and fed back through the openOrder() and orderStatus() methods on the EWrapper.
         /// 
-        /// TWS orders can only be bound to clients with a clientId of “0”.
+        /// TWS orders can only be bound to clients with a clientId of "0".
         /// </summary>
         /// <param name="autoBind">If set to TRUE, newly created TWS orders will be implicitly associated with the client. If set to FALSE, no association will be made.</param>
         public void RequestAutoOpenOrders(bool autoBind)
@@ -469,7 +469,7 @@ namespace IBNet
         
         /// <summary>
         /// Call the exerciseOptions() method to exercise options. 
-        /// “SMART” is not an allowed exchange in exerciseOptions() calls, and that TWS does a moneyness request for the position in question whenever any API initiated exercise or lapse is attempted.
+        /// "SMART" is not an allowed exchange in exerciseOptions() calls, and that TWS does a moneyness request for the position in question whenever any API initiated exercise or lapse is attempted.
         /// </summary>
         /// <param name="requestId">the Id for the exercise request.</param>
         /// <param name="contract">this structure contains a description of the contract to be exercised.  If no multiplier is specified, a default of 100 is assumed.</param>

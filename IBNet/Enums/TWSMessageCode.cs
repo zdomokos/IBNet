@@ -2,7 +2,7 @@
 using System;
 using Ztg.Common.DataStructures.Enums;
 
-namespace Ztg.Trader.Broker.IB
+namespace Ztg.Loraq.Broker.IB
 {
     /// <summary>
     /// Tws error code table
