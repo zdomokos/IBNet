@@ -89,5 +89,11 @@
 
         [XmlAttribute(AttributeName = "whenGenerated")]
         public string WhenGenerated { get; set; }
+
+        [XmlElement(ElementName = "FxPositions")]
+        public FxPositions FxPositions { get; set; }
+
+        [XmlElement(ElementName = "FxTransactions")]
+        public FxTransactions FxTransactions { get; set; }
     }
 }

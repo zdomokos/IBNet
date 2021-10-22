@@ -63,5 +63,8 @@
 
         [Format(Constants.DateTimeFormat)]
         public DateTime? WhenGenerated { get; set; }
+
+        public FxPositions    FxPositions    { get; set; }
+        public FxTransactions FxTransactions { get; set; }
     }
 }

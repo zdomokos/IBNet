@@ -184,5 +184,11 @@ namespace IbFlexReader.Contracts.Ib
         public double? AccruedInterest { get; set; }
 
         public string TraderID { get; set; }
+
+        public string SerialNumber  { get; set; }
+        public string DeliveryType  { get; set; }
+        public string CommodityType { get; set; }
+        public string Fineness      { get; set; }
+        public string Weight        { get; set; }
     }
 }
