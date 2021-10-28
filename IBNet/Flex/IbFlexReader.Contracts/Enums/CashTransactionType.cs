@@ -24,6 +24,8 @@
         [EnumName("Broker Interest Received")]
         BrokerInterestReceived,
         [EnumName("Bond Interest Received")]
-        BondInterestReceived
+        BondInterestReceived,
+        [EnumName("Commission Adjustments")]
+        CommissionAdjustments
     }
 }

@@ -1,7 +1,8 @@
-﻿namespace IbFlexReader.Contracts.Ib
-{
-    using System.Xml.Serialization;
+﻿using System.ComponentModel;
 
+namespace IbFlexReader.Contracts.Ib
+{
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class FxClosedLot
     {
         public string AccountId           { get; set; }

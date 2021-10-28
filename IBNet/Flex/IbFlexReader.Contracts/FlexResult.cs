@@ -1,5 +1,8 @@
-﻿namespace IbFlexReader.Contracts
+﻿using System.ComponentModel;
+
+namespace IbFlexReader.Contracts
 {
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class FlexResult
     {
         public string ErrorMessage { get; set; }

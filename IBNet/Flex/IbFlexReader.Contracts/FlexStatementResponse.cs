@@ -1,9 +1,12 @@
-﻿namespace IbFlexReader.Contracts
+﻿using System.ComponentModel;
+
+namespace IbFlexReader.Contracts
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
 
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class FlexStatementResponse
     {
         public string Status { get; set; }

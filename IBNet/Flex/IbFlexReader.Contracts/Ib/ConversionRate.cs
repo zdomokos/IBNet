@@ -1,7 +1,10 @@
-﻿namespace IbFlexReader.Contracts.Ib
+﻿using System.ComponentModel;
+
+namespace IbFlexReader.Contracts.Ib
 {
     using IbFlexReader.Contracts.Enums;
 
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class ConversionRate
     {
         //Note: The reportDate XML attribute may contain either a date or a string, i.e. reportDate="MULTI"

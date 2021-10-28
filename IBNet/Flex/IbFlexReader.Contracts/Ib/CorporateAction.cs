@@ -1,7 +1,10 @@
-﻿namespace IbFlexReader.Contracts.Ib
+﻿using System.ComponentModel;
+
+namespace IbFlexReader.Contracts.Ib
 {
     using System.Collections.Generic;
 
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class CorporateAction
     {
         public string AccountId                 { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.ComponentModel;
+using System.Globalization;
 
 namespace IbFlexReader.Contracts.Ib
 {
@@ -6,7 +7,8 @@ namespace IbFlexReader.Contracts.Ib
     using IbFlexReader.Contracts.Attributes;
     using IbFlexReader.Contracts.Enums;
 
-    public class Trade
+    [TypeConverter(typeof(ExpandableObjectConverter))]
+    public class Trade : ISecurityInfo
     {
         public string AccountId { get; set; }
 

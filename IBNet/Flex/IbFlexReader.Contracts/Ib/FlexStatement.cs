@@ -1,8 +1,11 @@
-﻿namespace IbFlexReader.Contracts.Ib
+﻿using System.ComponentModel;
+
+namespace IbFlexReader.Contracts.Ib
 {
     using System;
     using IbFlexReader.Contracts.Attributes;
 
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class FlexStatement
     {
         public AccountInformation AccountInformation { get; set; }
