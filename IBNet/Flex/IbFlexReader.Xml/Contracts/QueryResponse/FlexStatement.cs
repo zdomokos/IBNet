@@ -95,5 +95,8 @@
 
         [XmlElement(ElementName = "FxTransactions")]
         public FxTransactions FxTransactions { get; set; }
+        
+        [XmlElement(ElementName = "FIFOPerformanceSummaryInBase")]
+        public FIFOPerformanceSummaryInBase FIFOPerformanceSummaryInBase { get; set; }
     }
 }

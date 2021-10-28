@@ -199,5 +199,29 @@
 
         [XmlAttribute(AttributeName = "brokerFeesAccrualsComponent")]
         public string BrokerFeesAccrualsComponent { get; set; }
+        
+        [XmlAttribute(AttributeName = "brokerCashComponentLong")] 
+        public string BrokerCashComponentLong { get; set; }
+        
+        [XmlAttribute(AttributeName = "brokerCashComponentShort")] 
+        public string BrokerCashComponentShort { get; set; }
+        
+        [XmlAttribute(AttributeName = "brokerInterestAccrualsComponentLong")] 
+        public string BrokerInterestAccrualsComponentLong { get; set; }
+        
+        [XmlAttribute(AttributeName = "brokerInterestAccrualsComponentShort")] 
+        public string BrokerInterestAccrualsComponentShort { get; set; }
+        
+        [XmlAttribute(AttributeName = "bondInterestAccrualsComponentLong")] 
+        public string BondInterestAccrualsComponentLong { get; set; }
+        
+        [XmlAttribute(AttributeName = "bondInterestAccrualsComponentShort")] 
+        public string BondInterestAccrualsComponentShort { get; set; }
+        
+        [XmlAttribute(AttributeName = "brokerFeesAccrualsComponentLong")] 
+        public string BrokerFeesAccrualsComponentLong { get; set; }
+        
+        [XmlAttribute(AttributeName = "brokerFeesAccrualsComponentShort")] 
+        public string BrokerFeesAccrualsComponentShort { get; set; }
     }
 }

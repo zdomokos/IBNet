@@ -1,9 +1,9 @@
-﻿namespace IbFlexReader.Xml.Contracts.QueryResponse
+namespace IbFlexReader.Xml.Contracts.QueryResponse
 {
     using System.Xml.Serialization;
 
-    [XmlRoot(ElementName = "CorporateAction")]
-    public class CorporateAction
+    [XmlRoot(ElementName = "FIFOPerformanceSummaryUnderlying")]
+    public class FIFOPerformanceSummaryUnderlying
     {
         [XmlAttribute(AttributeName = "accountId")]
         public string AccountId { get; set; }
@@ -13,12 +13,6 @@
 
         [XmlAttribute(AttributeName = "model")]
         public string Model { get; set; }
-
-        [XmlAttribute(AttributeName = "currency")]
-        public string Currency { get; set; }
-
-        [XmlAttribute(AttributeName = "fxRateToBase")]
-        public string FxRateToBase { get; set; }
 
         [XmlAttribute(AttributeName = "assetCategory")]
         public string AssetCategory { get; set; }
@@ -41,8 +35,7 @@
         [XmlAttribute(AttributeName = "cusip")]
         public string Cusip { get; set; }
 
-        [XmlAttribute(AttributeName = "isin")]
-        public string Isin { get; set; }
+        [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
         [XmlAttribute(AttributeName = "listingExchange")]
         public string ListingExchange { get; set; }
@@ -95,40 +88,52 @@
         [XmlAttribute(AttributeName = "reportDate")]
         public string ReportDate { get; set; }
 
-        [XmlAttribute(AttributeName = "dateTime")]
-        public string DateTime { get; set; }
+        [XmlAttribute(AttributeName = "costAdj")]
+        public string CostAdj { get; set; }
 
-        [XmlAttribute(AttributeName = "actionDescription")]
-        public string ActionDescription { get; set; }
+        [XmlAttribute(AttributeName = "realizedSTProfit")]
+        public string RealizedSTProfit { get; set; }
 
-        [XmlAttribute(AttributeName = "amount")]
-        public string Amount { get; set; }
+        [XmlAttribute(AttributeName = "realizedSTLoss")]
+        public string RealizedSTLoss { get; set; }
 
-        [XmlAttribute(AttributeName = "proceeds")]
-        public string Proceeds { get; set; }
+        [XmlAttribute(AttributeName = "realizedLTProfit")]
+        public string RealizedLTProfit { get; set; }
 
-        [XmlAttribute(AttributeName = "value")]
-        public string Value { get; set; }
+        [XmlAttribute(AttributeName = "realizedLTLoss")]
+        public string RealizedLTLoss { get; set; }
 
-        [XmlAttribute(AttributeName = "quantity")]
-        public string Quantity { get; set; }
+        [XmlAttribute(AttributeName = "totalRealizedPnl")]
+        public string TotalRealizedPnl { get; set; }
 
-        [XmlAttribute(AttributeName = "fifoPnlRealized")]
-        public string FifoPnlRealized { get; set; }
+        [XmlAttribute(AttributeName = "unrealizedProfit")]
+        public string UnrealizedProfit { get; set; }
 
-        [XmlAttribute(AttributeName = "mtmPnl")]
-        public string MtmPnl { get; set; }
+        [XmlAttribute(AttributeName = "unrealizedLoss")]
+        public string UnrealizedLoss { get; set; }
 
-        [XmlAttribute(AttributeName = "type")]
-        public string Type { get; set; }
+        [XmlAttribute(AttributeName = "unrealizedSTProfit")]
+        public string UnrealizedSTProfit { get; set; }
 
-        [XmlAttribute(AttributeName = "transactionID")]
-        public string TransactionID { get; set; }
+        [XmlAttribute(AttributeName = "unrealizedSTLoss")]
+        public string UnrealizedSTLoss { get; set; }
 
-        [XmlAttribute(AttributeName = "levelOfDetail")]
-        public string LevelOfDetail { get; set; }
-        
-        [XmlAttribute(AttributeName = "code")]
+        [XmlAttribute(AttributeName = "unrealizedLTProfit")]
+        public string UnrealizedLTProfit { get; set; }
+
+        [XmlAttribute(AttributeName = "unrealizedLTLoss")]
+        public string UnrealizedLTLoss { get; set; }
+
+        [XmlAttribute(AttributeName = "totalUnrealizedPnl")]
+        public string TotalUnrealizedPnl { get; set; }
+
+        [XmlAttribute(AttributeName = "totalFifoPnl")]
+        public string TotalFifoPnl { get; set; }
+
+        [XmlAttribute(AttributeName = "transferredPnl")]
+        public string TransferredPnl { get; set; }
+
+        [XmlAttribute(AttributeName = "code")] 
         public string Code { get; set; }
     }
 }

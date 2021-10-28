@@ -119,12 +119,20 @@
 
         public double? TotalShort { get; set; }
 
-        public string BrokerCashComponent             { get; set; }
-        public string IpoSubscription                 { get; set; }
-        public string IpoSubscriptionLong             { get; set; }
-        public string IpoSubscriptionShort            { get; set; }
-        public string BrokerInterestAccrualsComponent { get; set; }
-        public string BondInterestAccrualsComponent   { get; set; }
-        public string BrokerFeesAccrualsComponent     { get; set; }
+        public string BrokerCashComponent                  { get; set; }
+        public string IpoSubscription                      { get; set; }
+        public string IpoSubscriptionLong                  { get; set; }
+        public string IpoSubscriptionShort                 { get; set; }
+        public string BrokerInterestAccrualsComponent      { get; set; }
+        public string BondInterestAccrualsComponent        { get; set; }
+        public string BrokerFeesAccrualsComponent          { get; set; }
+        public string BrokerCashComponentLong              { get; set; }
+        public string BrokerCashComponentShort             { get; set; }
+        public string BrokerInterestAccrualsComponentLong  { get; set; }
+        public string BrokerInterestAccrualsComponentShort { get; set; }
+        public string BondInterestAccrualsComponentLong    { get; set; }
+        public string BondInterestAccrualsComponentShort   { get; set; }
+        public string BrokerFeesAccrualsComponentLong      { get; set; }
+        public string BrokerFeesAccrualsComponentShort     { get; set; }        
     }
 }

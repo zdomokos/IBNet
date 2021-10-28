@@ -20,5 +20,9 @@
 
         [XmlElement(ElementName = "Order")]
         public List<Order> Order { get; set; }
+
+        [XmlElement(ElementName = "WashSale")]
+        public List<WashSale> WashSale { get; set; }
+
     }
 }

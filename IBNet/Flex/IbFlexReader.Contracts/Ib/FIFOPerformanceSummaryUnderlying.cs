@@ -1,14 +1,10 @@
-﻿namespace IbFlexReader.Contracts.Ib
+namespace IbFlexReader.Contracts.Ib
 {
-    using System.Collections.Generic;
-
-    public class CorporateAction
+    public class FIFOPerformanceSummaryUnderlying
     {
         public string AccountId                 { get; set; }
         public string AcctAlias                 { get; set; }
         public string Model                     { get; set; }
-        public string Currency                  { get; set; }
-        public string FxRateToBase              { get; set; }
         public string AssetCategory             { get; set; }
         public string Symbol                    { get; set; }
         public string Description               { get; set; }
@@ -34,17 +30,21 @@
         public string Fineness                  { get; set; }
         public string Weight                    { get; set; }
         public string ReportDate                { get; set; }
-        public string DateTime                  { get; set; }
-        public string ActionDescription         { get; set; }
-        public string Amount                    { get; set; }
-        public string Proceeds                  { get; set; }
-        public string Value                     { get; set; }
-        public string Quantity                  { get; set; }
-        public string FifoPnlRealized           { get; set; }
-        public string MtmPnl                    { get; set; }
-        public string Type                      { get; set; }
-        public string TransactionID             { get; set; }
-        public string LevelOfDetail             { get; set; }
+        public string CostAdj                   { get; set; }
+        public string RealizedSTProfit          { get; set; }
+        public string RealizedSTLoss            { get; set; }
+        public string RealizedLTProfit          { get; set; }
+        public string RealizedLTLoss            { get; set; }
+        public string TotalRealizedPnl          { get; set; }
+        public string UnrealizedProfit          { get; set; }
+        public string UnrealizedLoss            { get; set; }
+        public string UnrealizedSTProfit        { get; set; }
+        public string UnrealizedSTLoss          { get; set; }
+        public string UnrealizedLTProfit        { get; set; }
+        public string UnrealizedLTLoss          { get; set; }
+        public string TotalUnrealizedPnl        { get; set; }
+        public string TotalFifoPnl              { get; set; }
+        public string TransferredPnl            { get; set; }
         public string Code                      { get; set; }
     }
 }
