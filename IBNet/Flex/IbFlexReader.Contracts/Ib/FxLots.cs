@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Ztg.Common.Types;
 
 namespace IbFlexReader.Contracts.Ib
 {
@@ -8,6 +9,6 @@ namespace IbFlexReader.Contracts.Ib
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class FxLots
     {
-        public List<FxLot> FxLot { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<FxLot> FxLot { get; set; }
     }
 }

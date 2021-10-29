@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using Ztg.Common.Types;
 
 namespace IbFlexReader.Contracts.Ib
 {
@@ -7,6 +8,7 @@ namespace IbFlexReader.Contracts.Ib
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class FIFOPerformanceSummaryInBase
     {
+        [TypeConverter(typeof(ListCountConverter))]
         public List<FIFOPerformanceSummaryUnderlying> FIFOPerformanceSummaryUnderlying { get; set; }
     }
 }

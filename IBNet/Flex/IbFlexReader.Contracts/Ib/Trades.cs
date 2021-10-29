@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Ztg.Common.Types;
 
 namespace IbFlexReader.Contracts.Ib
 {
@@ -7,11 +8,11 @@ namespace IbFlexReader.Contracts.Ib
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class Trades
     {
-        public List<Lot>           Lot           { get; set; }
-        public List<Trade>         Trade         { get; set; }
-        public List<AssetSummary>  AssetSummary  { get; set; }
-        public List<SymbolSummary> SymbolSummary { get; set; }
-        public List<Order>         Order         { get; set; }
-        public List<WashSale>      WashSale      { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<Lot>           Lot           { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<Trade>         Trade         { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<AssetSummary>  AssetSummary  { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<SymbolSummary> SymbolSummary { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<Order>         Order         { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<WashSale>      WashSale      { get; set; }
     }
 }

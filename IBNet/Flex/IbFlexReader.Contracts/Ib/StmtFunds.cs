@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Ztg.Common.Types;
 
 namespace IbFlexReader.Contracts.Ib
 {
@@ -7,6 +8,6 @@ namespace IbFlexReader.Contracts.Ib
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class StmtFunds
     {
-        public List<StatementOfFundsLine> StatementOfFundsLine { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<StatementOfFundsLine> StatementOfFundsLine { get; set; }
     }
 }

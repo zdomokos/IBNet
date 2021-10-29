@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Ztg.Common.Types;
 
 namespace IbFlexReader.Contracts.Ib
 {
@@ -7,6 +8,6 @@ namespace IbFlexReader.Contracts.Ib
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class OpenPositions
     {
-        public List<OpenPosition> OpenPosition { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<OpenPosition> OpenPosition { get; set; }
     }
 }

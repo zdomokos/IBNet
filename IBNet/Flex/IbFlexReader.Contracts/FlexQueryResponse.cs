@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Ztg.Common.Types;
 
 namespace IbFlexReader.Contracts
 {
@@ -14,7 +15,7 @@ namespace IbFlexReader.Contracts
 
         public string Type { get; set; }
 
-        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [TypeConverter(typeof(ListCountConverter))]
         public List<ErrorMessage> Errors { get; set; }
         public string MappingErrors { get; set; }
     }
