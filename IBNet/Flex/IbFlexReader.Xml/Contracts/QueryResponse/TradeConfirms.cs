@@ -8,5 +8,7 @@
     {
         [XmlElement(ElementName = "TradeConfirm")]
         public List<TradeConfirm> TradeConfirm { get; set; }
-    }
+        
+        [XmlElement(ElementName = "SymbolSummary")]
+        public List<SymbolSummary> SymbolSummary { get; set; }    }
 }

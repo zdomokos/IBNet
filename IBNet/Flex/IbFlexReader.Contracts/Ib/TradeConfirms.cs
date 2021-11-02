@@ -8,6 +8,7 @@ namespace IbFlexReader.Contracts.Ib
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class TradeConfirms
     {
-        [TypeConverter(typeof(ListCountConverter))] public List<TradeConfirm> TradeConfirm { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<TradeConfirm>  TradeConfirm  { get; set; }
+        [TypeConverter(typeof(ListCountConverter))] public List<SymbolSummary> SymbolSummary { get; set; }
     }
 }
