@@ -9,5 +9,7 @@ namespace IbFlexReader.Contracts.Ib
     public class TransactionTaxes
     {
         [TypeConverter(typeof(ListCountConverter))] public List<TransactionTax> TransactionTax { get; set; }
+        
+        public override string ToString() { return $"Count: {TransactionTax?.Count}"; }
     }
 }

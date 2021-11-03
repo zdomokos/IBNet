@@ -9,5 +9,7 @@ namespace IbFlexReader.Contracts.Ib
     public class UnbundledCommissionDetails
     {
         [TypeConverter(typeof(ListCountConverter))] public List<UnbundledCommissionDetail> UnbundledCommissionDetail { get; set; }
+        
+        public override string ToString() { return $"Count: {UnbundledCommissionDetail?.Count}"; }
     }
 }

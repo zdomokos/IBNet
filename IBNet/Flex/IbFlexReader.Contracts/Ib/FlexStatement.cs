@@ -70,5 +70,7 @@ namespace IbFlexReader.Contracts.Ib
         public FxPositions                  FxPositions                  { get; set; }
         public FxTransactions               FxTransactions               { get; set; }
         public FIFOPerformanceSummaryInBase FIFOPerformanceSummaryInBase { get; set; }
+        
+        public override string ToString() { return $"AccontId: {AccountId}"; }
     }
 }

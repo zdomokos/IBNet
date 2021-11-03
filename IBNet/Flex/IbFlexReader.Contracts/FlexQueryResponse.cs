@@ -18,5 +18,7 @@ namespace IbFlexReader.Contracts
         [TypeConverter(typeof(ListCountConverter))]
         public List<ErrorMessage> Errors { get; set; }
         public string MappingErrors { get; set; }
+        
+        public override string ToString() { return $"Statements: {FlexStatements?.Count}"; }
     }
 }

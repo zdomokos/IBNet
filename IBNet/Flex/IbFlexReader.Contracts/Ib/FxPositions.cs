@@ -11,5 +11,7 @@ namespace IbFlexReader.Contracts.Ib
     {
         [TypeConverter(typeof(ListCountConverter))] public List<FxPosition> FxPosition { get; set; }
         public FxLots           FxLots     { get; set; }
+        
+        public override string ToString() { return $"Count: {FxPosition?.Count}"; }
     }
 }

@@ -9,5 +9,7 @@ namespace IbFlexReader.Contracts.Ib
     public class TierInterestDetails
     {
         [TypeConverter(typeof(ListCountConverter))] public List<TierInterestDetail> TierInterestDetail { get; set; }
+        
+        public override string ToString() { return $"Count: {TierInterestDetail?.Count}"; }
     }
 }

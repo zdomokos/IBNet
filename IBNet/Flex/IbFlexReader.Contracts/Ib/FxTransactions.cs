@@ -11,5 +11,7 @@ namespace IbFlexReader.Contracts.Ib
     {
         [TypeConverter(typeof(ListCountConverter))] public List<FxTransaction> FxTransaction { get; set; }
         [TypeConverter(typeof(ListCountConverter))] public List<FxClosedLots>  FxClosedLots  { get; set; }
+        
+        public override string ToString() { return $"Count: {FxTransaction?.Count},{FxClosedLots?.Count}"; }
     }
 }

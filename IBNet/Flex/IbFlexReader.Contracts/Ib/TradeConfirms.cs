@@ -10,5 +10,7 @@ namespace IbFlexReader.Contracts.Ib
     {
         [TypeConverter(typeof(ListCountConverter))] public List<TradeConfirm>  TradeConfirm  { get; set; }
         [TypeConverter(typeof(ListCountConverter))] public List<SymbolSummary> SymbolSummary { get; set; }
+        
+        public override string ToString() { return $"Count: {TradeConfirm?.Count},{SymbolSummary?.Count}"; }
     }
 }

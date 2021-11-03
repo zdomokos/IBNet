@@ -14,5 +14,7 @@ namespace IbFlexReader.Contracts.Ib
         [TypeConverter(typeof(ListCountConverter))] public List<SymbolSummary> SymbolSummary { get; set; }
         [TypeConverter(typeof(ListCountConverter))] public List<Order>         Order         { get; set; }
         [TypeConverter(typeof(ListCountConverter))] public List<WashSale>      WashSale      { get; set; }
+        
+        public override string ToString() { return $"Count: {Lot?.Count},{Trade?.Count},{AssetSummary?.Count},{SymbolSummary?.Count},{Order?.Count},{WashSale?.Count}"; }
     }
 }

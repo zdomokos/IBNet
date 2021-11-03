@@ -9,5 +9,7 @@ namespace IbFlexReader.Contracts.Ib
     public class StmtFunds
     {
         [TypeConverter(typeof(ListCountConverter))] public List<StatementOfFundsLine> StatementOfFundsLine { get; set; }
+        
+        public override string ToString() { return $"Count: {StatementOfFundsLine?.Count}"; }
     }
 }

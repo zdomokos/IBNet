@@ -9,5 +9,7 @@ namespace IbFlexReader.Contracts.Ib
     public class OptionEAEs
     {
         [TypeConverter(typeof(ListCountConverter))] public List<OptionEAE> OptionEAE { get; set; }
+        
+        public override string ToString() { return $"Count: {OptionEAE?.Count}"; }
     }
 }

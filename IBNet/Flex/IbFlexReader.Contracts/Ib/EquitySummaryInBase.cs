@@ -10,5 +10,7 @@ namespace IbFlexReader.Contracts.Ib
     {
         [TypeConverter(typeof(ListCountConverter))]
         public List<EquitySummaryByReportDateInBase> EquitySummaryByReportDateInBase { get; set; }
+        
+        public override string ToString() { return $"Count: {EquitySummaryByReportDateInBase?.Count}"; }
     }
 }

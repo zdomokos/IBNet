@@ -9,5 +9,7 @@ namespace IbFlexReader.Contracts.Ib
     public class SecuritiesInfo
     {
         [TypeConverter(typeof(ListCountConverter))] public List<SecurityInfo> SecurityInfo { get; set; }
+        
+        public override string ToString() { return $"Count: {SecurityInfo?.Count}"; }
     }
 }

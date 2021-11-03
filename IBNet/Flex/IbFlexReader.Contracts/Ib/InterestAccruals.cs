@@ -9,5 +9,7 @@ namespace IbFlexReader.Contracts.Ib
     public class InterestAccruals
     {
         [TypeConverter(typeof(ListCountConverter))] public List<InterestAccrualsCurrency> InterestAccrualsCurrency { get; set; }
+        
+        public override string ToString() { return $"Count: {InterestAccrualsCurrency?.Count}"; }
     }
 }

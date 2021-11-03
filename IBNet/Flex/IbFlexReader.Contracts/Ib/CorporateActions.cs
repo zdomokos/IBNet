@@ -10,5 +10,7 @@ namespace IbFlexReader.Contracts.Ib
     {
         [TypeConverter(typeof(ListCountConverter))]
         public List<CorporateAction> CorporateAction { get; set; }
+        
+        public override string ToString() { return $"Count: {CorporateAction?.Count}"; }
     }
 }

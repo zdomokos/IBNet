@@ -9,5 +9,7 @@ namespace IbFlexReader.Contracts.Ib
     public class SLBActivities
     {
         [TypeConverter(typeof(ListCountConverter))] public List<SLBActivity> SLBActivity { get; set; }
+        
+        public override string ToString() { return $"Count: {SLBActivity?.Count}"; }
     }
 }

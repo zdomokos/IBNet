@@ -13,5 +13,7 @@ namespace IbFlexReader.Contracts
         public List<FlexStatement> FlexStatement { get; set; }
 
         public int? Count { get; set; }
+
+        public override string ToString() { return $"Count: {FlexStatement?.Count}"; }
     }
 }
