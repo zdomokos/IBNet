@@ -3,7 +3,7 @@
     using System.Xml.Serialization;
 
     [XmlRoot(ElementName = "TradeConfirm")]
-    public class TradeConfirm
+    public class TradeConfirm //: Trade
     {
         [XmlAttribute(AttributeName = "accountId")]
         public string AccountId { get; set; }
@@ -16,6 +16,9 @@
 
         [XmlAttribute(AttributeName = "currency")]
         public string Currency { get; set; }
+
+        [XmlAttribute(AttributeName = "fxRateToBase")]
+        public string FxRateToBase { get; set; }
 
         [XmlAttribute(AttributeName = "assetCategory")]
         public string AssetCategory { get; set; }
@@ -87,7 +90,7 @@
         public string PrincipalAdjustFactor { get; set; }
 
         [XmlAttribute(AttributeName = "dateTime")]
-        public string DateTime { get; set; }
+        public string TradeDateTime { get; set; }
 
         [XmlAttribute(AttributeName = "transactionType")]
         public string TransactionType { get; set; }
@@ -102,19 +105,19 @@
         public string Proceeds { get; set; }
 
         [XmlAttribute(AttributeName = "tax")]
-        public string Tax { get; set; }
+        public string Taxes { get; set; }
 
         [XmlAttribute(AttributeName = "commission")]
-        public string Commission { get; set; }
+        public string IbCommission { get; set; }
 
         [XmlAttribute(AttributeName = "commissionCurrency")]
-        public string CommissionCurrency { get; set; }
+        public string IbCommissionCurrency { get; set; }
 
         [XmlAttribute(AttributeName = "price")]
-        public string Price { get; set; }
+        public string TradePrice { get; set; }
 
         [XmlAttribute(AttributeName = "amount")]
-        public string Amount { get; set; }
+        public string TradeMoney { get; set; }
 
         [XmlAttribute(AttributeName = "origTradePrice")]
         public string OrigTradePrice { get; set; }
@@ -125,6 +128,8 @@
         [XmlAttribute(AttributeName = "origTradeID")]
         public string OrigTradeID { get; set; }
 
+        public string OrigOrderID { get; set; }
+
         [XmlAttribute(AttributeName = "clearingFirmID")]
         public string ClearingFirmID { get; set; }
 
@@ -132,10 +137,10 @@
         public string BuySell { get; set; }
 
         [XmlAttribute(AttributeName = "orderID")]
-        public string OrderID { get; set; }
+        public string IbOrderID { get; set; }
 
         [XmlAttribute(AttributeName = "execID")]
-        public string ExecID { get; set; }
+        public string IbExecID { get; set; }
 
         [XmlAttribute(AttributeName = "brokerageOrderID")]
         public string BrokerageOrderID { get; set; }
@@ -148,7 +153,7 @@
 
         [XmlAttribute(AttributeName = "orderTime")]
         public string OrderTime { get; set; }
-
+        
         [XmlAttribute(AttributeName = "levelOfDetail")]
         public string LevelOfDetail { get; set; }
 

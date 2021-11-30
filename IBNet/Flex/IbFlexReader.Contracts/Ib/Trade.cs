@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
+using Ztg.Common.SystemEx;
 
 namespace IbFlexReader.Contracts.Ib
 {
@@ -80,14 +81,15 @@ namespace IbFlexReader.Contracts.Ib
             {
                 try
                 {
+                    if (TradeTime.IsEmpty())
+                        TradeTime = "000000";
                     DateTime dt        = DateTime.ParseExact($"{TradeDate}:{TradeTime}", "yyyyMMdd:HHmmss", CultureInfo.InvariantCulture);
                     return dt;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    // ignored
+                    e.LogError($"{TradeDate}:{TradeTime}");
                 }
-
                 return null;
             }
         }
