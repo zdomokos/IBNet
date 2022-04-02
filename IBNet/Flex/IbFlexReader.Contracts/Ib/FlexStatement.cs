@@ -8,53 +8,30 @@ namespace IbFlexReader.Contracts.Ib
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class FlexStatement
     {
-        public AccountInformation AccountInformation { get; set; }
-
-        public CashTransactions CashTransactions { get; set; }
-
-        public CFDCharges CFDCharges { get; set; }
-
-        public ChangeInDividendAccruals ChangeInDividendAccruals { get; set; }
-
-        public ComplexPositions ComplexPositions { get; set; }
-
-        public ConversionRates ConversionRates { get; set; }
-
-        public CorporateActions CorporateActions { get; set; }
-
-        public EquitySummaryInBase EquitySummaryInBase { get; set; }
-
-        public InterestAccruals InterestAccruals { get; set; }
-
-        public OpenDividendAccruals OpenDividendAccruals { get; set; }
-
-        public OpenPositions OpenPositions { get; set; }
-
-        public OptionEAEs OptionEAEs { get; set; }
-
-        public PriorPeriodPositions PriorPeriodPositions { get; set; }
-
-        public SecuritiesInfo SecuritiesInfo { get; set; }
-
-        public SLBActivities SLBActivities { get; set; }
-
-        public SLBFees SLBFees { get; set; }
-
-        public StmtFunds StatementOfFunds { get; set; }
-
-        public TierInterestDetails TierInterestDetails { get; set; }
-
-        public TradeConfirms TradeConfirms { get; set; }
-
-        public Trades Trades { get; set; }
-
-        public TransactionTaxes TransactionTaxes { get; set; }
-
-        public Transfers Transfers { get; set; }
-
+        public AccountInformation         AccountInformation         { get; set; }
+        public CashTransactions           CashTransactions           { get; set; }
+        public CFDCharges                 CFDCharges                 { get; set; }
+        public ChangeInDividendAccruals   ChangeInDividendAccruals   { get; set; }
+        public ComplexPositions           ComplexPositions           { get; set; }
+        public ConversionRates            ConversionRates            { get; set; }
+        public CorporateActions           CorporateActions           { get; set; }
+        public EquitySummaryInBase        EquitySummaryInBase        { get; set; }
+        public InterestAccruals           InterestAccruals           { get; set; }
+        public OpenDividendAccruals       OpenDividendAccruals       { get; set; }
+        public OpenPositions              OpenPositions              { get; set; }
+        public OptionEAEs                 OptionEAEs                 { get; set; }
+        public PriorPeriodPositions       PriorPeriodPositions       { get; set; }
+        public SecuritiesInfo             SecuritiesInfo             { get; set; }
+        public SLBActivities              SLBActivities              { get; set; }
+        public SLBFees                    SLBFees                    { get; set; }
+        public StmtFunds                  StatementOfFunds           { get; set; }
+        public TierInterestDetails        TierInterestDetails        { get; set; }
+        public TradeConfirms              TradeConfirms              { get; set; }
+        public Trades                     Trades                     { get; set; }
+        public TransactionTaxes           TransactionTaxes           { get; set; }
+        public Transfers                  Transfers                  { get; set; }
         public UnbundledCommissionDetails UnbundledCommissionDetails { get; set; }
-
-        public string AccountId { get; set; }
+        public string                     AccountId                  { get; set; }
 
         [Format(Constants.DateFormat)]
         public DateTime? FromDate { get; set; }
@@ -67,10 +44,9 @@ namespace IbFlexReader.Contracts.Ib
         [Format(Constants.DateTimeFormat)]
         public DateTime? WhenGenerated { get; set; }
 
-        public FxPositions                  FxPositions                  { get; set; }
-        public FxTransactions               FxTransactions               { get; set; }
-        public FIFOPerformanceSummaryInBase FIFOPerformanceSummaryInBase { get; set; }
-        
-        public override string ToString() { return $"AccontId: {AccountId}"; }
+        public          FxPositions                  FxPositions                  { get; set; }
+        public          FxTransactions               FxTransactions               { get; set; }
+        public          FIFOPerformanceSummaryInBase FIFOPerformanceSummaryInBase { get; set; }
+        public override string                       ToString()                   { return $"AccontId: {AccountId}"; }
     }
 }
