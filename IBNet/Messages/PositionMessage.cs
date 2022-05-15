@@ -7,7 +7,7 @@ namespace IBNet.Messages
 {
     public class PositionMessage 
     {
-        public PositionMessage(string account, Contract contract, double pos, double avgCost)
+        public PositionMessage(string account, Contract contract, decimal pos, double avgCost)
         {
             Account = account;
             Contract = contract;
@@ -19,7 +19,7 @@ namespace IBNet.Messages
 
         public Contract Contract { get; set; }
 
-        public double Position { get; set; }
+        public decimal Position { get; set; }
 
         public double AverageCost { get; set; }
     }

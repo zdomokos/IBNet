@@ -20,7 +20,6 @@ namespace IBNet.Messages
             set { requestId = value; }
         }
 
-        // TickType
         public int Field
         {
             get { return field; }

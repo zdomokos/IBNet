@@ -8,15 +8,15 @@ namespace IBNet.Messages
         public TickOptionMessage(int requestId, int field, int tickAttrib, double impliedVolatility, double delta, double optPrice, double pvDividend, double gamma, double vega, double theta, double undPrice)
             : base(requestId, field)
         {
-            TickAttrib        = tickAttrib;
+            TickAttrib = tickAttrib;
             ImpliedVolatility = impliedVolatility;
-            Delta             = delta;
-            OptPrice          = optPrice;
-            PvDividend        = pvDividend;
-            Gamma             = gamma;
-            Vega              = vega;
-            Theta             = theta;
-            UndPrice          = undPrice;
+            Delta = delta;
+            OptPrice = optPrice;
+            PvDividend = pvDividend;
+            Gamma = gamma;
+            Vega = vega;
+            Theta = theta;
+            UndPrice = undPrice;
         }
 
         public int TickAttrib { get; set; }

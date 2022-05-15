@@ -1,45 +1,130 @@
 /* Copyright (C) 2019 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using IBApi;
+
 using System.Threading;
+using System.Threading.Tasks;
 using IBNet.Messages;
 
 namespace IBNet
 {
-    /// <summary>
-    /// Handles all communications from the TWS.
-    /// Source: IB sample app.
-    /// https://interactivebrokers.github.io/tws-api/historical_bars.html
-    /// </summary>
-    public partial class IBClient
+    public partial class IBClient : EWrapper
     {
-        public IBClient(bool synchronize  = false)
+        public Task<Contract> ResolveContractAsync(int conId, string refExch)
         {
-            ClientSocket = new EClientSocket(this, new EReaderMonitorSignal());
+            var reqId = new Random(DateTime.Now.Millisecond).Next();
+            var resolveResult = new TaskCompletionSource<Contract>();
+            var resolveContract_Error = new Action<int, int, string, string, Exception>((id, code, msg, advancedOrderRejectJson, ex) =>
+                {
+                    if (reqId != id)
+                        return;
 
-            if (synchronize)
-                _sc = SynchronizationContext.Current;
+                    resolveResult.SetResult(null);
+                });
+            var resolveContract = new Action<ContractDetailsMessage>(msg =>
+                {
+                    if (msg.RequestId == reqId)
+                        resolveResult.SetResult(msg.ContractDetails.Contract);
+                });
+            var contractDetailsEnd = new Action<int>(id =>
+            {
+                if (reqId == id && !resolveResult.Task.IsCompleted)
+                    resolveResult.SetResult(null);
+            });
+
+            var tmpError = Error;
+            var tmpContractDetails = ContractDetails;
+            var tmpContractDetailsEnd = ContractDetailsEnd;
+
+            Error = resolveContract_Error;
+            ContractDetails = resolveContract;
+            ContractDetailsEnd = contractDetailsEnd;
+
+            resolveResult.Task.ContinueWith(t =>
+            {
+                Error = tmpError;
+                ContractDetails = tmpContractDetails;
+                ContractDetailsEnd = tmpContractDetailsEnd;
+            });
+
+            ClientSocket.reqContractDetails(reqId, new Contract
+                                                   { ConId = conId, Exchange = refExch });
+
+            return resolveResult.Task;
         }
 
-        private SynchronizationContext _sc;
+        public Task<Contract[]> ResolveContractAsync(string secType, string symbol, string currency, string exchange)
+        {
+            var reqId = new Random(DateTime.Now.Millisecond).Next();
+            var res = new TaskCompletionSource<Contract[]>();
+            var contractList = new List<Contract>();
+            var resolveContract_Error = new Action<int, int, string, string, Exception>((id, code, msg, advancedOrderRejectJson, ex) =>
+                {
+                    if (reqId != id)
+                        return;
 
-        #region EWrapper ------------------------------------------------------
+                    res.SetResult(new Contract[0]);
+                });
+            var contractDetails = new Action<ContractDetailsMessage>(msg =>
+                {
+                    if (reqId != msg.RequestId)
+                        return;
 
-        /// <summary>
-        /// TickerId, ErrorCode, ErrorMessageCode, Exception
-        /// </summary>
-        public event Action<int, int, string, Exception> Error;
+                    contractList.Add(msg.ContractDetails.Contract);
+                });
+            var contractDetailsEnd = new Action<int>(id =>
+                {
+                    if (reqId == id)
+                        res.SetResult(contractList.ToArray());
+                });
+
+            var tmpError = Error;
+            var tmpContractDetails = ContractDetails;
+            var tmpContractDetailsEnd = ContractDetailsEnd;
+
+            Error = resolveContract_Error;
+            ContractDetails = contractDetails;
+            ContractDetailsEnd = contractDetailsEnd;
+
+            res.Task.ContinueWith(t =>
+            {
+                Error = tmpError;
+                ContractDetails = tmpContractDetails;
+                ContractDetailsEnd = tmpContractDetailsEnd;
+            });
+
+            ClientSocket.reqContractDetails(reqId, new Contract
+                                                   { SecType = secType, Symbol = symbol, Currency = currency, Exchange = exchange });
+
+            return res.Task;
+        }
+
+        public int ClientId { get; set; }
+
+        SynchronizationContext sc;
+
+        public IBClient(EReaderSignal signal)
+        {
+            ClientSocket = new EClientSocket(this, signal);
+            sc = SynchronizationContext.Current;
+        }
+
+        public EClientSocket ClientSocket { get; private set; }
+
+        public int NextOrderId { get; set; }
+
+        public event Action<int, int, string, string, Exception> Error;
 
         void EWrapper.error(Exception e)
         {
             var tmp = Error;
 
             if (tmp != null)
-                FireEvent(t => tmp(0, 0, null, e), null);
+                sc.Post(t => tmp(0, 0, null, null, e), null);
         }
 
         void EWrapper.error(string str)
@@ -47,15 +132,15 @@ namespace IBNet
             var tmp = Error;
 
             if (tmp != null)
-                FireEvent(t => tmp(0, 0, str, null), null);
+                sc.Post(t => tmp(0, 0, str, null, null), null);
         }
 
-        void EWrapper.error(int id, int errorCode, string errorMsg)
+        void EWrapper.error(int id, int errorCode, string errorMsg, string advancedOrderRejectJson)
         {
             var tmp = Error;
 
             if (tmp != null)
-                FireEvent(t => tmp(id, errorCode, errorMsg, null), null);
+                sc.Post(t => tmp(id, errorCode, errorMsg, advancedOrderRejectJson, null), null);
         }
 
         public event Action ConnectionClosed;
@@ -65,7 +150,7 @@ namespace IBNet
             var tmp = ConnectionClosed;
 
             if (tmp != null)
-                FireEvent(t => tmp(), null);
+                sc.Post(t => tmp(), null);
         }
 
         public event Action<long> CurrentTime;
@@ -75,7 +160,7 @@ namespace IBNet
             var tmp = CurrentTime;
 
             if (tmp != null)
-                FireEvent(t => tmp(time), null);
+                sc.Post(t => tmp(time), null);
         }
 
         public event Action<TickPriceMessage> TickPrice;
@@ -85,17 +170,17 @@ namespace IBNet
             var tmp = TickPrice;
 
             if (tmp != null)
-                FireEvent(t => tmp(new TickPriceMessage(tickerId, field, price, attribs)), null);
+                sc.Post(t => tmp(new TickPriceMessage(tickerId, field, price, attribs)), null);
         }
 
         public event Action<TickSizeMessage> TickSize;
 
-        void EWrapper.tickSize(int tickerId, int field, long size)
+        void EWrapper.tickSize(int tickerId, int field, decimal size)
         {
             var tmp = TickSize;
 
             if (tmp != null)
-                FireEvent(t => tmp(new TickSizeMessage(tickerId, field, size)), null);
+                sc.Post(t => tmp(new TickSizeMessage(tickerId, field, size)), null);
         }
 
         public event Action<int, int, string> TickString;
@@ -105,17 +190,17 @@ namespace IBNet
             var tmp = TickString;
 
             if (tmp != null)
-                FireEvent(t => tmp(tickerId, tickType, value), null);
+                sc.Post(t => tmp(tickerId, tickType, value), null);
         }
 
-        public event Action<int, int, double> TickGeneric;
+        public event Action<TickGenericMessage> TickGeneric;
 
         void EWrapper.tickGeneric(int tickerId, int field, double value)
         {
             var tmp = TickGeneric;
 
             if (tmp != null)
-                FireEvent(t => tmp(tickerId, field, value), null);
+                sc.Post(t => tmp(new TickGenericMessage(tickerId, field, value)), null);
         }
 
         public event Action<int, int, double, string, double, int, string, double, double> TickEFP;
@@ -125,7 +210,7 @@ namespace IBNet
             var tmp = TickEFP;
 
             if (tmp != null)
-                FireEvent(t => tmp(tickerId, tickType, basisPoints, formattedBasisPoints, impliedFuture, holdDays, futureLastTradeDate, dividendImpact, dividendsToLastTradeDate), null);
+                sc.Post(t => tmp(tickerId, tickType, basisPoints, formattedBasisPoints, impliedFuture, holdDays, futureLastTradeDate, dividendImpact, dividendsToLastTradeDate), null);
         }
 
         public event Action<int> TickSnapshotEnd;
@@ -135,18 +220,19 @@ namespace IBNet
             var tmp = TickSnapshotEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(tickerId), null);
+                sc.Post(t => tmp(tickerId), null);
         }
 
         public event Action<ConnectionStatusMessage> NextValidId;
 
         void EWrapper.nextValidId(int orderId)
         {
-            NextOrderId = orderId;
             var tmp = NextValidId;
 
             if (tmp != null)
-                FireEvent(t => tmp(new ConnectionStatusMessage(true)), null);
+                sc.Post(t => tmp(new ConnectionStatusMessage(true)), null);
+
+            NextOrderId = orderId;
         }
 
         public event Action<int, DeltaNeutralContract> DeltaNeutralValidation;
@@ -156,7 +242,7 @@ namespace IBNet
             var tmp = DeltaNeutralValidation;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId, deltaNeutralContract), null);
+                sc.Post(t => tmp(reqId, deltaNeutralContract), null);
         }
 
         public event Action<ManagedAccountsMessage> ManagedAccounts;
@@ -166,7 +252,7 @@ namespace IBNet
             var tmp = ManagedAccounts;
 
             if (tmp != null)
-                FireEvent(t => tmp(new ManagedAccountsMessage(accountsList)), null);
+                sc.Post(t => tmp(new ManagedAccountsMessage(accountsList)), null);
         }
 
         public event Action<TickOptionMessage> TickOptionCommunication;
@@ -176,9 +262,9 @@ namespace IBNet
             var tmp = TickOptionCommunication;
 
             if (tmp != null)
-                FireEvent(t => tmp(new TickOptionMessage(tickerId, field, tickAttrib, impliedVolatility, delta, optPrice, pvDividend, gamma, vega, theta, undPrice)), null);
+                sc.Post(t => tmp(new TickOptionMessage(tickerId, field, tickAttrib, impliedVolatility, delta, optPrice, pvDividend, gamma, vega, theta, undPrice)), null);
         }
-        
+
         public event Action<AccountSummaryMessage> AccountSummary;
 
         void EWrapper.accountSummary(int reqId, string account, string tag, string value, string currency)
@@ -186,7 +272,7 @@ namespace IBNet
             var tmp = AccountSummary;
 
             if (tmp != null)
-                FireEvent(t => tmp(new AccountSummaryMessage(reqId, account, tag, value, currency)), null);
+                sc.Post(t => tmp(new AccountSummaryMessage(reqId, account, tag, value, currency)), null);
         }
 
         public event Action<AccountSummaryEndMessage> AccountSummaryEnd;
@@ -196,7 +282,7 @@ namespace IBNet
             var tmp = AccountSummaryEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(new AccountSummaryEndMessage(reqId)), null);
+                sc.Post(t => tmp(new AccountSummaryEndMessage(reqId)), null);
         }
 
         public event Action<AccountValueMessage> UpdateAccountValue;
@@ -206,17 +292,17 @@ namespace IBNet
             var tmp = UpdateAccountValue;
 
             if (tmp != null)
-                FireEvent(t => tmp(new AccountValueMessage(key, value, currency, accountName)), null);
+                sc.Post(t => tmp(new AccountValueMessage(key, value, currency, accountName)), null);
         }
 
         public event Action<UpdatePortfolioMessage> UpdatePortfolio;
 
-        void EWrapper.updatePortfolio(Contract contract, double position, double marketPrice, double marketValue, double averageCost, double unrealizedPNL, double realizedPNL, string accountName)
+        void EWrapper.updatePortfolio(Contract contract, decimal position, double marketPrice, double marketValue, double averageCost, double unrealizedPNL, double realizedPNL, string accountName)
         {
             var tmp = UpdatePortfolio;
 
             if (tmp != null)
-                FireEvent(t => tmp(new UpdatePortfolioMessage(contract, position, marketPrice, marketValue, averageCost, unrealizedPNL, realizedPNL, accountName)), null);
+                sc.Post(t => tmp(new UpdatePortfolioMessage(contract, position, marketPrice, marketValue, averageCost, unrealizedPNL, realizedPNL, accountName)), null);
         }
 
         public event Action<UpdateAccountTimeMessage> UpdateAccountTime;
@@ -226,7 +312,7 @@ namespace IBNet
             var tmp = UpdateAccountTime;
 
             if (tmp != null)
-                FireEvent(t => tmp(new UpdateAccountTimeMessage(timestamp)), null);
+                sc.Post(t => tmp(new UpdateAccountTimeMessage(timestamp)), null);
         }
 
         public event Action<AccountDownloadEndMessage> AccountDownloadEnd;
@@ -236,17 +322,17 @@ namespace IBNet
             var tmp = AccountDownloadEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(new AccountDownloadEndMessage(account)), null);
+                sc.Post(t => tmp(new AccountDownloadEndMessage(account)), null);
         }
 
         public event Action<OrderStatusMessage> OrderStatus;
 
-        void EWrapper.orderStatus(int orderId, string status, double filled, double remaining, double avgFillPrice, int permId, int parentId, double lastFillPrice, int clientId, string whyHeld, double mktCapPrice)
+        void EWrapper.orderStatus(int orderId, string status, decimal filled, decimal remaining, double avgFillPrice, int permId, int parentId, double lastFillPrice, int clientId, string whyHeld, double mktCapPrice)
         {
             var tmp = OrderStatus;
 
             if (tmp != null)
-                FireEvent(t => tmp(new OrderStatusMessage(orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice)), null);
+                sc.Post(t => tmp(new OrderStatusMessage(orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice)), null);
         }
 
         public event Action<OpenOrderMessage> OpenOrder;
@@ -256,7 +342,7 @@ namespace IBNet
             var tmp = OpenOrder;
 
             if (tmp != null)
-                FireEvent(t => tmp(new OpenOrderMessage(orderId, contract, order, orderState)), null);
+                sc.Post(t => tmp(new OpenOrderMessage(orderId, contract, order, orderState)), null);
         }
 
         public event Action OpenOrderEnd;
@@ -266,7 +352,7 @@ namespace IBNet
             var tmp = OpenOrderEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(), null);
+                sc.Post(t => tmp(), null);
         }
 
         public event Action<ContractDetailsMessage> ContractDetails;
@@ -276,7 +362,7 @@ namespace IBNet
             var tmp = ContractDetails;
 
             if (tmp != null)
-                FireEvent(t => tmp(new ContractDetailsMessage(reqId, contractDetails)), null);
+                sc.Post(t => tmp(new ContractDetailsMessage(reqId, contractDetails)), null);
         }
 
         public event Action<int> ContractDetailsEnd;
@@ -286,7 +372,7 @@ namespace IBNet
             var tmp = ContractDetailsEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId), null);
+                sc.Post(t => tmp(reqId), null);
         }
 
         public event Action<ExecutionMessage> ExecDetails;
@@ -296,7 +382,7 @@ namespace IBNet
             var tmp = ExecDetails;
 
             if (tmp != null)
-                FireEvent(t => tmp(new ExecutionMessage(reqId, contract, execution)), null);
+                sc.Post(t => tmp(new ExecutionMessage(reqId, contract, execution)), null);
         }
 
         public event Action<int> ExecDetailsEnd;
@@ -306,7 +392,7 @@ namespace IBNet
             var tmp = ExecDetailsEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId), null);
+                sc.Post(t => tmp(reqId), null);
         }
 
         public event Action<CommissionReport> CommissionReport;
@@ -316,7 +402,7 @@ namespace IBNet
             var tmp = CommissionReport;
 
             if (tmp != null)
-                FireEvent(t => tmp(commissionReport), null);
+                sc.Post(t => tmp(commissionReport), null);
         }
 
         public event Action<FundamentalsMessage> FundamentalData;
@@ -326,7 +412,7 @@ namespace IBNet
             var tmp = FundamentalData;
 
             if (tmp != null)
-                FireEvent(t => tmp(new FundamentalsMessage(data)), null);
+                sc.Post(t => tmp(new FundamentalsMessage(data)), null);
         }
 
         public event Action<HistoricalDataMessage> HistoricalData;
@@ -336,7 +422,7 @@ namespace IBNet
             var tmp = HistoricalData;
 
             if (tmp != null)
-                FireEvent(t => tmp(new HistoricalDataMessage(reqId, bar)), null);
+                sc.Post(t => tmp(new HistoricalDataMessage(reqId, bar)), null);
         }
 
         public event Action<HistoricalDataEndMessage> HistoricalDataEnd;
@@ -346,7 +432,7 @@ namespace IBNet
             var tmp = HistoricalDataEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(new HistoricalDataEndMessage(reqId, startDate, endDate)), null);
+                sc.Post(t => tmp(new HistoricalDataEndMessage(reqId, startDate, endDate)), null);
         }
 
         public event Action<MarketDataTypeMessage> MarketDataType;
@@ -356,27 +442,27 @@ namespace IBNet
             var tmp = MarketDataType;
 
             if (tmp != null)
-                FireEvent(t => tmp(new MarketDataTypeMessage(reqId, marketDataType)), null);
+                sc.Post(t => tmp(new MarketDataTypeMessage(reqId, marketDataType)), null);
         }
 
         public event Action<DeepBookMessage> UpdateMktDepth;
 
-        void EWrapper.updateMktDepth(int tickerId, int position, int operation, int side, double price, long size)
+        void EWrapper.updateMktDepth(int tickerId, int position, int operation, int side, double price, decimal size)
         {
             var tmp = UpdateMktDepth;
 
             if (tmp != null)
-                FireEvent(t => tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, "", false)), null);
+                sc.Post(t => tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, "", false)), null);
         }
 
         public event Action<DeepBookMessage> UpdateMktDepthL2;
 
-        void EWrapper.updateMktDepthL2(int tickerId, int position, string marketMaker, int operation, int side, double price, long size, bool isSmartDepth)
+        void EWrapper.updateMktDepthL2(int tickerId, int position, string marketMaker, int operation, int side, double price, decimal size, bool isSmartDepth)
         {
             var tmp = UpdateMktDepthL2;
 
             if (tmp != null)
-                FireEvent(t => tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, marketMaker, isSmartDepth)), null);
+                sc.Post(t => tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, marketMaker, isSmartDepth)), null);
         }
 
         public event Action<int, int, string, string> UpdateNewsBulletin;
@@ -386,17 +472,17 @@ namespace IBNet
             var tmp = UpdateNewsBulletin;
 
             if (tmp != null)
-                FireEvent(t => tmp(msgId, msgType, message, origExchange), null);
+                sc.Post(t => tmp(msgId, msgType, message, origExchange), null);
         }
 
         public event Action<PositionMessage> Position;
 
-        void EWrapper.position(string account, Contract contract, double pos, double avgCost)
+        void EWrapper.position(string account, Contract contract, decimal pos, double avgCost)
         {
             var tmp = Position;
 
             if (tmp != null)
-                FireEvent(t => tmp(new PositionMessage(account, contract, pos, avgCost)), null);
+                sc.Post(t => tmp(new PositionMessage(account, contract, pos, avgCost)), null);
         }
 
         public event Action PositionEnd;
@@ -406,17 +492,17 @@ namespace IBNet
             var tmp = PositionEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(), null);
+                sc.Post(t => tmp(), null);
         }
 
         public event Action<RealTimeBarMessage> RealtimeBar;
 
-        void EWrapper.realtimeBar(int reqId, long time, double open, double high, double low, double close, long volume, double WAP, int count)
+        void EWrapper.realtimeBar(int reqId, long time, double open, double high, double low, double close, decimal volume, decimal WAP, int count)
         {
             var tmp = RealtimeBar;
 
             if (tmp != null)
-                FireEvent(t => tmp(new RealTimeBarMessage(reqId, time, open, high, low, close, volume, WAP, count)), null);
+                sc.Post(t => tmp(new RealTimeBarMessage(reqId, time, open, high, low, close, volume, WAP, count)), null);
         }
 
         public event Action<string> ScannerParameters;
@@ -426,7 +512,7 @@ namespace IBNet
             var tmp = ScannerParameters;
 
             if (tmp != null)
-                FireEvent(t => tmp(xml), null);
+                sc.Post(t => tmp(xml), null);
         }
 
         public event Action<ScannerMessage> ScannerData;
@@ -436,7 +522,7 @@ namespace IBNet
             var tmp = ScannerData;
 
             if (tmp != null)
-                FireEvent(t => tmp(new ScannerMessage(reqId, rank, contractDetails, distance, benchmark, projection, legsStr)), null);
+                sc.Post(t => tmp(new ScannerMessage(reqId, rank, contractDetails, distance, benchmark, projection, legsStr)), null);
         }
 
         public event Action<int> ScannerDataEnd;
@@ -446,7 +532,7 @@ namespace IBNet
             var tmp = ScannerDataEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId), null);
+                sc.Post(t => tmp(reqId), null);
         }
 
         public event Action<AdvisorDataMessage> ReceiveFA;
@@ -456,7 +542,7 @@ namespace IBNet
             var tmp = ReceiveFA;
 
             if (tmp != null)
-                FireEvent(t => tmp(new AdvisorDataMessage(faDataType, faXmlData)), null);
+                sc.Post(t => tmp(new AdvisorDataMessage(faDataType, faXmlData)), null);
         }
 
         public event Action<BondContractDetailsMessage> BondContractDetails;
@@ -466,7 +552,7 @@ namespace IBNet
             var tmp = BondContractDetails;
 
             if (tmp != null)
-                FireEvent(t => tmp(new BondContractDetailsMessage(requestId, contractDetails)), null);
+                sc.Post(t => tmp(new BondContractDetailsMessage(requestId, contractDetails)), null);
         }
 
         public event Action<string> VerifyMessageAPI;
@@ -476,9 +562,8 @@ namespace IBNet
             var tmp = VerifyMessageAPI;
 
             if (tmp != null)
-                FireEvent(t => tmp(apiData), null);
+                sc.Post(t => tmp(apiData), null);
         }
-
         public event Action<bool, string> VerifyCompleted;
 
         void EWrapper.verifyCompleted(bool isSuccessful, string errorText)
@@ -486,7 +571,7 @@ namespace IBNet
             var tmp = VerifyCompleted;
 
             if (tmp != null)
-                FireEvent(t => tmp(isSuccessful, errorText), null);
+                sc.Post(t => tmp(isSuccessful, errorText), null);
         }
 
         public event Action<string, string> VerifyAndAuthMessageAPI;
@@ -496,7 +581,7 @@ namespace IBNet
             var tmp = VerifyAndAuthMessageAPI;
 
             if (tmp != null)
-                FireEvent(t => tmp(apiData, xyzChallenge), null);
+                sc.Post(t => tmp(apiData, xyzChallenge), null);
         }
 
         public event Action<bool, string> VerifyAndAuthCompleted;
@@ -506,7 +591,7 @@ namespace IBNet
             var tmp = VerifyAndAuthCompleted;
 
             if (tmp != null)
-                FireEvent(t => tmp(isSuccessful, errorText), null);
+                sc.Post(t => tmp(isSuccessful, errorText), null);
         }
 
         public event Action<int, string> DisplayGroupList;
@@ -516,7 +601,7 @@ namespace IBNet
             var tmp = DisplayGroupList;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId, groups), null);
+                sc.Post(t => tmp(reqId, groups), null);
         }
 
         public event Action<int, string> DisplayGroupUpdated;
@@ -526,7 +611,7 @@ namespace IBNet
             var tmp = DisplayGroupUpdated;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId, contractInfo), null);
+                sc.Post(t => tmp(reqId, contractInfo), null);
         }
 
 
@@ -538,12 +623,12 @@ namespace IBNet
 
         public event Action<PositionMultiMessage> PositionMulti;
 
-        void EWrapper.positionMulti(int reqId, string account, string modelCode, Contract contract, double pos, double avgCost)
+        void EWrapper.positionMulti(int reqId, string account, string modelCode, Contract contract, decimal pos, double avgCost)
         {
             var tmp = PositionMulti;
 
             if (tmp != null)
-                FireEvent(t => tmp(new PositionMultiMessage(reqId, account, modelCode, contract, pos, avgCost)), null);
+                sc.Post(t => tmp(new PositionMultiMessage(reqId, account, modelCode, contract, pos, avgCost)), null);
         }
 
         public event Action<int> PositionMultiEnd;
@@ -553,7 +638,7 @@ namespace IBNet
             var tmp = PositionMultiEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId), null);
+                sc.Post(t => tmp(reqId), null);
         }
 
         public event Action<AccountUpdateMultiMessage> AccountUpdateMulti;
@@ -563,7 +648,7 @@ namespace IBNet
             var tmp = AccountUpdateMulti;
 
             if (tmp != null)
-                FireEvent(t => tmp(new AccountUpdateMultiMessage(reqId, account, modelCode, key, value, currency)), null);
+                sc.Post(t => tmp(new AccountUpdateMultiMessage(reqId, account, modelCode, key, value, currency)), null);
         }
 
         public event Action<int> AccountUpdateMultiEnd;
@@ -573,7 +658,7 @@ namespace IBNet
             var tmp = AccountUpdateMultiEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId), null);
+                sc.Post(t => tmp(reqId), null);
         }
 
         public event Action<SecurityDefinitionOptionParameterMessage> SecurityDefinitionOptionParameter;
@@ -583,7 +668,7 @@ namespace IBNet
             var tmp = SecurityDefinitionOptionParameter;
 
             if (tmp != null)
-                FireEvent(t => tmp(new SecurityDefinitionOptionParameterMessage(reqId, exchange, underlyingConId, tradingClass, multiplier, expirations, strikes)), null);
+                sc.Post(t => tmp(new SecurityDefinitionOptionParameterMessage(reqId, exchange, underlyingConId, tradingClass, multiplier, expirations, strikes)), null);
         }
 
         public event Action<int> SecurityDefinitionOptionParameterEnd;
@@ -593,7 +678,7 @@ namespace IBNet
             var tmp = SecurityDefinitionOptionParameterEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId), null);
+                sc.Post(t => tmp(reqId), null);
         }
 
         public event Action<SoftDollarTiersMessage> SoftDollarTiers;
@@ -603,7 +688,7 @@ namespace IBNet
             var tmp = SoftDollarTiers;
 
             if (tmp != null)
-                FireEvent(t => tmp(new SoftDollarTiersMessage(reqId, tiers)), null);
+                sc.Post(t => tmp(new SoftDollarTiersMessage(reqId, tiers)), null);
         }
 
         public event Action<FamilyCode[]> FamilyCodes;
@@ -613,7 +698,7 @@ namespace IBNet
             var tmp = FamilyCodes;
 
             if (tmp != null)
-                FireEvent(t => tmp(familyCodes), null);
+                sc.Post(t => tmp(familyCodes), null);
         }
 
         public event Action<SymbolSamplesMessage> SymbolSamples;
@@ -623,7 +708,7 @@ namespace IBNet
             var tmp = SymbolSamples;
 
             if (tmp != null)
-                FireEvent(t => tmp(new SymbolSamplesMessage(reqId, contractDescriptions)), null);
+                sc.Post(t => tmp(new SymbolSamplesMessage(reqId, contractDescriptions)), null);
         }
 
 
@@ -634,7 +719,7 @@ namespace IBNet
             var tmp = MktDepthExchanges;
 
             if (tmp != null)
-                FireEvent(t => tmp(depthMktDataDescriptions), null);
+                sc.Post(t => tmp(depthMktDataDescriptions), null);
         }
 
         public event Action<TickNewsMessage> TickNews;
@@ -644,7 +729,7 @@ namespace IBNet
             var tmp = TickNews;
 
             if (tmp != null)
-                FireEvent(t => tmp(new TickNewsMessage(tickerId, timeStamp, providerCode, articleId, headline, extraData)), null);
+                sc.Post(t => tmp(new TickNewsMessage(tickerId, timeStamp, providerCode, articleId, headline, extraData)), null);
         }
 
         public event Action<int, Dictionary<int, KeyValuePair<string, char>>> SmartComponents;
@@ -654,7 +739,7 @@ namespace IBNet
             var tmp = SmartComponents;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId, theMap), null);
+                sc.Post(t => tmp(reqId, theMap), null);
         }
 
         public event Action<TickReqParamsMessage> TickReqParams;
@@ -664,7 +749,7 @@ namespace IBNet
             var tmp = TickReqParams;
 
             if (tmp != null)
-                FireEvent(t => tmp(new TickReqParamsMessage(tickerId, minTick, bboExchange, snapshotPermissions)), null);
+                sc.Post(t => tmp(new TickReqParamsMessage(tickerId, minTick, bboExchange, snapshotPermissions)), null);
         }
 
         public event Action<NewsProvider[]> NewsProviders;
@@ -674,7 +759,7 @@ namespace IBNet
             var tmp = NewsProviders;
 
             if (tmp != null)
-                FireEvent(t => tmp(newsProviders), null);
+                sc.Post(t => tmp(newsProviders), null);
         }
 
         public event Action<NewsArticleMessage> NewsArticle;
@@ -684,7 +769,7 @@ namespace IBNet
             var tmp = NewsArticle;
 
             if (tmp != null)
-                FireEvent(t => tmp(new NewsArticleMessage(requestId, articleType, articleText)), null);
+                sc.Post(t => tmp(new NewsArticleMessage(requestId, articleType, articleText)), null);
         }
 
         public event Action<HistoricalNewsMessage> HistoricalNews;
@@ -694,7 +779,7 @@ namespace IBNet
             var tmp = HistoricalNews;
 
             if (tmp != null)
-                FireEvent(t => tmp(new HistoricalNewsMessage(requestId, time, providerCode, articleId, headline)), null);
+                sc.Post(t => tmp(new HistoricalNewsMessage(requestId, time, providerCode, articleId, headline)), null);
         }
 
         public event Action<HistoricalNewsEndMessage> HistoricalNewsEnd;
@@ -704,7 +789,7 @@ namespace IBNet
             var tmp = HistoricalNewsEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(new HistoricalNewsEndMessage(requestId, hasMore)), null);
+                sc.Post(t => tmp(new HistoricalNewsEndMessage(requestId, hasMore)), null);
         }
 
         public event Action<HeadTimestampMessage> HeadTimestamp;
@@ -714,7 +799,7 @@ namespace IBNet
             var tmp = HeadTimestamp;
 
             if (tmp != null)
-                FireEvent(t => tmp(new HeadTimestampMessage(reqId, headTimestamp)), null);
+                sc.Post(t => tmp(new HeadTimestampMessage(reqId, headTimestamp)), null);
         }
 
         public event Action<HistogramDataMessage> HistogramData;
@@ -724,7 +809,7 @@ namespace IBNet
             var tmp = HistogramData;
 
             if (tmp != null)
-                FireEvent(t => tmp(new HistogramDataMessage(reqId, data)), null);
+                sc.Post(t => tmp(new HistogramDataMessage(reqId, data)), null);
         }
 
         public event Action<HistoricalDataMessage> HistoricalDataUpdate;
@@ -734,7 +819,7 @@ namespace IBNet
             var tmp = HistoricalDataUpdate;
 
             if (tmp != null)
-                FireEvent(t => tmp(new HistoricalDataMessage(reqId, bar)), null);
+                sc.Post(t => tmp(new HistoricalDataMessage(reqId, bar)), null);
         }
 
         public event Action<int, int, string> RerouteMktDataReq;
@@ -744,7 +829,7 @@ namespace IBNet
             var tmp = RerouteMktDataReq;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId, conId, exchange), null);
+                sc.Post(t => tmp(reqId, conId, exchange), null);
         }
 
         public event Action<int, int, string> RerouteMktDepthReq;
@@ -754,7 +839,7 @@ namespace IBNet
             var tmp = RerouteMktDepthReq;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId, conId, exchange), null);
+                sc.Post(t => tmp(reqId, conId, exchange), null);
         }
 
         public event Action<MarketRuleMessage> MarketRule;
@@ -764,7 +849,7 @@ namespace IBNet
             var tmp = MarketRule;
 
             if (tmp != null)
-                FireEvent(t => tmp(new MarketRuleMessage(marketRuleId, priceIncrements)), null);
+                sc.Post(t => tmp(new MarketRuleMessage(marketRuleId, priceIncrements)), null);
         }
 
         public event Action<PnLMessage> pnl;
@@ -774,17 +859,17 @@ namespace IBNet
             var tmp = pnl;
 
             if (tmp != null)
-                FireEvent(t => tmp(new PnLMessage(reqId, dailyPnL, unrealizedPnL, realizedPnL)), null);
+                sc.Post(t => tmp(new PnLMessage(reqId, dailyPnL, unrealizedPnL, realizedPnL)), null);
         }
 
         public event Action<PnLSingleMessage> pnlSingle;
 
-        void EWrapper.pnlSingle(int reqId, int pos, double dailyPnL, double unrealizedPnL, double realizedPnL, double value)
+        void EWrapper.pnlSingle(int reqId, decimal pos, double dailyPnL, double unrealizedPnL, double realizedPnL, double value)
         {
             var tmp = pnlSingle;
 
             if (tmp != null)
-                FireEvent(t => tmp(new PnLSingleMessage(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)), null);
+                sc.Post(t => tmp(new PnLSingleMessage(reqId, pos, dailyPnL, unrealizedPnL, realizedPnL, value)), null);
         }
 
         public event Action<HistoricalTickMessage> historicalTick;
@@ -794,7 +879,7 @@ namespace IBNet
             var tmp = historicalTick;
 
             if (tmp != null)
-                ticks.ToList().ForEach(tick => FireEvent(t => tmp(new HistoricalTickMessage(reqId, tick.Time, tick.Price, tick.Size)), null));
+                ticks.ToList().ForEach(tick => sc.Post(t => tmp(new HistoricalTickMessage(reqId, tick.Time, tick.Price, tick.Size)), null));
         }
 
         public event Action<HistoricalTickBidAskMessage> historicalTickBidAsk;
@@ -804,8 +889,8 @@ namespace IBNet
             var tmp = historicalTickBidAsk;
 
             if (tmp != null)
-                ticks.ToList().ForEach(tick => FireEvent(t =>
-                                                           tmp(new HistoricalTickBidAskMessage(reqId, tick.Time, tick.TickAttribBidAsk, tick.PriceBid, tick.PriceAsk, tick.SizeBid, tick.SizeAsk)), null));
+                ticks.ToList().ForEach(tick => sc.Post(t =>
+                    tmp(new HistoricalTickBidAskMessage(reqId, tick.Time, tick.TickAttribBidAsk, tick.PriceBid, tick.PriceAsk, tick.SizeBid, tick.SizeAsk)), null));
         }
 
         public event Action<HistoricalTickLastMessage> historicalTickLast;
@@ -815,28 +900,28 @@ namespace IBNet
             var tmp = historicalTickLast;
 
             if (tmp != null)
-                ticks.ToList().ForEach(tick => FireEvent(t =>
-                                                           tmp(new HistoricalTickLastMessage(reqId, tick.Time, tick.TickAttribLast, tick.Price, tick.Size, tick.Exchange, tick.SpecialConditions)), null));
+                ticks.ToList().ForEach(tick => sc.Post(t => 
+                    tmp(new HistoricalTickLastMessage(reqId, tick.Time, tick.TickAttribLast, tick.Price, tick.Size, tick.Exchange, tick.SpecialConditions)), null));
         }
 
         public event Action<TickByTickAllLastMessage> tickByTickAllLast;
 
-        void EWrapper.tickByTickAllLast(int reqId, int tickType, long time, double price, long size, TickAttribLast tickAttribLast, string exchange, string specialConditions)
+        void EWrapper.tickByTickAllLast(int reqId, int tickType, long time, double price, decimal size, TickAttribLast tickAttribLast, string exchange, string specialConditions)
         {
             var tmp = tickByTickAllLast;
 
             if (tmp != null)
-                FireEvent(t => tmp(new TickByTickAllLastMessage(reqId, tickType, time, price, size, tickAttribLast, exchange, specialConditions)), null);
+                sc.Post(t => tmp(new TickByTickAllLastMessage(reqId, tickType, time, price, size, tickAttribLast, exchange, specialConditions)), null);
         }
 
         public event Action<TickByTickBidAskMessage> tickByTickBidAsk;
 
-        void EWrapper.tickByTickBidAsk(int reqId, long time, double bidPrice, double askPrice, long bidSize, long askSize, TickAttribBidAsk tickAttribBidAsk)
+        void EWrapper.tickByTickBidAsk(int reqId, long time, double bidPrice, double askPrice, decimal bidSize, decimal askSize, TickAttribBidAsk tickAttribBidAsk)
         {
             var tmp = tickByTickBidAsk;
 
             if (tmp != null)
-                FireEvent(t => tmp(new TickByTickBidAskMessage(reqId, time, bidPrice, askPrice, bidSize, askSize, tickAttribBidAsk)), null);
+                sc.Post(t => tmp(new TickByTickBidAskMessage(reqId, time, bidPrice, askPrice, bidSize, askSize, tickAttribBidAsk)), null);
         }
 
         public event Action<TickByTickMidPointMessage> tickByTickMidPoint;
@@ -846,7 +931,7 @@ namespace IBNet
             var tmp = tickByTickMidPoint;
 
             if (tmp != null)
-                FireEvent(t => tmp(new TickByTickMidPointMessage(reqId, time, midPoint)), null);
+                sc.Post(t => tmp(new TickByTickMidPointMessage(reqId, time, midPoint)), null);
         }
 
         public event Action<OrderBoundMessage> OrderBound;
@@ -856,7 +941,7 @@ namespace IBNet
             var tmp = OrderBound;
 
             if (tmp != null)
-                FireEvent(t => tmp(new OrderBoundMessage(orderId, apiClientId, apiOrderId)), null);
+                sc.Post(t => tmp(new OrderBoundMessage(orderId, apiClientId, apiOrderId)), null);
         }
 
         public event Action<CompletedOrderMessage> CompletedOrder;
@@ -866,7 +951,7 @@ namespace IBNet
             var tmp = CompletedOrder;
 
             if (tmp != null)
-                FireEvent(t => tmp(new CompletedOrderMessage(contract, order, orderState)), null);
+                sc.Post(t => tmp(new CompletedOrderMessage(contract, order, orderState)), null);
         }
 
         public event Action CompletedOrdersEnd;
@@ -876,9 +961,9 @@ namespace IBNet
             var tmp = CompletedOrdersEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(), null);
+                sc.Post(t => tmp(), null);
         }
-        
+
         public event Action<int, string> ReplaceFAEnd;
 
         void EWrapper.replaceFAEnd(int reqId, string text)
@@ -886,10 +971,45 @@ namespace IBNet
             var tmp = ReplaceFAEnd;
 
             if (tmp != null)
-                FireEvent(t => tmp(reqId, text), null);
+                sc.Post(t => tmp(reqId, text), null);
         }
-        #endregion
-        
-        
+
+        public event Action<int, string> WshMetaData;
+
+        public void wshMetaData(int reqId, string dataJson)
+        {
+            var tmp = WshMetaData;
+
+            if (tmp != null)
+                sc.Post(t => tmp(reqId, dataJson), null);
+        }
+
+        public event Action<int, string> WshEventData;
+
+        public void wshEventData(int reqId, string dataJson)
+        {
+            var tmp = WshEventData;
+
+            if (tmp != null)
+                sc.Post(t => tmp(reqId, dataJson), null);
+        }
+
+        public event Action<HistoricalScheduleMessage> HistoricalSchedule;
+
+        public void historicalSchedule(int reqId, string startDateTime, string endDateTime, string timeZone, HistoricalSession[] sessions)
+        {
+            var tmp = HistoricalSchedule;
+
+            if (tmp != null)
+                sc.Post(t => tmp(new HistoricalScheduleMessage(reqId, startDateTime, endDateTime, timeZone, sessions)), null);
+        }
+
+        public event Action<string> UserInfo;
+        void EWrapper.userInfo(int reqId, string whiteBrandingId)
+        {
+            var tmp = UserInfo;
+            if (tmp != null)
+                sc.Post(t => tmp(whiteBrandingId), null);
+        }
     }
 }

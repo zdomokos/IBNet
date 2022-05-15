@@ -15,7 +15,7 @@ namespace IbFlexReader.Contracts.Ib
         public Currencies? CommissionCurrency { get; set; }
 
         //public string ExchOrderId { get; set; }
-        public Notes?  Code                           { get; set; }
+        // public Notes?  Code                           { get; set; }
         public double? BrokerExecutionCommission      { get; set; }
         public double? BrokerClearingCommission       { get; set; }
         public double? ThirdPartyExecutionCommission  { get; set; }

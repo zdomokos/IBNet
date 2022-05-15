@@ -1,12 +1,17 @@
-﻿using System;
-using System.Threading;
+﻿/* Copyright (C) 2019 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
+ * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using IBApi;
+using System.Threading;
 
 namespace IBSamples
 {
     public class RequestContractDetails : EWrapperImpl
     {
-        private bool isFinished;
+        private bool isFinished = false;
 
         public bool IsFinished
         {
@@ -14,7 +19,7 @@ namespace IBSamples
             set { isFinished = value; }
         }
         
-        public static int Test(string[] args)
+        public static int Main2(string[] args)
         {
             RequestContractDetails testImpl = new RequestContractDetails();
             testImpl.ClientSocket.eConnect("127.0.0.1", 7496, 0);
@@ -22,7 +27,7 @@ namespace IBSamples
 
             //We can request the whole option's chain by giving a brief description of the contract
             //i.e. we only specify symbol, currency, secType and exchange (SMART)
-            Contract optionContract = ContractSamples.getOptionForQuery();
+            Contract optionContract = ContractSamples.OptionForQuery();
 
             testImpl.ClientSocket.reqContractDetails(1, optionContract);
 
@@ -43,7 +48,7 @@ namespace IBSamples
         {
             Console.WriteLine("/*******Incoming Contract Details - RequestId "+reqId+"************/");
             Console.WriteLine(contractDetails.Contract.Symbol + " " + contractDetails.Contract.SecType + " @ " + contractDetails.Contract.Exchange);
-            Console.WriteLine("Expiry: " + contractDetails.Contract.LastTradeDateOrContractMonth + ", Right: " + contractDetails.Contract.Right);
+            Console.WriteLine("lastTradeDate: " + contractDetails.Contract.LastTradeDateOrContractMonth + ", Right: " + contractDetails.Contract.Right);
             Console.WriteLine("Strike: " + contractDetails.Contract.Strike + ", Multiplier: " + contractDetails.Contract.Multiplier);
             Console.WriteLine("/*******     End     *************/\n");
         }

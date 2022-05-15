@@ -19,10 +19,6 @@ namespace IBNet
     {
         #region Connectivity
 
-        public int           ClientId     { get; set; }
-        public EClientSocket ClientSocket { get; }
-        public int           NextOrderId  { get; set; }
-        
         /// <summary>
         /// Returns the status of the connection to TWS.
         /// </summary>
@@ -178,7 +174,7 @@ namespace IBNet
         public void CancelOrder(int orderId)
         {
             lock (this)
-                ClientSocket.cancelOrder(orderId);
+                ClientSocket.cancelOrder(orderId, "");
         }
 
         /// <summary>
@@ -650,3 +646,5 @@ namespace IBNet
 
     }
 }
+
+

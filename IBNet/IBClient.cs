@@ -38,14 +38,14 @@ namespace IBNet
 
         private void FireEvent(SendOrPostCallback action, object state)
         {
-            if (_sc != null)
-                _sc.Post(action, state);
+            if (sc != null)
+                sc.Post(action, state);
             else
                 action(state);
         }
 
-        private GeneralTracer        ibTrace = new GeneralTracer("ibInfo", "Interactive Brokers Parameter Info");
-        private EReaderMonitorSignal _signal = new EReaderMonitorSignal();
-        private Thread               _messageDispatchThread;
+        private GeneralTracer          ibTrace = new GeneralTracer("ibInfo", "Interactive Brokers Parameter Info");
+        private EReaderMonitorSignal   _signal = new EReaderMonitorSignal();
+        private Thread                 _messageDispatchThread;
     }
 }
