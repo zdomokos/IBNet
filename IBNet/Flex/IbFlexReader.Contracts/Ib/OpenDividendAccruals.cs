@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
-using Ztg.Common.Types;
+using IBNet.Utils;
 
 namespace IbFlexReader.Contracts.Ib
 {

@@ -1,6 +1,6 @@
 /*
 using System;
-using Ztg.Common.DataStructures.Enums;
+using Headspring;
 
 namespace Ztg.Loraq.Broker.IB
 {

@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Globalization;
-using Ztg.Common.SystemEx;
 using System;
 using IbFlexReader.Contracts.Attributes;
 using IbFlexReader.Contracts.Enums;
@@ -34,14 +33,14 @@ namespace IbFlexReader.Contracts.Ib
             {
                 try
                 {
-                    if (TradeTime.IsEmpty())
+                    if (string.IsNullOrEmpty(TradeTime))
                         TradeTime = "000000";
                     DateTime dt = DateTime.ParseExact($"{TradeDate}:{TradeTime}", "yyyyMMdd:HHmmss", CultureInfo.InvariantCulture);
                     return dt;
                 }
                 catch (Exception e)
                 {
-                    e.LogError($"{TradeDate}:{TradeTime}");
+                    //e.LogError($"{TradeDate}:{TradeTime}");
                 }
 
                 return null;

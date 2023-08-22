@@ -1,5 +1,5 @@
 using System;
-using Ztg.Common.DataStructures.Enums;
+using Headspring;
 using IBTick = IBApi.TickType;
 
 namespace IBNet.Enums

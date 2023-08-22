@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel;
-using Ztg.Common.DataStructures.Enums;
+using Headspring;
 
 namespace IBNet.Enums
 {

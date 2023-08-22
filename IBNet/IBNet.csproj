@@ -7,7 +7,6 @@
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Ztg.Common\Common.csproj" />
     <ProjectReference Include="..\..\tws-api\source\csharpclient\client\CSharpAPI.csproj" />
   </ItemGroup>
   <ItemGroup>
