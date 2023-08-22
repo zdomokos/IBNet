@@ -1,4 +1,4 @@
-﻿namespace IbFlexReader.Xml.Contracts.QueryResponse
+namespace IbFlexReader.Xml.Contracts.QueryResponse
 {
     using System.Xml.Serialization;
 

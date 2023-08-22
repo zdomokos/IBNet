@@ -1,4 +1,4 @@
-﻿namespace IbFlexReader.Utils
+namespace IbFlexReader.Utils
 {
     using System;
     using System.IO;

@@ -1,4 +1,4 @@
-﻿namespace IbFlexReader.Xml.Contracts
+namespace IbFlexReader.Xml.Contracts
 {
     public abstract class XmlBase
     {

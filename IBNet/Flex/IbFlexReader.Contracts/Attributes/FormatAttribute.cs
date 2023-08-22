@@ -1,4 +1,4 @@
-﻿namespace IbFlexReader.Contracts.Attributes
+namespace IbFlexReader.Contracts.Attributes
 {
     using System;
 

@@ -1,4 +1,4 @@
-﻿namespace IbFlexReader
+namespace IbFlexReader
 {
     using System;
     using System.Collections.Generic;

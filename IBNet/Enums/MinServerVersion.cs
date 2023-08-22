@@ -1,4 +1,4 @@
-﻿namespace IBNet.Enums
+namespace IBNet.Enums
 {
     public class MinServerVersion
     {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Ztg.Common.DataStructures.Enums;
 
 namespace IBNet.Enums

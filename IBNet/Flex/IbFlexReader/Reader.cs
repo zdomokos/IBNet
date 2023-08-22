@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  Tool to convert xml to c# classes: https://xmltocsharp.azurewebsites.net/
  */
 
