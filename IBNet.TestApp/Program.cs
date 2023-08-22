@@ -767,7 +767,7 @@ namespace IBSamples
 
             //! [faorderprofile]
             Order faOrderProfile = OrderSamples.LimitOrder("BUY", 200, 100);
-            faOrderProfile.FaProfile = "Percent_60_40";
+            // faOrderProfile.FaProfile = "Percent_60_40";
             client.placeOrder(nextOrderId++, ContractSamples.EuropeanStock(), faOrderProfile);
             //! [faorderprofile]
 		
@@ -1084,7 +1084,7 @@ namespace IBSamples
             //! [requestfagroups]
 
             //! [requestfaprofiles]
-            client.requestFA(Constants.FaProfiles);
+            // client.requestFA(Constants.faProfiles);
             //! [requestfaprofiles]
 
             /*** Replacing FA information - Fill in with the appropriate XML string. ***/
@@ -1097,11 +1097,11 @@ namespace IBSamples
             //! [replacefatwogroups]
 
             //! [replacefaoneprofile]
-            client.replaceFA(1002, Constants.FaProfiles, FaAllocationSamples.FaOneProfile);
+            // client.replaceFA(1002, Constants.FaProfiles, FaAllocationSamples.FaOneProfile);
             //! [replacefaoneprofile]
 
             //! [replacefatwoprofiles]
-            client.replaceFA(1003, Constants.FaProfiles, FaAllocationSamples.FaTwoProfiles);
+            // client.replaceFA(1003, Constants.FaProfiles, FaAllocationSamples.FaTwoProfiles);
             //! [replacefatwoprofiles]
 
             //! [reqSoftDollarTiers]
