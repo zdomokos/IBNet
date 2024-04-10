@@ -489,7 +489,7 @@ namespace IBNet
             if (contract == null)
                 throw new ArgumentNullException("contract");
             lock (this)
-                ClientSocket.exerciseOptions(requestId, contract, exerciseAction, exerciseQuantity, account, overrideRenamed);
+                ClientSocket.exerciseOptions(requestId, contract, exerciseAction, exerciseQuantity, account, overrideRenamed, "", "", false);
         }
         
         public virtual void RequestCalculateOptionPrice(int reqId, Contract contract, double volatility, double underPrice)

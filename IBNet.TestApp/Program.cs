@@ -543,7 +543,7 @@ namespace IBSamples
             client.cancelCalculateOptionPrice(5002);
             /*** Exercising options ***/
             //! [exercise_options]
-            client.exerciseOptions(5003, ContractSamples.OptionWithTradingClass(), 1, 1, null, 1);
+            client.exerciseOptions(5003, ContractSamples.OptionWithTradingClass(), 1, 1, null, 1, "", "", false);
             //! [exercise_options]
         }
 
