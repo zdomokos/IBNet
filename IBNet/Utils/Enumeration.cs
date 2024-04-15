@@ -35,7 +35,7 @@ public abstract class Enumeration<TEnumeration, TValue> : IComparable<TEnumerati
     readonly string _displayName;
     readonly TValue _value;
 
-    private static Lazy<TEnumeration[]> _enumerations = new Lazy<TEnumeration[]>(GetEnumerations);
+    private static Lazy<TEnumeration[]> _enumerations = new(GetEnumerations);
 
     protected Enumeration(TValue value, string displayName)
     {

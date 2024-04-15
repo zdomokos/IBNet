@@ -10,8 +10,8 @@ namespace IBNet.Enums;
 [Serializable]
 public class ExecutionSide : Enumeration<ExecutionSide, string>
 {
-    public static ExecutionSide Bought = new ExecutionSide("BOT", nameof(Bought));
-    public static ExecutionSide Sold   = new ExecutionSide("SLD", nameof(Sold));
+    public static ExecutionSide Bought = new("BOT", nameof(Bought));
+    public static ExecutionSide Sold   = new("SLD", nameof(Sold));
 
     public ExecutionSide(string value, string name) : base(value, name)
     { }

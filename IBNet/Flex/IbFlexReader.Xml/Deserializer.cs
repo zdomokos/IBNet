@@ -99,6 +99,6 @@ public static class Deserializer
             };
         }
 
-    private static StringBuilder   uknowns    = new StringBuilder();
-    private static HashSet<string> uknownTags = new HashSet<string>();
+    private static StringBuilder   uknowns    = new();
+    private static HashSet<string> uknownTags = new();
 }

@@ -30,13 +30,13 @@ public class TriggerMethod
             return new object[] {Default, DoubleBidAsk, Last, DoubleLast, BidAsk, LastBidOrAsk, Midpoint};
         }
 
-    public static IBType Default      = new IBType("Default", 0);
-    public static IBType DoubleBidAsk = new IBType("DoubleBidAsk", 1);
-    public static IBType Last         = new IBType("Last", 2);
-    public static IBType DoubleLast   = new IBType("DoubleLast", 3);
-    public static IBType BidAsk       = new IBType("BidAsk", 4);
-    public static IBType LastBidOrAsk = new IBType("LastBidOrAsk", 5);
-    public static IBType Midpoint     = new IBType("Midpoint", 6);
+    public static IBType Default      = new("Default", 0);
+    public static IBType DoubleBidAsk = new("DoubleBidAsk", 1);
+    public static IBType Last         = new("Last", 2);
+    public static IBType DoubleLast   = new("DoubleLast", 3);
+    public static IBType BidAsk       = new("BidAsk", 4);
+    public static IBType LastBidOrAsk = new("LastBidOrAsk", 5);
+    public static IBType Midpoint     = new("Midpoint", 6);
 }
 
 public class Rule80A
@@ -46,16 +46,16 @@ public class Rule80A
             return new object[] {None, Individual, Agency, AgentOtherMember, IndividualPTIA, AgencyPTIA, AgentOtherMemberPTIA, IndividualPT, AgencyPT, AgentOtherMemberPT};
         }
 
-    public static IBType None                 = new IBType("None", "");
-    public static IBType Individual           = new IBType("Individual", "I");
-    public static IBType Agency               = new IBType("Agency", "A");
-    public static IBType AgentOtherMember     = new IBType("AgentOtherMember", "W");
-    public static IBType IndividualPTIA       = new IBType("IndividualPTIA", "J");
-    public static IBType AgencyPTIA           = new IBType("AgencyPTIA", "U");
-    public static IBType AgentOtherMemberPTIA = new IBType("AgentOtherMemberPTIA", "M");
-    public static IBType IndividualPT         = new IBType("IndividualPT", "K");
-    public static IBType AgencyPT             = new IBType("AgencyPT", "Y");
-    public static IBType AgentOtherMemberPT   = new IBType("AgentOtherMemberPT", "N");
+    public static IBType None                 = new("None", "");
+    public static IBType Individual           = new("Individual", "I");
+    public static IBType Agency               = new("Agency", "A");
+    public static IBType AgentOtherMember     = new("AgentOtherMember", "W");
+    public static IBType IndividualPTIA       = new("IndividualPTIA", "J");
+    public static IBType AgencyPTIA           = new("AgencyPTIA", "U");
+    public static IBType AgentOtherMemberPTIA = new("AgentOtherMemberPTIA", "M");
+    public static IBType IndividualPT         = new("IndividualPT", "K");
+    public static IBType AgencyPT             = new("AgencyPT", "Y");
+    public static IBType AgentOtherMemberPT   = new("AgentOtherMemberPT", "N");
 }
 
 public class OCAType
@@ -65,10 +65,10 @@ public class OCAType
             return new object[] {None, CancelWithBlocking, ReduceWithBlocking, ReduceWithoutBlocking};
         }
 
-    public static IBType None                  = new IBType("None", 0);
-    public static IBType CancelWithBlocking    = new IBType("CancelWithBlocking", 1);
-    public static IBType ReduceWithBlocking    = new IBType("ReduceWithBlocking", 2);
-    public static IBType ReduceWithoutBlocking = new IBType("ReduceWithoutBlocking", 3);
+    public static IBType None                  = new("None", 0);
+    public static IBType CancelWithBlocking    = new("CancelWithBlocking", 1);
+    public static IBType ReduceWithBlocking    = new("ReduceWithBlocking", 2);
+    public static IBType ReduceWithoutBlocking = new("ReduceWithoutBlocking", 3);
 }
 
 public class HedgeType
@@ -78,11 +78,11 @@ public class HedgeType
             return new object[] {None, Delta, Beta, Fx, Pair};
         }
 
-    public static IBType None  = new IBType("None", "");
-    public static IBType Delta = new IBType("Delta", "D");
-    public static IBType Beta  = new IBType("Beta", "B");
-    public static IBType Fx    = new IBType("Fx", "F");
-    public static IBType Pair  = new IBType("Pair", "P");
+    public static IBType None  = new("None", "");
+    public static IBType Delta = new("Delta", "D");
+    public static IBType Beta  = new("Beta", "B");
+    public static IBType Fx    = new("Fx", "F");
+    public static IBType Pair  = new("Pair", "P");
 }
 
 public class VolatilityType
@@ -92,9 +92,9 @@ public class VolatilityType
             return new object[] {None, Daily, Annual};
         }
 
-    public static IBType None   = new IBType("None", 0);
-    public static IBType Daily  = new IBType("Daily", 1);
-    public static IBType Annual = new IBType("Annual", 1);
+    public static IBType None   = new("None", 0);
+    public static IBType Daily  = new("Daily", 1);
+    public static IBType Annual = new("Annual", 1);
 }
 
 public class ReferencePriceType
@@ -104,9 +104,9 @@ public class ReferencePriceType
             return new object[] {None, Midpoint, BidOrAsk};
         }
 
-    public static IBType None     = new IBType("None", 0);
-    public static IBType Midpoint = new IBType("Midpoint", 1);
-    public static IBType BidOrAsk = new IBType("BidOrAsk", 2);
+    public static IBType None     = new("None", 0);
+    public static IBType Midpoint = new("Midpoint", 1);
+    public static IBType BidOrAsk = new("BidOrAsk", 2);
 }
 
 public class FaMethod
@@ -116,11 +116,11 @@ public class FaMethod
             return new object[] {None, EqualQuantity, AvailableEquity, NetLiq, PctChange};
         }
 
-    public static IBType None            = new IBType("None", "");
-    public static IBType EqualQuantity   = new IBType("EqualQuantity", "EqualQuantity");
-    public static IBType AvailableEquity = new IBType("AvailableEquity", "AvailableEquity");
-    public static IBType NetLiq          = new IBType("NetLiq", "NetLiq");
-    public static IBType PctChange       = new IBType("PctChange", "PctChange");
+    public static IBType None            = new("None", "");
+    public static IBType EqualQuantity   = new("EqualQuantity", "EqualQuantity");
+    public static IBType AvailableEquity = new("AvailableEquity", "AvailableEquity");
+    public static IBType NetLiq          = new("NetLiq", "NetLiq");
+    public static IBType PctChange       = new("PctChange", "PctChange");
 }
 
 public class ContractRight
@@ -130,9 +130,9 @@ public class ContractRight
             return new object[] {None, Put, Call};
         }
 
-    public static IBType None = new IBType("None", "");
-    public static IBType Put  = new IBType("Put", "P");
-    public static IBType Call = new IBType("Call", "C");
+    public static IBType None = new("None", "");
+    public static IBType Put  = new("Put", "P");
+    public static IBType Call = new("Call", "C");
 }
 
 public class FundamentalsReport
@@ -142,10 +142,10 @@ public class FundamentalsReport
             return new object[] {ReportSnapshot, FinancialSummary, FinStatements, RESC};
         }
 
-    public static IBType ReportSnapshot   = new IBType("Company overview", "ReportSnapshot");
-    public static IBType FinancialSummary = new IBType("Financial summary", "ReportsFinSummary");
-    public static IBType FinStatements    = new IBType("Financial statements", "ReportsFinStatements");
-    public static IBType RESC             = new IBType("Analyst estimates", "RESC");
+    public static IBType ReportSnapshot   = new("Company overview", "ReportSnapshot");
+    public static IBType FinancialSummary = new("Financial summary", "ReportsFinSummary");
+    public static IBType FinStatements    = new("Financial statements", "ReportsFinStatements");
+    public static IBType RESC             = new("Analyst estimates", "RESC");
 }
 
 public class FinancialAdvisorDataType
@@ -155,9 +155,9 @@ public class FinancialAdvisorDataType
             return new object[] {Groups, Profiles, Aliases};
         }
 
-    public static IBType Groups   = new IBType("Groups", 1);
-    public static IBType Profiles = new IBType("Profiles", 2);
-    public static IBType Aliases  = new IBType("Alias", 3);
+    public static IBType Groups   = new("Groups", 1);
+    public static IBType Profiles = new("Profiles", 2);
+    public static IBType Aliases  = new("Alias", 3);
 }
 
 public class AllocationGroupMethod
@@ -175,10 +175,10 @@ public class AllocationGroupMethod
             return faDefaultMethods;
         }
 
-    public static IBType EqualQuantity   = new IBType("Equal quantity", "EqualQuantity");
-    public static IBType AvailableEquity = new IBType("Available equity", "AvailableEquity");
-    public static IBType NetLiquidity    = new IBType("Net liquidity", "NetLiq");
-    public static IBType PercentChange   = new IBType("Percent change", "PctChange");
+    public static IBType EqualQuantity   = new("Equal quantity", "EqualQuantity");
+    public static IBType AvailableEquity = new("Available equity", "AvailableEquity");
+    public static IBType NetLiquidity    = new("Net liquidity", "NetLiq");
+    public static IBType PercentChange   = new("Percent change", "PctChange");
 }
 
 public class AllocationProfileType
@@ -216,8 +216,8 @@ public class MarketDataType
             return ret;
         }
 
-    public static IBType Real_Time      = new IBType("Real-Time", 1);
-    public static IBType Frozen         = new IBType("Frozen", 2);
-    public static IBType Delayed        = new IBType("Delayed", 3);
-    public static IBType Delayed_Frozen = new IBType("Delayed-Frozen", 4);
+    public static IBType Real_Time = new("Real-Time", 1);
+    public static IBType Frozen    = new("Frozen", 2);
+    public static IBType Delayed   = new("Delayed", 3);
+    public static IBType Delayed_Frozen = new("Delayed-Frozen", 4);
 }

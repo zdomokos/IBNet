@@ -9,8 +9,8 @@ namespace IBNet.Enums;
 [Serializable]
 public class RightType : Enumeration<RightType, string>
 {
-    public static RightType Put  = new RightType("P", nameof(Put));
-    public static RightType Call = new RightType("C", nameof(Call));
+    public static RightType Put  = new("P", nameof(Put));
+    public static RightType Call = new("C", nameof(Call));
 
     public RightType(string value, string name) : base(value, name) { }
 }

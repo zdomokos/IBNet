@@ -14,19 +14,19 @@ public class ComboOpenClose : Enumeration<ComboOpenClose, string>
     /// open/close leg value is same as combo
     /// This value is always used for retail accounts
     /// </summary>
-    public static ComboOpenClose Same = new ComboOpenClose("SAME", nameof(Same));
+    public static ComboOpenClose Same = new("SAME", nameof(Same));
     /// <summary>
     /// Institutional Accounts Only
     /// </summary>
-    public static ComboOpenClose Open = new ComboOpenClose("OPEN", nameof(Open));
+    public static ComboOpenClose Open = new("OPEN", nameof(Open));
     /// <summary>
     /// Institutional Accounts Only
     /// </summary>
-    public static ComboOpenClose Close = new ComboOpenClose("CLOSE", nameof(Close));
+    public static ComboOpenClose Close = new("CLOSE", nameof(Close));
     /// <summary>
     /// Institutional Accounts Only
     /// </summary>
-    public static ComboOpenClose Unknown = new ComboOpenClose("UNKNOWN", nameof(Unknown));
+    public static ComboOpenClose Unknown = new("UNKNOWN", nameof(Unknown));
 
     public ComboOpenClose(string value, string name) : base(value, name)
     { }

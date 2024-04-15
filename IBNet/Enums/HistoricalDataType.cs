@@ -16,9 +16,9 @@ namespace IBNet.Enums;
 public class UseRth : Enumeration<UseRth, int>
 {
     // 0 - all data is returned even where the market in question was outside of its regular trading hours.
-    public static UseRth No = new UseRth(0, nameof(No));
+    public static UseRth No = new(0, nameof(No));
     // 1 - only data within the regular trading hours is returned, even if the requested time span falls partially or completely outside of the RTH.
-    public static UseRth Yes = new UseRth(1, nameof(Yes));
+    public static UseRth Yes = new(1, nameof(Yes));
 
     public UseRth(int value, string name) : base(value, name) { }
 }
@@ -27,8 +27,8 @@ public class UseRth : Enumeration<UseRth, int>
 [Serializable]
 public class BarTimeFormat : Enumeration<BarTimeFormat>
 {
-    public static BarTimeFormat YMD         = new BarTimeFormat(1, nameof(YMD));
-    public static BarTimeFormat UnixSeconds = new BarTimeFormat(2, nameof(UnixSeconds));
+    public static BarTimeFormat YMD         = new(1, nameof(YMD));
+    public static BarTimeFormat UnixSeconds = new(2, nameof(UnixSeconds));
 
     public BarTimeFormat(int value, string name) : base(value, name) { }
 }
@@ -39,15 +39,15 @@ public class BarTimeFormat : Enumeration<BarTimeFormat>
 [Serializable]
 public class HistoricalDataType : Enumeration<HistoricalDataType, string>
 {
-    public static HistoricalDataType Trades        = new HistoricalDataType("TRADES", nameof(Trades));
-    public static HistoricalDataType Midpoint      = new HistoricalDataType("MIDPOINT", nameof(Midpoint));
-    public static HistoricalDataType Bid           = new HistoricalDataType("BID", nameof(Bid));
-    public static HistoricalDataType Ask           = new HistoricalDataType("ASK", nameof(Ask));
-    public static HistoricalDataType BidAsk        = new HistoricalDataType("BID_ASK", nameof(BidAsk));
-    public static HistoricalDataType HistVol       = new HistoricalDataType("HISTORICAL_VOLATILITY", nameof(HistVol));
-    public static HistoricalDataType OptionImplVol = new HistoricalDataType("OPTION_IMPLIED_VOLATILITY", nameof(OptionImplVol));
-    public static HistoricalDataType FeeRate       = new HistoricalDataType("FEE_RATE", nameof(FeeRate));
-    public static HistoricalDataType RebateRate    = new HistoricalDataType("REBATE_RATE", nameof(RebateRate));
+    public static HistoricalDataType Trades        = new("TRADES", nameof(Trades));
+    public static HistoricalDataType Midpoint      = new("MIDPOINT", nameof(Midpoint));
+    public static HistoricalDataType Bid           = new("BID", nameof(Bid));
+    public static HistoricalDataType Ask           = new("ASK", nameof(Ask));
+    public static HistoricalDataType BidAsk        = new("BID_ASK", nameof(BidAsk));
+    public static HistoricalDataType HistVol       = new("HISTORICAL_VOLATILITY", nameof(HistVol));
+    public static HistoricalDataType OptionImplVol = new("OPTION_IMPLIED_VOLATILITY", nameof(OptionImplVol));
+    public static HistoricalDataType FeeRate       = new("FEE_RATE", nameof(FeeRate));
+    public static HistoricalDataType RebateRate    = new("REBATE_RATE", nameof(RebateRate));
 
     public HistoricalDataType(string value, string name) : base(value, name) { }
 }

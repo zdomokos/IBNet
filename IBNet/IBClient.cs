@@ -40,7 +40,7 @@ public partial class IBClient : EWrapper, IDisposable
                 action(state);
         }
 
-    private GeneralTracer        ibTrace = new GeneralTracer("ibInfo", "Interactive Brokers Parameter Info");
-    private EReaderMonitorSignal _signal = new EReaderMonitorSignal();
+    private GeneralTracer        ibTrace = new("ibInfo", "Interactive Brokers Parameter Info");
+    private EReaderMonitorSignal _signal = new();
     private Thread               _messageDispatchThread;
 }
