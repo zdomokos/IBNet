@@ -1,11 +1,7 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using IBApi;
-using System.Collections.Generic;
-using System.Threading;
 using IBNet.Enums;
 
 namespace IBNet;

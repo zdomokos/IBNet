@@ -1,6 +1,4 @@
-using System;
 using IBApi;
-using System.Threading;
 
 namespace IBNet;
 

@@ -1,4 +1,3 @@
-using System;
 using Headspring;
 using IBTick = IBApi.TickType;
 

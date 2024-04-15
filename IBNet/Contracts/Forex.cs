@@ -1,4 +1,3 @@
-using System;
 using IBApi;
 using IBNet.Enums;
 

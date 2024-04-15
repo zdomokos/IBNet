@@ -1,6 +1,5 @@
 namespace IbFlexReader.Xml.Contracts.QueryResponse;
 
-using System;
 using System.Xml.Serialization;
 
 [XmlRoot(ElementName = "FxTransaction")]

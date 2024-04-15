@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Globalization;
-using System;
 using IbFlexReader.Contracts.Attributes;
 using IbFlexReader.Contracts.Enums;
 

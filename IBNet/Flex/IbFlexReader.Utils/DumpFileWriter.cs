@@ -1,6 +1,5 @@
 namespace IbFlexReader.Utils;
 
-using System;
 using System.IO;
 
 public static class DumpFileWriter

@@ -1,5 +1,3 @@
-using System;
-
 namespace IBNet.Enums;
 
 /// <summary>

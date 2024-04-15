@@ -4,7 +4,6 @@ using IBNet.Utils;
 namespace IbFlexReader.Contracts.Ib;
 
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public class FxClosedLots
