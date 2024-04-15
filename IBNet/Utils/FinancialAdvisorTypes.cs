@@ -4,18 +4,18 @@
 using System;
 using System.Collections.Generic;
 
-namespace IBNet.Utils
+namespace IBNet.Utils;
+
+public class AccountAlias
 {
-    public class AccountAlias
+    public AccountAlias(string account, string alias)
     {
-        public AccountAlias(string account, string alias)
-        {
             Account = account;
             Alias = alias;
         }
 
-        public string ToXmlString()
-        {
+    public string ToXmlString()
+    {
             string xml =
                  "\t<AccountAlias>"
                 + "\t\t<Account>" + Account + "</Account>"
@@ -25,22 +25,22 @@ namespace IBNet.Utils
             return xml;
         }
 
-        public string Account { get; set; }
+    public string Account { get; set; }
 
-        public string Alias { get; set; }
-    }
+    public string Alias { get; set; }
+}
 
-    public class AdvisorGroup
+public class AdvisorGroup
+{
+    public AdvisorGroup(string name, string defaultMethod)
     {
-        public AdvisorGroup(string name, string defaultMethod)
-        {
             Name = name;
             Accounts = new List<string>();
             DefaultMethod = defaultMethod;
         }
 
-        public string ToXmlString()
-        {
+    public string ToXmlString()
+    {
             string xml =
                  "  <Group>"
                 +"      <name>"+Name+"</name>"
@@ -56,39 +56,39 @@ namespace IBNet.Utils
             return xml;
         }
 
-        public string AccountsToString()
-        {
+    public string AccountsToString()
+    {
             string accountStr = Accounts[0];
             for (int i = 1; i < Accounts.Count; i++)
                 accountStr += "," + Accounts[i];
             return accountStr;
         }
 
-        public void AccountsFromString(string accStr)
-        {
+    public void AccountsFromString(string accStr)
+    {
             string[] accts = accStr.Split(',');
             foreach (string s in accts)
                 Accounts.Add(s);
         }
 
-        public string Name { get; set; }
+    public string Name { get; set; }
 
-        public string DefaultMethod { get; set; }
+    public string DefaultMethod { get; set; }
 
-        public List<string> Accounts { get; set; }
-    }
+    public List<string> Accounts { get; set; }
+}
 
-    public class AllocationProfile
+public class AllocationProfile
+{
+    public AllocationProfile(string name, int type)
     {
-        public AllocationProfile(string name, int type)
-        {
             Name = name;
             Type = type;
             Allocations = new List<Allocation>();
         }
 
-        public string ToXmlString()
-        {
+    public string ToXmlString()
+    {
             string xml = 
                  "  <AllocationProfile>"
                 +"      <name>"+Name+"</name>"
@@ -105,8 +105,8 @@ namespace IBNet.Utils
             return xml;
         }
 
-        public string AllocationsToString()
-        {
+    public string AllocationsToString()
+    {
             string str = Allocations[0].Account+"/"+Allocations[0].Amount;
             for(int i=1; i<Allocations.Count; i++)
             {
@@ -115,8 +115,8 @@ namespace IBNet.Utils
             return str;
         }
 
-        public bool AllocationsFromString(string allocString)
-        {
+    public bool AllocationsFromString(string allocString)
+    {
             try
             {
                 string[] allocations = allocString.Split(',');
@@ -133,23 +133,23 @@ namespace IBNet.Utils
             }                
         }
 
-        public string Name { get; set; }
+    public string Name { get; set; }
 
-        public int Type { get; set; }
+    public int Type { get; set; }
 
-        public List<Allocation> Allocations { get; set; }
-    }
+    public List<Allocation> Allocations { get; set; }
+}
 
-    public class Allocation
+public class Allocation
+{
+    public Allocation(string account, double amount)
     {
-        public Allocation(string account, double amount)
-        {
             Account = account;
             Amount = amount;
         }
 
-        public string ToXmlString()
-        {
+    public string ToXmlString()
+    {
             string xml = 
                  "          <Allocation>"
                 +"              <acct>"+Account+"</acct>"
@@ -160,8 +160,7 @@ namespace IBNet.Utils
             return xml;
         }
 
-        public string Account { get; set; }
+    public string Account { get; set; }
 
-        public double Amount { get; set; }
-    }
+    public double Amount { get; set; }
 }

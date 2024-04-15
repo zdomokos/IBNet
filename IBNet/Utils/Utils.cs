@@ -5,12 +5,12 @@ using System;
 using System.Globalization;
 using IBApi;
 
-namespace IBNet.Utils
+namespace IBNet.Utils;
+
+public class DateUtils
 {
-    public class DateUtils
+    public static DateTime ToUtcDateTime(string ibDateTime)
     {
-        public static DateTime ToUtcDateTime(string ibDateTime)
-        {
             //Comes in as seconds
             //2 - dates are returned as a long integer specifying the number of seconds since 1/1/1970 GMT.
             string d        = ibDateTime;
@@ -27,21 +27,21 @@ namespace IBNet.Utils
             return timeStamp;
         }
 
-        public static string UnixMillisecondsToString(long milliseconds, string dateFormat)
-        {
+    public static string UnixMillisecondsToString(long milliseconds, string dateFormat)
+    {
             return string.Format("{0:" + dateFormat + "}", DateTime.SpecifyKind(new DateTime(1970, 1, 1), DateTimeKind.Utc).AddMilliseconds(milliseconds));
         }
-    }
+}
 
-    public class InstrumentUtils
+public class InstrumentUtils
+{
+    public static string ContractToString(Contract contract)
     {
-        public static string ContractToString(Contract contract)
-        {
             return contract.Symbol + " " + contract.SecType + " " + contract.Currency + " @ " + contract.Exchange;
         }
 
-        public static bool ContractsAreEqual(Contract contractA, Contract contractB)
-        {
+    public static bool ContractsAreEqual(Contract contractA, Contract contractB)
+    {
             if (contractA.Symbol.Equals(contractB.Symbol) && contractA.SecType.Equals(contractB.SecType) && contractA.Currency.Equals(contractB.Currency))
             {
                 if (contractA.LastTradeDateOrContractMonth != null && contractB.LastTradeDateOrContractMonth != null)
@@ -62,5 +62,4 @@ namespace IBNet.Utils
 
             return false;
         }
-    }
 }

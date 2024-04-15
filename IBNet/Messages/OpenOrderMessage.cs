@@ -3,22 +3,21 @@
 
 using IBApi;
 
-namespace IBNet.Messages
+namespace IBNet.Messages;
+
+public class OpenOrderMessage : OrderMessage
 {
-    public class OpenOrderMessage : OrderMessage
+    public OpenOrderMessage(int orderId, Contract contract, Order order, OrderState orderState)
     {
-        public OpenOrderMessage(int orderId, Contract contract, Order order, OrderState orderState)
-        {
             OrderId = orderId;
             Contract = contract;
             Order = order;
             OrderState = orderState;
         }
         
-        public Contract Contract { get; set; }
+    public Contract Contract { get; set; }
 
-        public Order Order { get; set; }
+    public Order Order { get; set; }
 
-        public OrderState OrderState { get; set; }
-    }
+    public OrderState OrderState { get; set; }
 }

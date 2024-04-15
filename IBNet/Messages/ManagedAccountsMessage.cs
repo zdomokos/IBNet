@@ -3,15 +3,14 @@
 
 using System.Collections.Generic;
 
-namespace IBNet.Messages
+namespace IBNet.Messages;
+
+public class ManagedAccountsMessage
 {
-    public class ManagedAccountsMessage
+    public ManagedAccountsMessage(string managedAccounts)
     {
-        public ManagedAccountsMessage(string managedAccounts)
-        {
             ManagedAccounts = new List<string>(managedAccounts.Split(','));
         }
 
-        public List<string> ManagedAccounts { get; set; }
-    }
+    public List<string> ManagedAccounts { get; set; }
 }

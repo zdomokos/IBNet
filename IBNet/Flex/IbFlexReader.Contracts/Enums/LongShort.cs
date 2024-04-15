@@ -1,7 +1,6 @@
-namespace IbFlexReader.Contracts.Enums
+namespace IbFlexReader.Contracts.Enums;
+
+public enum LongShort
 {
-    public enum LongShort
-    {
-        Long, Short
-    }
+    Long, Short
 }

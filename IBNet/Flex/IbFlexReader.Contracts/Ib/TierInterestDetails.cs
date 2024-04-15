@@ -1,15 +1,14 @@
 using System.ComponentModel;
 using IBNet.Utils;
 
-namespace IbFlexReader.Contracts.Ib
-{
-    using System.Collections.Generic;
+namespace IbFlexReader.Contracts.Ib;
 
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class TierInterestDetails
-    {
-        [TypeConverter(typeof(ListCountConverter))] public List<TierInterestDetail> TierInterestDetail { get; set; }
+using System.Collections.Generic;
+
+[TypeConverter(typeof(ExpandableObjectConverter))]
+public class TierInterestDetails
+{
+    [TypeConverter(typeof(ListCountConverter))] public List<TierInterestDetail> TierInterestDetail { get; set; }
         
-        public override string ToString() { return $"Count: {TierInterestDetail?.Count}"; }
-    }
+    public override string ToString() { return $"Count: {TierInterestDetail?.Count}"; }
 }

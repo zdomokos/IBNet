@@ -1,12 +1,11 @@
-namespace IbFlexReader.Xml.Contracts.QueryResponse
-{
-    using System.Collections.Generic;
-    using System.Xml.Serialization;
+namespace IbFlexReader.Xml.Contracts.QueryResponse;
 
-    [XmlRoot(ElementName = "OpenPositions")]
-    public class OpenPositions
-    {
-        [XmlElement(ElementName = "OpenPosition")]
-        public List<OpenPosition> OpenPosition { get; set; }
-    }
+using System.Collections.Generic;
+using System.Xml.Serialization;
+
+[XmlRoot(ElementName = "OpenPositions")]
+public class OpenPositions
+{
+    [XmlElement(ElementName = "OpenPosition")]
+    public List<OpenPosition> OpenPosition { get; set; }
 }

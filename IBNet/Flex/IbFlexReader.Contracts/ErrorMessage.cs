@@ -1,8 +1,7 @@
-namespace IbFlexReader.Contracts
+namespace IbFlexReader.Contracts;
+
+public class ErrorMessage
 {
-    public class ErrorMessage
-    {
-        public string Object;
-        public string Message;
-    }
+    public string Object;
+    public string Message;
 }

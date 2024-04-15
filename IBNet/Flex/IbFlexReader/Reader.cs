@@ -1,36 +1,36 @@
-/* 
+/*
  Tool to convert xml to c# classes: https://xmltocsharp.azurewebsites.net/
  */
 
-namespace IbFlexReader
+namespace IbFlexReader;
+
+using System;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Xml;
+using IbFlexReader.Contracts;
+using IbFlexReader.Contracts.Ib;
+using IbFlexReader.Xml;
+using IbFlexReader.Xml.Contracts;
+
+public class Reader
 {
-    using System;
-    using System.IO;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using System.Xml;
-    using IbFlexReader.Contracts;
-    using IbFlexReader.Contracts.Ib;
-    using IbFlexReader.Xml;
-    using IbFlexReader.Xml.Contracts;
+    private readonly IStreamBuilder<string> sb;
 
-    public class Reader
+    public Reader()
     {
-        private readonly IStreamBuilder<string> sb;
-
-        public Reader()
-        {
             sb = new StringStream();
         }
 
-        /// <summary>
-        /// Converts a string to a FlexQueryResponse.
-        /// </summary>
-        /// <param name="xmlFile"></param>
-        /// <param name="options"></param>
-        /// <returns>An object with account activities</returns>
-        public Contracts.FlexQueryResponse GetByString(string xmlFile, Options options = null)
-        {
+    /// <summary>
+    /// Converts a string to a FlexQueryResponse.
+    /// </summary>
+    /// <param name="xmlFile"></param>
+    /// <param name="options"></param>
+    /// <returns>An object with account activities</returns>
+    public Contracts.FlexQueryResponse GetByString(string xmlFile, Options options = null)
+    {
             if (options != null)
             {
                 if (options.UseXmlReader)
@@ -71,17 +71,17 @@ namespace IbFlexReader
             }
         }
 
-        /// <summary>
-        /// Reads a FlexQuery by API.
-        /// </summary>
-        /// <param name="token">token provided by IB</param>
-        /// <param name="queryId">ID of the FlexQuery (not the name)</param>
-        /// <param name="dumpFile">if set, the data returned from IB will be dumped to file</param>
-        /// <param name="retry">if GetStatement returns warning 1019 (... Please try again shortly), retry defines how many times it will be tried again</param>
-        /// <param name="retryDelay">delay between two tries in milliseconds</param>
-        /// <returns></returns>
-        public async Task<FlexResult> GetByApi(string token, string queryId, string dumpFile = null, int? retry = null, int retryDelay = 3000)
-        {
+    /// <summary>
+    /// Reads a FlexQuery by API.
+    /// </summary>
+    /// <param name="token">token provided by IB</param>
+    /// <param name="queryId">ID of the FlexQuery (not the name)</param>
+    /// <param name="dumpFile">if set, the data returned from IB will be dumped to file</param>
+    /// <param name="retry">if GetStatement returns warning 1019 (... Please try again shortly), retry defines how many times it will be tried again</param>
+    /// <param name="retryDelay">delay between two tries in milliseconds</param>
+    /// <returns></returns>
+    public async Task<FlexResult> GetByApi(string token, string queryId, string dumpFile = null, int? retry = null, int retryDelay = 3000)
+    {
             if (retryDelay <= 0)
             {
                 throw new ArgumentOutOfRangeException("retryDelay");
@@ -142,8 +142,8 @@ namespace IbFlexReader
             }
         }
 
-        private async Task<FlexResult> GetStatement(HttpClient client, string token, string referenceCode, string dumpFile)
-        {
+    private async Task<FlexResult> GetStatement(HttpClient client, string token, string referenceCode, string dumpFile)
+    {
             var uri = new Uri($"https://gdcdyn.interactivebrokers.com/Universal/servlet/FlexStatementService.GetStatement?q={referenceCode}&t={token}&v=3");
 
             using (var getStatementResult = await client.PostAsync(uri, null).ConfigureAwait(false))
@@ -193,8 +193,8 @@ namespace IbFlexReader
             }
         }
 
-        private async Task<FlexResult> SendRequest(HttpClient client, string token, string queryId, string dumpFile)
-        {
+    private async Task<FlexResult> SendRequest(HttpClient client, string token, string queryId, string dumpFile)
+    {
             var uri = new Uri($"https://gdcdyn.interactivebrokers.com/Universal/servlet/FlexStatementService.SendRequest?t={token}&q={queryId}&v=3");
 
             using (var sendRequestResult = await client.PostAsync(uri, null).ConfigureAwait(false))
@@ -241,8 +241,8 @@ namespace IbFlexReader
             }
         }
 
-        private bool TryGetFlexStatementResponse(Stream stream, out FlexStatementResponse response)
-        {
+    private bool TryGetFlexStatementResponse(Stream stream, out FlexStatementResponse response)
+    {
             response = null;
 
             try
@@ -262,5 +262,4 @@ namespace IbFlexReader
                 }
             }
         }
-    }
 }

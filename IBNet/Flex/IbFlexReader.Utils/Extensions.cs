@@ -1,24 +1,24 @@
-namespace IbFlexReader.Utils
+namespace IbFlexReader.Utils;
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using IbFlexReader.Contracts;
+using IbFlexReader.Contracts.Attributes;
+using IbFlexReader.Contracts.Ib;
+
+public static class Extensions
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.Serialization.Json;
-    using System.Text;
-    using IbFlexReader.Contracts;
-    using IbFlexReader.Contracts.Attributes;
-    using IbFlexReader.Contracts.Ib;
+    private static Type referenceType = typeof(TradeConfirm);
 
-    public static class Extensions
+    public static TIn PopulateFrom<TIn, TFrom>(this TIn obj, TFrom from, List<ErrorMessage> errorObjects) where TIn : class
     {
-        private static Type referenceType = typeof(TradeConfirm);
-
-        public static TIn PopulateFrom<TIn, TFrom>(this TIn obj, TFrom from, List<ErrorMessage> errorObjects) where TIn : class
-        {
             if (from == null)
             {
                 return obj;
@@ -89,8 +89,8 @@ namespace IbFlexReader.Utils
             return errorFound ? null : obj;
         }
 
-        private static string GetJson(object obj, Type type)
-        {
+    private static string GetJson(object obj, Type type)
+    {
             var jsonSerializer = new DataContractJsonSerializer(type);
             var memStream = new MemoryStream();
             jsonSerializer.WriteObject(memStream, obj);
@@ -98,15 +98,15 @@ namespace IbFlexReader.Utils
             return Encoding.UTF8.GetString(memStream.GetBuffer());
         }
 
-        private static object GetValueOfProperty(object obj, string name)
-        {
+    private static object GetValueOfProperty(object obj, string name)
+    {
             var type = obj.GetType();
             var prop = type.GetProperty(name);
             return prop.GetValue(obj);
         }
 
-        private static object CastValue(object valueHolder, object value, PropertyInfo property)
-        {
+    private static object CastValue(object valueHolder, object value, PropertyInfo property)
+    {
             if (value == null)
             {
                 return value;
@@ -178,5 +178,4 @@ namespace IbFlexReader.Utils
 
             return value.ToString();
         }
-    }
 }

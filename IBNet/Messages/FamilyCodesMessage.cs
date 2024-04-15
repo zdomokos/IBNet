@@ -3,15 +3,14 @@
 
 using IBApi;
 
-namespace IBNet.Messages
-{
-    public class FamilyCodesMessage
-    {
-        public FamilyCode[] FamilyCodes { get; private set; }
+namespace IBNet.Messages;
 
-        public FamilyCodesMessage(FamilyCode[] familyCodes)
-        {
+public class FamilyCodesMessage
+{
+    public FamilyCode[] FamilyCodes { get; private set; }
+
+    public FamilyCodesMessage(FamilyCode[] familyCodes)
+    {
             FamilyCodes = familyCodes;
         }
-    }
 }

@@ -1,20 +1,19 @@
 using System;
 
-namespace IBNet.Enums
+namespace IBNet.Enums;
+
+/// <summary>
+/// Order Origin Fields
+/// </summary>
+[Serializable] 
+public enum OrderOrigin
 {
     /// <summary>
-    /// Order Origin Fields
+    /// Order originated from the customer
     /// </summary>
-    [Serializable] 
-    public enum OrderOrigin
-    {
-        /// <summary>
-        /// Order originated from the customer
-        /// </summary>
-        Customer = 0,
-        /// <summary>
-        /// Order originated from teh firm
-        /// </summary>
-        Firm = 1
-    }
+    Customer = 0,
+    /// <summary>
+    /// Order originated from teh firm
+    /// </summary>
+    Firm = 1
 }

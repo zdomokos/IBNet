@@ -4,10 +4,9 @@ using System.Threading.Tasks;
 using IBApi;
 using IBNet.Messages;
 
-namespace IBNet
-{
-    public partial class IBClient
-    {
+namespace IBNet;
 
-    }
+public partial class IBClient
+{
+
 }

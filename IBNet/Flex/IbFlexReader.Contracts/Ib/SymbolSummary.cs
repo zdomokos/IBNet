@@ -1,13 +1,12 @@
 using System.ComponentModel;
 
-namespace IbFlexReader.Contracts.Ib
-{
-    using System;
-    using IbFlexReader.Contracts.Attributes;
-    using IbFlexReader.Contracts.Enums;
+namespace IbFlexReader.Contracts.Ib;
 
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class SymbolSummary : Trade
-    {
-    }
+using System;
+using IbFlexReader.Contracts.Attributes;
+using IbFlexReader.Contracts.Enums;
+
+[TypeConverter(typeof(ExpandableObjectConverter))]
+public class SymbolSummary : Trade
+{
 }

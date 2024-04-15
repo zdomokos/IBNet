@@ -1,12 +1,11 @@
-namespace IbFlexReader.Xml.Contracts.QueryResponse
-{
-    using System.Collections.Generic;
-    using System.Xml.Serialization;
+namespace IbFlexReader.Xml.Contracts.QueryResponse;
 
-    [XmlRoot(ElementName = "TierInterestDetails")]
-    public class TierInterestDetails
-    {
-        [XmlElement(ElementName = "TierInterestDetail")]
-        public List<TierInterestDetail> TierInterestDetail { get; set; }
-    }
+using System.Collections.Generic;
+using System.Xml.Serialization;
+
+[XmlRoot(ElementName = "TierInterestDetails")]
+public class TierInterestDetails
+{
+    [XmlElement(ElementName = "TierInterestDetail")]
+    public List<TierInterestDetail> TierInterestDetail { get; set; }
 }

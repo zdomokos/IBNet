@@ -5,16 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
-namespace IBNet.Utils
-{
-    public class XmlHelper
-    {
-        private static string LIST_OF_ALIASES = "ListOfAccountAliases";
-        private static string LIST_OF_GROUPS = "ListOfGroups";
-        private static string LIST_OF_PROFILES = "ListOfAllocationProfiles";
+namespace IBNet.Utils;
 
-        public static List<T> ParseFAInformation<T>(string faInformation)
-        {
+public class XmlHelper
+{
+    private static string LIST_OF_ALIASES  = "ListOfAccountAliases";
+    private static string LIST_OF_GROUPS   = "ListOfGroups";
+    private static string LIST_OF_PROFILES = "ListOfAllocationProfiles";
+
+    public static List<T> ParseFAInformation<T>(string faInformation)
+    {
             XmlDocument document = new XmlDocument();
             document.LoadXml(faInformation);
             if (document.DocumentElement.Name.Equals(LIST_OF_ALIASES))
@@ -26,13 +26,13 @@ namespace IBNet.Utils
             return null;
         }
 
-        public static string ListToXML<T>(List<T> objects)
-        {
+    public static string ListToXML<T>(List<T> objects)
+    {
             return "";
         }
 
-        private static List<AccountAlias> GetAliasesList(XmlDocument xmlDocument)
-        {
+    private static List<AccountAlias> GetAliasesList(XmlDocument xmlDocument)
+    {
             List<AccountAlias> accountAliases = new List<AccountAlias>();
             XmlNode accountListNode = xmlDocument.GetElementsByTagName(LIST_OF_ALIASES).Item(0);
             XmlNodeList aliasesList = accountListNode.ChildNodes;
@@ -44,8 +44,8 @@ namespace IBNet.Utils
             return accountAliases;
         }
 
-        private static List<AdvisorGroup> GetGroupsList(XmlDocument xmlDocument)
-        {
+    private static List<AdvisorGroup> GetGroupsList(XmlDocument xmlDocument)
+    {
             List<AdvisorGroup> advisorGroups = new List<AdvisorGroup>();
             XmlNode groupsListNode = xmlDocument.GetElementsByTagName(LIST_OF_GROUPS).Item(0);
             XmlNodeList groupsList = groupsListNode.ChildNodes;
@@ -62,8 +62,8 @@ namespace IBNet.Utils
             return advisorGroups;
         }
 
-        private static List<AllocationProfile> GetProfilesList(XmlDocument xmlDocument)
-        {
+    private static List<AllocationProfile> GetProfilesList(XmlDocument xmlDocument)
+    {
             List<AllocationProfile> advisorProfiles = new List<AllocationProfile>();
             XmlNode profilesListNode = xmlDocument.GetElementsByTagName(LIST_OF_PROFILES).Item(0);
             XmlNodeList profilesList = profilesListNode.ChildNodes;
@@ -79,7 +79,4 @@ namespace IBNet.Utils
             }
             return advisorProfiles;
         }
-    }
-
-    
 }

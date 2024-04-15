@@ -3,12 +3,12 @@
 
 using IBApi;
 
-namespace IBNet.Messages
+namespace IBNet.Messages;
+
+public class UpdatePortfolioMessage
 {
-    public class UpdatePortfolioMessage
+    public UpdatePortfolioMessage(Contract contract, decimal position, double marketPrice, double marketValue, double averageCost, double unrealizedPNL, double realizedPNL, string accountName)
     {
-        public UpdatePortfolioMessage(Contract contract, decimal position, double marketPrice, double marketValue, double averageCost, double unrealizedPNL, double realizedPNL, string accountName)
-        {
             Contract = contract;
             Position = position;
             MarketPrice = marketPrice;
@@ -19,20 +19,19 @@ namespace IBNet.Messages
             AccountName = accountName;
         }
 
-        public Contract Contract { get; set; }
+    public Contract Contract { get; set; }
 
-        public decimal Position { get; set; }
+    public decimal Position { get; set; }
 
-        public double MarketPrice { get; set; }
+    public double MarketPrice { get; set; }
 
-        public double MarketValue { get; set; }
+    public double MarketValue { get; set; }
 
-        public double AverageCost { get; set; }
+    public double AverageCost { get; set; }
 
-        public double UnrealizedPNL { get; set; }
+    public double UnrealizedPNL { get; set; }
 
-        public double RealizedPNL { get; set; }
+    public double RealizedPNL { get; set; }
 
-        public string AccountName { get; set; }
-    }
+    public string AccountName { get; set; }
 }

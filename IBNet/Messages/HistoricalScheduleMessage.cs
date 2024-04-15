@@ -3,23 +3,22 @@
 
 using IBApi;
 
-namespace IBNet.Messages
-{
-    public class HistoricalScheduleMessage
-    {
-        public int ReqId { get; set; }
-        public string StartDateTime { get; set; }
-        public string EndDateTime { get; set; }
-        public string TimeZone { get; set; }
-        public HistoricalSession[] Sessions { get; private set; }
+namespace IBNet.Messages;
 
-        public HistoricalScheduleMessage(int reqId, string startDateTime, string endDateTime, string timeZone, HistoricalSession[] sessions)
-        {
+public class HistoricalScheduleMessage
+{
+    public int                 ReqId         { get; set; }
+    public string              StartDateTime { get; set; }
+    public string              EndDateTime   { get; set; }
+    public string              TimeZone      { get; set; }
+    public HistoricalSession[] Sessions      { get; private set; }
+
+    public HistoricalScheduleMessage(int reqId, string startDateTime, string endDateTime, string timeZone, HistoricalSession[] sessions)
+    {
             ReqId = reqId;
             StartDateTime = startDateTime;
             EndDateTime = endDateTime;
             TimeZone = timeZone;
             Sessions = sessions;
         }
-    }
 }

@@ -1,12 +1,11 @@
-namespace IbFlexReader.Xml.Contracts.QueryResponse
-{
-    using System.Collections.Generic;
-    using System.Xml.Serialization;
+namespace IbFlexReader.Xml.Contracts.QueryResponse;
 
-    [XmlRoot(ElementName = "TransactionTaxes")]
-    public class TransactionTaxes
-    {
-        [XmlElement(ElementName = "TransactionTax")]
-        public List<TransactionTax> TransactionTax { get; set; }
-    }
+using System.Collections.Generic;
+using System.Xml.Serialization;
+
+[XmlRoot(ElementName = "TransactionTaxes")]
+public class TransactionTaxes
+{
+    [XmlElement(ElementName = "TransactionTax")]
+    public List<TransactionTax> TransactionTax { get; set; }
 }

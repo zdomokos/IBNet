@@ -1,16 +1,15 @@
 using System.ComponentModel;
 using IBNet.Utils;
 
-namespace IbFlexReader.Contracts.Ib
-{
-    using System.Collections.Generic;
-    using System.Xml.Serialization;
+namespace IbFlexReader.Contracts.Ib;
 
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class FxClosedLots
-    {
-        [TypeConverter(typeof(ListCountConverter))] public List<FxClosedLot> FxClosedLot { get; set; }
+using System.Collections.Generic;
+using System.Xml.Serialization;
+
+[TypeConverter(typeof(ExpandableObjectConverter))]
+public class FxClosedLots
+{
+    [TypeConverter(typeof(ListCountConverter))] public List<FxClosedLot> FxClosedLot { get; set; }
         
-        public override string ToString() { return $"Count: {FxClosedLot?.Count}"; }
-    }
+    public override string ToString() { return $"Count: {FxClosedLot?.Count}"; }
 }

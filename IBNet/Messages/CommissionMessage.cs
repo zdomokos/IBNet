@@ -3,15 +3,14 @@
 
 using IBApi;
 
-namespace IBNet.Messages
+namespace IBNet.Messages;
+
+public class CommissionMessage
 {
-    public class CommissionMessage
+    public CommissionMessage(CommissionReport commissionReport)
     {
-        public CommissionMessage(CommissionReport commissionReport)
-        {
             CommissionReport = commissionReport;
         }
 
-        public CommissionReport CommissionReport { get; set; }
-    }
+    public CommissionReport CommissionReport { get; set; }
 }

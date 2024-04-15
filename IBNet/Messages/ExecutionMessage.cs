@@ -3,21 +3,20 @@
 
 using IBApi;
 
-namespace IBNet.Messages
+namespace IBNet.Messages;
+
+public class ExecutionMessage
 {
-    public class ExecutionMessage
+    public ExecutionMessage(int reqId, Contract contract, Execution execution)
     {
-        public ExecutionMessage(int reqId, Contract contract, Execution execution)
-        {
             ReqId = reqId;
             Contract = contract;
             Execution = execution;
         }
 
-        public Contract Contract { get; set; }
+    public Contract Contract { get; set; }
 
-        public Execution Execution { get; set; }
+    public Execution Execution { get; set; }
 
-        public int ReqId { get; set; }
-    }
+    public int ReqId { get; set; }
 }

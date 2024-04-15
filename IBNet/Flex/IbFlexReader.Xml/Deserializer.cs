@@ -1,21 +1,21 @@
-namespace IbFlexReader.Xml
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Xml;
-    using System.Xml.Serialization;
-    using IbFlexReader.Contracts;
-    using IbFlexReader.Utils;
-    using IbFlexReader.Xml.Contracts;
+namespace IbFlexReader.Xml;
 
-    public static class Deserializer
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
+using IbFlexReader.Contracts;
+using IbFlexReader.Utils;
+using IbFlexReader.Xml.Contracts;
+
+public static class Deserializer
+{
+    public static TOut Deserialize<TXml, TOut>(Stream content, out List<ErrorMessage> errorObjects, out string mappingError)
+        where TXml : XmlBase where TOut : class, new()
     {
-        public static TOut Deserialize<TXml, TOut>(Stream content, out List<ErrorMessage> errorObjects, out string mappingError)
-            where TXml : XmlBase where TOut : class, new()
-        {
             XmlSerializer serializer = new XmlSerializer(typeof(TXml));
             serializer.AddDebugHooks();
 
@@ -41,9 +41,9 @@ namespace IbFlexReader.Xml
             }
         }
 
-        public static TOut Deserialize<TXml, TOut>(XmlReader content, out List<ErrorMessage> errorObjects, out string mappingError)
-            where TXml : XmlBase where TOut : class, new()
-        {
+    public static TOut Deserialize<TXml, TOut>(XmlReader content, out List<ErrorMessage> errorObjects, out string mappingError)
+        where TXml : XmlBase where TOut : class, new()
+    {
             XmlSerializer serializer = new XmlSerializer(typeof(TXml));
             serializer.AddDebugHooks();
 
@@ -66,8 +66,8 @@ namespace IbFlexReader.Xml
             }
         }
 
-        private static void AddDebugHooks(this XmlSerializer serializer)
-        {
+    private static void AddDebugHooks(this XmlSerializer serializer)
+    {
             uknowns = new StringBuilder();
             uknownTags = new HashSet<string>();
 
@@ -99,7 +99,6 @@ namespace IbFlexReader.Xml
             };
         }
 
-        private static StringBuilder uknowns = new StringBuilder();
-        private static HashSet<string> uknownTags = new HashSet<string>();
-    }
+    private static StringBuilder   uknowns    = new StringBuilder();
+    private static HashSet<string> uknownTags = new HashSet<string>();
 }

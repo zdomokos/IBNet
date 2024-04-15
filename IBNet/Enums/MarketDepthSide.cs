@@ -1,20 +1,19 @@
 using System;
 
-namespace IBNet.Enums
+namespace IBNet.Enums;
+
+/// <summary>
+/// Market Depth Side
+/// </summary>
+[Serializable] 
+public enum MarketDepthSide
 {
     /// <summary>
-    /// Market Depth Side
+    /// Ask Price Side
     /// </summary>
-    [Serializable] 
-    public enum MarketDepthSide
-    {
-        /// <summary>
-        /// Ask Price Side
-        /// </summary>
-        Ask = 0,
-        /// <summary>
-        /// Bid Price Side
-        /// </summary>
-        Bid = 1
-    }
+    Ask = 0,
+    /// <summary>
+    /// Bid Price Side
+    /// </summary>
+    Bid = 1
 }

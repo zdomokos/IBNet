@@ -1,9 +1,8 @@
-namespace IbFlexReader.Xml
-{
-    using System.IO;
+namespace IbFlexReader.Xml;
 
-    public interface IStreamBuilder<T>
-    {
-        Stream GenerateStream(T content);
-    }
+using System.IO;
+
+public interface IStreamBuilder<T>
+{
+    Stream GenerateStream(T content);
 }

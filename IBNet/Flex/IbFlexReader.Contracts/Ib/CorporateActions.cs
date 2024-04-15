@@ -1,16 +1,15 @@
 using System.ComponentModel;
 using IBNet.Utils;
 
-namespace IbFlexReader.Contracts.Ib
-{
-    using System.Collections.Generic;
+namespace IbFlexReader.Contracts.Ib;
 
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class CorporateActions
-    {
-        [TypeConverter(typeof(ListCountConverter))]
-        public List<CorporateAction> CorporateAction { get; set; }
+using System.Collections.Generic;
+
+[TypeConverter(typeof(ExpandableObjectConverter))]
+public class CorporateActions
+{
+    [TypeConverter(typeof(ListCountConverter))]
+    public List<CorporateAction> CorporateAction { get; set; }
         
-        public override string ToString() { return $"Count: {CorporateAction?.Count}"; }
-    }
+    public override string ToString() { return $"Count: {CorporateAction?.Count}"; }
 }

@@ -1,19 +1,19 @@
-namespace IbFlexReader.Utils
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+namespace IbFlexReader.Utils;
 
-    public static class ObjectExtension
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+public static class ObjectExtension
+{
+    public static bool Matches<T>(this T t, Func<T, bool> fn)
     {
-        public static bool Matches<T>(this T t, Func<T, bool> fn)
-        {
             return fn(t);
         }
 
-        public static T Clone<T>(this T from) where T : new()
-        {
+    public static T Clone<T>(this T from) where T : new()
+    {
             var type = typeof(T);
             var newT = new T();
 
@@ -24,5 +24,4 @@ namespace IbFlexReader.Utils
 
             return newT;
         }
-    }
 }

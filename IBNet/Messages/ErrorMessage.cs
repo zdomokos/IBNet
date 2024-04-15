@@ -3,29 +3,29 @@
 
 using IBApi;
 
-namespace IBNet.Messages
+namespace IBNet.Messages;
+
+public class ErrorMessage 
 {
-    public class ErrorMessage 
+    public ErrorMessage(int requestId, int errorCode, string message, string advancedOrderRejectJson)
     {
-        public ErrorMessage(int requestId, int errorCode, string message, string advancedOrderRejectJson)
-        {
             AdvancedOrderRejectJson = advancedOrderRejectJson;
             Message                 = message;
             RequestId               = requestId;
             ErrorCode               = errorCode;
         }
 
-        public string AdvancedOrderRejectJson { get; set; }
+    public string AdvancedOrderRejectJson { get; set; }
 
-        public string Message { get; set; }
+    public string Message { get; set; }
 
-        public int ErrorCode { get; set; }
+    public int ErrorCode { get; set; }
 
 
-        public int RequestId { get; set; }
+    public int RequestId { get; set; }
 
-        public override string ToString()
-        {
+    public override string ToString()
+    {
             string ret = "Error. Request: " + RequestId + ", Code: " + ErrorCode + " - " + Message;
             if (!Util.StringIsEmpty(AdvancedOrderRejectJson))
             {
@@ -34,5 +34,4 @@ namespace IBNet.Messages
             return ret;
         }
        
-    }
 }

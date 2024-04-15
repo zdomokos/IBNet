@@ -3,24 +3,23 @@
 
 using IBApi;
 
-namespace IBNet.Messages
+namespace IBNet.Messages;
+
+public class PositionMessage 
 {
-    public class PositionMessage 
+    public PositionMessage(string account, Contract contract, decimal pos, double avgCost)
     {
-        public PositionMessage(string account, Contract contract, decimal pos, double avgCost)
-        {
             Account = account;
             Contract = contract;
             Position = pos;
             AverageCost = avgCost;
         }
 
-        public string Account { get; set; }
+    public string Account { get; set; }
 
-        public Contract Contract { get; set; }
+    public Contract Contract { get; set; }
 
-        public decimal Position { get; set; }
+    public decimal Position { get; set; }
 
-        public double AverageCost { get; set; }
-    }
+    public double AverageCost { get; set; }
 }

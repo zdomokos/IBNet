@@ -1,12 +1,11 @@
-namespace IbFlexReader.Xml.Contracts.QueryResponse
-{
-    using System.Collections.Generic;
-    using System.Xml.Serialization;
+namespace IbFlexReader.Xml.Contracts.QueryResponse;
 
-    [XmlRoot(ElementName = "ComplexPositions")]
-    public class ComplexPositions
-    {
-        [XmlElement(ElementName = "ComplexPosition")]
-        public List<ComplexPosition> ComplexPosition { get; set; }
-    }
+using System.Collections.Generic;
+using System.Xml.Serialization;
+
+[XmlRoot(ElementName = "ComplexPositions")]
+public class ComplexPositions
+{
+    [XmlElement(ElementName = "ComplexPosition")]
+    public List<ComplexPosition> ComplexPosition { get; set; }
 }

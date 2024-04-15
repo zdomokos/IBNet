@@ -3,15 +3,14 @@
 
 using IBApi;
 
-namespace IBNet.Messages
-{
-    public class NewsProvidersMessage
-    {
-        public NewsProvider[] NewsProviders { get; private set; }
+namespace IBNet.Messages;
 
-        public NewsProvidersMessage(NewsProvider[] newsProviders)
-        {
+public class NewsProvidersMessage
+{
+    public NewsProvider[] NewsProviders { get; private set; }
+
+    public NewsProvidersMessage(NewsProvider[] newsProviders)
+    {
             NewsProviders = newsProviders;
         }
-    }
 }
