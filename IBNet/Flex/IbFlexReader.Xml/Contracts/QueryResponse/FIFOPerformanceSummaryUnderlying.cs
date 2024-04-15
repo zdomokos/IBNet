@@ -2,8 +2,8 @@ namespace IbFlexReader.Xml.Contracts.QueryResponse
 {
     using System.Xml.Serialization;
 
-    [XmlRoot(ElementName = "FIFOPerformanceSummaryUnderlying")]
-    public class FIFOPerformanceSummaryUnderlying
+    [XmlRoot(ElementName = "FifoPerformanceSummaryUnderlying")]
+    public class FifoPerformanceSummaryUnderlying
     {
         [XmlAttribute(AttributeName = "accountId")]
         public string AccountId { get; set; }

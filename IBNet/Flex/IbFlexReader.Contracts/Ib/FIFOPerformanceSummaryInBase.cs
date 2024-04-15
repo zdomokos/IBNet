@@ -6,11 +6,11 @@ namespace IbFlexReader.Contracts.Ib
     using System.Collections.Generic;
 
     [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class FIFOPerformanceSummaryInBase
+    public class FifoPerformanceSummaryInBase
     {
         [TypeConverter(typeof(ListCountConverter))]
-        public List<FIFOPerformanceSummaryUnderlying> FIFOPerformanceSummaryUnderlying { get; set; }
+        public List<FifoPerformanceSummaryUnderlying> FifoPerformanceSummaryUnderlying { get; set; }
         
-        public override string ToString() { return $"Count: {FIFOPerformanceSummaryUnderlying?.Count}"; }
+        public override string ToString() { return $"Count: {FifoPerformanceSummaryUnderlying?.Count}"; }
     }
 }

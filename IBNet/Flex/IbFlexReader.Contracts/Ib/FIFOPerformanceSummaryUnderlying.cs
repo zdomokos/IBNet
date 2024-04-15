@@ -3,7 +3,7 @@ using System.ComponentModel;
 namespace IbFlexReader.Contracts.Ib
 {
     [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class FIFOPerformanceSummaryUnderlying
+    public class FifoPerformanceSummaryUnderlying
     {
         public string AccountId                 { get; set; }
         public string AcctAlias                 { get; set; }
