@@ -7,12 +7,12 @@ namespace IBSamples
 {
     public class RequestContractDetails : EWrapperImpl
     {
-        private bool isFinished = false;
+        private bool isFinished;
 
         public bool IsFinished
         {
-            get { return isFinished; }
-            set { isFinished = value; }
+            get => isFinished;
+            set => isFinished = value;
         }
         
         public static int Main2(string[] args)
@@ -42,10 +42,10 @@ namespace IBSamples
 
         public override void contractDetails(int reqId, ContractDetails contractDetails)
         {
-            Console.WriteLine("/*******Incoming Contract Details - RequestId "+reqId+"************/");
-            Console.WriteLine(contractDetails.Contract.Symbol + " " + contractDetails.Contract.SecType + " @ " + contractDetails.Contract.Exchange);
-            Console.WriteLine("lastTradeDate: " + contractDetails.Contract.LastTradeDateOrContractMonth + ", Right: " + contractDetails.Contract.Right);
-            Console.WriteLine("Strike: " + contractDetails.Contract.Strike + ", Multiplier: " + contractDetails.Contract.Multiplier);
+            Console.WriteLine($"/*******Incoming Contract Details - RequestId {reqId}************/");
+            Console.WriteLine($"{contractDetails.Contract.Symbol} {contractDetails.Contract.SecType} @ {contractDetails.Contract.Exchange}");
+            Console.WriteLine($"lastTradeDate: {contractDetails.Contract.LastTradeDateOrContractMonth}, Right: {contractDetails.Contract.Right}");
+            Console.WriteLine($"Strike: {contractDetails.Contract.Strike}, Multiplier: {contractDetails.Contract.Multiplier}");
             Console.WriteLine("/*******     End     *************/\n");
         }
 

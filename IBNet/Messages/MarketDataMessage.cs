@@ -16,13 +16,13 @@ public abstract class MarketDataMessage
 
     public int RequestId
     {
-        get { return requestId; }
-        set { requestId = value; }
+        get => requestId;
+        set => requestId = value;
     }
 
     public int Field
     {
-        get { return field; }
-        set { field = value; }
+        get => field;
+        set => field = value;
     }
 }

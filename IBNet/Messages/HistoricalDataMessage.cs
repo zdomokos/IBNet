@@ -18,63 +18,63 @@ public class HistoricalDataMessage
 
     public int RequestId
     {
-        get { return requestId; }
-        set { requestId = value; }
+        get => requestId;
+        set => requestId = value;
     }
         
     public string Date
     {
-        get { return date; }
-        set { date = value; }
+        get => date;
+        set => date = value;
     }
         
     public double Open
     {
-        get { return open; }
-        set { open = value; }
+        get => open;
+        set => open = value;
     }
         
 
     public double High
     {
-        get { return high; }
-        set { high = value; }
+        get => high;
+        set => high = value;
     }
         
     public double Low
     {
-        get { return low; }
-        set { low = value; }
+        get => low;
+        set => low = value;
     }
         
     public double Close
     {
-        get { return close; }
-        set { close = value; }
+        get => close;
+        set => close = value;
     }
         
     public decimal Volume
     {
-        get { return volume; }
-        set { volume = value; }
+        get => volume;
+        set => volume = value;
     }
         
     public int Count
     {
-        get { return count; }
-        set { count = value; }
+        get => count;
+        set => count = value;
     }
 
     public decimal Wap
     {
-        get { return wap; }
-        set { wap = value; }
+        get => wap;
+        set => wap = value;
     }
 
     public bool HasGaps
     {
-        get { return hasGaps; }
-        set { hasGaps = value; }
+        get => hasGaps;
+        set => hasGaps = value;
     }
 
     public HistoricalDataMessage(int reqId, IBApi.Bar bar)

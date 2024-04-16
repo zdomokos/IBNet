@@ -16,13 +16,13 @@ public class MarketDataTypeMessage
 
     public int RequestId
     {
-        get { return requestId; }
-        set { requestId = value; }
+        get => requestId;
+        set => requestId = value;
     }
 
     public int MarketDataType
     {
-        get { return marketDataType; }
-        set { marketDataType = value; }
+        get => marketDataType;
+        set => marketDataType = value;
     }
 }

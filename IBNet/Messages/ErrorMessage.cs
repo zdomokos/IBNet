@@ -26,7 +26,7 @@ public class ErrorMessage
 
     public override string ToString()
     {
-            string ret = "Error. Request: " + RequestId + ", Code: " + ErrorCode + " - " + Message;
+            string ret = $"Error. Request: {RequestId}, Code: {ErrorCode} - {Message}";
             if (!Util.StringIsEmpty(AdvancedOrderRejectJson))
             {
                 ret += (", AdvancedOrderRejectJson: " + AdvancedOrderRejectJson);

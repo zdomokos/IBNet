@@ -26,27 +26,27 @@ namespace IBSamples
 
         public EClientSocket ClientSocket
         {
-            get { return clientSocket; }
-            set { clientSocket = value; }
+            get => clientSocket;
+            set => clientSocket = value;
         }
 
         public int NextOrderId
         {
-            get { return nextOrderId; }
-            set { nextOrderId = value; }
+            get => nextOrderId;
+            set => nextOrderId = value;
         }
 
         public string BboExchange { get; private set; }
 
         public virtual void error(Exception e)
         {
-            Console.WriteLine("Exception thrown: "+e);
+            Console.WriteLine($"Exception thrown: {e}");
             throw e;
         }
         
         public virtual void error(string str)
         {
-            Console.WriteLine("Error: "+str+"\n");
+            Console.WriteLine($"Error: {str}\n");
         }
         
         //! [error]
@@ -54,11 +54,11 @@ namespace IBSamples
         {
             if (!Util.StringIsEmpty(advancedOrderRejectJson)) 
             {
-                Console.WriteLine("Error. Id: " + id + ", Code: " + errorCode + ", Msg: " + errorMsg + ", AdvancedOrderRejectJson: " + advancedOrderRejectJson + "\n");
+                Console.WriteLine($"Error. Id: {id}, Code: {errorCode}, Msg: {errorMsg}, AdvancedOrderRejectJson: {advancedOrderRejectJson}\n");
             }
             else
             {
-                Console.WriteLine("Error. Id: " + id + ", Code: " + errorCode + ", Msg: " + errorMsg + "\n");
+                Console.WriteLine($"Error. Id: {id}, Code: {errorCode}, Msg: {errorMsg}\n");
             }
         }
         //! [error]
@@ -70,56 +70,53 @@ namespace IBSamples
         
         public virtual void currentTime(long time) 
         {
-            Console.WriteLine("Current Time: "+time+"\n");
+            Console.WriteLine($"Current Time: {time}\n");
         }
 
         //! [tickprice]
         public virtual void tickPrice(int tickerId, int field, double price, TickAttrib attribs) 
         {
-            Console.WriteLine("Tick Price. Ticker Id:" + tickerId + ", Field: " + field + ", Price: " + Util.DoubleMaxString(price) + ", CanAutoExecute: " + attribs.CanAutoExecute + 
-                ", PastLimit: " + attribs.PastLimit + ", PreOpen: " + attribs.PreOpen);
+            Console.WriteLine($"Tick Price. Ticker Id:{tickerId}, Field: {field}, Price: {Util.DoubleMaxString(price)}, CanAutoExecute: {attribs.CanAutoExecute}, PastLimit: {attribs.PastLimit}, PreOpen: {attribs.PreOpen}");
         }
         //! [tickprice]
         
         //! [ticksize]
         public virtual void tickSize(int tickerId, int field, decimal size)
         {
-            Console.WriteLine("Tick Size. Ticker Id:" + tickerId + ", Field: " + field + ", Size: " + Util.DecimalMaxString(size));
+            Console.WriteLine($"Tick Size. Ticker Id:{tickerId}, Field: {field}, Size: {Util.DecimalMaxString(size)}");
         }
         //! [ticksize]
         
         //! [tickstring]
         public virtual void tickString(int tickerId, int tickType, string value)
         {
-            Console.WriteLine("Tick string. Ticker Id:" + tickerId + ", Type: " + tickType + ", Value: " + value);
+            Console.WriteLine($"Tick string. Ticker Id:{tickerId}, Type: {tickType}, Value: {value}");
         }
         //! [tickstring]
 
         //! [tickgeneric]
         public virtual void tickGeneric(int tickerId, int field, double value)
         {
-            Console.WriteLine("Tick Generic. Ticker Id:" + tickerId + ", Field: " + field + ", Value: " + Util.DoubleMaxString(value));
+            Console.WriteLine($"Tick Generic. Ticker Id:{tickerId}, Field: {field}, Value: {Util.DoubleMaxString(value)}");
         }
         //! [tickgeneric]
 
         public virtual void tickEFP(int tickerId, int tickType, double basisPoints, string formattedBasisPoints, double impliedFuture, int holdDays, string futureLastTradeDate, double dividendImpact, double dividendsToLastTradeDate)
         {
-            Console.WriteLine("TickEFP. " + tickerId + ", Type: " + tickType+", BasisPoints: " + Util.DoubleMaxString(basisPoints) +", FormattedBasisPoints: " + formattedBasisPoints + 
-                ", ImpliedFuture: " + Util.DoubleMaxString(impliedFuture) +", HoldDays: " + Util.IntMaxString(holdDays) + ", FutureLastTradeDate: " + futureLastTradeDate + 
-                ", DividendImpact: " + Util.DoubleMaxString(dividendImpact) + ", DividendsToLastTradeDate: " + Util.DoubleMaxString(dividendsToLastTradeDate));
+            Console.WriteLine($"TickEFP. {tickerId}, Type: {tickType}, BasisPoints: {Util.DoubleMaxString(basisPoints)}, FormattedBasisPoints: {formattedBasisPoints}, ImpliedFuture: {Util.DoubleMaxString(impliedFuture)}, HoldDays: {Util.IntMaxString(holdDays)}, FutureLastTradeDate: {futureLastTradeDate}, DividendImpact: {Util.DoubleMaxString(dividendImpact)}, DividendsToLastTradeDate: {Util.DoubleMaxString(dividendsToLastTradeDate)}");
         }
         
         //! [ticksnapshotend]
         public virtual void tickSnapshotEnd(int tickerId)
         {
-            Console.WriteLine("TickSnapshotEnd: "+tickerId);
+            Console.WriteLine($"TickSnapshotEnd: {tickerId}");
         }
         //! [ticksnapshotend]
 
         //! [nextvalidid]
         public virtual void nextValidId(int orderId) 
         {
-            Console.WriteLine("Next Valid Id: "+orderId);
+            Console.WriteLine($"Next Valid Id: {orderId}");
             NextOrderId = orderId;
         }
         //! [nextvalidid]
@@ -127,90 +124,78 @@ namespace IBSamples
         //! [deltaneutralvalidation]
         public virtual void deltaNeutralValidation(int reqId, DeltaNeutralContract deltaNeutralContract)
         {
-            Console.WriteLine("DeltaNeutralValidation. " + reqId + ", ConId: " + deltaNeutralContract.ConId + ", Delta: " + Util.DoubleMaxString(deltaNeutralContract.Delta) + ", Price: " + Util.DoubleMaxString(deltaNeutralContract.Price));
+            Console.WriteLine($"DeltaNeutralValidation. {reqId}, ConId: {deltaNeutralContract.ConId}, Delta: {Util.DoubleMaxString(deltaNeutralContract.Delta)}, Price: {Util.DoubleMaxString(deltaNeutralContract.Price)}");
         }
         //! [deltaneutralvalidation]
 
         //! [managedaccounts]
         public virtual void managedAccounts(string accountsList) 
         {
-            Console.WriteLine("Account list: "+accountsList);
+            Console.WriteLine($"Account list: {accountsList}");
         }
         //! [managedaccounts]
 
         //! [tickoptioncomputation]
         public virtual void tickOptionComputation(int tickerId, int field, int tickAttrib, double impliedVolatility, double delta, double optPrice, double pvDividend, double gamma, double vega, double theta, double undPrice)
         {
-            Console.WriteLine("TickOptionComputation. TickerId: " + tickerId + ", field: " + field + ", TickAttrib: " + Util.IntMaxString(tickAttrib) + ", ImpliedVolatility: " + Util.DoubleMaxString(impliedVolatility) + 
-                ", Delta: " + Util.DoubleMaxString(delta) + ", OptionPrice: " + Util.DoubleMaxString(optPrice) +", pvDividend: " + Util.DoubleMaxString(pvDividend) + 
-                ", Gamma: " + Util.DoubleMaxString(gamma) + ", Vega: " + Util.DoubleMaxString(vega) + ", Theta: " + Util.DoubleMaxString(theta) + ", UnderlyingPrice: " + Util.DoubleMaxString(undPrice));
+            Console.WriteLine($"TickOptionComputation. TickerId: {tickerId}, field: {field}, TickAttrib: {Util.IntMaxString(tickAttrib)}, ImpliedVolatility: {Util.DoubleMaxString(impliedVolatility)}, Delta: {Util.DoubleMaxString(delta)}, OptionPrice: {Util.DoubleMaxString(optPrice)}, pvDividend: {Util.DoubleMaxString(pvDividend)}, Gamma: {Util.DoubleMaxString(gamma)}, Vega: {Util.DoubleMaxString(vega)}, Theta: {Util.DoubleMaxString(theta)}, UnderlyingPrice: {Util.DoubleMaxString(undPrice)}");
         }
         //! [tickoptioncomputation]
 
         //! [accountsummary]
         public virtual void accountSummary(int reqId, string account, string tag, string value, string currency)
         {
-            Console.WriteLine("Acct Summary. ReqId: " + reqId + ", Acct: " + account + ", Tag: " + tag + ", Value: " + value + ", Currency: " + currency);
+            Console.WriteLine($"Acct Summary. ReqId: {reqId}, Acct: {account}, Tag: {tag}, Value: {value}, Currency: {currency}");
         }
         //! [accountsummary]
 
         //! [accountsummaryend]
         public virtual void accountSummaryEnd(int reqId)
         {
-            Console.WriteLine("AccountSummaryEnd. Req Id: "+reqId+"\n");
+            Console.WriteLine($"AccountSummaryEnd. Req Id: {reqId}\n");
         }
         //! [accountsummaryend]
 
         //! [updateaccountvalue]
         public virtual void updateAccountValue(string key, string value, string currency, string accountName)
         {
-            Console.WriteLine("UpdateAccountValue. Key: " + key + ", Value: " + value + ", Currency: " + currency + ", AccountName: " + accountName);
+            Console.WriteLine($"UpdateAccountValue. Key: {key}, Value: {value}, Currency: {currency}, AccountName: {accountName}");
         }
         //! [updateaccountvalue]
 
         //! [updateportfolio]
         public virtual void updatePortfolio(Contract contract, decimal position, double marketPrice, double marketValue, double averageCost, double unrealizedPNL, double realizedPNL, string accountName)
         {
-            Console.WriteLine("UpdatePortfolio. " + contract.Symbol + ", " + contract.SecType + " @ " + contract.Exchange
-                + ": Position: " + Util.DecimalMaxString(position) + ", MarketPrice: " + Util.DoubleMaxString(marketPrice) + ", MarketValue: " + Util.DoubleMaxString(marketValue) + 
-                ", AverageCost: " + Util.DoubleMaxString(averageCost) + ", UnrealizedPNL: " + Util.DoubleMaxString(unrealizedPNL) + ", RealizedPNL: " + Util.DoubleMaxString(realizedPNL) + 
-                ", AccountName: " + accountName);
+            Console.WriteLine($"UpdatePortfolio. {contract.Symbol}, {contract.SecType} @ {contract.Exchange}: Position: {Util.DecimalMaxString(position)}, MarketPrice: {Util.DoubleMaxString(marketPrice)}, MarketValue: {Util.DoubleMaxString(marketValue)}, AverageCost: {Util.DoubleMaxString(averageCost)}, UnrealizedPNL: {Util.DoubleMaxString(unrealizedPNL)}, RealizedPNL: {Util.DoubleMaxString(realizedPNL)}, AccountName: {accountName}");
         }
         //! [updateportfolio]
 
         //! [updateaccounttime]
         public virtual void updateAccountTime(string timestamp)
         {
-            Console.WriteLine("UpdateAccountTime. Time: " + timestamp+"\n");
+            Console.WriteLine($"UpdateAccountTime. Time: {timestamp}\n");
         }
         //! [updateaccounttime]
 
         //! [accountdownloadend]
         public virtual void accountDownloadEnd(string account)
         {
-            Console.WriteLine("Account download finished: "+account+"\n");
+            Console.WriteLine($"Account download finished: {account}\n");
         }
         //! [accountdownloadend]
 
         //! [orderstatus]
         public virtual void orderStatus(int orderId, string status, decimal filled, decimal remaining, double avgFillPrice, int permId, int parentId, double lastFillPrice, int clientId, string whyHeld, double mktCapPrice)
         {
-            Console.WriteLine("OrderStatus. Id: " + orderId + ", Status: " + status + ", Filled: " + Util.DecimalMaxString(filled) + ", Remaining: " + Util.DecimalMaxString(remaining)
-                + ", AvgFillPrice: " + Util.DoubleMaxString(avgFillPrice) + ", PermId: " + Util.IntMaxString(permId) + ", ParentId: " + Util.IntMaxString(parentId) + 
-                ", LastFillPrice: " + Util.DoubleMaxString(lastFillPrice) + ", ClientId: " + Util.IntMaxString(clientId) + ", WhyHeld: " + whyHeld + ", MktCapPrice: " + Util.DoubleMaxString(mktCapPrice));
+            Console.WriteLine($"OrderStatus. Id: {orderId}, Status: {status}, Filled: {Util.DecimalMaxString(filled)}, Remaining: {Util.DecimalMaxString(remaining)}, AvgFillPrice: {Util.DoubleMaxString(avgFillPrice)}, PermId: {Util.IntMaxString(permId)}, ParentId: {Util.IntMaxString(parentId)}, LastFillPrice: {Util.DoubleMaxString(lastFillPrice)}, ClientId: {Util.IntMaxString(clientId)}, WhyHeld: {whyHeld}, MktCapPrice: {Util.DoubleMaxString(mktCapPrice)}");
         }
         //! [orderstatus]
 
         //! [openorder]
         public virtual void openOrder(int orderId, Contract contract, Order order, OrderState orderState)
         {
-            Console.WriteLine("OpenOrder. PermID: " + Util.IntMaxString(order.PermId) + ", ClientId: " + Util.IntMaxString(order.ClientId) + ", OrderId: " + Util.IntMaxString(orderId) + 
-                ", Account: " + order.Account + ", Symbol: " + contract.Symbol + ", SecType: " + contract.SecType + " , Exchange: " + contract.Exchange + ", Action: " + order.Action + 
-                ", OrderType: " + order.OrderType + ", TotalQty: " + Util.DecimalMaxString(order.TotalQuantity) + ", CashQty: " + Util.DoubleMaxString(order.CashQty) + 
-                ", LmtPrice: " + Util.DoubleMaxString(order.LmtPrice) + ", AuxPrice: " + Util.DoubleMaxString(order.AuxPrice) + ", Status: " + orderState.Status +
-                ", MinTradeQty: " + Util.IntMaxString(order.MinTradeQty) + ", MinCompeteSize: " + Util.IntMaxString(order.MinCompeteSize) +
-                ", CompeteAgainstBestOffset: " + (order.CompeteAgainstBestOffset == Order.COMPETE_AGAINST_BEST_OFFSET_UP_TO_MID ? "UpToMid" : Util.DoubleMaxString(order.CompeteAgainstBestOffset)) +
-                ", MidOffsetAtWhole: " + Util.DoubleMaxString(order.MidOffsetAtWhole) + ", MidOffsetAtHalf: " + Util.DoubleMaxString(order.MidOffsetAtHalf));
+            Console.WriteLine(
+                              $"OpenOrder. PermID: {Util.IntMaxString(order.PermId)}, ClientId: {Util.IntMaxString(order.ClientId)}, OrderId: {Util.IntMaxString(orderId)}, Account: {order.Account}, Symbol: {contract.Symbol}, SecType: {contract.SecType} , Exchange: {contract.Exchange}, Action: {order.Action}, OrderType: {order.OrderType}, TotalQty: {Util.DecimalMaxString(order.TotalQuantity)}, CashQty: {Util.DoubleMaxString(order.CashQty)}, LmtPrice: {Util.DoubleMaxString(order.LmtPrice)}, AuxPrice: {Util.DoubleMaxString(order.AuxPrice)}, Status: {orderState.Status}, MinTradeQty: {Util.IntMaxString(order.MinTradeQty)}, MinCompeteSize: {Util.IntMaxString(order.MinCompeteSize)}, CompeteAgainstBestOffset: {(order.CompeteAgainstBestOffset == Order.COMPETE_AGAINST_BEST_OFFSET_UP_TO_MID ? "UpToMid" : Util.DoubleMaxString(order.CompeteAgainstBestOffset))}, MidOffsetAtWhole: {Util.DoubleMaxString(order.MidOffsetAtWhole)}, MidOffsetAtHalf: {Util.DoubleMaxString(order.MidOffsetAtHalf)}");
         }
         //! [openorder]
 
@@ -224,57 +209,57 @@ namespace IBSamples
         //! [contractdetails]
         public virtual void contractDetails(int reqId, ContractDetails contractDetails)
         {
-            Console.WriteLine("ContractDetails begin. ReqId: " + reqId);
+            Console.WriteLine($"ContractDetails begin. ReqId: {reqId}");
             printContractMsg(contractDetails.Contract);
             printContractDetailsMsg(contractDetails);
-            Console.WriteLine("ContractDetails end. ReqId: " + reqId);
+            Console.WriteLine($"ContractDetails end. ReqId: {reqId}");
         }
         //! [contractdetails]
 
         public void printContractMsg(Contract contract)
         {
-            Console.WriteLine("\tConId: " + contract.ConId);
-            Console.WriteLine("\tSymbol: " + contract.Symbol);
-            Console.WriteLine("\tSecType: " + contract.SecType);
-            Console.WriteLine("\tLastTradeDateOrContractMonth: " + contract.LastTradeDateOrContractMonth);
-            Console.WriteLine("\tStrike: " + Util.DoubleMaxString(contract.Strike));
-            Console.WriteLine("\tRight: " + contract.Right);
-            Console.WriteLine("\tMultiplier: " + contract.Multiplier);
-            Console.WriteLine("\tExchange: " + contract.Exchange);
-            Console.WriteLine("\tPrimaryExchange: " + contract.PrimaryExch);
-            Console.WriteLine("\tCurrency: " + contract.Currency);
-            Console.WriteLine("\tLocalSymbol: " + contract.LocalSymbol);
-            Console.WriteLine("\tTradingClass: " + contract.TradingClass);
+            Console.WriteLine($"\tConId: {contract.ConId}");
+            Console.WriteLine($"\tSymbol: {contract.Symbol}");
+            Console.WriteLine($"\tSecType: {contract.SecType}");
+            Console.WriteLine($"\tLastTradeDateOrContractMonth: {contract.LastTradeDateOrContractMonth}");
+            Console.WriteLine($"\tStrike: {Util.DoubleMaxString(contract.Strike)}");
+            Console.WriteLine($"\tRight: {contract.Right}");
+            Console.WriteLine($"\tMultiplier: {contract.Multiplier}");
+            Console.WriteLine($"\tExchange: {contract.Exchange}");
+            Console.WriteLine($"\tPrimaryExchange: {contract.PrimaryExch}");
+            Console.WriteLine($"\tCurrency: {contract.Currency}");
+            Console.WriteLine($"\tLocalSymbol: {contract.LocalSymbol}");
+            Console.WriteLine($"\tTradingClass: {contract.TradingClass}");
         }
 
         public void printContractDetailsMsg(ContractDetails contractDetails)
         {
-            Console.WriteLine("\tMarketName: " + contractDetails.MarketName);
-            Console.WriteLine("\tMinTick: " + Util.DoubleMaxString(contractDetails.MinTick));
-            Console.WriteLine("\tPriceMagnifier: " + Util.IntMaxString(contractDetails.PriceMagnifier));
-            Console.WriteLine("\tOrderTypes: " + contractDetails.OrderTypes);
-            Console.WriteLine("\tValidExchanges: " + contractDetails.ValidExchanges);
-            Console.WriteLine("\tUnderConId: " + Util.IntMaxString(contractDetails.UnderConId));
-            Console.WriteLine("\tLongName: " + contractDetails.LongName);
-            Console.WriteLine("\tContractMonth: " + contractDetails.ContractMonth);
-            Console.WriteLine("\tIndystry: " + contractDetails.Industry);
-            Console.WriteLine("\tCategory: " + contractDetails.Category);
-            Console.WriteLine("\tSubCategory: " + contractDetails.Subcategory);
-            Console.WriteLine("\tTimeZoneId: " + contractDetails.TimeZoneId);
-            Console.WriteLine("\tTradingHours: " + contractDetails.TradingHours);
-            Console.WriteLine("\tLiquidHours: " + contractDetails.LiquidHours);
-            Console.WriteLine("\tEvRule: " + contractDetails.EvRule);
-            Console.WriteLine("\tEvMultiplier: " + Util.DoubleMaxString(contractDetails.EvMultiplier));
-            Console.WriteLine("\tAggGroup: " + Util.IntMaxString(contractDetails.AggGroup));
-            Console.WriteLine("\tUnderSymbol: " + contractDetails.UnderSymbol);
-            Console.WriteLine("\tUnderSecType: " + contractDetails.UnderSecType);
-            Console.WriteLine("\tMarketRuleIds: " + contractDetails.MarketRuleIds);
-            Console.WriteLine("\tRealExpirationDate: " + contractDetails.RealExpirationDate);
-            Console.WriteLine("\tLastTradeTime: " + contractDetails.LastTradeTime);
-            Console.WriteLine("\tStock Type: " + contractDetails.StockType);
-            Console.WriteLine("\tMinSize: " + Util.DecimalMaxString(contractDetails.MinSize));
-            Console.WriteLine("\tSizeIncrement: " + Util.DecimalMaxString(contractDetails.SizeIncrement));
-            Console.WriteLine("\tSuggestedSizeIncrement: " + Util.DecimalMaxString(contractDetails.SuggestedSizeIncrement));
+            Console.WriteLine($"\tMarketName: {contractDetails.MarketName}");
+            Console.WriteLine($"\tMinTick: {Util.DoubleMaxString(contractDetails.MinTick)}");
+            Console.WriteLine($"\tPriceMagnifier: {Util.IntMaxString(contractDetails.PriceMagnifier)}");
+            Console.WriteLine($"\tOrderTypes: {contractDetails.OrderTypes}");
+            Console.WriteLine($"\tValidExchanges: {contractDetails.ValidExchanges}");
+            Console.WriteLine($"\tUnderConId: {Util.IntMaxString(contractDetails.UnderConId)}");
+            Console.WriteLine($"\tLongName: {contractDetails.LongName}");
+            Console.WriteLine($"\tContractMonth: {contractDetails.ContractMonth}");
+            Console.WriteLine($"\tIndystry: {contractDetails.Industry}");
+            Console.WriteLine($"\tCategory: {contractDetails.Category}");
+            Console.WriteLine($"\tSubCategory: {contractDetails.Subcategory}");
+            Console.WriteLine($"\tTimeZoneId: {contractDetails.TimeZoneId}");
+            Console.WriteLine($"\tTradingHours: {contractDetails.TradingHours}");
+            Console.WriteLine($"\tLiquidHours: {contractDetails.LiquidHours}");
+            Console.WriteLine($"\tEvRule: {contractDetails.EvRule}");
+            Console.WriteLine($"\tEvMultiplier: {Util.DoubleMaxString(contractDetails.EvMultiplier)}");
+            Console.WriteLine($"\tAggGroup: {Util.IntMaxString(contractDetails.AggGroup)}");
+            Console.WriteLine($"\tUnderSymbol: {contractDetails.UnderSymbol}");
+            Console.WriteLine($"\tUnderSecType: {contractDetails.UnderSecType}");
+            Console.WriteLine($"\tMarketRuleIds: {contractDetails.MarketRuleIds}");
+            Console.WriteLine($"\tRealExpirationDate: {contractDetails.RealExpirationDate}");
+            Console.WriteLine($"\tLastTradeTime: {contractDetails.LastTradeTime}");
+            Console.WriteLine($"\tStock Type: {contractDetails.StockType}");
+            Console.WriteLine($"\tMinSize: {Util.DecimalMaxString(contractDetails.MinSize)}");
+            Console.WriteLine($"\tSizeIncrement: {Util.DecimalMaxString(contractDetails.SizeIncrement)}");
+            Console.WriteLine($"\tSuggestedSizeIncrement: {Util.DecimalMaxString(contractDetails.SuggestedSizeIncrement)}");
             printContractDetailsSecIdList(contractDetails.SecIdList);
         }
 
@@ -284,7 +269,7 @@ namespace IBSamples
                 Console.Write("\tSecIdList: {");
                 foreach (TagValue tagValue in secIdList)
                 {
-                    Console.Write(tagValue.Tag + "=" + tagValue.Value + ";");
+                    Console.Write($"{tagValue.Tag}={tagValue.Value};");
                 }
                 Console.WriteLine("}");
             }
@@ -292,41 +277,41 @@ namespace IBSamples
 
         public void printBondContractDetailsMsg(ContractDetails contractDetails)
         {
-            Console.WriteLine("\tSymbol: " + contractDetails.Contract.Symbol);
-            Console.WriteLine("\tSecType: " + contractDetails.Contract.SecType);
-            Console.WriteLine("\tCusip: " + contractDetails.Cusip);
-            Console.WriteLine("\tCoupon: " + Util.DoubleMaxString(contractDetails.Coupon));
-            Console.WriteLine("\tMaturity: " + contractDetails.Maturity);
-            Console.WriteLine("\tIssueDate: " + contractDetails.IssueDate);
-            Console.WriteLine("\tRatings: " + contractDetails.Ratings);
-            Console.WriteLine("\tBondType: " + contractDetails.BondType);
-            Console.WriteLine("\tCouponType: " + contractDetails.CouponType);
-            Console.WriteLine("\tConvertible: " + contractDetails.Convertible);
-            Console.WriteLine("\tCallable: " + contractDetails.Callable);
-            Console.WriteLine("\tPutable: " + contractDetails.Putable);
-            Console.WriteLine("\tDescAppend: " + contractDetails.DescAppend);
-            Console.WriteLine("\tExchange: " + contractDetails.Contract.Exchange);
-            Console.WriteLine("\tCurrency: " + contractDetails.Contract.Currency);
-            Console.WriteLine("\tMarketName: " + contractDetails.MarketName);
-            Console.WriteLine("\tTradingClass: " + contractDetails.Contract.TradingClass);
-            Console.WriteLine("\tConId: " + contractDetails.Contract.ConId);
-            Console.WriteLine("\tMinTick: " + Util.DoubleMaxString(contractDetails.MinTick));
-            Console.WriteLine("\tOrderTypes: " + contractDetails.OrderTypes);
-            Console.WriteLine("\tValidExchanges: " + contractDetails.ValidExchanges);
-            Console.WriteLine("\tNextOptionDate: " + contractDetails.NextOptionDate);
-            Console.WriteLine("\tNextOptionType: " + contractDetails.NextOptionType);
-            Console.WriteLine("\tNextOptionPartial: " + contractDetails.NextOptionPartial);
-            Console.WriteLine("\tNotes: " + contractDetails.Notes);
-            Console.WriteLine("\tLong Name: " + contractDetails.LongName);
-            Console.WriteLine("\tEvRule: " + contractDetails.EvRule);
-            Console.WriteLine("\tEvMultiplier: " + Util.DoubleMaxString(contractDetails.EvMultiplier));
-            Console.WriteLine("\tAggGroup: " + Util.IntMaxString(contractDetails.AggGroup));
-            Console.WriteLine("\tMarketRuleIds: " + contractDetails.MarketRuleIds);
-            Console.WriteLine("\tLastTradeTime: " + contractDetails.LastTradeTime);
-            Console.WriteLine("\tTimeZoneId: " + contractDetails.TimeZoneId);
-            Console.WriteLine("\tMinSize: " + Util.DecimalMaxString(contractDetails.MinSize));
-            Console.WriteLine("\tSizeIncrement: " + Util.DecimalMaxString(contractDetails.SizeIncrement));
-            Console.WriteLine("\tSuggestedSizeIncrement: " + Util.DecimalMaxString(contractDetails.SuggestedSizeIncrement));
+            Console.WriteLine($"\tSymbol: {contractDetails.Contract.Symbol}");
+            Console.WriteLine($"\tSecType: {contractDetails.Contract.SecType}");
+            Console.WriteLine($"\tCusip: {contractDetails.Cusip}");
+            Console.WriteLine($"\tCoupon: {Util.DoubleMaxString(contractDetails.Coupon)}");
+            Console.WriteLine($"\tMaturity: {contractDetails.Maturity}");
+            Console.WriteLine($"\tIssueDate: {contractDetails.IssueDate}");
+            Console.WriteLine($"\tRatings: {contractDetails.Ratings}");
+            Console.WriteLine($"\tBondType: {contractDetails.BondType}");
+            Console.WriteLine($"\tCouponType: {contractDetails.CouponType}");
+            Console.WriteLine($"\tConvertible: {contractDetails.Convertible}");
+            Console.WriteLine($"\tCallable: {contractDetails.Callable}");
+            Console.WriteLine($"\tPutable: {contractDetails.Putable}");
+            Console.WriteLine($"\tDescAppend: {contractDetails.DescAppend}");
+            Console.WriteLine($"\tExchange: {contractDetails.Contract.Exchange}");
+            Console.WriteLine($"\tCurrency: {contractDetails.Contract.Currency}");
+            Console.WriteLine($"\tMarketName: {contractDetails.MarketName}");
+            Console.WriteLine($"\tTradingClass: {contractDetails.Contract.TradingClass}");
+            Console.WriteLine($"\tConId: {contractDetails.Contract.ConId}");
+            Console.WriteLine($"\tMinTick: {Util.DoubleMaxString(contractDetails.MinTick)}");
+            Console.WriteLine($"\tOrderTypes: {contractDetails.OrderTypes}");
+            Console.WriteLine($"\tValidExchanges: {contractDetails.ValidExchanges}");
+            Console.WriteLine($"\tNextOptionDate: {contractDetails.NextOptionDate}");
+            Console.WriteLine($"\tNextOptionType: {contractDetails.NextOptionType}");
+            Console.WriteLine($"\tNextOptionPartial: {contractDetails.NextOptionPartial}");
+            Console.WriteLine($"\tNotes: {contractDetails.Notes}");
+            Console.WriteLine($"\tLong Name: {contractDetails.LongName}");
+            Console.WriteLine($"\tEvRule: {contractDetails.EvRule}");
+            Console.WriteLine($"\tEvMultiplier: {Util.DoubleMaxString(contractDetails.EvMultiplier)}");
+            Console.WriteLine($"\tAggGroup: {Util.IntMaxString(contractDetails.AggGroup)}");
+            Console.WriteLine($"\tMarketRuleIds: {contractDetails.MarketRuleIds}");
+            Console.WriteLine($"\tLastTradeTime: {contractDetails.LastTradeTime}");
+            Console.WriteLine($"\tTimeZoneId: {contractDetails.TimeZoneId}");
+            Console.WriteLine($"\tMinSize: {Util.DecimalMaxString(contractDetails.MinSize)}");
+            Console.WriteLine($"\tSizeIncrement: {Util.DecimalMaxString(contractDetails.SizeIncrement)}");
+            Console.WriteLine($"\tSuggestedSizeIncrement: {Util.DecimalMaxString(contractDetails.SuggestedSizeIncrement)}");
             printContractDetailsSecIdList(contractDetails.SecIdList);
         }
 
@@ -334,81 +319,77 @@ namespace IBSamples
         //! [contractdetailsend]
         public virtual void contractDetailsEnd(int reqId)
         {
-            Console.WriteLine("ContractDetailsEnd. "+reqId+"\n");
+            Console.WriteLine($"ContractDetailsEnd. {reqId}\n");
         }
         //! [contractdetailsend]
 
         //! [execdetails]
         public virtual void execDetails(int reqId, Contract contract, Execution execution)
         {
-            Console.WriteLine("ExecDetails. " + reqId + " - " + contract.Symbol + ", " + contract.SecType+", " + contract.Currency+" - " + execution.ExecId + ", " + Util.IntMaxString(execution.OrderId) + 
-                ", " + Util.DecimalMaxString(execution.Shares) + ", " + Util.DecimalMaxString(execution.CumQty) + ", " + execution.LastLiquidity);
+            Console.WriteLine($"ExecDetails. {reqId} - {contract.Symbol}, {contract.SecType}, {contract.Currency} - {execution.ExecId}, {Util.IntMaxString(execution.OrderId)}, {Util.DecimalMaxString(execution.Shares)}, {Util.DecimalMaxString(execution.CumQty)}, {execution.LastLiquidity}");
         }
         //! [execdetails]
 
         //! [execdetailsend]
         public virtual void execDetailsEnd(int reqId)
         {
-            Console.WriteLine("ExecDetailsEnd. "+reqId+"\n");
+            Console.WriteLine($"ExecDetailsEnd. {reqId}\n");
         }
         //! [execdetailsend]
 
         //! [commissionreport]
         public virtual void commissionReport(CommissionReport commissionReport)
         {
-            Console.WriteLine("CommissionReport. " + commissionReport.ExecId + " - " + Util.DoubleMaxString(commissionReport.Commission) + " " + commissionReport.Currency + " RPNL " + Util.DoubleMaxString(commissionReport.RealizedPNL));
+            Console.WriteLine($"CommissionReport. {commissionReport.ExecId} - {Util.DoubleMaxString(commissionReport.Commission)} {commissionReport.Currency} RPNL {Util.DoubleMaxString(commissionReport.RealizedPNL)}");
         }
         //! [commissionreport]
 
         //! [fundamentaldata]
         public virtual void fundamentalData(int reqId, string data)
         {
-            Console.WriteLine("FundamentalData. " + reqId + "" + data+"\n");
+            Console.WriteLine($"FundamentalData. {reqId}{data}\n");
         }
         //! [fundamentaldata]
 
         //! [historicaldata]
         public virtual void historicalData(int reqId, Bar bar)
         {
-            Console.WriteLine("HistoricalData. " + reqId + " - Time: " + bar.Time + ", Open: " + Util.DoubleMaxString(bar.Open) + ", High: " + Util.DoubleMaxString(bar.High) + 
-                ", Low: " + Util.DoubleMaxString(bar.Low) + ", Close: " + Util.DoubleMaxString(bar.Close) + ", Volume: " + Util.DecimalMaxString(bar.Volume) + 
-                ", Count: " + Util.IntMaxString(bar.Count) + ", WAP: " + Util.DecimalMaxString(bar.WAP));
+            Console.WriteLine($"HistoricalData. {reqId} - Time: {bar.Time}, Open: {Util.DoubleMaxString(bar.Open)}, High: {Util.DoubleMaxString(bar.High)}, Low: {Util.DoubleMaxString(bar.Low)}, Close: {Util.DoubleMaxString(bar.Close)}, Volume: {Util.DecimalMaxString(bar.Volume)}, Count: {Util.IntMaxString(bar.Count)}, WAP: {Util.DecimalMaxString(bar.WAP)}");
         }
         //! [historicaldata]
 
         //! [marketdatatype]
         public virtual void marketDataType(int reqId, int marketDataType)
         {
-            Console.WriteLine("MarketDataType. "+reqId+", Type: "+marketDataType+"\n");
+            Console.WriteLine($"MarketDataType. {reqId}, Type: {marketDataType}\n");
         }
         //! [marketdatatype]
 
         //! [updatemktdepth]
         public virtual void updateMktDepth(int tickerId, int position, int operation, int side, double price, decimal size)
         {
-            Console.WriteLine("UpdateMarketDepth. " + tickerId + " - Position: " + position + ", Operation: " + operation + ", Side: " + side + ", Price: " + Util.DoubleMaxString(price) + ", Size: " + Util.DecimalMaxString(size));
+            Console.WriteLine($"UpdateMarketDepth. {tickerId} - Position: {position}, Operation: {operation}, Side: {side}, Price: {Util.DoubleMaxString(price)}, Size: {Util.DecimalMaxString(size)}");
         }
         //! [updatemktdepth]
 
         //! [updatemktdepthl2]
         public virtual void updateMktDepthL2(int tickerId, int position, string marketMaker, int operation, int side, double price, decimal size, bool isSmartDepth)
         {
-            Console.WriteLine("UpdateMarketDepthL2. " + tickerId + " - Position: " + position + ", Operation: " + operation + ", Side: " + side + ", Price: " + Util.DoubleMaxString(price) + ", Size: " + Util.DecimalMaxString(size) + ", isSmartDepth: " + isSmartDepth);
+            Console.WriteLine($"UpdateMarketDepthL2. {tickerId} - Position: {position}, Operation: {operation}, Side: {side}, Price: {Util.DoubleMaxString(price)}, Size: {Util.DecimalMaxString(size)}, isSmartDepth: {isSmartDepth}");
         }
         //! [updatemktdepthl2]
 
         //! [updatenewsbulletin]
         public virtual void updateNewsBulletin(int msgId, int msgType, String message, String origExchange)
         {
-            Console.WriteLine("News Bulletins. "+msgId+" - Type: "+msgType+", Message: "+message+", Exchange of Origin: "+origExchange+"\n");
+            Console.WriteLine($"News Bulletins. {msgId} - Type: {msgType}, Message: {message}, Exchange of Origin: {origExchange}\n");
         }
         //! [updatenewsbulletin]
 
         //! [position]
         public virtual void position(string account, Contract contract, decimal pos, double avgCost)
         {
-            Console.WriteLine("Position. " + account + " - Symbol: " + contract.Symbol + ", SecType: " + contract.SecType + ", Currency: " + contract.Currency + 
-                ", Position: " + Util.DecimalMaxString(pos) + ", Avg cost: " + Util.DoubleMaxString(avgCost));
+            Console.WriteLine($"Position. {account} - Symbol: {contract.Symbol}, SecType: {contract.SecType}, Currency: {contract.Currency}, Position: {Util.DecimalMaxString(pos)}, Avg cost: {Util.DoubleMaxString(avgCost)}");
         }
         //! [position]
 
@@ -422,111 +403,107 @@ namespace IBSamples
         //! [realtimebar]
         public virtual void realtimeBar(int reqId, long time, double open, double high, double low, double close, decimal volume, decimal WAP, int count)
         {
-            Console.WriteLine("RealTimeBars. " + reqId + " - Time: " + Util.LongMaxString(time) + ", Open: " + Util.DoubleMaxString(open) + ", High: " + Util.DoubleMaxString(high) + 
-                ", Low: " + Util.DoubleMaxString(low) + ", Close: " + Util.DoubleMaxString(close) + ", Volume: " + Util.DecimalMaxString(volume) + ", Count: " + Util.IntMaxString(count) + 
-                ", WAP: " + Util.DecimalMaxString(WAP));
+            Console.WriteLine($"RealTimeBars. {reqId} - Time: {Util.LongMaxString(time)}, Open: {Util.DoubleMaxString(open)}, High: {Util.DoubleMaxString(high)}, Low: {Util.DoubleMaxString(low)}, Close: {Util.DoubleMaxString(close)}, Volume: {Util.DecimalMaxString(volume)}, Count: {Util.IntMaxString(count)}, WAP: {Util.DecimalMaxString(WAP)}");
         }
         //! [realtimebar]
 
         //! [scannerparameters]
         public virtual void scannerParameters(string xml)
         {
-            Console.WriteLine("ScannerParameters. "+xml+"\n");
+            Console.WriteLine($"ScannerParameters. {xml}\n");
         }
         //! [scannerparameters]
 
         //! [scannerdata]
         public virtual void scannerData(int reqId, int rank, ContractDetails contractDetails, string distance, string benchmark, string projection, string legsStr)
         {
-            Console.WriteLine("ScannerData. "+reqId+" - Rank: "+rank+", Symbol: "+contractDetails.Contract.Symbol+", SecType: "+contractDetails.Contract.SecType+", Currency: "+contractDetails.Contract.Currency
-                +", Distance: "+distance+", Benchmark: "+benchmark+", Projection: "+projection+", Legs String: "+legsStr);
+            Console.WriteLine($"ScannerData. {reqId} - Rank: {rank}, Symbol: {contractDetails.Contract.Symbol}, SecType: {contractDetails.Contract.SecType}, Currency: {contractDetails.Contract.Currency}, Distance: {distance}, Benchmark: {benchmark}, Projection: {projection}, Legs String: {legsStr}");
         }
         //! [scannerdata]
 
         //! [scannerdataend]
         public virtual void scannerDataEnd(int reqId)
         {
-            Console.WriteLine("ScannerDataEnd. "+reqId);
+            Console.WriteLine($"ScannerDataEnd. {reqId}");
         }
         //! [scannerdataend]
 
         //! [receivefa]
         public virtual void receiveFA(int faDataType, string faXmlData)
         {
-            Console.WriteLine("Receing FA: "+faDataType+" - "+faXmlData);
+            Console.WriteLine($"Receing FA: {faDataType} - {faXmlData}");
         }
         //! [receivefa]
 
         public virtual void bondContractDetails(int requestId, ContractDetails contractDetails)
         {
-            Console.WriteLine("BondContractDetails begin. ReqId: " + requestId);
+            Console.WriteLine($"BondContractDetails begin. ReqId: {requestId}");
             printBondContractDetailsMsg(contractDetails);
-            Console.WriteLine("BondContractDetails end. ReqId: " + requestId);
+            Console.WriteLine($"BondContractDetails end. ReqId: {requestId}");
         }
 
         //! [historicaldataend]
         public virtual void historicalDataEnd(int reqId, string startDate, string endDate)
         {
-            Console.WriteLine("HistoricalDataEnd - "+reqId+" from "+startDate+" to "+endDate);
+            Console.WriteLine($"HistoricalDataEnd - {reqId} from {startDate} to {endDate}");
         }
         //! [historicaldataend]
 
         public virtual void verifyMessageAPI(string apiData)
         {
-            Console.WriteLine("verifyMessageAPI: " + apiData);
+            Console.WriteLine($"verifyMessageAPI: {apiData}");
         }
         public virtual void verifyCompleted(bool isSuccessful, string errorText)
         {
-            Console.WriteLine("verifyCompleted. IsSuccessfule: " + isSuccessful + " - Error: " + errorText);
+            Console.WriteLine($"verifyCompleted. IsSuccessfule: {isSuccessful} - Error: {errorText}");
         }
         public virtual void verifyAndAuthMessageAPI(string apiData, string xyzChallenge)
         {
-            Console.WriteLine("verifyAndAuthMessageAPI: " + apiData + " " + xyzChallenge);
+            Console.WriteLine($"verifyAndAuthMessageAPI: {apiData} {xyzChallenge}");
         }
         public virtual void verifyAndAuthCompleted(bool isSuccessful, string errorText)
         {
-            Console.WriteLine("verifyAndAuthCompleted. IsSuccessful: " + isSuccessful + " - Error: " + errorText);
+            Console.WriteLine($"verifyAndAuthCompleted. IsSuccessful: {isSuccessful} - Error: {errorText}");
         }
         //! [displaygrouplist]
         public virtual void displayGroupList(int reqId, string groups)
         {
-            Console.WriteLine("DisplayGroupList. Request: " + reqId + ", Groups" + groups);
+            Console.WriteLine($"DisplayGroupList. Request: {reqId}, Groups{groups}");
         }
         //! [displaygrouplist]
 
         //! [displaygroupupdated]
         public virtual void displayGroupUpdated(int reqId, string contractInfo)
         {
-            Console.WriteLine("displayGroupUpdated. Request: " + reqId + ", ContractInfo: " + contractInfo);
+            Console.WriteLine($"displayGroupUpdated. Request: {reqId}, ContractInfo: {contractInfo}");
         }
         //! [displaygroupupdated]
 
         //! [positionmulti]
         public virtual void positionMulti(int reqId, string account, string modelCode, Contract contract, decimal pos, double avgCost)
         {
-            Console.WriteLine("Position Multi. Request: " + reqId + ", Account: " + account + ", ModelCode: " + modelCode + ", Symbol: " + contract.Symbol + ", SecType: " + contract.SecType + 
-                ", Currency: " + contract.Currency + ", Position: " + Util.DecimalMaxString(pos) + ", Avg cost: " + Util.DoubleMaxString(avgCost) + "\n");
+            Console.WriteLine($"Position Multi. Request: {reqId}, Account: {account}, ModelCode: {modelCode}, Symbol: {contract.Symbol}, SecType: {contract.SecType}, Currency: {contract.Currency}, Position: {Util.DecimalMaxString(pos)}, Avg cost: {Util.DoubleMaxString(avgCost)}\n");
         }
         //! [positionmulti]
 
         //! [positionmultiend]
         public virtual void positionMultiEnd(int reqId)
         {
-            Console.WriteLine("Position Multi End. Request: " + reqId + "\n");
+            Console.WriteLine($"Position Multi End. Request: {reqId}\n");
         }
         //! [positionmultiend]
 
         //! [accountupdatemulti]
         public virtual void accountUpdateMulti(int reqId, string account, string modelCode, string key, string value, string currency)
         {
-            Console.WriteLine("Account Update Multi. Request: " + reqId + ", Account: " + account + ", ModelCode: " + modelCode + ", Key: " + key + ", Value: " + value + ", Currency: " + currency + "\n");
+            Console.WriteLine($"Account Update Multi. Request: {reqId}, Account: {account}, ModelCode: {modelCode}, Key: {key}, Value: {value}, Currency: {currency}\n");
         }
         //! [accountupdatemulti]
 
         //! [accountupdatemultiend]
         public virtual void accountUpdateMultiEnd(int reqId)
         {
-            Console.WriteLine("Account Update Multi End. Request: " + reqId + "\n");
+            Console.WriteLine($"Account Update Multi End. Request: {reqId}\n");
         }
         //! [accountupdatemultiend]
 
@@ -541,7 +518,7 @@ namespace IBSamples
         //! [securityDefinitionOptionParameterEnd]
         public void securityDefinitionOptionParameterEnd(int reqId)
         {
-            Console.WriteLine("Security Definition Option Parameter End. Request: " + reqId + "\n");
+            Console.WriteLine($"Security Definition Option Parameter End. Request: {reqId}\n");
         }
         //! [securityDefinitionOptionParameterEnd]
 
@@ -705,9 +682,7 @@ namespace IBSamples
         //! [historicalDataUpdate]
         public void historicalDataUpdate(int reqId, Bar bar)
         {
-            Console.WriteLine("HistoricalDataUpdate. " + reqId + " - Time: " + bar.Time + ", Open: " + Util.DoubleMaxString(bar.Open) + ", High: " + Util.DoubleMaxString(bar.High) + 
-                ", Low: " + Util.DoubleMaxString(bar.Low) + ", Close: " + Util.DoubleMaxString(bar.Close) + ", Volume: " + Util.DecimalMaxString(bar.Volume) + 
-                ", Count: " + Util.IntMaxString(bar.Count) + ", WAP: " + Util.DecimalMaxString(bar.WAP));
+            Console.WriteLine($"HistoricalDataUpdate. {reqId} - Time: {bar.Time}, Open: {Util.DoubleMaxString(bar.Open)}, High: {Util.DoubleMaxString(bar.High)}, Low: {Util.DoubleMaxString(bar.Low)}, Close: {Util.DoubleMaxString(bar.Close)}, Volume: {Util.DecimalMaxString(bar.Volume)}, Count: {Util.IntMaxString(bar.Count)}, WAP: {Util.DecimalMaxString(bar.WAP)}");
         }
         //! [historicalDataUpdate]
 
@@ -728,7 +703,7 @@ namespace IBSamples
         //! [marketRule]
         public void marketRule(int marketRuleId, PriceIncrement[] priceIncrements) 
         {
-            Console.WriteLine("Market Rule Id: " + marketRuleId);
+            Console.WriteLine($"Market Rule Id: {marketRuleId}");
             foreach (var priceIncrement in priceIncrements) 
             {
                 Console.WriteLine("Low Edge: {0}, Increment: {1}", Util.DoubleMaxString(priceIncrement.LowEdge), Util.DoubleMaxString(priceIncrement.Increment));
@@ -818,13 +793,8 @@ namespace IBSamples
         //! [completedorder]
         public virtual void completedOrder(Contract contract, Order order, OrderState orderState)
         {
-            Console.WriteLine("CompletedOrder. PermID: " + Util.IntMaxString(order.PermId) + ", ParentPermId: " + Util.LongMaxString(order.ParentPermId) + ", Account: " + order.Account + ", Symbol: " + contract.Symbol + ", SecType: " + contract.SecType + 
-                " , Exchange: " + contract.Exchange + ", Action: " + order.Action + ", OrderType: " + order.OrderType + ", TotalQty: " + Util.DecimalMaxString(order.TotalQuantity) + 
-                ", CashQty: " + Util.DoubleMaxString(order.CashQty) + ", FilledQty: " + Util.DecimalMaxString(order.FilledQuantity) + ", LmtPrice: " + Util.DoubleMaxString(order.LmtPrice) + 
-                ", AuxPrice: " + Util.DoubleMaxString(order.AuxPrice) + ", Status: " + orderState.Status + ", CompletedTime: " + orderState.CompletedTime + ", CompletedStatus: " + orderState.CompletedStatus +
-                ", MinTradeQty: " + Util.IntMaxString(order.MinTradeQty) + ", MinCompeteSize: " + Util.IntMaxString(order.MinCompeteSize) +
-                ", CompeteAgainstBestOffset: " + (order.CompeteAgainstBestOffset == Order.COMPETE_AGAINST_BEST_OFFSET_UP_TO_MID ? "UpToMid" : Util.DoubleMaxString(order.CompeteAgainstBestOffset)) +
-                ", MidOffsetAtWhole: " + Util.DoubleMaxString(order.MidOffsetAtWhole) + ", MidOffsetAtHalf: " + Util.DoubleMaxString(order.MidOffsetAtHalf));
+            Console.WriteLine(
+                              $"CompletedOrder. PermID: {Util.IntMaxString(order.PermId)}, ParentPermId: {Util.LongMaxString(order.ParentPermId)}, Account: {order.Account}, Symbol: {contract.Symbol}, SecType: {contract.SecType} , Exchange: {contract.Exchange}, Action: {order.Action}, OrderType: {order.OrderType}, TotalQty: {Util.DecimalMaxString(order.TotalQuantity)}, CashQty: {Util.DoubleMaxString(order.CashQty)}, FilledQty: {Util.DecimalMaxString(order.FilledQuantity)}, LmtPrice: {Util.DoubleMaxString(order.LmtPrice)}, AuxPrice: {Util.DoubleMaxString(order.AuxPrice)}, Status: {orderState.Status}, CompletedTime: {orderState.CompletedTime}, CompletedStatus: {orderState.CompletedStatus}, MinTradeQty: {Util.IntMaxString(order.MinTradeQty)}, MinCompeteSize: {Util.IntMaxString(order.MinCompeteSize)}, CompeteAgainstBestOffset: {(order.CompeteAgainstBestOffset == Order.COMPETE_AGAINST_BEST_OFFSET_UP_TO_MID ? "UpToMid" : Util.DoubleMaxString(order.CompeteAgainstBestOffset))}, MidOffsetAtWhole: {Util.DoubleMaxString(order.MidOffsetAtWhole)}, MidOffsetAtHalf: {Util.DoubleMaxString(order.MidOffsetAtHalf)}");
         }
         //! [completedorder]
 
@@ -838,7 +808,7 @@ namespace IBSamples
         //! [replacefaend]
         public virtual void replaceFAEnd(int reqId, string text)
         {
-            Console.WriteLine("Replace FA End. ReqId: " + reqId + ", Text: " + text + "\n");
+            Console.WriteLine($"Replace FA End. ReqId: {reqId}, Text: {text}\n");
         }
 		//! [replacefaend]
 

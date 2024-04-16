@@ -345,7 +345,7 @@ public partial class IBClient
             if (secs < 86400)
             {
                 unit = (long) Math.Ceiling(secs);
-                dur  = string.Concat(unit, " S");
+                dur  = $"{unit} S";
             }
             else
             {
@@ -353,7 +353,7 @@ public partial class IBClient
                 unit = (long) Math.Ceiling(days);
                 if (unit <= 34)
                 {
-                    dur = string.Concat(unit, " D");
+                    dur = $"{unit} D";
                 }
                 else
                 {
@@ -361,7 +361,7 @@ public partial class IBClient
                     unit = (long) Math.Ceiling(weeks);
                     if (unit > 52)
                         throw new ArgumentOutOfRangeException("Period cannot be bigger than 52 weeks.");
-                    dur = string.Concat(unit, " W");
+                    dur = $"{unit} W";
                 }
             }
 
@@ -372,7 +372,8 @@ public partial class IBClient
     public void RequestHistoricalData2(int requestId, Contract contract, DateTime endDateTime, string duration,
                                        BarSize barSizeSetting, HistoricalDataType whatToShow, int useRth, int formatDate, bool keepUpToDate, List<TagValue> chartOptions)
     {
-            string endDT   = endDateTime.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture) + " UTC";
+            string endDT   =
+                $"{endDateTime.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture)} UTC";
             string barSize = barSizeSetting.Value;
             string wts     = whatToShow.Value;
             lock (this)
@@ -418,7 +419,7 @@ public partial class IBClient
             foreach (AccountSummary si in values)
             {
                 if (summaryItems.HasFlag(si))
-                    sb.Append(si + ",");
+                    sb.Append($"{si},");
             }
 
             if (sb.Length > 0)

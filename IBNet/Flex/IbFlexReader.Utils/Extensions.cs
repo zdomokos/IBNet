@@ -49,7 +49,7 @@ public static class Extensions
 
                             foreach (var o in (IEnumerable)p.GetValue(from))
                             {
-                                var entryType = referenceType.Assembly.GetType(referenceType.Namespace + "." + o.GetType().Name);
+                                var entryType = referenceType.Assembly.GetType($"{referenceType.Namespace}.{o.GetType().Name}");
                                 var newInstance = Activator.CreateInstance(entryType).PopulateFrom(o, errorObjects);
                                 if (newInstance != null)
                                 {

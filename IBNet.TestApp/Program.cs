@@ -916,7 +916,7 @@ namespace IBSamples
             ocaOrders.Add(OrderSamples.LimitOrder("BUY", 1, 10));
             ocaOrders.Add(OrderSamples.LimitOrder("BUY", 1, 11));
             ocaOrders.Add(OrderSamples.LimitOrder("BUY", 1, 12));
-            OrderSamples.OneCancelsAll("TestOCA_" + nextOrderId, ocaOrders, 2);
+            OrderSamples.OneCancelsAll($"TestOCA_{nextOrderId}", ocaOrders, 2);
             foreach (Order o in ocaOrders)
                 client.placeOrder(nextOrderId++, ContractSamples.USStock(), o);
             //! [ocasubmit]

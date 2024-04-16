@@ -29,7 +29,7 @@ public static class DumpFileWriter
             string extension = Path.GetExtension(filename);
             string file = Path.GetFileNameWithoutExtension(filename);
 
-            filename = Path.Combine(path, string.Concat(file, ".", token, extension));
+            filename = Path.Combine(path, $"{file}.{token}{extension}");
 
             return filename;
         }

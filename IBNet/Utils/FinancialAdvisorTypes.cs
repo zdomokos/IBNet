@@ -14,10 +14,7 @@ public class AccountAlias
     public string ToXmlString()
     {
             string xml =
-                 "\t<AccountAlias>"
-                + "\t\t<Account>" + Account + "</Account>"
-                + "\t\t\t<Alias>" + Alias + "</Alias>"
-                + "\t</AccountAlias>";          
+                $"\t<AccountAlias>\t\t<Account>{Account}</Account>\t\t\t<Alias>{Alias}</Alias>\t</AccountAlias>";          
             
             return xml;
         }
@@ -39,16 +36,12 @@ public class AdvisorGroup
     public string ToXmlString()
     {
             string xml =
-                 "  <Group>"
-                +"      <name>"+Name+"</name>"
-                +"      <ListOfAccts varName=\"list\">";
+                $"  <Group>      <name>{Name}</name>      <ListOfAccts varName=\"list\">";
             foreach(string account in Accounts)
-                xml+="         <String>"+account+"</String>";
+                xml+= $"         <String>{account}</String>";
 
             xml +=
-                 "      </ListOfAccts>"
-                +"      <defaultMethod>"+DefaultMethod+"</defaultMethod>"
-                +"  </Group>";
+                $"      </ListOfAccts>      <defaultMethod>{DefaultMethod}</defaultMethod>  </Group>";
             
             return xml;
         }
@@ -57,7 +50,7 @@ public class AdvisorGroup
     {
             string accountStr = Accounts[0];
             for (int i = 1; i < Accounts.Count; i++)
-                accountStr += "," + Accounts[i];
+                accountStr += $",{Accounts[i]}";
             return accountStr;
         }
 
@@ -86,11 +79,8 @@ public class AllocationProfile
 
     public string ToXmlString()
     {
-            string xml = 
-                 "  <AllocationProfile>"
-                +"      <name>"+Name+"</name>"
-                +"      <type>"+Type+"</type>"
-                +"      <ListOfAllocations varName=\"listOfAllocations\">";
+            string xml =
+                $"  <AllocationProfile>      <name>{Name}</name>      <type>{Type}</type>      <ListOfAllocations varName=\"listOfAllocations\">";
 
             foreach (Allocation profileAllocation in Allocations)
                 xml += profileAllocation.ToXmlString();
@@ -104,10 +94,10 @@ public class AllocationProfile
 
     public string AllocationsToString()
     {
-            string str = Allocations[0].Account+"/"+Allocations[0].Amount;
+            string str = $"{Allocations[0].Account}/{Allocations[0].Amount}";
             for(int i=1; i<Allocations.Count; i++)
             {
-                str += "," + Allocations[i].Account + "/" + Allocations[i].Amount;
+                str += $",{Allocations[i].Account}/{Allocations[i].Amount}";
             }
             return str;
         }
@@ -147,12 +137,8 @@ public class Allocation
 
     public string ToXmlString()
     {
-            string xml = 
-                 "          <Allocation>"
-                +"              <acct>"+Account+"</acct>"
-                +"              <amount>"+Amount+"</amount>"
-                +"              <posEff>O</posEff>"
-                +"          </Allocation>";
+            string xml =
+                $"          <Allocation>              <acct>{Account}</acct>              <amount>{Amount}</amount>              <posEff>O</posEff>          </Allocation>";
 
             return xml;
         }

@@ -9,7 +9,7 @@ public abstract class OrderMessage
 
     public int OrderId
     {
-        get { return orderId; }
-        set { orderId = value; }
+        get => orderId;
+        set => orderId = value;
     }
 }

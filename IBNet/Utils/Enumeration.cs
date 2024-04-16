@@ -41,15 +41,9 @@ public abstract class Enumeration<TEnumeration, TValue> : IComparable<TEnumerati
             _displayName = displayName;
         }
 
-    public TValue Value
-    {
-        get { return _value; }
-    }
+    public TValue Value => _value;
 
-    public string DisplayName
-    {
-        get { return _displayName; }
-    }
+    public string DisplayName => _displayName;
 
     public int CompareTo(TEnumeration other)
     {

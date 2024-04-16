@@ -36,7 +36,7 @@ public class InstrumentUtils
 {
     public static string ContractToString(Contract contract)
     {
-            return contract.Symbol + " " + contract.SecType + " " + contract.Currency + " @ " + contract.Exchange;
+            return $"{contract.Symbol} {contract.SecType} {contract.Currency} @ {contract.Exchange}";
         }
 
     public static bool ContractsAreEqual(Contract contractA, Contract contractB)
