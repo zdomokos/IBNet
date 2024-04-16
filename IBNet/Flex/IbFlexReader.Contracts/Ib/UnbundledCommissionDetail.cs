@@ -18,8 +18,7 @@ public class UnbundledCommissionDetail
     public int?     Multiplier            { get; set; }
     public double?  Strike                { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Expiry { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Expiry { get; set; }
 
     public AssetCategory? AssetCategory              { get; set; }
     public string         Symbol                     { get; set; }

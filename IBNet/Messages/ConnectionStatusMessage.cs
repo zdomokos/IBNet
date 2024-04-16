@@ -9,8 +9,6 @@ public class ConnectionStatusMessage
 
     public ConnectionStatusMessage(bool isConnected)
     {
-            IsConnected = isConnected;
-        }
-
-        
+        IsConnected = isConnected;
+    }
 }

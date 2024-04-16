@@ -18,11 +18,11 @@ public class Forex : Contract
     /// <param name="exchange">IDEALPRO or IDEAL</param>
     public Forex(string currency, string baseCurrency, string exchange)
     {
-            Symbol = currency;
-            Currency = baseCurrency;
-            Exchange = exchange;
-            SecType = SecurityType.Cash.Value;
-        }
+        Symbol   = currency;
+        Currency = baseCurrency;
+        Exchange = exchange;
+        SecType  = SecurityType.Cash.Value;
+    }
 
     /// <summary>
     /// Creates a Forex Contract for use on the IdealPro Exchange
@@ -31,9 +31,9 @@ public class Forex : Contract
     /// <param name="baseCurrency">Base Currency</param>
     public Forex(string currency, string baseCurrency)
     {
-            Symbol = currency;
-            Currency = baseCurrency;
-            Exchange = "IDEALPRO";
-            SecType = SecurityType.Cash.Value;            
-        }
+        Symbol   = currency;
+        Currency = baseCurrency;
+        Exchange = "IDEALPRO";
+        SecType  = SecurityType.Cash.Value;
+    }
 }

@@ -13,5 +13,6 @@ public class ExecutionSide : Enumeration<ExecutionSide, string>
     public static ExecutionSide Sold   = new("SLD", nameof(Sold));
 
     public ExecutionSide(string value, string name) : base(value, name)
-    { }
+    {
+    }
 }

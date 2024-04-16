@@ -29,5 +29,7 @@ public class BarSize : Enumeration<BarSize, string>
     public static BarSize W   = new("1 week", nameof(W));
     public static BarSize M   = new("1 month", nameof(M));
 
-    public BarSize(string value, string name) : base(value, name) { }
+    public BarSize(string value, string name) : base(value, name)
+    {
+    }
 }

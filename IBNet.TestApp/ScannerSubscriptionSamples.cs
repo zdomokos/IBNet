@@ -12,9 +12,9 @@ namespace IBSamples
             //! [hotusvolume]
             //Hot US stocks by volume
             ScannerSubscription scanSub = new ScannerSubscription();
-            scanSub.Instrument = "STK";
+            scanSub.Instrument   = "STK";
             scanSub.LocationCode = "STK.US.MAJOR";
-            scanSub.ScanCode = "HOT_BY_VOLUME";
+            scanSub.ScanCode     = "HOT_BY_VOLUME";
             //! [hotusvolume]
             return scanSub;
         }
@@ -24,9 +24,9 @@ namespace IBSamples
             //! [toppercentgaineribis]
             //Top % gainers at IBIS
             ScannerSubscription scanSub = new ScannerSubscription();
-            scanSub.Instrument = "STOCK.EU";
+            scanSub.Instrument   = "STOCK.EU";
             scanSub.LocationCode = "STK.EU.IBIS";
-            scanSub.ScanCode = "TOP_PERC_GAIN";
+            scanSub.ScanCode     = "TOP_PERC_GAIN";
             //! [toppercentgaineribis]
             return scanSub;
         }
@@ -36,9 +36,9 @@ namespace IBSamples
             //! [mostactivefutsoffex]
             //Most active futures at SOFFEX
             ScannerSubscription scanSub = new ScannerSubscription();
-            scanSub.Instrument = "FUT.EU";
+            scanSub.Instrument   = "FUT.EU";
             scanSub.LocationCode = "FUT.EU.SOFFEX";
-            scanSub.ScanCode = "MOST_ACTIVE";
+            scanSub.ScanCode     = "MOST_ACTIVE";
             //! [mostactivefutsoffex]
             return scanSub;
         }
@@ -48,21 +48,21 @@ namespace IBSamples
             //! [highoptvolume]
             //High option volume P/C ratio US indexes
             ScannerSubscription scanSub = new ScannerSubscription();
-            scanSub.Instrument = "IND.US";
+            scanSub.Instrument   = "IND.US";
             scanSub.LocationCode = "IND.US";
-            scanSub.ScanCode = "HIGH_OPT_VOLUME_PUT_CALL_RATIO";
+            scanSub.ScanCode     = "HIGH_OPT_VOLUME_PUT_CALL_RATIO";
             //! [highoptvolume]
             return scanSub;
         }
-		
-		public static ScannerSubscription ComplexOrdersAndTrades()
+
+        public static ScannerSubscription ComplexOrdersAndTrades()
         {
             //! [combolatesttrade]
             //Complex orders and trades scan, latest trades
             ScannerSubscription scanSub = new ScannerSubscription();
-            scanSub.Instrument = "NATCOMB";
+            scanSub.Instrument   = "NATCOMB";
             scanSub.LocationCode = "NATCOMB.OPT.US";
-            scanSub.ScanCode = "COMBO_LATEST_TRADE";
+            scanSub.ScanCode     = "COMBO_LATEST_TRADE";
             //! [combolatesttrade]
             return scanSub;
         }

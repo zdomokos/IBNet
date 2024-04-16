@@ -14,5 +14,8 @@ public class FlexStatements
 
     public int? Count { get; set; }
 
-    public override string ToString() { return $"Count: {FlexStatement?.Count}"; }
+    public override string ToString()
+    {
+        return $"Count: {FlexStatement?.Count}";
+    }
 }

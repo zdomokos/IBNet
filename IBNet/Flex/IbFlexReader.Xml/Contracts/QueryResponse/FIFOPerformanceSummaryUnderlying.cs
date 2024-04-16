@@ -133,6 +133,5 @@ public class FifoPerformanceSummaryUnderlying
     [XmlAttribute(AttributeName = "transferredPnl")]
     public string TransferredPnl { get; set; }
 
-    [XmlAttribute(AttributeName = "code")] 
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 }

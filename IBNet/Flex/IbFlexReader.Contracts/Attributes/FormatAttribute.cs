@@ -10,7 +10,7 @@ public class FormatAttribute : Attribute
 
     public FormatAttribute(string value, int order = 0)
     {
-            Value = value;
-            Order = order;
-        }
+        Value = value;
+        Order = order;
+    }
 }

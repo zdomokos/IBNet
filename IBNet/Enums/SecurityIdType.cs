@@ -33,5 +33,7 @@ public class SecurityIdType : Enumeration<SecurityIdType, string>
     /// </summary>
     public static SecurityIdType RIC = new("RIC", nameof(RIC));
 
-    public SecurityIdType(string value, string name) : base(value, name) { }
+    public SecurityIdType(string value, string name) : base(value, name)
+    {
+    }
 }

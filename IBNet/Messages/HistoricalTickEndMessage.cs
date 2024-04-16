@@ -9,6 +9,6 @@ public class HistoricalTickEndMessage
 
     public HistoricalTickEndMessage(int reqId)
     {
-            ReqId = reqId;
-        }
+        ReqId = reqId;
+    }
 }

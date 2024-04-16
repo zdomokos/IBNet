@@ -43,5 +43,7 @@ public class TimeInForce : Enumeration<TimeInForce, string>
     /// </summary>
     public static TimeInForce Undefined = new("", nameof(Undefined));
 
-    public TimeInForce(string value, string name) : base(value, name) { }
+    public TimeInForce(string value, string name) : base(value, name)
+    {
+    }
 }

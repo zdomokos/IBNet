@@ -16,10 +16,13 @@ public class UseRth : Enumeration<UseRth, int>
 {
     // 0 - all data is returned even where the market in question was outside of its regular trading hours.
     public static UseRth No = new(0, nameof(No));
+
     // 1 - only data within the regular trading hours is returned, even if the requested time span falls partially or completely outside of the RTH.
     public static UseRth Yes = new(1, nameof(Yes));
 
-    public UseRth(int value, string name) : base(value, name) { }
+    public UseRth(int value, string name) : base(value, name)
+    {
+    }
 }
 
 //@param formatDate set to 1 to obtain the bars' time as yyyyMMdd HH:mm:ss, set to 2 to obtain it like system time format in seconds
@@ -29,9 +32,11 @@ public class BarTimeFormat : Enumeration<BarTimeFormat>
     public static BarTimeFormat YMD         = new(1, nameof(YMD));
     public static BarTimeFormat UnixSeconds = new(2, nameof(UnixSeconds));
 
-    public BarTimeFormat(int value, string name) : base(value, name) { }
+    public BarTimeFormat(int value, string name) : base(value, name)
+    {
+    }
 }
-    
+
 /// <summary>
 /// Historical Data Request Return Types
 /// </summary>
@@ -48,5 +53,7 @@ public class HistoricalDataType : Enumeration<HistoricalDataType, string>
     public static HistoricalDataType FeeRate       = new("FEE_RATE", nameof(FeeRate));
     public static HistoricalDataType RebateRate    = new("REBATE_RATE", nameof(RebateRate));
 
-    public HistoricalDataType(string value, string name) : base(value, name) { }
+    public HistoricalDataType(string value, string name) : base(value, name)
+    {
+    }
 }

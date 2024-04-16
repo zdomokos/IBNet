@@ -9,6 +9,6 @@ public class HistoricalTickBidAskEndMessage
 
     public HistoricalTickBidAskEndMessage(int reqId)
     {
-            ReqId = reqId;
-        }
+        ReqId = reqId;
+    }
 }

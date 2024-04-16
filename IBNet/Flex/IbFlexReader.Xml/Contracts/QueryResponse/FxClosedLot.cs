@@ -38,14 +38,12 @@ public class FxClosedLot
     [XmlAttribute(AttributeName = "proceeds")]
     public string Proceeds { get; set; }
 
-    [XmlAttribute(AttributeName = "cost")]
-    public string Cost { get; set; }
+    [XmlAttribute(AttributeName = "cost")] public string Cost { get; set; }
 
     [XmlAttribute(AttributeName = "realizedPL")]
     public string RealizedPL { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "levelOfDetail")]
     public string LevelOfDetail { get; set; }

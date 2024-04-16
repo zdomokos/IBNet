@@ -17,9 +17,9 @@ public class Index : Contract
     /// <param name="exchange">Exchange for the indice contract. See <see cref="Contract.Exchange"/></param>
     public Index(string symbol, string exchange)
     {
-            Symbol = symbol;
-            Exchange = exchange;
-            SecType = SecurityType.Index.Value;
-            Currency = "USD";
-        }
+        Symbol   = symbol;
+        Exchange = exchange;
+        SecType  = SecurityType.Index.Value;
+        Currency = "USD";
+    }
 }

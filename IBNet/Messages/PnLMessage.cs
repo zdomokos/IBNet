@@ -12,9 +12,9 @@ public class PnLMessage
 
     public PnLMessage(int reqId, double dailyPnL, double unrealizedPnL, double realizedPnL)
     {
-            ReqId = reqId;
-            DailyPnL = dailyPnL;
-            UnrealizedPnL = unrealizedPnL;
-            RealizedPnL = realizedPnL;
-        }
+        ReqId         = reqId;
+        DailyPnL      = dailyPnL;
+        UnrealizedPnL = unrealizedPnL;
+        RealizedPnL   = realizedPnL;
+    }
 }

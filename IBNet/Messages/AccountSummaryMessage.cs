@@ -17,10 +17,10 @@ public class AccountSummaryMessage
 
     public AccountSummaryMessage(int requestId, string account, string tag, string value, string currency)
     {
-            RequestId = requestId;
-            Account = account;
-            Tag = tag;
-            Value = value;
-            Currency = currency;
-        }
+        RequestId = requestId;
+        Account   = account;
+        Tag       = tag;
+        Value     = value;
+        Currency  = currency;
+    }
 }

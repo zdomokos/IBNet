@@ -10,9 +10,9 @@ public abstract class MarketDataMessage
 
     public MarketDataMessage(int requestId, int field)
     {
-            RequestId = requestId;
-            Field = field;
-        }
+        RequestId = requestId;
+        Field     = field;
+    }
 
     public int RequestId
     {

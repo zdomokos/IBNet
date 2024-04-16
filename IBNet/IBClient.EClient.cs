@@ -44,73 +44,73 @@ public partial class IBClient
     /// Each client MUST connect with a unique clientId.</param>
     public bool Connect(string host, int port, int clientId)
     {
-            if (!ClientSocket.IsConnected())
+        if (!ClientSocket.IsConnected())
+        {
+            if (host == null || host.Equals(""))
+                host = "127.0.0.1";
+            try
             {
-                if (host == null || host.Equals(""))
-                    host = "127.0.0.1";
-                try
-                {
-                    ClientId = clientId;
-                    ClientSocket.eConnect(host, port, ClientId);
+                ClientId = clientId;
+                ClientSocket.eConnect(host, port, ClientId);
 
-                    var reader = new EReader(ClientSocket, _signal);
-                    reader.Start();
+                var reader = new EReader(ClientSocket, _signal);
+                reader.Start();
 
-                    _messageDispatchThread = new Thread(() =>
-                                  {
-                                      while (ClientSocket.IsConnected())
-                                      {
-                                          _signal.waitForSignal();
-                                          reader.processMsgs();
-                                      }
-                                  })
-                                  {IsBackground = true};
-                    _messageDispatchThread.Start();
-                }
-                catch (Exception ex)
-                {
-                    ((EWrapper)this).error(ex);
-                }
+                _messageDispatchThread = new Thread(() =>
+                                                    {
+                                                        while (ClientSocket.IsConnected())
+                                                        {
+                                                            _signal.waitForSignal();
+                                                            reader.processMsgs();
+                                                        }
+                                                    })
+                                         { IsBackground = true };
+                _messageDispatchThread.Start();
             }
-            else
+            catch (Exception ex)
             {
-                ClientSocket.eDisconnect();
+                ((EWrapper)this).error(ex);
             }
-
-            return ClientSocket.IsConnected();
         }
+        else
+        {
+            ClientSocket.eDisconnect();
+        }
+
+        return ClientSocket.IsConnected();
+    }
 
     /// <summary>
     /// Call this method to terminate the connections with TWS. Calling this method does not cancel orders that have already been sent.
     /// </summary>
     public void Disconnect()
     {
-            lock (this)
-            {
-                GeneralTracer.WriteLineIf(ibTrace.TraceInfo, "IBClient Disconnect");
-                ClientSocket.eDisconnect();
-            }
+        lock (this)
+        {
+            GeneralTracer.WriteLineIf(ibTrace.TraceInfo, "IBClient Disconnect");
+            ClientSocket.eDisconnect();
         }
-        
+    }
+
     /// <summary>
     /// Returns the current system time on the server side.
     /// </summary>
     public void RequestCurrentTime()
     {
-            lock (this)
-                ClientSocket.reqCurrentTime();
-        }
-        
+        lock (this)
+            ClientSocket.reqCurrentTime();
+    }
+
     /// <summary>
     /// Returns one next valid Id...
     /// </summary>
     /// <param name="numberOfIds">Has No Effect</param>
     public void RequestIds(int numberOfIds)
     {
-            lock (this)
-                ClientSocket.reqIds(numberOfIds);
-        }
-        
+        lock (this)
+            ClientSocket.reqIds(numberOfIds);
+    }
+
     /// <summary>
     /// The default level is ERROR. Refer to the API logging page for more details.
     /// </summary>
@@ -124,12 +124,14 @@ public partial class IBClient
     /// </param>
     public void SetServerLogLevel(ServerLogLevel serverLogLevel)
     {
-            lock (this)
-                ClientSocket.setServerLogLevel((int) serverLogLevel);
-        }
+        lock (this)
+            ClientSocket.setServerLogLevel((int)serverLogLevel);
+    }
+
     #endregion
 
     #region Financial Instruments
+
     /// <summary>
     /// Call this function to download all details for a particular underlying. the contract details will be received via the contractDetails() function on the EWrapper.
     /// </summary>
@@ -137,15 +139,16 @@ public partial class IBClient
     /// <param name="contract">summary description of the contract being looked up.</param>
     public void RequestContractDetails(int requestId, Contract contract)
     {
-            if (contract == null)
-                throw new ArgumentNullException("contract");
-            lock (this)
-                ClientSocket.reqContractDetails(requestId, contract);
-        }
-        
+        if (contract == null)
+            throw new ArgumentNullException("contract");
+        lock (this)
+            ClientSocket.reqContractDetails(requestId, contract);
+    }
+
     #endregion
 
     #region Orders and Executions
+
     /// <summary>
     /// Call this method to place an order. The order status will be returned by the orderStatus event.
     /// </summary>
@@ -155,23 +158,23 @@ public partial class IBClient
     /// Each client MUST connect with a unique clientId.</param>
     public void PlaceOrder(int orderId, Contract contract, Order order)
     {
-            if (contract == null)
-                throw new ArgumentNullException("contract");
-            if (order == null)
-                throw new ArgumentNullException("order");
-            lock (this)
-                ClientSocket.placeOrder(orderId, contract, order);
-        }
-        
+        if (contract == null)
+            throw new ArgumentNullException("contract");
+        if (order == null)
+            throw new ArgumentNullException("order");
+        lock (this)
+            ClientSocket.placeOrder(orderId, contract, order);
+    }
+
     /// <summary>
     /// Call this method to cancel an order.
     /// </summary>
     /// <param name="orderId">Call this method to cancel an order.</param>
     public void CancelOrder(int orderId)
     {
-            lock (this)
-                ClientSocket.cancelOrder(orderId, "");
-        }
+        lock (this)
+            ClientSocket.cancelOrder(orderId, "");
+    }
 
     /// <summary>
     /// Call this method to request the open orders that were placed from this client. Each open order will be fed back through the openOrder() and orderStatus() functions on the EWrapper.
@@ -180,10 +183,10 @@ public partial class IBClient
     /// </summary>
     public void RequestOpenOrders()
     {
-            lock (this)
-                ClientSocket.reqOpenOrders();
-        }
-        
+        lock (this)
+            ClientSocket.reqOpenOrders();
+    }
+
     /// <summary>
     /// Call this method to request that newly created TWS orders be implicitly associated with the client. When a new TWS order is created, the order will be associated with the client and fed back through the openOrder() and orderStatus() methods on the EWrapper.
     /// 
@@ -192,9 +195,9 @@ public partial class IBClient
     /// <param name="autoBind">If set to TRUE, newly created TWS orders will be implicitly associated with the client. If set to FALSE, no association will be made.</param>
     public void RequestAutoOpenOrders(bool autoBind)
     {
-            lock (this)
-                ClientSocket.reqAutoOpenOrders(autoBind);
-        }
+        lock (this)
+            ClientSocket.reqAutoOpenOrders(autoBind);
+    }
 
     /// <summary>
     /// Call this method to request the open orders that were placed from all clients and also from TWS. Each open order will be fed back through the openOrder() and orderStatus() functions on the EWrapper.
@@ -203,10 +206,10 @@ public partial class IBClient
     /// </summary>
     public void RequestAllOpenOrders()
     {
-            lock (this)
-                ClientSocket.reqAllOpenOrders();
-        }
-        
+        lock (this)
+            ClientSocket.reqAllOpenOrders();
+    }
+
     /// <summary>
     /// When this method is called, the execution reports that meet the filter criteria are downloaded to the client via the execDetails() method.
     /// </summary>
@@ -214,24 +217,28 @@ public partial class IBClient
     /// <param name="filter">the filter criteria used to determine which execution reports are returned.</param>
     public void RequestExecutions(int requestId, ExecutionFilter filter)
     {
-            if (filter == null)
-            {
-                filter = new ExecutionFilter(0, "", DateTime.MinValue.ToString("yyyyMMdd-HH:mm:ss", CultureInfo.InvariantCulture), "", "", "", "");
-            }
-
-            lock (this)
-            {
-                ClientSocket.reqExecutions(requestId, filter);
-            }
+        if (filter == null)
+        {
+            filter = new ExecutionFilter(0, "",
+                                         DateTime.MinValue.ToString("yyyyMMdd-HH:mm:ss", CultureInfo.InvariantCulture),
+                                         "", "", "", "");
         }
-        
+
+        lock (this)
+        {
+            ClientSocket.reqExecutions(requestId, filter);
+        }
+    }
+
     public virtual void RequestGlobalCancel()
     {
-            ClientSocket.reqGlobalCancel();
-        }
+        ClientSocket.reqGlobalCancel();
+    }
+
     #endregion
 
     #region Streaming Market Data
+
     /// <summary>
     /// Call this method to request market data. The market data will be returned by the tickPrice, tickSize, tickOptionComputation(), tickGeneric(), tickString() and tickEFP() methods.
     /// </summary>
@@ -240,77 +247,78 @@ public partial class IBClient
     /// <param name="genericTickList">comma delimited list of generic tick types.  Tick types can be found here: (new Generic Tick Types page) </param>
     /// <param name="snapshot">Allows client to request snapshot market data.</param>
     /// <param name="marketDataOff">Market Data Off - used in conjunction with RTVolume Generic tick type causes only volume data to be sent.</param>
-    public void RequestMarketData(int requestId, Contract contract, Collection<GenericTickType> genericTickList, bool snapshot, bool regulatorySnaphsot, List<TagValue> mktDataOptions = null)
+    public void RequestMarketData(int requestId, Contract contract, Collection<GenericTickType> genericTickList,
+                                  bool snapshot, bool regulatorySnaphsot, List<TagValue> mktDataOptions = null)
     {
-            var genList = new StringBuilder();
-            if (genericTickList != null)
-            {
-                foreach (GenericTickType t in genericTickList)
-                    genList.AppendFormat("{0},", t.DisplayName);
-            }
-
-            lock (this)
-                ClientSocket.reqMktData(requestId, contract, genList.ToString().Trim(','), snapshot, regulatorySnaphsot, mktDataOptions);
+        var genList = new StringBuilder();
+        if (genericTickList != null)
+        {
+            foreach (GenericTickType t in genericTickList)
+                genList.AppendFormat("{0},", t.DisplayName);
         }
-        
+
+        lock (this)
+            ClientSocket.reqMktData(requestId, contract, genList.ToString().Trim(','), snapshot, regulatorySnaphsot,
+                                    mktDataOptions);
+    }
+
     public virtual void RequestMarketDataType(int marketDataType)
     {
-            ClientSocket.reqMarketDataType(marketDataType);
-        }
-        
+        ClientSocket.reqMarketDataType(marketDataType);
+    }
+
     /// <summary>
     /// After calling this method, market data for the specified Id will stop flowing.
     /// </summary>
     /// <param name="requestId">the Id that was specified in the call to reqMktData().</param>
     public void CancelMarketData(int requestId)
     {
-            lock (this)
-                ClientSocket.cancelMktData(requestId);
-        }
-        
-    public void RequestRealTimeBars(int requestId, Contract contract, int barSize, RealTimeBarType whatToShow, bool useRth, List<TagValue> realTimeBarsOptions = null)
+        lock (this)
+            ClientSocket.cancelMktData(requestId);
+    }
+
+    public void RequestRealTimeBars(int requestId, Contract contract, int barSize, RealTimeBarType whatToShow,
+                                    bool useRth, List<TagValue> realTimeBarsOptions = null)
     {
-            lock (this)
-                ClientSocket.reqRealTimeBars(requestId, contract, barSize, whatToShow.Value, useRth, realTimeBarsOptions);
-        }
+        lock (this)
+            ClientSocket.reqRealTimeBars(requestId, contract, barSize, whatToShow.Value, useRth, realTimeBarsOptions);
+    }
 
     public void CancelRealTimeBars(int requestId)
     {
-            lock (this)
-                ClientSocket.cancelRealTimeBars(requestId);
-        }
-        
+        lock (this)
+            ClientSocket.cancelRealTimeBars(requestId);
+    }
+
     /// <summary>
     /// Call this method to request market depth for a specific contract. The market depth will be returned by the updateMktDepth() and updateMktDepthL2() methods.
     /// </summary>
     /// <param name="requestId">the ticker Id. Must be a unique value. When the market depth data returns, it will be identified by this tag. This is also used when canceling the market depth.</param>
     /// <param name="contract">this structure contains a description of the contract for which market depth data is being requested.</param>
     /// <param name="numberOfRows">specifies the number of market depth rows to return.</param>
-    public void RequestMarketDepth(int requestId, Contract contract, int numberOfRows, bool isSmartDepth, List<TagValue> mktDepthOptions = null)
+    public void RequestMarketDepth(int requestId, Contract contract, int numberOfRows, bool isSmartDepth,
+                                   List<TagValue> mktDepthOptions = null)
     {
-            if (contract == null)
-                throw new ArgumentNullException("contract");
-            lock (this)
-                ClientSocket.reqMarketDepth(requestId, contract, numberOfRows, isSmartDepth, mktDepthOptions);
-        }
-        
+        if (contract == null)
+            throw new ArgumentNullException("contract");
+        lock (this)
+            ClientSocket.reqMarketDepth(requestId, contract, numberOfRows, isSmartDepth, mktDepthOptions);
+    }
+
     /// <summary>
     /// After calling this method, market depth data for the specified Id will stop flowing.
     /// </summary>
     /// <param name="requestId">the Id that was specified in the call to reqMktDepth().</param>
     public void CancelMarketDepth(int requestId, bool isSmartDepth)
     {
-            lock (this)
-                ClientSocket.cancelMktDepth(requestId, isSmartDepth);
-        }
-        
-                
-
-
+        lock (this)
+            ClientSocket.cancelMktDepth(requestId, isSmartDepth);
+    }
 
     #endregion
 
     #region Historical Market Data
+
     /// <summary>
     /// Call the reqHistoricalData() method to start receiving historical data results through the historicalData() EWrapper method. 
     /// </summary>
@@ -333,52 +341,55 @@ public partial class IBClient
     public void RequestHistoricalData(int requestId, Contract contract, DateTime endDateTime, TimeSpan duration,
                                       BarSize barSizeSetting, HistoricalDataType whatToShow, bool useRth)
     {
-            DateTime beginDateTime = endDateTime.Subtract(duration);
-            TimeSpan period        = endDateTime.Subtract(beginDateTime);
-            string   dur;
+        DateTime beginDateTime = endDateTime.Subtract(duration);
+        TimeSpan period        = endDateTime.Subtract(beginDateTime);
+        string   dur;
 
-            double secs = period.TotalSeconds;
-            long   unit;
+        double secs = period.TotalSeconds;
+        long   unit;
 
-            if (secs < 1)
-                throw new ArgumentOutOfRangeException("Period cannot be less than 1 second.");
-            if (secs < 86400)
+        if (secs < 1)
+            throw new ArgumentOutOfRangeException("Period cannot be less than 1 second.");
+        if (secs < 86400)
+        {
+            unit = (long)Math.Ceiling(secs);
+            dur  = $"{unit} S";
+        }
+        else
+        {
+            double days = secs / 86400;
+            unit = (long)Math.Ceiling(days);
+            if (unit <= 34)
             {
-                unit = (long) Math.Ceiling(secs);
-                dur  = $"{unit} S";
+                dur = $"{unit} D";
             }
             else
             {
-                double days = secs / 86400;
-                unit = (long) Math.Ceiling(days);
-                if (unit <= 34)
-                {
-                    dur = $"{unit} D";
-                }
-                else
-                {
-                    double weeks = days / 7;
-                    unit = (long) Math.Ceiling(weeks);
-                    if (unit > 52)
-                        throw new ArgumentOutOfRangeException("Period cannot be bigger than 52 weeks.");
-                    dur = $"{unit} W";
-                }
+                double weeks = days / 7;
+                unit = (long)Math.Ceiling(weeks);
+                if (unit > 52)
+                    throw new ArgumentOutOfRangeException("Period cannot be bigger than 52 weeks.");
+                dur = $"{unit} W";
             }
-
-            
-            RequestHistoricalData2(requestId, contract, endDateTime, dur, barSizeSetting, whatToShow, useRth ? 1 : 0, BarTimeFormat.UnixSeconds.Value, false, null);
         }
+
+
+        RequestHistoricalData2(requestId, contract, endDateTime, dur, barSizeSetting, whatToShow, useRth ? 1 : 0,
+                               BarTimeFormat.UnixSeconds.Value, false, null);
+    }
 
     public void RequestHistoricalData2(int requestId, Contract contract, DateTime endDateTime, string duration,
-                                       BarSize barSizeSetting, HistoricalDataType whatToShow, int useRth, int formatDate, bool keepUpToDate, List<TagValue> chartOptions)
+                                       BarSize barSizeSetting, HistoricalDataType whatToShow, int useRth,
+                                       int formatDate, bool keepUpToDate, List<TagValue> chartOptions)
     {
-            string endDT   =
-                $"{endDateTime.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture)} UTC";
-            string barSize = barSizeSetting.Value;
-            string wts     = whatToShow.Value;
-            lock (this)
-                ClientSocket.reqHistoricalData(requestId, contract, endDT, duration, barSize, wts, useRth, formatDate, keepUpToDate, chartOptions);
-        }
+        string endDT =
+            $"{endDateTime.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture)} UTC";
+        string barSize = barSizeSetting.Value;
+        string wts     = whatToShow.Value;
+        lock (this)
+            ClientSocket.reqHistoricalData(requestId, contract, endDT, duration, barSize, wts, useRth, formatDate,
+                                           keepUpToDate, chartOptions);
+    }
 
     /// <summary>
     /// Call the CancelHistoricalData method to stop receiving historical data results.
@@ -386,13 +397,14 @@ public partial class IBClient
     /// <param name="requestId">the Id that was specified in the call to <see cref="RequestHistoricalData(int,Contract,DateTime,TimeSpan,BarSize,HistoricalDataType,int)"/>.</param>
     public void CancelHistoricalData(int requestId)
     {
-            lock (this)
-                ClientSocket.cancelHistoricalData(requestId);
-        }
-        
+        lock (this)
+            ClientSocket.cancelHistoricalData(requestId);
+    }
+
     #endregion
 
     #region Account & Portfolio Data
+
     /// <summary>
     /// Call this function to start getting account values, portfolio, and last update time information.
     /// </summary>
@@ -400,10 +412,10 @@ public partial class IBClient
     /// <param name="acctCode">the account code for which to receive account and portfolio updates.</param>
     public void RequestAccountUpdates(bool subscribe, string acctCode)
     {
-            lock (this)
-                ClientSocket.reqAccountUpdates(subscribe, acctCode);
-        }
-        
+        lock (this)
+            ClientSocket.reqAccountUpdates(subscribe, acctCode);
+    }
+
     /// <summary>
     /// Requests a specific account's summary.
     /// This method will subscribe to the account summary as presented in the TWS' Account Summary tab. The data is returned at EWrapper::accountSummary
@@ -414,21 +426,21 @@ public partial class IBClient
     /// <seealso cref="CancelAccountSummary"/>
     public virtual void RequestAccountSummary(int reqId, string group, AccountSummary summaryItems)
     {
-            var sb     = new StringBuilder();
-            var values = Enum.GetValues(typeof(AccountSummary)).Cast<AccountSummary>();
-            foreach (AccountSummary si in values)
-            {
-                if (summaryItems.HasFlag(si))
-                    sb.Append($"{si},");
-            }
-
-            if (sb.Length > 0)
-            {
-                string tags = sb.ToString().Trim(',');
-                ClientSocket.reqAccountSummary(reqId, group, tags);
-            }
+        var sb     = new StringBuilder();
+        var values = Enum.GetValues(typeof(AccountSummary)).Cast<AccountSummary>();
+        foreach (AccountSummary si in values)
+        {
+            if (summaryItems.HasFlag(si))
+                sb.Append($"{si},");
         }
-        
+
+        if (sb.Length > 0)
+        {
+            string tags = sb.ToString().Trim(',');
+            ClientSocket.reqAccountSummary(reqId, group, tags);
+        }
+    }
+
     /// <summary>
     /// Cancels the account's summary request. After requesting an account's summary, invoke this function to cancel it.
     /// </summary>
@@ -436,8 +448,8 @@ public partial class IBClient
     /// <seealso cref="RequestAccountSummary"/>
     public virtual void CancelAccountSummary(int reqId)
     {
-            ClientSocket.cancelAccountSummary(reqId);
-        }
+        ClientSocket.cancelAccountSummary(reqId);
+    }
 
     /// <summary>
     /// Requests all positions from all accounts
@@ -445,8 +457,8 @@ public partial class IBClient
     /// <seealso cref="CancelPositions"/>
     public virtual void RequestPositions()
     {
-            ClientSocket.reqPositions();
-        }
+        ClientSocket.reqPositions();
+    }
 
     /// <summary>
     /// Cancels all account's positions request
@@ -454,12 +466,13 @@ public partial class IBClient
     /// <seealso cref="RequestPositions"/>
     public virtual void CancelPositions()
     {
-            ClientSocket.cancelPositions();
-        }
+        ClientSocket.cancelPositions();
+    }
+
     #endregion
 
     #region Options
-        
+
     /// <summary>
     /// Call the exerciseOptions() method to exercise options. 
     /// "SMART" is not an allowed exchange in exerciseOptions() calls, and that TWS does a moneyness request for the position in question whenever any API initiated exercise or lapse is attempted.
@@ -483,22 +496,23 @@ public partial class IBClient
     public void ExerciseOptions(int requestId, Contract contract, int exerciseAction, int exerciseQuantity,
                                 string account, int overrideRenamed)
     {
-            if (contract == null)
-                throw new ArgumentNullException("contract");
-            lock (this)
-                ClientSocket.exerciseOptions(requestId, contract, exerciseAction, exerciseQuantity, account, overrideRenamed, "", "", false);
-        }
-        
+        if (contract == null)
+            throw new ArgumentNullException("contract");
+        lock (this)
+            ClientSocket.exerciseOptions(requestId, contract, exerciseAction, exerciseQuantity, account,
+                                         overrideRenamed, "", "", false);
+    }
+
     public virtual void RequestCalculateOptionPrice(int reqId, Contract contract, double volatility, double underPrice)
     {
-            ClientSocket.calculateOptionPrice(reqId, contract, volatility, underPrice, null);
-        }
+        ClientSocket.calculateOptionPrice(reqId, contract, volatility, underPrice, null);
+    }
 
     public virtual void CancelCalculateOptionPrice(int reqId)
     {
-            ClientSocket.cancelCalculateOptionPrice(reqId);
-        }
-        
+        ClientSocket.cancelCalculateOptionPrice(reqId);
+    }
+
     /// <summary>
     /// Calculates the Implied Volatility based on the user-supplied option and underlying prices.
     /// The calculated implied volatility is returned by tickOptionComputation( ) in a new tick type, CUST_OPTION_COMPUTATION, which is described below.
@@ -507,20 +521,22 @@ public partial class IBClient
     /// <param name="contract">Contract</param>
     /// <param name="optionPrice">Price of the option</param>
     /// <param name="underPrice">Price of teh underlying of the option</param>
-    public virtual void RequestCalculateImpliedVolatility(int requestId, Contract contract, double optionPrice, double underPrice)
+    public virtual void RequestCalculateImpliedVolatility(int requestId, Contract contract, double optionPrice,
+                                                          double underPrice)
     {
-            lock (this)
-                ClientSocket.calculateImpliedVolatility(requestId, contract, optionPrice, underPrice, null);
-        }
-        
+        lock (this)
+            ClientSocket.calculateImpliedVolatility(requestId, contract, optionPrice, underPrice, null);
+    }
+
     public virtual void CancelCalculateImpliedVolatility(int reqId)
     {
-            ClientSocket.cancelCalculateImpliedVolatility(reqId);
-        }
-        
+        ClientSocket.cancelCalculateImpliedVolatility(reqId);
+    }
+
     #endregion
 
     #region Financial Advisors
+
     /// <summary>
     /// Call this method to request the list of managed accounts. The list will be returned by the managedAccounts() function on the EWrapper.
     /// 
@@ -528,9 +544,9 @@ public partial class IBClient
     /// </summary>
     public void RequestManagedAccts()
     {
-            lock (this)
-                ClientSocket.reqManagedAccts();
-        }
+        lock (this)
+            ClientSocket.reqManagedAccts();
+    }
 
     /// <summary>
     /// Call this method to request FA configuration information from TWS. The data returns in an XML string via the receiveFA() method.
@@ -543,9 +559,9 @@ public partial class IBClient
     /// </param>
     public void RequestFA(FADataType faDataType)
     {
-            lock (this)
-                ClientSocket.requestFA(faDataType.Value);
-        }
+        lock (this)
+            ClientSocket.requestFA(faDataType.Value);
+    }
 
     /// <summary>
     /// Call this method to request FA configuration information from TWS. The data returns in an XML string via a "receiveFA" ActiveX event.  
@@ -559,12 +575,14 @@ public partial class IBClient
     /// <param name="xml">the XML string containing the new FA configuration information.</param>
     public void ReplaceFA(int requestId, FADataType faDataType, string xml)
     {
-            lock (this)
-                ClientSocket.replaceFA(requestId, faDataType.Value, xml);
-        }
+        lock (this)
+            ClientSocket.replaceFA(requestId, faDataType.Value, xml);
+    }
+
     #endregion
 
     #region Fundamental Data
+
     /// <summary>
     /// Request Fundamental Data
     /// </summary>
@@ -573,9 +591,9 @@ public partial class IBClient
     /// <param name="reportType">Report Type</param>
     public virtual void RequestFundamentalData(int requestId, Contract contract, string reportType)
     {
-            lock (this)
-                ClientSocket.reqFundamentalData(requestId, contract, reportType, null);
-        }
+        lock (this)
+            ClientSocket.reqFundamentalData(requestId, contract, reportType, null);
+    }
 
     /// <summary>
     /// Call this method to stop receiving Reuters global fundamental data.
@@ -583,31 +601,35 @@ public partial class IBClient
     /// <param name="requestId">The ID of the data request.</param>
     public virtual void CancelFundamentalData(int requestId)
     {
-            lock (this)
-                ClientSocket.cancelFundamentalData(requestId);
-        }
+        lock (this)
+            ClientSocket.cancelFundamentalData(requestId);
+    }
+
     #endregion
 
     #region Market Scanners
+
     /// <summary>
     /// Call the reqScannerParameters() method to receive an XML document that describes the valid parameters that a scanner subscription can have.
     /// </summary>
     public void RequestScannerParameters()
     {
-            lock (this)
-                ClientSocket.reqScannerParameters();
-        }
+        lock (this)
+            ClientSocket.reqScannerParameters();
+    }
 
     /// <summary>
     /// Call the reqScannerSubscription() method to start receiving market scanner results through the scannerData() EWrapper method. 
     /// </summary>
     /// <param name="requestId">the Id for the subscription. Must be a unique value. When the subscription  data is received, it will be identified by this Id. This is also used when canceling the scanner.</param>
     /// <param name="subscription">summary of the scanner subscription parameters including filters.</param>
-    public void RequestScannerSubscription(int requestId, ScannerSubscription subscription, string scannerSubscriptionOptions, string scannerSubscriptionFilterOptions)
+    public void RequestScannerSubscription(int requestId, ScannerSubscription subscription,
+                                           string scannerSubscriptionOptions, string scannerSubscriptionFilterOptions)
     {
-            lock (this)
-                ClientSocket.reqScannerSubscription(requestId, subscription, scannerSubscriptionOptions, scannerSubscriptionFilterOptions);
-        }
+        lock (this)
+            ClientSocket.reqScannerSubscription(requestId, subscription, scannerSubscriptionOptions,
+                                                scannerSubscriptionFilterOptions);
+    }
 
     /// <summary>
     /// Call the cancelScannerSubscription() method to stop receiving market scanner results. 
@@ -615,30 +637,32 @@ public partial class IBClient
     /// <param name="requestId">the Id that was specified in the call to reqScannerSubscription().</param>
     public void CancelScannerSubscription(int requestId)
     {
-            lock (this)
-                ClientSocket.cancelScannerSubscription(requestId);
-        }
+        lock (this)
+            ClientSocket.cancelScannerSubscription(requestId);
+    }
+
     #endregion
 
     #region News
+
     /// <summary>
     /// Call this method to start receiving news bulletins. Each bulletin will be returned by the updateNewsBulletin() method.
     /// </summary>
     /// <param name="allMessages">if set to TRUE, returns all the existing bulletins for the current day and any new ones. IF set to FALSE, will only return new bulletins.</param>
     public void RequestNewsBulletins(bool allMessages)
     {
-            lock (this)
-                ClientSocket.reqNewsBulletins(allMessages);
-        }
+        lock (this)
+            ClientSocket.reqNewsBulletins(allMessages);
+    }
 
     /// <summary>
     /// Call this method to stop receiving news bulletins.
     /// </summary>
     public void CancelNewsBulletins()
     {
-            lock (this)
-                ClientSocket.cancelNewsBulletin();
-        }
-    #endregion
+        lock (this)
+            ClientSocket.cancelNewsBulletin();
+    }
 
+    #endregion
 }

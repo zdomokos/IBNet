@@ -8,11 +8,9 @@ using IbFlexReader.Contracts.Attributes;
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public class InterestAccrualsCurrency
 {
-    [Format(Constants.DateFormat)]
-    public DateTime? ToDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? ToDate { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? FromDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? FromDate { get; set; }
 
     public string AccountId { get; set; }
     public string AcctAlias { get; set; }

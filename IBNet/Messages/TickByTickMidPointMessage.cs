@@ -11,8 +11,8 @@ public class TickByTickMidPointMessage
 
     public TickByTickMidPointMessage(int reqId, long time, double midPoint)
     {
-            ReqId = reqId;
-            Time = time;
-            MidPoint = midPoint;
-        }
+        ReqId    = reqId;
+        Time     = time;
+        MidPoint = midPoint;
+    }
 }

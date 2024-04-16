@@ -41,8 +41,7 @@ public class SLBActivity
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -80,11 +79,9 @@ public class SLBActivity
     [XmlAttribute(AttributeName = "exchange")]
     public string Exchange { get; set; }
 
-    [XmlAttribute(AttributeName = "type")]
-    public string Type { get; set; }
+    [XmlAttribute(AttributeName = "type")] public string Type { get; set; }
 
-    [XmlAttribute(AttributeName = "date")]
-    public string Date { get; set; }
+    [XmlAttribute(AttributeName = "date")] public string Date { get; set; }
 
     [XmlAttribute(AttributeName = "markCurrentPrice")]
     public string MarkCurrentPrice { get; set; }

@@ -31,16 +31,14 @@ public class SLBActivity
     public int?           Multiplier                { get; set; }
     public double?        Strike                    { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Expiry { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Expiry { get; set; }
 
     public PutCall? PutCall               { get; set; }
     public string   PrincipalAdjustFactor { get; set; }
     public string   Exchange              { get; set; }
     public string   Type                  { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Date { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Date { get; set; }
 
     public double? MarkCurrentPrice    { get; set; }
     public double? MarkPriorPrice      { get; set; }

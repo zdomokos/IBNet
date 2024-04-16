@@ -41,8 +41,7 @@ public class TransactionTax
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -77,8 +76,7 @@ public class TransactionTax
     [XmlAttribute(AttributeName = "principalAdjustFactor")]
     public string PrincipalAdjustFactor { get; set; }
 
-    [XmlAttribute(AttributeName = "date")]
-    public string Date { get; set; }
+    [XmlAttribute(AttributeName = "date")] public string Date { get; set; }
 
     [XmlAttribute(AttributeName = "taxDescription")]
     public string TaxDescription { get; set; }
@@ -101,8 +99,7 @@ public class TransactionTax
     [XmlAttribute(AttributeName = "source")]
     public string Source { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "levelOfDetail")]
     public string LevelOfDetail { get; set; }

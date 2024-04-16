@@ -10,7 +10,7 @@ public class HeadTimestampMessage
 
     public HeadTimestampMessage(int reqId, string headTimestamp)
     {
-            ReqId = reqId;
-            HeadTimestamp = headTimestamp;
-        }
+        ReqId         = reqId;
+        HeadTimestamp = headTimestamp;
+    }
 }

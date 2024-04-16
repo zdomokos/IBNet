@@ -13,8 +13,7 @@ public class CFDCharge : SecurityInfo
     public string  Model        { get; set; }
     public double? FxRateToBase { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Date { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Date { get; set; }
 
     public double? Received      { get; set; }
     public double? Paid          { get; set; }

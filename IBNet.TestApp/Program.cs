@@ -25,13 +25,23 @@ namespace IBSamples
             var reader = new EReader(clientSocket, readerSignal);
             reader.Start();
             //Once the messages are in the queue, an additional thread can be created to fetch them
-            new Thread(() => { while (clientSocket.IsConnected()) { readerSignal.waitForSignal(); reader.processMsgs(); } }) { IsBackground = true }.Start();
+            new Thread(() =>
+                       {
+                           while (clientSocket.IsConnected())
+                           {
+                               readerSignal.waitForSignal();
+                               reader.processMsgs();
+                           }
+                       }) { IsBackground = true }.Start();
             //! [ereader]
             /*************************************************************************************************************************************************/
             /* One (although primitive) way of knowing if we can proceed is by monitoring the order's nextValidId reception which comes down automatically after connecting. */
             /*************************************************************************************************************************************************/
-            while (testImpl.NextOrderId <= 0) { }            
-            testIBMethods(clientSocket, testImpl.NextOrderId);            
+            while (testImpl.NextOrderId <= 0)
+            {
+            }
+
+            testIBMethods(clientSocket, testImpl.NextOrderId);
             Console.WriteLine("Disconnecting...");
             clientSocket.eDisconnect();
             return 0;
@@ -203,22 +213,24 @@ namespace IBSamples
 
         private static void wshCalendarOperations(EClientSocket client)
         {
-			//! [reqmetadata]
+            //! [reqmetadata]
             client.reqWshMetaData(1100);
-			//! [reqmetadata]
+            //! [reqmetadata]
 
             Thread.Sleep(1000);
 
             client.cancelWshMetaData(1100);
 
-			//! [reqeventdata]
+            //! [reqeventdata]
             client.reqWshEventData(1101, new WshEventData(8314, false, false, false, "20220511", "", 5));
             //! [reqeventdata]
 
             Thread.Sleep(3000);
 
             //! [reqeventdata]
-            client.reqWshEventData(1102, new WshEventData("{\"watchlist\":[\"8314\"]}", false, false, false, "", "20220512", int.MaxValue));
+            client.reqWshEventData(1102,
+                                   new WshEventData("{\"watchlist\":[\"8314\"]}", false, false, false, "", "20220512",
+                                                    int.MaxValue));
             //! [reqeventdata]
 
             Thread.Sleep(1000);
@@ -229,7 +241,6 @@ namespace IBSamples
 
         private static void tickByTickOperations(EClientSocket client)
         {
-
             /*** Requesting tick-by-tick data (only refresh) ***/
             //! [reqtickbytick]
             client.reqTickByTickData(19001, ContractSamples.USStockAtSmart(), "Last", 0, false);
@@ -270,34 +281,36 @@ namespace IBSamples
 
         private static void historicalTicks(EClientSocket client)
         {
-			//! [reqhistoricalticks]
-            client.reqHistoricalTicks(18001, ContractSamples.USStockAtSmart(), "20170712 21:39:33", null, 10, "TRADES", 1, true, null);
-            client.reqHistoricalTicks(18002, ContractSamples.USStockAtSmart(), "20170712 21:39:33", null, 10, "BID_ASK", 1, true, null);
-            client.reqHistoricalTicks(18003, ContractSamples.USStockAtSmart(), "20170712 21:39:33", null, 10, "MIDPOINT", 1, true, null);
-			//! [reqhistoricalticks]
+            //! [reqhistoricalticks]
+            client.reqHistoricalTicks(18001, ContractSamples.USStockAtSmart(), "20170712 21:39:33", null, 10, "TRADES",
+                                      1, true, null);
+            client.reqHistoricalTicks(18002, ContractSamples.USStockAtSmart(), "20170712 21:39:33", null, 10, "BID_ASK",
+                                      1, true, null);
+            client.reqHistoricalTicks(18003, ContractSamples.USStockAtSmart(), "20170712 21:39:33", null, 10,
+                                      "MIDPOINT", 1, true, null);
+            //! [reqhistoricalticks]
         }
 
         private static void pnl(EClientSocket client)
         {
-			//! [reqpnl]
+            //! [reqpnl]
             client.reqPnL(17001, "DUD00029", "");
-			//! [reqpnl]
+            //! [reqpnl]
             Thread.Sleep(1000);
-			//! [cancelpnl]
+            //! [cancelpnl]
             client.cancelPnL(17001);
-			//! [cancelpnl]
+            //! [cancelpnl]
         }
 
         private static void pnlSingle(EClientSocket client)
         {
-			//! [reqpnlsingle]
+            //! [reqpnlsingle]
             client.reqPnLSingle(17001, "DUD00029", "", 268084);
-			//! [reqpnlsingle]
+            //! [reqpnlsingle]
             Thread.Sleep(1000);
-			//! [cancelpnlsingle]
+            //! [cancelpnlsingle]
             client.cancelPnLSingle(17001);
-			//! [cancelpnlsingle]
-			
+            //! [cancelpnlsingle]
         }
 
         private static void rerouteCFDOperations(EClientSocket client)
@@ -323,26 +336,25 @@ namespace IBSamples
 
         private static void histogramData(EClientSocket client)
         {
-			//! [reqHistogramData]
-			client.reqHistogramData(15001, ContractSamples.USStockWithPrimaryExch(), false, "1 week");
             //! [reqHistogramData]
-			Thread.Sleep(2000);
+            client.reqHistogramData(15001, ContractSamples.USStockWithPrimaryExch(), false, "1 week");
+            //! [reqHistogramData]
+            Thread.Sleep(2000);
             //! [cancelHistogramData]
-			client.cancelHistogramData(15001);
-			//! [cancelHistogramData]
-		}
+            client.cancelHistogramData(15001);
+            //! [cancelHistogramData]
+        }
 
         private static void headTimestamp(EClientSocket client)
         {
-			//! [reqHeadTimeStamp]
+            //! [reqHeadTimeStamp]
             client.reqHeadTimestamp(14001, ContractSamples.USStock(), "TRADES", 1, 1);
             //! [reqHeadTimeStamp]
             Thread.Sleep(1000);
             //! [cancelHeadTimestamp]
             client.cancelHeadTimestamp(14001);
-			//! [cancelHeadTimestamp]
-	
-	}
+            //! [cancelHeadTimestamp]
+        }
 
         private static void smartComponents(EClientSocket client)
         {
@@ -354,9 +366,9 @@ namespace IBSamples
             }
 
             client.cancelMktData(13001);
-		//! [reqsmartcomponents]
+            //! [reqsmartcomponents]
             client.reqSmartComponents(13002, testImpl.BboExchange);
-		//! [reqsmartcomponents]
+            //! [reqsmartcomponents]
         }
 
         private static void tickDataOperations(EClientSocket client)
@@ -370,20 +382,20 @@ namespace IBSamples
             client.reqMktData(1003, ContractSamples.FutureComboContract(), string.Empty, true, false, null);
             //! [reqmktdata_snapshot]
 
-			/*
-			//! [regulatorysnapshot]
-			// Each regulatory snapshot incurs a 0.01 USD fee
-			client.reqMktData(1005, ContractSamples.USStock(), "", false, true, null);
-			//! [regulatorysnapshot]
-			*/
-			
+            /*
+            //! [regulatorysnapshot]
+            // Each regulatory snapshot incurs a 0.01 USD fee
+            client.reqMktData(1005, ContractSamples.USStock(), "", false, true, null);
+            //! [regulatorysnapshot]
+            */
+
             //! [reqmktdata_genticks]
             //Requesting RTVolume (Time & Sales) and shortable generic ticks
             client.reqMktData(1004, ContractSamples.USStockAtSmart(), "233,236", false, false, null);
             //! [reqmktdata_genticks]
 
             //! [reqmktdata_contractnews]
-			// Without the API news subscription this will generate an "invalid tick type" error
+            // Without the API news subscription this will generate an "invalid tick type" error
             client.reqMktData(1005, ContractSamples.USStock(), "mdoff,292:BZ", false, false, null);
             client.reqMktData(1006, ContractSamples.USStock(), "mdoff,292:BT", false, false, null);
             client.reqMktData(1007, ContractSamples.USStock(), "mdoff,292:FLY", false, false, null);
@@ -399,7 +411,7 @@ namespace IBSamples
             //Requesting data for an option contract will return the greek values
             client.reqMktData(1002, ContractSamples.OptionWithLocalSymbol(), string.Empty, false, false, null);
             //! [reqoptiondatagenticks]
-            
+
             //! [reqfuturesopeninterest]
             //Requesting data for a futures contract will return the futures open interest
             client.reqMktData(1014, ContractSamples.SimpleFuture(), "mdoff,588", false, false, null);
@@ -509,9 +521,12 @@ namespace IBSamples
             /*** Requesting historical data ***/
             //! [reqhistoricaldata]
             String queryTime = DateTime.Now.AddMonths(-6).ToString("yyyyMMdd HH:mm:ss");
-            client.reqHistoricalData(4001, ContractSamples.EurGbpFx(), queryTime, "1 M", "1 day", "MIDPOINT", 1, 1, false, null);
-            client.reqHistoricalData(4002, ContractSamples.EuropeanStock(), queryTime, "10 D", "1 min", "TRADES", 1, 1, false, null);
-            client.reqHistoricalData(4003, ContractSamples.USStockAtSmart(), queryTime, "1 M", "1 day", "SCHEDULE", 1, 1, false, null);
+            client.reqHistoricalData(4001, ContractSamples.EurGbpFx(), queryTime, "1 M", "1 day", "MIDPOINT", 1, 1,
+                                     false, null);
+            client.reqHistoricalData(4002, ContractSamples.EuropeanStock(), queryTime, "10 D", "1 min", "TRADES", 1, 1,
+                                     false, null);
+            client.reqHistoricalData(4003, ContractSamples.USStockAtSmart(), queryTime, "1 M", "1 day", "SCHEDULE", 1,
+                                     1, false, null);
             //! [reqhistoricaldata]
             Thread.Sleep(2000);
             /*** Canceling historical data requests ***/
@@ -580,30 +595,32 @@ namespace IBSamples
             /*** Triggering a scanner subscription ***/
             //! [reqscannersubscription]
             client.reqScannerSubscription(7001, ScannerSubscriptionSamples.HighOptVolumePCRatioUSIndexes(), "", null);
-			
-			TagValue t1 = new TagValue("usdMarketCapAbove", "10000");
-			TagValue t2 = new TagValue("optVolumeAbove", "1000");
-			TagValue t3 = new TagValue("avgVolumeAbove", "100000000");
 
-			List<TagValue> TagValues = new List<TagValue>{t1, t2, t3};
-			client.reqScannerSubscription(7002, ScannerSubscriptionSamples.HotUSStkByVolume(), null, TagValues); // requires TWS v973+
-			
+            TagValue t1 = new TagValue("usdMarketCapAbove", "10000");
+            TagValue t2 = new TagValue("optVolumeAbove", "1000");
+            TagValue t3 = new TagValue("avgVolumeAbove", "100000000");
+
+            List<TagValue> TagValues = new List<TagValue> { t1, t2, t3 };
+            client.reqScannerSubscription(7002, ScannerSubscriptionSamples.HotUSStkByVolume(), null,
+                                          TagValues); // requires TWS v973+
+
             //! [reqscannersubscription]
 
-			//! [reqcomplexscanner]
-			
-			TagValue t = new TagValue("underConID", "265598");
-			List<TagValue> AAPLConIDTag = new List<TagValue>{t};
-			client.reqScannerSubscription(7003, ScannerSubscriptionSamples.ComplexOrdersAndTrades(), null, AAPLConIDTag); // requires TWS v975+
-			
-			//! [reqcomplexscanner]
-			
+            //! [reqcomplexscanner]
+
+            TagValue       t            = new TagValue("underConID", "265598");
+            List<TagValue> AAPLConIDTag = new List<TagValue> { t };
+            client.reqScannerSubscription(7003, ScannerSubscriptionSamples.ComplexOrdersAndTrades(), null,
+                                          AAPLConIDTag); // requires TWS v975+
+
+            //! [reqcomplexscanner]
+
             Thread.Sleep(2000);
             /*** Canceling the scanner subscription ***/
             //! [cancelscannersubscription]
             client.cancelScannerSubscription(7001);
-			client.cancelScannerSubscription(7002);
-			client.cancelScannerSubscription(7003);
+            client.cancelScannerSubscription(7002);
+            client.cancelScannerSubscription(7003);
 
             //! [cancelscannersubscription]
         }
@@ -700,7 +717,6 @@ namespace IBSamples
             //! [requserinfo]
             client.reqUserInfo(0);
             //! [requserinfo]
-
         }
 
         private static void orderOperations(EClientSocket client, int nextOrderId)
@@ -728,17 +744,18 @@ namespace IBSamples
             //Thread.Sleep(1000);
             //BracketSample(client, nextOrderId);
 
-            /*** Placing/modifying an order - remember to ALWAYS increment the nextValidId after placing an order so it can be used for the next one! 
-			Note if there are multiple clients connected to an account, the order ID must also be greater than all order IDs returned for orders to orderStatus and openOrder to this client.
-			***/
+            /*** Placing/modifying an order - remember to ALWAYS increment the nextValidId after placing an order so it can be used for the next one!
+            Note if there are multiple clients connected to an account, the order ID must also be greater than all order IDs returned for orders to orderStatus and openOrder to this client.
+            ***/
             //! [order_submission]
-            client.placeOrder(nextOrderId++, ContractSamples.USStock(), OrderSamples.TrailingStopLimit("BUY", 1, 5, 5, 110));
+            client.placeOrder(nextOrderId++, ContractSamples.USStock(),
+                              OrderSamples.TrailingStopLimit("BUY", 1, 5, 5, 110));
             //! [order_submission]
 
-			//! [place_midprice]
-			client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), OrderSamples.Midprice("BUY", 1, 150));
-			//! [place_midprice]
-			
+            //! [place_midprice]
+            client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), OrderSamples.Midprice("BUY", 1, 150));
+            //! [place_midprice]
+
             //! [faorderoneaccount]
             Order faOrderOneAccount = OrderSamples.MarketOrder("BUY", 100);
             // Specify the Account Number directly
@@ -748,16 +765,17 @@ namespace IBSamples
 
             //! [faordergroupequalquantity]
             Order faOrderGroupEQ = OrderSamples.LimitOrder("SELL", 200, 2000);
-            faOrderGroupEQ.FaGroup = "Group_Equal_Quantity";
+            faOrderGroupEQ.FaGroup  = "Group_Equal_Quantity";
             faOrderGroupEQ.FaMethod = "EqualQuantity";
             client.placeOrder(nextOrderId++, ContractSamples.SimpleFuture(), faOrderGroupEQ);
             //! [faordergroupequalquantity]
 
             //! [faordergrouppctchange]
-            Order faOrderGroupPC = OrderSamples.MarketOrder("BUY", 0); ;
+            Order faOrderGroupPC = OrderSamples.MarketOrder("BUY", 0);
+            ;
             // You should not specify any order quantity for PctChange allocation method
-            faOrderGroupPC.FaGroup = "Pct_Change";
-            faOrderGroupPC.FaMethod = "PctChange";
+            faOrderGroupPC.FaGroup      = "Pct_Change";
+            faOrderGroupPC.FaMethod     = "PctChange";
             faOrderGroupPC.FaPercentage = "100";
             client.placeOrder(nextOrderId++, ContractSamples.EurGbpFx(), faOrderGroupPC);
             //! [faordergrouppctchange]
@@ -767,10 +785,10 @@ namespace IBSamples
             // faOrderProfile.FaProfile = "Percent_60_40";
             client.placeOrder(nextOrderId++, ContractSamples.EuropeanStock(), faOrderProfile);
             //! [faorderprofile]
-		
-			//! [modelorder]
+
+            //! [modelorder]
             Order modelOrder = OrderSamples.LimitOrder("BUY", 200, 100);
-            modelOrder.Account = "DF12345";  // master FA account number
+            modelOrder.Account   = "DF12345";    // master FA account number
             modelOrder.ModelCode = "Technology"; // model for tech stocks first created in TWS
             client.placeOrder(nextOrderId++, ContractSamples.USStock(), modelOrder);
             //! [modelorder]
@@ -800,7 +818,6 @@ namespace IBSamples
             //client.placeOrder(nextOrderId++, ContractSamples.USStock(), OrderSamples.TrailingStopLimit("BUY", 1, 2, 5, 50));
             //client.placeOrder(nextOrderId++, ContractSamples.NormalOption(), OrderSamples.Volatility("SELL", 1, 5, 2));
 
-            
 
             //NOTE: the following orders are not supported for Paper Trading
             //client.placeOrder(nextOrderId++, ContractSamples.USStock(), OrderSamples.AtAuction("BUY", 100, 30.0));
@@ -847,11 +864,14 @@ namespace IBSamples
             //! [reqcompletedorders]
 
             //! [crypto_order_submission]
-            client.placeOrder(nextOrderId++, ContractSamples.CryptoContract(), OrderSamples.LimitOrder("BUY", Util.StringToDecimal("0.00001234"), 3370));
+            client.placeOrder(nextOrderId++, ContractSamples.CryptoContract(),
+                              OrderSamples.LimitOrder("BUY", Util.StringToDecimal("0.00001234"), 3370));
             //! [crypto_order_submission]
 
             //! [order_submission_with_manual_order_time]
-            client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), OrderSamples.LimitOrderWithManualOrderTime("BUY", Util.StringToDecimal("100"), 111.11, "20220314 13:00:00"));
+            client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(),
+                              OrderSamples.LimitOrderWithManualOrderTime("BUY", Util.StringToDecimal("100"), 111.11,
+                                                                         "20220314 13:00:00"));
             //! [order_submission_with_manual_order_time]
 
             Thread.Sleep(3000);
@@ -861,17 +881,20 @@ namespace IBSamples
             //! [cancel_order_with_manual_order_cancel_time]
 
             //! [pegbest_up_to_mid_order_submission]
-            client.placeOrder(nextOrderId++, ContractSamples.IBKRATSContract(), OrderSamples.PegBestUpToMidOrder("BUY", Util.StringToDecimal("100"), 111.11, 100, 200, 0.02, 0.025));
+            client.placeOrder(nextOrderId++, ContractSamples.IBKRATSContract(),
+                              OrderSamples.PegBestUpToMidOrder("BUY", Util.StringToDecimal("100"), 111.11, 100, 200,
+                                                               0.02, 0.025));
             //! [pegbest_up_to_mid_order_submission]
 
             //! [pegbest_order_submission]
-            client.placeOrder(nextOrderId++, ContractSamples.IBKRATSContract(), OrderSamples.PegBestOrder("BUY", Util.StringToDecimal("100"), 111.11, 100, 200, 0.03));
+            client.placeOrder(nextOrderId++, ContractSamples.IBKRATSContract(),
+                              OrderSamples.PegBestOrder("BUY", Util.StringToDecimal("100"), 111.11, 100, 200, 0.03));
             //! [pegbest_order_submission]
 
             //! [pegmid_order_submission]
-            client.placeOrder(nextOrderId++, ContractSamples.IBKRATSContract(), OrderSamples.PegMidOrder("BUY", Util.StringToDecimal("100"), 111.11, 100, 0.02, 0.025));
+            client.placeOrder(nextOrderId++, ContractSamples.IBKRATSContract(),
+                              OrderSamples.PegMidOrder("BUY", Util.StringToDecimal("100"), 111.11, 100, 0.02, 0.025));
             //! [pegmid_order_submission]
-
         }
 
         private static void newsOperations(EClientSocket client)
@@ -905,7 +928,6 @@ namespace IBSamples
             //! [reqHistoricalNews]
             client.reqHistoricalNews(12003, 8314, "BZ+FLY", "", "", 10, null);
             //! [reqHistoricalNews]
-
         }
 
         private static void OcaSample(EClientSocket client, int nextOrderId)
@@ -963,7 +985,7 @@ namespace IBSamples
             //! [hedgesubmit]
             //Parent order on a contract which currency differs from your base currency
             Order parent = OrderSamples.LimitOrder("BUY", 100, 10);
-            parent.OrderId = nextOrderId++;
+            parent.OrderId  = nextOrderId++;
             parent.Transmit = false;
             //Hedge on the currency conversion
             Order hedge = OrderSamples.MarketFHedge(parent.OrderId, "BUY");
@@ -981,7 +1003,8 @@ namespace IBSamples
             //! [algo_base_order]
 
             //! [arrivalpx]
-            AvailableAlgoParams.FillArrivalPriceParams(baseOrder, 0.1, "Aggressive", "09:00:00 CET", "16:00:00 CET", true, true, 100000);
+            AvailableAlgoParams.FillArrivalPriceParams(baseOrder, 0.1, "Aggressive", "09:00:00 CET", "16:00:00 CET",
+                                                       true, true, 100000);
             client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), baseOrder);
             //! [arrivalpx]
 
@@ -995,8 +1018,9 @@ namespace IBSamples
             Thread.Sleep(500);
 
             //! [ad]
-			// The Time Zone in "startTime" and "endTime" attributes is ignored and always defaulted to GMT
-            AvailableAlgoParams.FillAccumulateDistributeParams(baseOrder, 10, 60, true, true, 1, true, true, "20161010-12:00:00 GMT", "20161010-16:00:00 GMT");
+            // The Time Zone in "startTime" and "endTime" attributes is ignored and always defaulted to GMT
+            AvailableAlgoParams.FillAccumulateDistributeParams(baseOrder, 10, 60, true, true, 1, true, true,
+                                                               "20161010-12:00:00 GMT", "20161010-16:00:00 GMT");
             client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), baseOrder);
             //! [ad]
 
@@ -1010,7 +1034,8 @@ namespace IBSamples
             Thread.Sleep(500);
 
             //! [vwap]
-            AvailableAlgoParams.FillVwapParams(baseOrder, 0.2, "09:00:00 CET", "16:00:00 CET", true, true, true, 100000);
+            AvailableAlgoParams.FillVwapParams(baseOrder, 0.2, "09:00:00 CET", "16:00:00 CET", true, true, true,
+                                               100000);
             client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), baseOrder);
             //! [vwap]
 
@@ -1044,27 +1069,32 @@ namespace IBSamples
             //! [pctvol]               
 
             //! [pctvolpx]
-            AvailableAlgoParams.FillPriceVariantPctVolParams(baseOrder, 0.1, 0.05, 0.01, 0.2, "12:00:00 EST", "14:00:00 EST", true, 100000);
+            AvailableAlgoParams.FillPriceVariantPctVolParams(baseOrder, 0.1, 0.05, 0.01, 0.2, "12:00:00 EST",
+                                                             "14:00:00 EST", true, 100000);
             client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), baseOrder);
             //! [pctvolpx]
 
             //! [pctvolsz]
-            AvailableAlgoParams.FillSizeVariantPctVolParams(baseOrder, 0.2, 0.4, "12:00:00 EST", "14:00:00 EST", true, 100000);
+            AvailableAlgoParams.FillSizeVariantPctVolParams(baseOrder, 0.2, 0.4, "12:00:00 EST", "14:00:00 EST", true,
+                                                            100000);
             client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), baseOrder);
             //! [pctvolsz]
 
             //! [pctvoltm]
-            AvailableAlgoParams.FillTimeVariantPctVolParams(baseOrder, 0.2, 0.4, "12:00:00 EST", "14:00:00 EST", true, 100000);
+            AvailableAlgoParams.FillTimeVariantPctVolParams(baseOrder, 0.2, 0.4, "12:00:00 EST", "14:00:00 EST", true,
+                                                            100000);
             client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), baseOrder);
             //! [pctvoltm]
-		
+
             //! [jeff_vwap_algo]
-            AvailableAlgoParams.FillJefferiesVWAPParams(baseOrder, "10:00:00 EST", "16:00:00 EST", 10, 10, "Exclude_Both", 130, 135, 1, 10, "Patience", false, "Midpoint");
+            AvailableAlgoParams.FillJefferiesVWAPParams(baseOrder, "10:00:00 EST", "16:00:00 EST", 10, 10,
+                                                        "Exclude_Both", 130, 135, 1, 10, "Patience", false, "Midpoint");
             client.placeOrder(nextOrderId++, ContractSamples.JefferiesContract(), baseOrder);
             //! [jeff_vwap_algo]
 
             //! [csfb_inline_algo]
-            AvailableAlgoParams.FillCSFBInlineParams(baseOrder, "10:00:00 EST", "16:00:00 EST", "Patient", 10, 20, 100, "Default", false, 40, 100, 100, 35);
+            AvailableAlgoParams.FillCSFBInlineParams(baseOrder, "10:00:00 EST", "16:00:00 EST", "Patient", 10, 20, 100,
+                                                     "Default", false, 40, 100, 100, 35);
             client.placeOrder(nextOrderId++, ContractSamples.CSFBContract(), baseOrder);
             //! [csfb_inline_algo]
         }
@@ -1136,7 +1166,7 @@ namespace IBSamples
             //! [subscribefromgroupevents]
         }
 
-        private static void marketRuleOperations(EClientSocket client) 
+        private static void marketRuleOperations(EClientSocket client)
         {
             client.reqContractDetails(17001, ContractSamples.USStock());
             client.reqContractDetails(17002, ContractSamples.Bond());
@@ -1149,13 +1179,14 @@ namespace IBSamples
             //! [reqmarketrule]
         }
 
-        private static void continuousFuturesOperations(EClientSocket client) 
+        private static void continuousFuturesOperations(EClientSocket client)
         {
             client.reqContractDetails(18001, ContractSamples.ContFut());
 
             //! [reqhistoricaldatacontfut]
             String queryTime = DateTime.Now.ToString("yyyyMMdd HH:mm:ss");
-            client.reqHistoricalData(18002, ContractSamples.ContFut(), queryTime, "1 Y", "1 month", "TRADES", 0, 1, false, null);
+            client.reqHistoricalData(18002, ContractSamples.ContFut(), queryTime, "1 Y", "1 month", "TRADES", 0, 1,
+                                     false, null);
             Thread.Sleep(10000);
             client.cancelHistoricalData(18002);
             //! [reqhistoricaldatacontfut]
@@ -1165,11 +1196,12 @@ namespace IBSamples
         {
             /*** Placing what-if order ***/
             //! [whatiforder]
-            client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(), OrderSamples.WhatIfLimitOrder("BUY", 200, 120));
+            client.placeOrder(nextOrderId++, ContractSamples.USStockAtSmart(),
+                              OrderSamples.WhatIfLimitOrder("BUY", 200, 120));
             //! [whatiforder]
         }
-		
-		private static void ibkratsSample(EClientSocket client, int nextOrderId)
+
+        private static void ibkratsSample(EClientSocket client, int nextOrderId)
         {
             //! [ibkratssubmit]
             Order ibkratsOrder = OrderSamples.LimitIBKRATS("BUY", 100, 330);

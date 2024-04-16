@@ -12,17 +12,19 @@ public partial class IBClient : EWrapper
     {
         var reqId         = new Random(DateTime.Now.Millisecond).Next();
         var resolveResult = new TaskCompletionSource<Contract>();
-        var resolveContract_Error = new Action<int, int, string, string, Exception>((id, code, msg, advancedOrderRejectJson, ex) =>
-        {
-            if (reqId != id)
-                return;
+        var resolveContract_Error =
+            new Action<int, int, string, string, Exception>((id, code, msg, advancedOrderRejectJson, ex) =>
+                                                            {
+                                                                if (reqId != id)
+                                                                    return;
 
-            resolveResult.SetResult(null);
-        });
+                                                                resolveResult.SetResult(null);
+                                                            });
         var resolveContract = new Action<ContractDetailsMessage>(msg =>
                                                                  {
                                                                      if (msg.RequestId == reqId)
-                                                                         resolveResult.SetResult(msg.ContractDetails.Contract);
+                                                                         resolveResult.SetResult(msg.ContractDetails
+                                                                            .Contract);
                                                                  });
         var contractDetailsEnd = new Action<int>(id =>
                                                  {
@@ -56,13 +58,14 @@ public partial class IBClient : EWrapper
         var reqId        = new Random(DateTime.Now.Millisecond).Next();
         var res          = new TaskCompletionSource<Contract[]>();
         var contractList = new List<Contract>();
-        var resolveContract_Error = new Action<int, int, string, string, Exception>((id, code, msg, advancedOrderRejectJson, ex) =>
-        {
-            if (reqId != id)
-                return;
+        var resolveContract_Error =
+            new Action<int, int, string, string, Exception>((id, code, msg, advancedOrderRejectJson, ex) =>
+                                                            {
+                                                                if (reqId != id)
+                                                                    return;
 
-            res.SetResult(new Contract[0]);
-        });
+                                                                res.SetResult(new Contract[0]);
+                                                            });
         var contractDetails = new Action<ContractDetailsMessage>(msg =>
                                                                  {
                                                                      if (reqId != msg.RequestId)
@@ -92,7 +95,10 @@ public partial class IBClient : EWrapper
                               });
 
         ClientSocket.reqContractDetails(reqId, new Contract
-                                               { SecType = secType, Symbol = symbol, Currency = currency, Exchange = exchange });
+                                               {
+                                                   SecType  = secType, Symbol = symbol, Currency = currency,
+                                                   Exchange = exchange
+                                               });
 
         return res.Task;
     }
@@ -244,16 +250,20 @@ public partial class IBClient : EWrapper
 
     public event Action<int, int, double, string, double, int, string, double, double> TickEFP;
 
-    void EWrapper.tickEFP(int tickerId, int tickType, double basisPoints, string formattedBasisPoints, double impliedFuture, int holdDays, string futureLastTradeDate, double dividendImpact, double dividendsToLastTradeDate)
+    void EWrapper.tickEFP(int tickerId, int tickType, double basisPoints, string formattedBasisPoints,
+                          double impliedFuture, int holdDays, string futureLastTradeDate, double dividendImpact,
+                          double dividendsToLastTradeDate)
     {
         var tmp = TickEFP;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(tickerId, tickType, basisPoints, formattedBasisPoints, impliedFuture, holdDays, futureLastTradeDate, dividendImpact, dividendsToLastTradeDate), null);
+                sc.Post(t => tmp(tickerId, tickType, basisPoints, formattedBasisPoints, impliedFuture, holdDays, futureLastTradeDate, dividendImpact, dividendsToLastTradeDate),
+                        null);
             else
-                tmp(tickerId, tickType, basisPoints, formattedBasisPoints, impliedFuture, holdDays, futureLastTradeDate, dividendImpact, dividendsToLastTradeDate);
+                tmp(tickerId, tickType, basisPoints, formattedBasisPoints, impliedFuture, holdDays, futureLastTradeDate,
+                    dividendImpact, dividendsToLastTradeDate);
         }
     }
 
@@ -321,16 +331,20 @@ public partial class IBClient : EWrapper
 
     public event Action<TickOptionMessage> TickOptionCommunication;
 
-    void EWrapper.tickOptionComputation(int tickerId, int field, int tickAttrib, double impliedVolatility, double delta, double optPrice, double pvDividend, double gamma, double vega, double theta, double undPrice)
+    void EWrapper.tickOptionComputation(int tickerId, int field, int tickAttrib, double impliedVolatility, double delta,
+                                        double optPrice, double pvDividend, double gamma, double vega, double theta,
+                                        double undPrice)
     {
         var tmp = TickOptionCommunication;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new TickOptionMessage(tickerId, field, tickAttrib, impliedVolatility, delta, optPrice, pvDividend, gamma, vega, theta, undPrice)), null);
+                sc.Post(t => tmp(new TickOptionMessage(tickerId, field, tickAttrib, impliedVolatility, delta, optPrice, pvDividend, gamma, vega, theta, undPrice)),
+                        null);
             else
-                tmp(new TickOptionMessage(tickerId, field, tickAttrib, impliedVolatility, delta, optPrice, pvDividend, gamma, vega, theta, undPrice));
+                tmp(new TickOptionMessage(tickerId, field, tickAttrib, impliedVolatility, delta, optPrice, pvDividend,
+                                          gamma, vega, theta, undPrice));
         }
     }
 
@@ -381,16 +395,19 @@ public partial class IBClient : EWrapper
 
     public event Action<UpdatePortfolioMessage> UpdatePortfolio;
 
-    void EWrapper.updatePortfolio(Contract contract, decimal position, double marketPrice, double marketValue, double averageCost, double unrealizedPNL, double realizedPNL, string accountName)
+    void EWrapper.updatePortfolio(Contract contract, decimal position, double marketPrice, double marketValue,
+                                  double averageCost, double unrealizedPNL, double realizedPNL, string accountName)
     {
         var tmp = UpdatePortfolio;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new UpdatePortfolioMessage(contract, position, marketPrice, marketValue, averageCost, unrealizedPNL, realizedPNL, accountName)), null);
+                sc.Post(t => tmp(new UpdatePortfolioMessage(contract, position, marketPrice, marketValue, averageCost, unrealizedPNL, realizedPNL, accountName)),
+                        null);
             else
-                tmp(new UpdatePortfolioMessage(contract, position, marketPrice, marketValue, averageCost, unrealizedPNL, realizedPNL, accountName));
+                tmp(new UpdatePortfolioMessage(contract, position, marketPrice, marketValue, averageCost, unrealizedPNL,
+                                               realizedPNL, accountName));
         }
     }
 
@@ -426,16 +443,20 @@ public partial class IBClient : EWrapper
 
     public event Action<OrderStatusMessage> OrderStatus;
 
-    void EWrapper.orderStatus(int orderId, string status, decimal filled, decimal remaining, double avgFillPrice, int permId, int parentId, double lastFillPrice, int clientId, string whyHeld, double mktCapPrice)
+    void EWrapper.orderStatus(int orderId, string status, decimal filled, decimal remaining, double avgFillPrice,
+                              int permId, int parentId, double lastFillPrice, int clientId, string whyHeld,
+                              double mktCapPrice)
     {
         var tmp = OrderStatus;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new OrderStatusMessage(orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice)), null);
+                sc.Post(t => tmp(new OrderStatusMessage(orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice)),
+                        null);
             else
-                tmp(new OrderStatusMessage(orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice));
+                tmp(new OrderStatusMessage(orderId, status, filled, remaining, avgFillPrice, permId, parentId,
+                                           lastFillPrice, clientId, whyHeld, mktCapPrice));
         }
     }
 
@@ -613,7 +634,8 @@ public partial class IBClient : EWrapper
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, "", false)), null);
+                sc.Post(t => tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, "", false)),
+                        null);
             else
                 tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, "", false));
         }
@@ -621,14 +643,16 @@ public partial class IBClient : EWrapper
 
     public event Action<DeepBookMessage> UpdateMktDepthL2;
 
-    void EWrapper.updateMktDepthL2(int tickerId, int position, string marketMaker, int operation, int side, double price, decimal size, bool isSmartDepth)
+    void EWrapper.updateMktDepthL2(int tickerId, int position, string marketMaker, int operation, int side,
+                                   double price, decimal size, bool isSmartDepth)
     {
         var tmp = UpdateMktDepthL2;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, marketMaker, isSmartDepth)), null);
+                sc.Post(t => tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, marketMaker, isSmartDepth)),
+                        null);
             else
                 tmp(new DeepBookMessage(tickerId, position, operation, side, price, size, marketMaker, isSmartDepth));
         }
@@ -681,14 +705,16 @@ public partial class IBClient : EWrapper
 
     public event Action<RealTimeBarMessage> RealtimeBar;
 
-    void EWrapper.realtimeBar(int reqId, long time, double open, double high, double low, double close, decimal volume, decimal WAP, int count)
+    void EWrapper.realtimeBar(int reqId, long time, double open, double high, double low, double close, decimal volume,
+                              decimal WAP, int count)
     {
         var tmp = RealtimeBar;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new RealTimeBarMessage(reqId, time, open, high, low, close, volume, WAP, count)), null);
+                sc.Post(t => tmp(new RealTimeBarMessage(reqId, time, open, high, low, close, volume, WAP, count)),
+                        null);
             else
                 tmp(new RealTimeBarMessage(reqId, time, open, high, low, close, volume, WAP, count));
         }
@@ -711,14 +737,16 @@ public partial class IBClient : EWrapper
 
     public event Action<ScannerMessage> ScannerData;
 
-    void EWrapper.scannerData(int reqId, int rank, ContractDetails contractDetails, string distance, string benchmark, string projection, string legsStr)
+    void EWrapper.scannerData(int reqId, int rank, ContractDetails contractDetails, string distance, string benchmark,
+                              string projection, string legsStr)
     {
         var tmp = ScannerData;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new ScannerMessage(reqId, rank, contractDetails, distance, benchmark, projection, legsStr)), null);
+                sc.Post(t => tmp(new ScannerMessage(reqId, rank, contractDetails, distance, benchmark, projection, legsStr)),
+                        null);
             else
                 tmp(new ScannerMessage(reqId, rank, contractDetails, distance, benchmark, projection, legsStr));
         }
@@ -868,7 +896,8 @@ public partial class IBClient : EWrapper
 
     public event Action<PositionMultiMessage> PositionMulti;
 
-    void EWrapper.positionMulti(int reqId, string account, string modelCode, Contract contract, decimal pos, double avgCost)
+    void EWrapper.positionMulti(int reqId, string account, string modelCode, Contract contract, decimal pos,
+                                double avgCost)
     {
         var tmp = PositionMulti;
 
@@ -898,7 +927,8 @@ public partial class IBClient : EWrapper
 
     public event Action<AccountUpdateMultiMessage> AccountUpdateMulti;
 
-    void EWrapper.accountUpdateMulti(int reqId, string account, string modelCode, string key, string value, string currency)
+    void EWrapper.accountUpdateMulti(int reqId, string account, string modelCode, string key, string value,
+                                     string currency)
     {
         var tmp = AccountUpdateMulti;
 
@@ -928,16 +958,20 @@ public partial class IBClient : EWrapper
 
     public event Action<SecurityDefinitionOptionParameterMessage> SecurityDefinitionOptionParameter;
 
-    void EWrapper.securityDefinitionOptionParameter(int reqId, string exchange, int underlyingConId, string tradingClass, string multiplier, HashSet<string> expirations, HashSet<double> strikes)
+    void EWrapper.securityDefinitionOptionParameter(int reqId, string exchange, int underlyingConId,
+                                                    string tradingClass, string multiplier, HashSet<string> expirations,
+                                                    HashSet<double> strikes)
     {
         var tmp = SecurityDefinitionOptionParameter;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new SecurityDefinitionOptionParameterMessage(reqId, exchange, underlyingConId, tradingClass, multiplier, expirations, strikes)), null);
+                sc.Post(t => tmp(new SecurityDefinitionOptionParameterMessage(reqId, exchange, underlyingConId, tradingClass, multiplier, expirations, strikes)),
+                        null);
             else
-                tmp(new SecurityDefinitionOptionParameterMessage(reqId, exchange, underlyingConId, tradingClass, multiplier, expirations, strikes));
+                tmp(new SecurityDefinitionOptionParameterMessage(reqId, exchange, underlyingConId, tradingClass,
+                                                                 multiplier, expirations, strikes));
         }
     }
 
@@ -1019,14 +1053,16 @@ public partial class IBClient : EWrapper
 
     public event Action<TickNewsMessage> TickNews;
 
-    void EWrapper.tickNews(int tickerId, long timeStamp, string providerCode, string articleId, string headline, string extraData)
+    void EWrapper.tickNews(int tickerId, long timeStamp, string providerCode, string articleId, string headline,
+                           string extraData)
     {
         var tmp = TickNews;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new TickNewsMessage(tickerId, timeStamp, providerCode, articleId, headline, extraData)), null);
+                sc.Post(t => tmp(new TickNewsMessage(tickerId, timeStamp, providerCode, articleId, headline, extraData)),
+                        null);
             else
                 tmp(new TickNewsMessage(tickerId, timeStamp, providerCode, articleId, headline, extraData));
         }
@@ -1229,7 +1265,8 @@ public partial class IBClient : EWrapper
 
     public event Action<PnLSingleMessage> pnlSingle;
 
-    void EWrapper.pnlSingle(int reqId, decimal pos, double dailyPnL, double unrealizedPnL, double realizedPnL, double value)
+    void EWrapper.pnlSingle(int reqId, decimal pos, double dailyPnL, double unrealizedPnL, double realizedPnL,
+                            double value)
     {
         var tmp = pnlSingle;
 
@@ -1249,7 +1286,9 @@ public partial class IBClient : EWrapper
         var tmp = historicalTick;
 
         if (tmp != null)
-            ticks.ToList().ForEach(tick => sc.Post(t => tmp(new HistoricalTickMessage(reqId, tick.Time, tick.Price, tick.Size)), null));
+            ticks.ToList()
+                 .ForEach(tick => sc.Post(t => tmp(new HistoricalTickMessage(reqId, tick.Time, tick.Price, tick.Size)),
+                                          null));
     }
 
     public event Action<HistoricalTickBidAskMessage> historicalTickBidAsk;
@@ -1260,7 +1299,9 @@ public partial class IBClient : EWrapper
 
         if (tmp != null)
             ticks.ToList().ForEach(tick => sc.Post(t =>
-                                                       tmp(new HistoricalTickBidAskMessage(reqId, tick.Time, tick.TickAttribBidAsk, tick.PriceBid, tick.PriceAsk, tick.SizeBid, tick.SizeAsk)), null));
+                                                       tmp(new HistoricalTickBidAskMessage(reqId, tick.Time,
+                                                               tick.TickAttribBidAsk, tick.PriceBid, tick.PriceAsk,
+                                                               tick.SizeBid, tick.SizeAsk)), null));
     }
 
     public event Action<HistoricalTickLastMessage> historicalTickLast;
@@ -1271,34 +1312,41 @@ public partial class IBClient : EWrapper
 
         if (tmp != null)
             ticks.ToList().ForEach(tick => sc.Post(t =>
-                                                       tmp(new HistoricalTickLastMessage(reqId, tick.Time, tick.TickAttribLast, tick.Price, tick.Size, tick.Exchange, tick.SpecialConditions)), null));
+                                                       tmp(new HistoricalTickLastMessage(reqId, tick.Time,
+                                                               tick.TickAttribLast, tick.Price, tick.Size,
+                                                               tick.Exchange, tick.SpecialConditions)), null));
     }
 
     public event Action<TickByTickAllLastMessage> tickByTickAllLast;
 
-    void EWrapper.tickByTickAllLast(int reqId, int tickType, long time, double price, decimal size, TickAttribLast tickAttribLast, string exchange, string specialConditions)
+    void EWrapper.tickByTickAllLast(int reqId, int tickType, long time, double price, decimal size,
+                                    TickAttribLast tickAttribLast, string exchange, string specialConditions)
     {
         var tmp = tickByTickAllLast;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new TickByTickAllLastMessage(reqId, tickType, time, price, size, tickAttribLast, exchange, specialConditions)), null);
+                sc.Post(t => tmp(new TickByTickAllLastMessage(reqId, tickType, time, price, size, tickAttribLast, exchange, specialConditions)),
+                        null);
             else
-                tmp(new TickByTickAllLastMessage(reqId, tickType, time, price, size, tickAttribLast, exchange, specialConditions));
+                tmp(new TickByTickAllLastMessage(reqId, tickType, time, price, size, tickAttribLast, exchange,
+                                                 specialConditions));
         }
     }
 
     public event Action<TickByTickBidAskMessage> tickByTickBidAsk;
 
-    void EWrapper.tickByTickBidAsk(int reqId, long time, double bidPrice, double askPrice, decimal bidSize, decimal askSize, TickAttribBidAsk tickAttribBidAsk)
+    void EWrapper.tickByTickBidAsk(int reqId, long time, double bidPrice, double askPrice, decimal bidSize,
+                                   decimal askSize, TickAttribBidAsk tickAttribBidAsk)
     {
         var tmp = tickByTickBidAsk;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new TickByTickBidAskMessage(reqId, time, bidPrice, askPrice, bidSize, askSize, tickAttribBidAsk)), null);
+                sc.Post(t => tmp(new TickByTickBidAskMessage(reqId, time, bidPrice, askPrice, bidSize, askSize, tickAttribBidAsk)),
+                        null);
             else
                 tmp(new TickByTickBidAskMessage(reqId, time, bidPrice, askPrice, bidSize, askSize, tickAttribBidAsk));
         }
@@ -1411,14 +1459,16 @@ public partial class IBClient : EWrapper
 
     public event Action<HistoricalScheduleMessage> HistoricalSchedule;
 
-    public void historicalSchedule(int reqId, string startDateTime, string endDateTime, string timeZone, HistoricalSession[] sessions)
+    public void historicalSchedule(int reqId, string startDateTime, string endDateTime, string timeZone,
+                                   HistoricalSession[] sessions)
     {
         var tmp = HistoricalSchedule;
 
         if (tmp != null)
         {
             if (sc != null)
-                sc.Post(t => tmp(new HistoricalScheduleMessage(reqId, startDateTime, endDateTime, timeZone, sessions)), null);
+                sc.Post(t => tmp(new HistoricalScheduleMessage(reqId, startDateTime, endDateTime, timeZone, sessions)),
+                        null);
             else
                 tmp(new HistoricalScheduleMessage(reqId, startDateTime, endDateTime, timeZone, sessions));
         }

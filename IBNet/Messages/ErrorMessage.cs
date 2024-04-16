@@ -5,15 +5,15 @@ using IBApi;
 
 namespace IBNet.Messages;
 
-public class ErrorMessage 
+public class ErrorMessage
 {
     public ErrorMessage(int requestId, int errorCode, string message, string advancedOrderRejectJson)
     {
-            AdvancedOrderRejectJson = advancedOrderRejectJson;
-            Message                 = message;
-            RequestId               = requestId;
-            ErrorCode               = errorCode;
-        }
+        AdvancedOrderRejectJson = advancedOrderRejectJson;
+        Message                 = message;
+        RequestId               = requestId;
+        ErrorCode               = errorCode;
+    }
 
     public string AdvancedOrderRejectJson { get; set; }
 
@@ -26,12 +26,12 @@ public class ErrorMessage
 
     public override string ToString()
     {
-            string ret = $"Error. Request: {RequestId}, Code: {ErrorCode} - {Message}";
-            if (!Util.StringIsEmpty(AdvancedOrderRejectJson))
-            {
-                ret += (", AdvancedOrderRejectJson: " + AdvancedOrderRejectJson);
-            }
-            return ret;
+        string ret = $"Error. Request: {RequestId}, Code: {ErrorCode} - {Message}";
+        if (!Util.StringIsEmpty(AdvancedOrderRejectJson))
+        {
+            ret += (", AdvancedOrderRejectJson: " + AdvancedOrderRejectJson);
         }
-       
+
+        return ret;
+    }
 }

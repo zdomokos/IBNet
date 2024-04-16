@@ -26,8 +26,7 @@ public class SecurityInfo
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -74,8 +73,7 @@ public class SecurityInfo
     [XmlAttribute(AttributeName = "subCategory")]
     public string SubCategory { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "currency")]
     public string Currency { get; set; }

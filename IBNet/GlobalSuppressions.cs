@@ -8,4 +8,6 @@
 // "In Project Suppression File". 
 // You do not need to add suppressions to this file manually. 
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue", Scope = "type", Target = "Krs.Ats.IBNet.BarSize")]
+[assembly:
+    System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue",
+                                                    Scope = "type", Target = "Krs.Ats.IBNet.BarSize")]

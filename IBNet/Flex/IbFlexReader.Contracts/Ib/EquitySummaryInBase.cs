@@ -10,6 +10,9 @@ public class EquitySummaryInBase
 {
     [TypeConverter(typeof(ListCountConverter))]
     public List<EquitySummaryByReportDateInBase> EquitySummaryByReportDateInBase { get; set; }
-        
-    public override string ToString() { return $"Count: {EquitySummaryByReportDateInBase?.Count}"; }
+
+    public override string ToString()
+    {
+        return $"Count: {EquitySummaryByReportDateInBase?.Count}";
+    }
 }

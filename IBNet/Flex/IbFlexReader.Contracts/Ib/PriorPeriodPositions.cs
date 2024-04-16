@@ -8,7 +8,11 @@ using System.Collections.Generic;
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public class PriorPeriodPositions
 {
-    [TypeConverter(typeof(ListCountConverter))] public List<PriorPeriodPosition> PriorPeriodPosition { get; set; }
-        
-    public override string ToString() { return $"Count: {PriorPeriodPosition?.Count}"; }
+    [TypeConverter(typeof(ListCountConverter))]
+    public List<PriorPeriodPosition> PriorPeriodPosition { get; set; }
+
+    public override string ToString()
+    {
+        return $"Count: {PriorPeriodPosition?.Count}";
+    }
 }

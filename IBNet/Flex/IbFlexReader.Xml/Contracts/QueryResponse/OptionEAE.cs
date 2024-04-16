@@ -41,8 +41,7 @@ public class OptionEAE
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -77,8 +76,7 @@ public class OptionEAE
     [XmlAttribute(AttributeName = "principalAdjustFactor")]
     public string PrincipalAdjustFactor { get; set; }
 
-    [XmlAttribute(AttributeName = "date")]
-    public string Date { get; set; }
+    [XmlAttribute(AttributeName = "date")] public string Date { get; set; }
 
     [XmlAttribute(AttributeName = "transactionType")]
     public string TransactionType { get; set; }

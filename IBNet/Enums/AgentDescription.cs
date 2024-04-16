@@ -20,5 +20,6 @@ public class AgentDescription : Enumeration<AgentDescription, string>
     public static AgentDescription None                 = new("", nameof(None));
 
     public AgentDescription(string value, string name) : base(value, name)
-    { }
+    {
+    }
 }

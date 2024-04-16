@@ -9,10 +9,10 @@ public class CompletedOrderMessage
 {
     public CompletedOrderMessage(Contract contract, Order order, OrderState orderState)
     {
-            Contract = contract;
-            Order = order;
-            OrderState = orderState;
-        }
+        Contract   = contract;
+        Order      = order;
+        OrderState = orderState;
+    }
 
     public Contract Contract { get; set; }
 

@@ -6,6 +6,5 @@ using System.Xml.Serialization;
 [XmlRoot(ElementName = "SLBFees")]
 public class SLBFees
 {
-    [XmlElement(ElementName = "SLBFee")]
-    public List<SLBFee> SLBFee { get; set; }
+    [XmlElement(ElementName = "SLBFee")] public List<SLBFee> SLBFee { get; set; }
 }

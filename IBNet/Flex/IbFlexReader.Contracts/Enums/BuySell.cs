@@ -5,10 +5,7 @@ using EnumParser;
 [EnumName]
 public enum BuySell
 {
-    [EnumName("BUY")]
-    BUY,
-    [EnumName("SELL")]
-    SELL,
-    [EnumName("SELL (Ca.)")]
-    SELLCa 
+    [EnumName("BUY")]        BUY,
+    [EnumName("SELL")]       SELL,
+    [EnumName("SELL (Ca.)")] SELLCa
 }

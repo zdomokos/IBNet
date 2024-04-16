@@ -41,8 +41,7 @@ public class Transfer
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -80,14 +79,12 @@ public class Transfer
     [XmlAttribute(AttributeName = "reportDate")]
     public string ReportDate { get; set; }
 
-    [XmlAttribute(AttributeName = "date")]
-    public string Date { get; set; }
+    [XmlAttribute(AttributeName = "date")] public string Date { get; set; }
 
     [XmlAttribute(AttributeName = "dateTime")]
     public string TradeDateTime { get; set; }
 
-    [XmlAttribute(AttributeName = "type")]
-    public string Type { get; set; }
+    [XmlAttribute(AttributeName = "type")] public string Type { get; set; }
 
     [XmlAttribute(AttributeName = "direction")]
     public string Direction { get; set; }
@@ -125,8 +122,7 @@ public class Transfer
     [XmlAttribute(AttributeName = "cashTransfer")]
     public string CashTransfer { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "clientReference")]
     public string ClientReference { get; set; }
@@ -134,18 +130,18 @@ public class Transfer
     [XmlAttribute(AttributeName = "transactionID")]
     public string TransactionID { get; set; }
 
-    [XmlAttribute(AttributeName = "serialNumber")] 
+    [XmlAttribute(AttributeName = "serialNumber")]
     public string SerialNumber { get; set; }
-        
-    [XmlAttribute(AttributeName = "deliveryType")] 
+
+    [XmlAttribute(AttributeName = "deliveryType")]
     public string DeliveryType { get; set; }
-        
-    [XmlAttribute(AttributeName = "commodityType")] 
+
+    [XmlAttribute(AttributeName = "commodityType")]
     public string CommodityType { get; set; }
-        
-    [XmlAttribute(AttributeName = "fineness")] 
+
+    [XmlAttribute(AttributeName = "fineness")]
     public string Fineness { get; set; }
-        
-    [XmlAttribute(AttributeName = "weight")] 
+
+    [XmlAttribute(AttributeName = "weight")]
     public string Weight { get; set; }
 }

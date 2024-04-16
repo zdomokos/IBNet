@@ -3,12 +3,12 @@
 
 namespace IBNet.Messages;
 
-public class AccountUpdateMultiEndMessage 
+public class AccountUpdateMultiEndMessage
 {
     public AccountUpdateMultiEndMessage(int reqId)
     {
-            ReqId = ReqId;
-        }
+        ReqId = ReqId;
+    }
 
     public int ReqId { get; set; }
 }

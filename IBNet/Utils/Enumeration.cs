@@ -11,17 +11,17 @@ public abstract class Enumeration<TEnumeration> : Enumeration<TEnumeration, int>
     protected Enumeration(int value, string displayName)
         : base(value, displayName)
     {
-        }
+    }
 
     public static TEnumeration FromInt32(int value)
     {
-            return FromValue(value);
-        }
+        return FromValue(value);
+    }
 
     public static bool TryFromInt32(int listItemValue, out TEnumeration result)
     {
-            return TryParse(listItemValue, out result);
-        }
+        return TryParse(listItemValue, out result);
+    }
 }
 
 [Serializable]
@@ -37,9 +37,9 @@ public abstract class Enumeration<TEnumeration, TValue> : IComparable<TEnumerati
 
     protected Enumeration(TValue value, string displayName)
     {
-            _value = value;
-            _displayName = displayName;
-        }
+        _value       = value;
+        _displayName = displayName;
+    }
 
     public TValue Value => _value;
 
@@ -47,91 +47,91 @@ public abstract class Enumeration<TEnumeration, TValue> : IComparable<TEnumerati
 
     public int CompareTo(TEnumeration other)
     {
-            return Value.CompareTo(other.Value);
-        }
+        return Value.CompareTo(other.Value);
+    }
 
     public override sealed string ToString()
     {
-            return DisplayName;
-        }
+        return DisplayName;
+    }
 
     public static TEnumeration[] GetAll()
     {
-            return _enumerations.Value;
-        }
+        return _enumerations.Value;
+    }
 
     private static TEnumeration[] GetEnumerations()
     {
-            Type enumerationType = typeof(TEnumeration);
-            return enumerationType
-                .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
-                .Where(info => enumerationType.IsAssignableFrom(info.FieldType))
-                .Select(info => info.GetValue(null))
-                .Cast<TEnumeration>()
-                .ToArray();
-        }
+        Type enumerationType = typeof(TEnumeration);
+        return enumerationType
+              .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
+              .Where(info => enumerationType.IsAssignableFrom(info.FieldType))
+              .Select(info => info.GetValue(null))
+              .Cast<TEnumeration>()
+              .ToArray();
+    }
 
     public override bool Equals(object obj)
     {
-            return Equals(obj as TEnumeration);
-        }
+        return Equals(obj as TEnumeration);
+    }
 
     public bool Equals(TEnumeration other)
     {
-            return other != null && Value.Equals(other.Value);
-        }
+        return other != null && Value.Equals(other.Value);
+    }
 
     public override int GetHashCode()
     {
-            return Value.GetHashCode();
-        }
+        return Value.GetHashCode();
+    }
 
     public static bool operator ==(Enumeration<TEnumeration, TValue> left, Enumeration<TEnumeration, TValue> right)
     {
-            return Equals(left, right);
-        }
+        return Equals(left, right);
+    }
 
     public static bool operator !=(Enumeration<TEnumeration, TValue> left, Enumeration<TEnumeration, TValue> right)
     {
-            return !Equals(left, right);
-        }
+        return !Equals(left, right);
+    }
 
     public static TEnumeration FromValue(TValue value)
     {
-            return Parse(value, "value", item => item.Value.Equals(value));
-        }
+        return Parse(value, "value", item => item.Value.Equals(value));
+    }
 
     public static TEnumeration Parse(string displayName)
     {
-            return Parse(displayName, "display name", item => item.DisplayName == displayName);
-        }
+        return Parse(displayName, "display name", item => item.DisplayName == displayName);
+    }
 
     static bool TryParse(Func<TEnumeration, bool> predicate, out TEnumeration result)
     {
-            result = GetAll().FirstOrDefault(predicate);
-            return result != null;
-        }
+        result = GetAll().FirstOrDefault(predicate);
+        return result != null;
+    }
 
     private static TEnumeration Parse(object value, string description, Func<TEnumeration, bool> predicate)
     {
-            TEnumeration result;
+        TEnumeration result;
 
-            if (!TryParse(predicate, out result))
-            {
-                string message = string.Format("'{0}' is not a valid {1} in {2}", value, description, typeof(TEnumeration));
-                throw new ArgumentException(message, "value");
-            }
-
-            return result;
+        if (!TryParse(predicate, out result))
+        {
+            string message = string.Format("'{0}' is not a valid {1} in {2}", value, description, typeof(TEnumeration));
+            throw new ArgumentException(message, "value");
         }
+
+        return result;
+    }
 
     public static bool TryParse(TValue value, out TEnumeration result)
     {
-            return TryParse(e => e.Value.Equals(value), out result);
-        }
+        return TryParse(e => e.Value.Equals(value), out result);
+    }
 
     public static bool TryParse(string displayName, out TEnumeration result)
     {
-            return TryParse(e => e.DisplayName == displayName, out result);
-        }
+        return TryParse(e => e.DisplayName == displayName, out result);
+    }
 }

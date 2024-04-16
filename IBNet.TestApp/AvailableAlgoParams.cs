@@ -8,11 +8,12 @@ namespace IBSamples
     public class AvailableAlgoParams
     {
         //! [arrivalpx_params]
-        public static void FillArrivalPriceParams(Order baseOrder, double maxPctVol, string riskAversion, string startTime, string endTime, 
-            bool forceCompletion, bool allowPastTime, double monetaryValue)
-        {            
+        public static void FillArrivalPriceParams(Order baseOrder, double maxPctVol, string riskAversion,
+                                                  string startTime, string endTime,
+                                                  bool forceCompletion, bool allowPastTime, double monetaryValue)
+        {
             baseOrder.AlgoStrategy = "ArrivalPx";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("maxPctVol", maxPctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("riskAversion", riskAversion));
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
@@ -24,11 +25,11 @@ namespace IBSamples
         //! [arrivalpx_params]
 
         //! [darkice_params]
-        public static void FillDarkIceParams(Order baseOrder, int displaySize, string startTime, string endTime, 
-            bool allowPastEndTime, double monetaryValue)
+        public static void FillDarkIceParams(Order baseOrder, int displaySize, string startTime, string endTime,
+                                             bool allowPastEndTime, double monetaryValue)
         {
             baseOrder.AlgoStrategy = "DarkIce";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("displaySize", displaySize.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
             baseOrder.AlgoParams.Add(new TagValue("endTime", endTime));
@@ -38,10 +39,11 @@ namespace IBSamples
         //! [darkice_params]
 
         //! [pctvol_params]
-        public static void FillPctVolParams(Order baseOrder, double pctVol, string startTime, string endTime, bool noTakeLiq, double monetaryValue)
+        public static void FillPctVolParams(Order baseOrder, double pctVol, string startTime, string endTime,
+                                            bool noTakeLiq, double monetaryValue)
         {
             baseOrder.AlgoStrategy = "PctVol";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("pctVol", pctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
             baseOrder.AlgoParams.Add(new TagValue("endTime", endTime));
@@ -51,10 +53,11 @@ namespace IBSamples
         //! [pctvol_params]
 
         //! [twap_params]
-        public static void FillTwapParams(Order baseOrder, string strategyType, string startTime, string endTime, bool allowPastEndTime, double monetaryValue)
+        public static void FillTwapParams(Order baseOrder, string strategyType, string startTime, string endTime,
+                                          bool allowPastEndTime, double monetaryValue)
         {
             baseOrder.AlgoStrategy = "Twap";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("strategyType", strategyType));
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
             baseOrder.AlgoParams.Add(new TagValue("endTime", endTime));
@@ -64,11 +67,11 @@ namespace IBSamples
         //! [twap_params]
 
         //! [vwap_params]
-        public static void FillVwapParams(Order baseOrder, double maxPctVol, string startTime, string endTime, 
-            bool allowPastEndTime, bool noTakeLiq, bool speedUp, double monetaryValue)
+        public static void FillVwapParams(Order baseOrder, double maxPctVol, string startTime, string endTime,
+                                          bool allowPastEndTime, bool noTakeLiq, bool speedUp, double monetaryValue)
         {
             baseOrder.AlgoStrategy = "Vwap";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("maxPctVol", maxPctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
             baseOrder.AlgoParams.Add(new TagValue("endTime", endTime));
@@ -80,11 +83,13 @@ namespace IBSamples
         //! [vwap_params]
 
         //! [ad_params]
-        public static void FillAccumulateDistributeParams(Order baseOrder, int componentSize, int timeBetweenOrders, bool randomizeTime20, bool randomizeSize55,
-            int giveUp, bool catchUp, bool waitForFill, string startTime, string endTime)
+        public static void FillAccumulateDistributeParams(Order baseOrder, int componentSize, int timeBetweenOrders,
+                                                          bool randomizeTime20, bool randomizeSize55,
+                                                          int giveUp, bool catchUp, bool waitForFill, string startTime,
+                                                          string endTime)
         {
             baseOrder.AlgoStrategy = "AD";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("componentSize", componentSize.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("timeBetweenOrders", timeBetweenOrders.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("randomizeTime20", randomizeTime20 ? "1" : "0"));
@@ -98,10 +103,11 @@ namespace IBSamples
         //! [ad_params]
 
         //! [balanceimpactrisk_params]
-        public static void FillBalanceImpactRiskParams(Order baseOrder, double maxPctVol, string riskAversion, bool forceCompletion)
+        public static void FillBalanceImpactRiskParams(Order baseOrder, double maxPctVol, string riskAversion,
+                                                       bool forceCompletion)
         {
             baseOrder.AlgoStrategy = "BalanceImpactRisk";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("maxPctVol", maxPctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("riskAversion", riskAversion));
             baseOrder.AlgoParams.Add(new TagValue("forceCompletion", forceCompletion ? "1" : "0"));
@@ -112,7 +118,7 @@ namespace IBSamples
         public static void FillMinImpactParams(Order baseOrder, double maxPctVol)
         {
             baseOrder.AlgoStrategy = "MinImpact";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("maxPctVol", maxPctVol.ToString()));
         }
         //! [minimpact_params]
@@ -121,17 +127,18 @@ namespace IBSamples
         public static void FillAdaptiveParams(Order baseOrder, string priority)
         {
             baseOrder.AlgoStrategy = "Adaptive";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("adaptivePriority", priority));
         }
         //! [adaptive_params]
 
         //! [closepx_params]
-        public static void FillClosePriceParams(Order baseOrder, double maxPctVol, string riskAversion, string startTime, 
-            bool forceCompletion, double monetaryValue)
+        public static void FillClosePriceParams(Order baseOrder, double maxPctVol, string riskAversion,
+                                                string startTime,
+                                                bool forceCompletion, double monetaryValue)
         {
             baseOrder.AlgoStrategy = "ClosePx";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("maxPctVol", maxPctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("riskAversion", riskAversion));
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
@@ -141,11 +148,13 @@ namespace IBSamples
         //! [closepx_params]
 
         //! [pctvolpx_params]
-        public static void FillPriceVariantPctVolParams(Order baseOrder, double pctVol, double deltaPctVol, double minPctVol4Px, 
-            double maxPctVol4Px, String startTime, String endTime, bool noTakeLiq, double monetaryValue)
+        public static void FillPriceVariantPctVolParams(Order baseOrder, double pctVol, double deltaPctVol,
+                                                        double minPctVol4Px,
+                                                        double maxPctVol4Px, String startTime, String endTime,
+                                                        bool noTakeLiq, double monetaryValue)
         {
             baseOrder.AlgoStrategy = "PctVolPx";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("pctVol", pctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("deltaPctVol", deltaPctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("minPctVol4Px", minPctVol4Px.ToString()));
@@ -158,11 +167,12 @@ namespace IBSamples
         //! [pctvolpx_params]
 
         //! [pctvolsz_params]
-        public static void FillSizeVariantPctVolParams(Order baseOrder, double startPctVol, double endPctVol, 
-            String startTime, String endTime, bool noTakeLiq, double monetaryValue)
+        public static void FillSizeVariantPctVolParams(Order baseOrder, double startPctVol, double endPctVol,
+                                                       String startTime, String endTime, bool noTakeLiq,
+                                                       double monetaryValue)
         {
             baseOrder.AlgoStrategy = "PctVolSz";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("startPctVol", startPctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("endPctVol", endPctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
@@ -174,10 +184,11 @@ namespace IBSamples
 
         //! [pctvoltm_params]
         public static void FillTimeVariantPctVolParams(Order baseOrder, double startPctVol, double endPctVol,
-            String startTime, String endTime, bool noTakeLiq, double monetaryValue)
+                                                       String startTime, String endTime, bool noTakeLiq,
+                                                       double monetaryValue)
         {
             baseOrder.AlgoStrategy = "PctVolTm";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("startPctVol", startPctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("endPctVol", endPctVol.ToString()));
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
@@ -186,14 +197,16 @@ namespace IBSamples
             baseOrder.AlgoParams.Add(new TagValue("monetaryValue", monetaryValue.ToString()));
         }
         //! [pctvoltm_params]
-        
+
         //! [jefferies_vwap_params]
-        public static void FillJefferiesVWAPParams(Order baseOrder, string startTime, string endTime, double relativeLimit,
-        double maxVolumeRate, string excludeAuctions, double triggerPrice, double wowPrice, int minFillSize, double wowOrderPct,
-            string wowMode, bool isBuyBack, string wowReference)
+        public static void FillJefferiesVWAPParams(Order baseOrder, string startTime, string endTime,
+                                                   double relativeLimit,
+                                                   double maxVolumeRate, string excludeAuctions, double triggerPrice,
+                                                   double wowPrice, int minFillSize, double wowOrderPct,
+                                                   string wowMode, bool isBuyBack, string wowReference)
         {
             baseOrder.AlgoStrategy = "VWAP";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
             baseOrder.AlgoParams.Add(new TagValue("endTime", endTime));
             baseOrder.AlgoParams.Add(new TagValue("relativeLimit", relativeLimit.ToString()));
@@ -210,14 +223,16 @@ namespace IBSamples
         //! [jefferies_vwap_params]
 
         //! [csfb_inline_params]
-        public static void FillCSFBInlineParams(Order baseOrder, string startTime, string endTime, string execStyle, int minPercent,
-        int maxPercent, int displaySize, string auction, bool blockFinder, double blockPrice, int minBlockSize, int maxBlockSize, double iWouldPrice)
+        public static void FillCSFBInlineParams(Order baseOrder, string startTime, string endTime, string execStyle,
+                                                int minPercent,
+                                                int maxPercent, int displaySize, string auction, bool blockFinder,
+                                                double blockPrice, int minBlockSize, int maxBlockSize,
+                                                double iWouldPrice)
         {
-
             // must be direct-routed to "CSFBALGO"
 
             baseOrder.AlgoStrategy = "INLINE";
-            baseOrder.AlgoParams = new List<TagValue>();
+            baseOrder.AlgoParams   = new List<TagValue>();
             baseOrder.AlgoParams.Add(new TagValue("startTime", startTime));
             baseOrder.AlgoParams.Add(new TagValue("endTime", endTime));
             baseOrder.AlgoParams.Add(new TagValue("execStyle", execStyle));

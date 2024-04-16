@@ -13,8 +13,8 @@ public class HistoricalDataEndMessage
 
     public HistoricalDataEndMessage(int requestId, string startDate, string endDate)
     {
-            RequestId = requestId;
-            StartDate = startDate;
-            EndDate = endDate;
-        }
+        RequestId = requestId;
+        StartDate = startDate;
+        EndDate   = endDate;
+    }
 }

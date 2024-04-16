@@ -12,9 +12,9 @@ public class TickReqParamsMessage
 
     public TickReqParamsMessage(int tickerId, double minTick, string bboExchange, int snapshotPermissions)
     {
-            TickerId = tickerId;
-            MinTick = minTick;
-            BboExchange = bboExchange;
-            SnapshotPermissions = snapshotPermissions;
-        }
+        TickerId            = tickerId;
+        MinTick             = minTick;
+        BboExchange         = bboExchange;
+        SnapshotPermissions = snapshotPermissions;
+    }
 }

@@ -31,8 +31,7 @@ public class SLBFee
     public int?           Multiplier                { get; set; }
     public double?        Strike                    { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Expiry { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Expiry { get; set; }
 
     public PutCall? PutCall               { get; set; }
     public string   PrincipalAdjustFactor { get; set; }
@@ -43,8 +42,7 @@ public class SLBFee
     public string   FromAcct              { get; set; }
     public string   Type                  { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? ValueDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? ValueDate { get; set; }
 
     public string  CollateralAmount { get; set; }
     public string  UniqueID         { get; set; }
@@ -58,6 +56,5 @@ public class SLBFee
     public double? Fee              { get; set; }
     public double? FeeRate          { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? StartDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? StartDate { get; set; }
 }

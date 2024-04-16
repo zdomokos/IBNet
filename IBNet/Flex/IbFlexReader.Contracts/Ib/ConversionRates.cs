@@ -10,6 +10,9 @@ public class ConversionRates
 {
     [TypeConverter(typeof(ListCountConverter))]
     public List<ConversionRate> ConversionRate { get; set; }
-        
-    public override string ToString() { return $"Count: {ConversionRate?.Count}"; }
+
+    public override string ToString()
+    {
+        return $"Count: {ConversionRate?.Count}";
+    }
 }

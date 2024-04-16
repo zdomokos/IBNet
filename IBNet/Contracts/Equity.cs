@@ -16,11 +16,11 @@ public class Equity : Contract
     /// <param name="symbol">Symbol of the equity contract. See <see cref="Contract.Symbol"/>.</param>
     public Equity(string symbol)
     {
-            Symbol = symbol;
-            Exchange = "SMART";
-            SecType = SecurityType.Stock.Value;
-            Currency = "USD";
-        }
+        Symbol   = symbol;
+        Exchange = "SMART";
+        SecType  = SecurityType.Stock.Value;
+        Currency = "USD";
+    }
 
     /// <summary>
     /// Create an Equity Contract for a specific exchange
@@ -29,9 +29,9 @@ public class Equity : Contract
     /// <param name="exchange">Exchange for the equity contract. See <see cref="Contract.Exchange"/></param>
     public Equity(string symbol, string exchange)
     {
-            Symbol = symbol;
-            Exchange = exchange;
-            SecType = SecurityType.Stock.Value;
-            Currency = "USD";
-        }
+        Symbol   = symbol;
+        Exchange = exchange;
+        SecType  = SecurityType.Stock.Value;
+        Currency = "USD";
+    }
 }

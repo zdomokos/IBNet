@@ -10,6 +10,9 @@ public class FifoPerformanceSummaryInBase
 {
     [TypeConverter(typeof(ListCountConverter))]
     public List<FifoPerformanceSummaryUnderlying> FifoPerformanceSummaryUnderlying { get; set; }
-        
-    public override string ToString() { return $"Count: {FifoPerformanceSummaryUnderlying?.Count}"; }
+
+    public override string ToString()
+    {
+        return $"Count: {FifoPerformanceSummaryUnderlying?.Count}";
+    }
 }

@@ -1,21 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>disable</Nullable>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<NoWarn>CS1591,CS0168,CS1998,BL9993,CS0649,CS0436,0436</NoWarn>
-	</PropertyGroup>
-	<ItemGroup>
-	  <Compile Remove="Common\**" />
-	  <EmbeddedResource Remove="Common\**" />
-	  <None Remove="Common\**" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="NUnit" Version="4.0.1" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\IBNet\IBNet.csproj" />
-	</ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <NoWarn>CS1591,CS0168,CS1998,BL9993,CS0649,CS0436,0436</NoWarn>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Remove="Common\**"/>
+        <EmbeddedResource Remove="Common\**"/>
+        <None Remove="Common\**"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="NUnit" Version="4.0.1"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\IBNet\IBNet.csproj"/>
+    </ItemGroup>
 
 </Project>

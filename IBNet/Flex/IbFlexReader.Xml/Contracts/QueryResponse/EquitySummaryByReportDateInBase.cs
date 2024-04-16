@@ -17,8 +17,7 @@ public class EquitySummaryByReportDateInBase
     [XmlAttribute(AttributeName = "reportDate")]
     public string ReportDate { get; set; }
 
-    [XmlAttribute(AttributeName = "cash")]
-    public string Cash { get; set; }
+    [XmlAttribute(AttributeName = "cash")] public string Cash { get; set; }
 
     [XmlAttribute(AttributeName = "cashLong")]
     public string CashLong { get; set; }
@@ -199,28 +198,28 @@ public class EquitySummaryByReportDateInBase
 
     [XmlAttribute(AttributeName = "brokerFeesAccrualsComponent")]
     public string BrokerFeesAccrualsComponent { get; set; }
-        
-    [XmlAttribute(AttributeName = "brokerCashComponentLong")] 
+
+    [XmlAttribute(AttributeName = "brokerCashComponentLong")]
     public string BrokerCashComponentLong { get; set; }
-        
-    [XmlAttribute(AttributeName = "brokerCashComponentShort")] 
+
+    [XmlAttribute(AttributeName = "brokerCashComponentShort")]
     public string BrokerCashComponentShort { get; set; }
-        
-    [XmlAttribute(AttributeName = "brokerInterestAccrualsComponentLong")] 
+
+    [XmlAttribute(AttributeName = "brokerInterestAccrualsComponentLong")]
     public string BrokerInterestAccrualsComponentLong { get; set; }
-        
-    [XmlAttribute(AttributeName = "brokerInterestAccrualsComponentShort")] 
+
+    [XmlAttribute(AttributeName = "brokerInterestAccrualsComponentShort")]
     public string BrokerInterestAccrualsComponentShort { get; set; }
-        
-    [XmlAttribute(AttributeName = "bondInterestAccrualsComponentLong")] 
+
+    [XmlAttribute(AttributeName = "bondInterestAccrualsComponentLong")]
     public string BondInterestAccrualsComponentLong { get; set; }
-        
-    [XmlAttribute(AttributeName = "bondInterestAccrualsComponentShort")] 
+
+    [XmlAttribute(AttributeName = "bondInterestAccrualsComponentShort")]
     public string BondInterestAccrualsComponentShort { get; set; }
-        
-    [XmlAttribute(AttributeName = "brokerFeesAccrualsComponentLong")] 
+
+    [XmlAttribute(AttributeName = "brokerFeesAccrualsComponentLong")]
     public string BrokerFeesAccrualsComponentLong { get; set; }
-        
-    [XmlAttribute(AttributeName = "brokerFeesAccrualsComponentShort")] 
+
+    [XmlAttribute(AttributeName = "brokerFeesAccrualsComponentShort")]
     public string BrokerFeesAccrualsComponentShort { get; set; }
 }

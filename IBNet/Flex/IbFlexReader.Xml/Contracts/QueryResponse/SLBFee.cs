@@ -41,8 +41,7 @@ public class SLBFee
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -83,8 +82,7 @@ public class SLBFee
     [XmlAttribute(AttributeName = "quantity")]
     public string Quantity { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "toAcct")]
     public string ToAcct { get; set; }
@@ -92,8 +90,7 @@ public class SLBFee
     [XmlAttribute(AttributeName = "fromAcct")]
     public string FromAcct { get; set; }
 
-    [XmlAttribute(AttributeName = "type")]
-    public string Type { get; set; }
+    [XmlAttribute(AttributeName = "type")] public string Type { get; set; }
 
     [XmlAttribute(AttributeName = "valueDate")]
     public string ValueDate { get; set; }
@@ -125,8 +122,7 @@ public class SLBFee
     [XmlAttribute(AttributeName = "carryCharge")]
     public string CarryCharge { get; set; }
 
-    [XmlAttribute(AttributeName = "fee")]
-    public string Fee { get; set; }
+    [XmlAttribute(AttributeName = "fee")] public string Fee { get; set; }
 
     [XmlAttribute(AttributeName = "feeRate")]
     public string FeeRate { get; set; }

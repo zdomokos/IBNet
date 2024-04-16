@@ -13,7 +13,7 @@ public class CashTransaction : SecurityInfo
     public string  AcctAlias    { get; set; }
     public string  Model        { get; set; }
     public double? FxRateToBase { get; set; }
-        
+
     [Format(Constants.DateFormat), Format(Constants.DateTimeFormat, order: 1)]
     public DateTime? DateTime { get; set; }
 
@@ -27,8 +27,7 @@ public class CashTransaction : SecurityInfo
     public string ReportDate      { get; set; }
     public string ClientReference { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public string SettleDate { get; set; }
+    [Format(Constants.DateFormat)] public string SettleDate { get; set; }
 
     public string LevelOfDetail { get; set; }
 }

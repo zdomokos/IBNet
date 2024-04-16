@@ -22,11 +22,11 @@ namespace IBSamples
         {
             //! [auction]
             Order order = new Order();
-            order.Action = action;
-            order.Tif = "AUC";
-            order.OrderType = "MTL";
+            order.Action        = action;
+            order.Tif           = "AUC";
+            order.OrderType     = "MTL";
             order.TotalQuantity = quantity;
-            order.LmtPrice = price;
+            order.LmtPrice      = price;
             //! [auction]
             return order;
         }
@@ -40,10 +40,10 @@ namespace IBSamples
         {
             //! [discretionary]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LMT";
-            order.TotalQuantity = quantity;
-            order.LmtPrice = price;
+            order.Action           = action;
+            order.OrderType        = "LMT";
+            order.TotalQuantity    = quantity;
+            order.LmtPrice         = price;
             order.DiscretionaryAmt = discretionaryAmount;
             //! [discretionary]
             return order;
@@ -59,8 +59,8 @@ namespace IBSamples
         {
             //! [market]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "MKT";
+            order.Action        = action;
+            order.OrderType     = "MKT";
             order.TotalQuantity = quantity;
             //! [market]
             return order;
@@ -79,10 +79,10 @@ namespace IBSamples
         {
             //! [market_if_touched]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "MIT";
+            order.Action        = action;
+            order.OrderType     = "MIT";
             order.TotalQuantity = quantity;
-            order.AuxPrice = price;
+            order.AuxPrice      = price;
             //! [market_if_touched]
             return order;
         }
@@ -95,8 +95,8 @@ namespace IBSamples
         {
             //! [market_on_close]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "MOC";
+            order.Action        = action;
+            order.OrderType     = "MOC";
             order.TotalQuantity = quantity;
             //! [market_on_close]
             return order;
@@ -111,10 +111,10 @@ namespace IBSamples
         {
             //! [market_on_open]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "MKT";
+            order.Action        = action;
+            order.OrderType     = "MKT";
             order.TotalQuantity = quantity;
-            order.Tif = "OPG";
+            order.Tif           = "OPG";
             //! [market_on_open]
             return order;
         }
@@ -129,30 +129,30 @@ namespace IBSamples
         {
             //! [midpoint_match]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "MKT";
+            order.Action        = action;
+            order.OrderType     = "MKT";
             order.TotalQuantity = quantity;
             //! [midpoint_match]
             return order;
         }
 
-		/// <summary>
-		// A Midprice order is designed to split the difference between the bid and ask prices, and fill at the current midpoint of 
-		// the NBBO or better. Set an optional price cap to define the highest price (for a buy order) or the lowest price (for a sell 
-		// order) you are willing to accept. Requires TWS 975+. Smart-routing to US stocks only.
+        /// <summary>
+        // A Midprice order is designed to split the difference between the bid and ask prices, and fill at the current midpoint of 
+        // the NBBO or better. Set an optional price cap to define the highest price (for a buy order) or the lowest price (for a sell 
+        // order) you are willing to accept. Requires TWS 975+. Smart-routing to US stocks only.
         /// </summary>
-		public static Order Midprice(string action, decimal quantity, double priceCap)
+        public static Order Midprice(string action, decimal quantity, double priceCap)
         {
             //! [midprice]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "MIDPRICE";
+            order.Action        = action;
+            order.OrderType     = "MIDPRICE";
             order.TotalQuantity = quantity;
-			order.LmtPrice = priceCap;
+            order.LmtPrice      = priceCap;
             //! [midprice]
             return order;
         }
-		
+
         /// <summary>
         /// A pegged-to-market order is designed to maintain a purchase price relative to the national best offer (NBO) or a sale price 
         /// relative to the national best bid (NBB). Depending on the width of the quote, this order may be passive or aggressive. 
@@ -166,10 +166,10 @@ namespace IBSamples
         {
             //! [pegged_market]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "PEG MKT";
+            order.Action        = action;
+            order.OrderType     = "PEG MKT";
             order.TotalQuantity = 100;
-            order.AuxPrice = marketOffset;//Offset price
+            order.AuxPrice      = marketOffset; //Offset price
             //! [pegged_market]
             return order;
         }
@@ -184,14 +184,15 @@ namespace IBSamples
         /// price will be rounded to the nearest penny in favor of the order.
         /// Products: OPT
         /// </summary>
-        public static Order PeggedToStock(string action, decimal quantity, double delta, double stockReferencePrice, double startingPrice)
+        public static Order PeggedToStock(string action, decimal quantity, double delta, double stockReferencePrice,
+                                          double startingPrice)
         {
             //! [pegged_stock]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "PEG STK";
+            order.Action        = action;
+            order.OrderType     = "PEG STK";
             order.TotalQuantity = quantity;
-            order.Delta = delta;
+            order.Delta         = delta;
             order.StockRefPrice = stockReferencePrice;
             order.StartingPrice = startingPrice;
             //! [pegged_stock]
@@ -210,15 +211,16 @@ namespace IBSamples
         /// Stocks, Options and Futures - not available on paper trading
         /// Products: CFD, STK, OPT, FUT
         /// </summary>
-        public static Order RelativePeggedToPrimary(string action, decimal quantity, double priceCap, double offsetAmount)
+        public static Order RelativePeggedToPrimary(string action, decimal quantity, double priceCap,
+                                                    double offsetAmount)
         {
             //! [relative_pegged_primary]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "REL";
+            order.Action        = action;
+            order.OrderType     = "REL";
             order.TotalQuantity = quantity;
-            order.LmtPrice = priceCap;
-            order.AuxPrice = offsetAmount;
+            order.LmtPrice      = priceCap;
+            order.AuxPrice      = offsetAmount;
             //! [relative_pegged_primary]
             return order;
         }
@@ -234,11 +236,11 @@ namespace IBSamples
         {
             //! [sweep_to_fill]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LMT";
+            order.Action        = action;
+            order.OrderType     = "LMT";
             order.TotalQuantity = quantity;
-            order.LmtPrice = price;
-            order.SweepToFill = true;
+            order.LmtPrice      = price;
+            order.SweepToFill   = true;
             //! [sweep_to_fill]
             return order;
         }
@@ -258,10 +260,10 @@ namespace IBSamples
         {
             //! [auction_limit]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LMT";
-            order.TotalQuantity = quantity;
-            order.LmtPrice = price;
+            order.Action          = action;
+            order.OrderType       = "LMT";
+            order.TotalQuantity   = quantity;
+            order.LmtPrice        = price;
             order.AuctionStrategy = auctionStrategy;
             //! [auction_limit]
             return order;
@@ -285,10 +287,10 @@ namespace IBSamples
         {
             //! [auction_pegged_stock]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "PEG STK";
+            order.Action        = action;
+            order.OrderType     = "PEG STK";
             order.TotalQuantity = quantity;
-            order.Delta = delta;
+            order.Delta         = delta;
             order.StartingPrice = startingPrice;
             //! [auction_pegged_stock]
             return order;
@@ -312,10 +314,10 @@ namespace IBSamples
         {
             //! [auction_relative]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "REL";
+            order.Action        = action;
+            order.OrderType     = "REL";
             order.TotalQuantity = quantity;
-            order.AuxPrice = offset;
+            order.AuxPrice      = offset;
             //! [auction_relative]
             return order;
         }
@@ -329,11 +331,11 @@ namespace IBSamples
         {
             // ! [block]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LMT";
-            order.TotalQuantity = quantity;//Large volumes!
-            order.LmtPrice = price;
-            order.BlockOrder = true;
+            order.Action        = action;
+            order.OrderType     = "LMT";
+            order.TotalQuantity = quantity; //Large volumes!
+            order.LmtPrice      = price;
+            order.BlockOrder    = true;
             // ! [block]
             return order;
         }
@@ -348,8 +350,8 @@ namespace IBSamples
         {
             // ! [boxtop]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "BOX TOP";
+            order.Action        = action;
+            order.OrderType     = "BOX TOP";
             order.TotalQuantity = quantity;
             // ! [boxtop]
             return order;
@@ -364,28 +366,27 @@ namespace IBSamples
         {
             // ! [limitorder]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LMT";
+            order.Action        = action;
+            order.OrderType     = "LMT";
             order.TotalQuantity = quantity;
-            order.LmtPrice = limitPrice;
+            order.LmtPrice      = limitPrice;
             // ! [limitorder]
             return order;
         }
 
-		/// <summary>
-		/// Forex orders can be placed in demonination of second currency in pair using cashQty field
-		/// Requires TWS or IBG 963+
-		/// https://www.interactivebrokers.com/en/index.php?f=23876#963-02
-		/// <summary>
-
+        /// <summary>
+        /// Forex orders can be placed in demonination of second currency in pair using cashQty field
+        /// Requires TWS or IBG 963+
+        /// https://www.interactivebrokers.com/en/index.php?f=23876#963-02
+        /// <summary>
         public static Order LimitOrderWithCashQty(string action, double limitPrice, double cashQty)
         {
             // ! [limitorderwithcashqty]
             Order order = new Order();
-            order.Action = action;
+            order.Action    = action;
             order.OrderType = "LMT";
-            order.LmtPrice = limitPrice;
-            order.CashQty = cashQty;
+            order.LmtPrice  = limitPrice;
+            order.CashQty   = cashQty;
             // ! [limitorderwithcashqty]
             return order;
         }
@@ -401,11 +402,11 @@ namespace IBSamples
         {
             // ! [limitiftouched]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LIT";
+            order.Action        = action;
+            order.OrderType     = "LIT";
             order.TotalQuantity = quantity;
-            order.LmtPrice = limitPrice;
-            order.AuxPrice = triggerPrice;
+            order.LmtPrice      = limitPrice;
+            order.AuxPrice      = triggerPrice;
             // ! [limitiftouched]
             return order;
         }
@@ -419,10 +420,10 @@ namespace IBSamples
         {
             // ! [limitonclose]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LOC";
+            order.Action        = action;
+            order.OrderType     = "LOC";
             order.TotalQuantity = quantity;
-            order.LmtPrice = limitPrice;
+            order.LmtPrice      = limitPrice;
             // ! [limitonclose]
             return order;
         }
@@ -436,11 +437,11 @@ namespace IBSamples
         {
             // ! [limitonopen]
             Order order = new Order();
-            order.Action = action;
-            order.Tif = "OPG";
-            order.OrderType = "LMT";
+            order.Action        = action;
+            order.Tif           = "OPG";
+            order.OrderType     = "LMT";
             order.TotalQuantity = quantity;
-            order.LmtPrice = limitPrice;
+            order.LmtPrice      = limitPrice;
             // ! [limitonopen]
             return order;
         }
@@ -461,10 +462,10 @@ namespace IBSamples
         {
             // ! [passive_relative]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "PASSV REL";
+            order.Action        = action;
+            order.OrderType     = "PASSV REL";
             order.TotalQuantity = quantity;
-            order.AuxPrice = offset;
+            order.AuxPrice      = offset;
             // ! [passive_relative]
             return order;
         }
@@ -480,11 +481,11 @@ namespace IBSamples
         {
             // ! [pegged_midpoint]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "PEG MID";
+            order.Action        = action;
+            order.OrderType     = "PEG MID";
             order.TotalQuantity = quantity;
-            order.AuxPrice = offset;
-			order.LmtPrice = limitPrice;
+            order.AuxPrice      = offset;
+            order.LmtPrice      = limitPrice;
             // ! [pegged_midpoint]
             return order;
         }
@@ -496,37 +497,37 @@ namespace IBSamples
         /// Products: CFD, BAG, FOP, CASH, FUT, OPT, STK, WAR
         /// </summary>
         //! [bracket]
-        public static List<Order> BracketOrder(int parentOrderId, string action, decimal quantity, double limitPrice, 
-            double takeProfitLimitPrice, double stopLossPrice)
+        public static List<Order> BracketOrder(int parentOrderId, string action, decimal quantity, double limitPrice,
+                                               double takeProfitLimitPrice, double stopLossPrice)
         {
             //This will be our main or "parent" order
             Order parent = new Order();
-            parent.OrderId = parentOrderId;
-            parent.Action = action;
-            parent.OrderType = "LMT";
+            parent.OrderId       = parentOrderId;
+            parent.Action        = action;
+            parent.OrderType     = "LMT";
             parent.TotalQuantity = quantity;
-            parent.LmtPrice = limitPrice;
+            parent.LmtPrice      = limitPrice;
             //The parent and children orders will need this attribute set to false to prevent accidental executions.
             //The LAST CHILD will have it set to true, 
             parent.Transmit = false;
 
             Order takeProfit = new Order();
-            takeProfit.OrderId = parent.OrderId + 1;
-            takeProfit.Action = action.Equals("BUY") ? "SELL" : "BUY";
-            takeProfit.OrderType = "LMT";
+            takeProfit.OrderId       = parent.OrderId + 1;
+            takeProfit.Action        = action.Equals("BUY") ? "SELL" : "BUY";
+            takeProfit.OrderType     = "LMT";
             takeProfit.TotalQuantity = quantity;
-            takeProfit.LmtPrice = takeProfitLimitPrice;
-            takeProfit.ParentId = parentOrderId;
-            takeProfit.Transmit = false;
+            takeProfit.LmtPrice      = takeProfitLimitPrice;
+            takeProfit.ParentId      = parentOrderId;
+            takeProfit.Transmit      = false;
 
             Order stopLoss = new Order();
-            stopLoss.OrderId = parent.OrderId + 2;
-            stopLoss.Action = action.Equals("BUY") ? "SELL" : "BUY";
+            stopLoss.OrderId   = parent.OrderId + 2;
+            stopLoss.Action    = action.Equals("BUY") ? "SELL" : "BUY";
             stopLoss.OrderType = "STP";
             //Stop trigger price
-            stopLoss.AuxPrice = stopLossPrice;
+            stopLoss.AuxPrice      = stopLossPrice;
             stopLoss.TotalQuantity = quantity;
-            stopLoss.ParentId = parentOrderId;
+            stopLoss.ParentId      = parentOrderId;
             //In this case, the low side order will be the last child being sent. Therefore, it needs to set this attribute to true 
             //to activate all its predecessors
             stopLoss.Transmit = true;
@@ -549,8 +550,8 @@ namespace IBSamples
         {
             // ! [markettolimit]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "MTL";
+            order.Action        = action;
+            order.OrderType     = "MTL";
             order.TotalQuantity = quantity;
             // ! [markettolimit]
             return order;
@@ -566,8 +567,8 @@ namespace IBSamples
         {
             // ! [marketwithprotection]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "MKT PRT";
+            order.Action        = action;
+            order.OrderType     = "MKT PRT";
             order.TotalQuantity = quantity;
             // ! [marketwithprotection]
             return order;
@@ -585,9 +586,9 @@ namespace IBSamples
         {
             // ! [stop]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "STP";
-            order.AuxPrice = stopPrice;
+            order.Action        = action;
+            order.OrderType     = "STP";
+            order.AuxPrice      = stopPrice;
             order.TotalQuantity = quantity;
             // ! [stop]
             return order;
@@ -603,11 +604,11 @@ namespace IBSamples
         {
             // ! [stoplimit]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "STP LMT";
+            order.Action        = action;
+            order.OrderType     = "STP LMT";
             order.TotalQuantity = quantity;
-            order.LmtPrice = limitPrice;
-            order.AuxPrice = stopPrice;
+            order.LmtPrice      = limitPrice;
+            order.AuxPrice      = stopPrice;
             // ! [stoplimit]
             return order;
         }
@@ -625,9 +626,9 @@ namespace IBSamples
             // ! [stopwithprotection]
             Order order = new Order();
             order.TotalQuantity = quantity;
-            order.Action = action;
-            order.OrderType = "STP PRT";
-            order.AuxPrice = stopPrice;
+            order.Action        = action;
+            order.OrderType     = "STP PRT";
+            order.AuxPrice      = stopPrice;
             // ! [stopwithprotection]
             return order;
         }
@@ -644,11 +645,11 @@ namespace IBSamples
         {
             // ! [trailingstop]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "TRAIL";
-            order.TotalQuantity = quantity;
+            order.Action          = action;
+            order.OrderType       = "TRAIL";
+            order.TotalQuantity   = quantity;
             order.TrailingPercent = trailingPercent;
-            order.TrailStopPrice = trailStopPrice;
+            order.TrailStopPrice  = trailStopPrice;
             // ! [trailingstop]
             return order;
         }
@@ -663,16 +664,17 @@ namespace IBSamples
         /// and is generally used in falling markets.
         /// Products: BOND, CFD, CASH, FUT, FOP, OPT, STK, WAR
         /// </summary>
-        public static Order TrailingStopLimit(string action, decimal quantity, double lmtPriceOffset, double trailingAmount, double trailStopPrice)
+        public static Order TrailingStopLimit(string action, decimal quantity, double lmtPriceOffset,
+                                              double trailingAmount, double trailStopPrice)
         {
             // ! [trailingstoplimit]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "TRAIL LIMIT";
-            order.TotalQuantity = quantity;
+            order.Action         = action;
+            order.OrderType      = "TRAIL LIMIT";
+            order.TotalQuantity  = quantity;
             order.TrailStopPrice = trailStopPrice;
             order.LmtPriceOffset = lmtPriceOffset;
-            order.AuxPrice = trailingAmount;
+            order.AuxPrice       = trailingAmount;
             // ! [trailingstoplimit]
             return order;
         }
@@ -688,15 +690,16 @@ namespace IBSamples
         {
             // ! [combolimit]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LMT";
+            order.Action        = action;
+            order.OrderType     = "LMT";
             order.TotalQuantity = quantity;
-            order.LmtPrice = limitPrice;
+            order.LmtPrice      = limitPrice;
             if (nonGuaranteed)
             {
                 order.SmartComboRoutingParams = new List<TagValue>();
                 order.SmartComboRoutingParams.Add(new TagValue("NonGuaranteed", "1"));
             }
+
             // ! [combolimit]
             return order;
         }
@@ -712,14 +715,15 @@ namespace IBSamples
         {
             // ! [combomarket]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "MKT";
+            order.Action        = action;
+            order.OrderType     = "MKT";
             order.TotalQuantity = quantity;
             if (nonGuaranteed)
             {
                 order.SmartComboRoutingParams = new List<TagValue>();
                 order.SmartComboRoutingParams.Add(new TagValue("NonGuaranteed", "1"));
             }
+
             // ! [combomarket]
             return order;
         }
@@ -731,25 +735,28 @@ namespace IBSamples
         /// best execution.
         /// Products: OPT, STK, FUT
         /// </summary>
-        public static Order LimitOrderForComboWithLegPrices(string action, decimal quantity, double[] legPrices, bool nonGuaranteed)
+        public static Order LimitOrderForComboWithLegPrices(string action, decimal quantity, double[] legPrices,
+                                                            bool nonGuaranteed)
         {
             // ! [limitordercombolegprices]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LMT";
-            order.TotalQuantity = quantity;
+            order.Action         = action;
+            order.OrderType      = "LMT";
+            order.TotalQuantity  = quantity;
             order.OrderComboLegs = new List<OrderComboLeg>();
-            foreach(double price in legPrices)
+            foreach (double price in legPrices)
             {
                 OrderComboLeg comboLeg = new OrderComboLeg();
                 comboLeg.Price = 5.0;
                 order.OrderComboLegs.Add(comboLeg);
-            }           
+            }
+
             if (nonGuaranteed)
             {
                 order.SmartComboRoutingParams = new List<TagValue>();
                 order.SmartComboRoutingParams.Add(new TagValue("NonGuaranteed", "1"));
             }
+
             // ! [limitordercombolegprices]
             return order;
         }
@@ -765,15 +772,16 @@ namespace IBSamples
         {
             // ! [relativelimitcombo]
             Order order = new Order();
-            order.Action = action;
+            order.Action        = action;
             order.TotalQuantity = quantity;
-            order.OrderType = "REL + LMT";
-            order.LmtPrice = limitPrice;
+            order.OrderType     = "REL + LMT";
+            order.LmtPrice      = limitPrice;
             if (nonGuaranteed)
             {
                 order.SmartComboRoutingParams = new List<TagValue>();
                 order.SmartComboRoutingParams.Add(new TagValue("NonGuaranteed", "1"));
             }
+
             // ! [relativelimitcombo]
             return order;
         }
@@ -789,14 +797,15 @@ namespace IBSamples
         {
             // ! [relativemarketcombo]
             Order order = new Order();
-            order.Action = action;
+            order.Action        = action;
             order.TotalQuantity = quantity;
-            order.OrderType = "REL + MKT";
+            order.OrderType     = "REL + MKT";
             if (nonGuaranteed)
             {
                 order.SmartComboRoutingParams = new List<TagValue>();
                 order.SmartComboRoutingParams.Add(new TagValue("NonGuaranteed", "1"));
             }
+
             // ! [relativemarketcombo]
             return order;
         }
@@ -813,14 +822,15 @@ namespace IBSamples
         /// of taking on a single position.
         /// Products: BOND, CASH, FUT, FOP, STK, OPT, WAR
         /// </summary>
-       // ! [oca]
+        // ! [oca]
         public static List<Order> OneCancelsAll(string ocaGroup, List<Order> ocaOrders, int ocaType)
         {
             foreach (Order o in ocaOrders)
             {
                 o.OcaGroup = ocaGroup;
-                o.OcaType = ocaType;
+                o.OcaType  = ocaType;
             }
+
             return ocaOrders;
         }
         // ! [oca]
@@ -840,11 +850,11 @@ namespace IBSamples
         {
             // ! [volatility]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "VOL";
-            order.TotalQuantity = quantity;
-            order.Volatility = volatilityPercent;//Expressed in percentage (40%)
-            order.VolatilityType = volatilityType;// 1=daily, 2=annual
+            order.Action         = action;
+            order.OrderType      = "VOL";
+            order.TotalQuantity  = quantity;
+            order.Volatility     = volatilityPercent; //Expressed in percentage (40%)
+            order.VolatilityType = volatilityType;    // 1=daily, 2=annual
             // ! [volatility]
             return order;
         }
@@ -854,21 +864,23 @@ namespace IBSamples
         {
             //FX Hedge orders can only have a quantity of 0
             Order order = MarketOrder(action, 0);
-            order.ParentId = parentOrderId;
+            order.ParentId  = parentOrderId;
             order.HedgeType = "F";
             return order;
         }
         //! [fhedge]
 
-        public static Order PeggedToBenchmark(string action, decimal quantity, double startingPrice, bool peggedChangeAmountDecrease, double peggedChangeAmount,
-             double referenceChangeAmount, int referenceConId, string referenceExchange, double stockReferencePrice,  
-            double referenceContractLowerRange, double referenceContractUpperRange)
+        public static Order PeggedToBenchmark(string action, decimal quantity, double startingPrice,
+                                              bool peggedChangeAmountDecrease, double peggedChangeAmount,
+                                              double referenceChangeAmount, int referenceConId,
+                                              string referenceExchange, double stockReferencePrice,
+                                              double referenceContractLowerRange, double referenceContractUpperRange)
         {
             //! [pegged_benchmark]
             Order order = new Order();
             order.OrderType = "PEG BENCH";
             //BUY or SELL
-            order.Action = action;
+            order.Action        = action;
             order.TotalQuantity = quantity;
             //Beginning with price...
             order.StartingPrice = startingPrice;
@@ -891,13 +903,15 @@ namespace IBSamples
             //! [pegged_benchmark]
             return order;
         }
-        
 
-        public static Order AttachAdjustableToStop(Order parent, double attachedOrderStopPrice, double triggerPrice, double adjustStopPrice)
+
+        public static Order AttachAdjustableToStop(Order parent, double attachedOrderStopPrice, double triggerPrice,
+                                                   double adjustStopPrice)
         {
             //! [adjustable_stop]
             //Attached order is a conventional STP order in opposite direction
-            Order order = Stop(parent.Action.Equals("BUY") ? "SELL" : "BUY", parent.TotalQuantity, attachedOrderStopPrice);
+            Order order = Stop(parent.Action.Equals("BUY") ? "SELL" : "BUY", parent.TotalQuantity,
+                               attachedOrderStopPrice);
             order.ParentId = parent.OrderId;
             //When trigger price is penetrated
             order.TriggerPrice = triggerPrice;
@@ -909,12 +923,14 @@ namespace IBSamples
             return order;
         }
 
-        public static Order AttachAdjustableToStopLimit(Order parent, double attachedOrderStopPrice, double triggerPrice, 
-            double adjustedStopPrice, double adjustedStopLimitPrice)
+        public static Order AttachAdjustableToStopLimit(Order parent, double attachedOrderStopPrice,
+                                                        double triggerPrice,
+                                                        double adjustedStopPrice, double adjustedStopLimitPrice)
         {
             //! [adjustable_stop_limit]
             //Attached order is a conventional STP order
-            Order order = Stop(parent.Action.Equals("BUY") ? "SELL" : "BUY", parent.TotalQuantity, attachedOrderStopPrice);
+            Order order = Stop(parent.Action.Equals("BUY") ? "SELL" : "BUY", parent.TotalQuantity,
+                               attachedOrderStopPrice);
             order.ParentId = parent.OrderId;
             //When trigger price is penetrated
             order.TriggerPrice = triggerPrice;
@@ -927,13 +943,15 @@ namespace IBSamples
             //! [adjustable_stop_limit]
             return order;
         }
-		
-		public static Order AttachAdjustableToTrail(Order parent, double attachedOrderStopPrice, double triggerPrice, double adjustedStopPrice, 
-            double adjustedTrailAmount, int trailUnit)
+
+        public static Order AttachAdjustableToTrail(Order parent, double attachedOrderStopPrice, double triggerPrice,
+                                                    double adjustedStopPrice,
+                                                    double adjustedTrailAmount, int trailUnit)
         {
             //! [adjustable_trail]
             //Attached order is a conventional STP order
-            Order order = Stop(parent.Action.Equals("BUY") ? "SELL" : "BUY", parent.TotalQuantity, attachedOrderStopPrice);
+            Order order = Stop(parent.Action.Equals("BUY") ? "SELL" : "BUY", parent.TotalQuantity,
+                               attachedOrderStopPrice);
             order.ParentId = parent.OrderId;
             //When trigger price is penetrated
             order.TriggerPrice = triggerPrice;
@@ -958,7 +976,8 @@ namespace IBSamples
             return order;
         }
 
-        public static PriceCondition PriceCondition(int conId, string exchange, double price, bool isMore, bool isConjunction)
+        public static PriceCondition PriceCondition(int conId, string exchange, double price, bool isMore,
+                                                    bool isConjunction)
         {
             //! [price_condition]
             //Conditions have to be created via the OrderCondition.Create 
@@ -977,7 +996,8 @@ namespace IBSamples
             return priceCondition;
         }
 
-        public static ExecutionCondition ExecutionCondition(string symbol, string secType, string exchange, bool isConjunction)
+        public static ExecutionCondition ExecutionCondition(string symbol, string secType, string exchange,
+                                                            bool isConjunction)
         {
             //! [execution_condition]
             ExecutionCondition execCondition = (ExecutionCondition)OrderCondition.Create(OrderConditionType.Execution);
@@ -1007,10 +1027,12 @@ namespace IBSamples
             return marginCondition;
         }
 
-        public static PercentChangeCondition PercentageChangeCondition(double pctChange, int conId, string exchange, bool isMore, bool isConjunction)
+        public static PercentChangeCondition PercentageChangeCondition(double pctChange, int conId, string exchange,
+                                                                       bool isMore, bool isConjunction)
         {
             //! [percentage_condition]
-            PercentChangeCondition pctChangeCondition = (PercentChangeCondition)OrderCondition.Create(OrderConditionType.PercentCange);
+            PercentChangeCondition pctChangeCondition =
+                (PercentChangeCondition)OrderCondition.Create(OrderConditionType.PercentCange);
             //If there is a price percent change measured against last close price above or below...
             pctChangeCondition.IsMore = isMore;
             //this amount...
@@ -1039,7 +1061,8 @@ namespace IBSamples
             return timeCondition;
         }
 
-        public static VolumeCondition VolumeCondition(int conId, string exchange, bool isMore, int volume, bool isConjunction)
+        public static VolumeCondition VolumeCondition(int conId, string exchange, bool isMore, int volume,
+                                                      bool isConjunction)
         {
             //! [volume_condition]
             VolumeCondition volCond = (VolumeCondition)OrderCondition.Create(OrderConditionType.Volume);
@@ -1055,23 +1078,23 @@ namespace IBSamples
             volCond.IsConjunctionConnection = isConjunction;
             //! [volume_condition]
             return volCond;
-
         }
-		
-		public static Order LimitIBKRATS(string action, decimal quantity, double limitPrice)
+
+        public static Order LimitIBKRATS(string action, decimal quantity, double limitPrice)
         {
             // ! [limit_ibkrats]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "LMT";
-			order.LmtPrice = limitPrice;
+            order.Action        = action;
+            order.OrderType     = "LMT";
+            order.LmtPrice      = limitPrice;
             order.TotalQuantity = quantity;
-			order.NotHeld = true;
+            order.NotHeld       = true;
             // ! [limit_ibkrats]
             return order;
         }
 
-        public static Order LimitOrderWithManualOrderTime(string action, decimal quantity, double limitPrice, string manualOrderTime)
+        public static Order LimitOrderWithManualOrderTime(string action, decimal quantity, double limitPrice,
+                                                          string manualOrderTime)
         {
             // ! [limit_order_with_manual_order_time]
             Order order = OrderSamples.LimitOrder(action, quantity, limitPrice);
@@ -1080,52 +1103,55 @@ namespace IBSamples
             return order;
         }
 
-        public static Order PegBestUpToMidOrder(string action, decimal quantity, double limitPrice, int minTradeQty, int minCompeteSize, double midOffsetAtWhole, double midOffsetAtHalf)
+        public static Order PegBestUpToMidOrder(string action, decimal quantity, double limitPrice, int minTradeQty,
+                                                int minCompeteSize, double midOffsetAtWhole, double midOffsetAtHalf)
         {
             // ! [peg_best_up_to_mid_order]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "PEG BEST";
-            order.LmtPrice = limitPrice;
-            order.TotalQuantity = quantity;
-            order.NotHeld = true;
-            order.MinTradeQty = minTradeQty;
-            order.MinCompeteSize = minCompeteSize;
+            order.Action                   = action;
+            order.OrderType                = "PEG BEST";
+            order.LmtPrice                 = limitPrice;
+            order.TotalQuantity            = quantity;
+            order.NotHeld                  = true;
+            order.MinTradeQty              = minTradeQty;
+            order.MinCompeteSize           = minCompeteSize;
             order.CompeteAgainstBestOffset = Order.COMPETE_AGAINST_BEST_OFFSET_UP_TO_MID;
-            order.MidOffsetAtWhole = midOffsetAtWhole;
-            order.MidOffsetAtHalf = midOffsetAtHalf;
+            order.MidOffsetAtWhole         = midOffsetAtWhole;
+            order.MidOffsetAtHalf          = midOffsetAtHalf;
             // ! [peg_best_up_to_mid_order]
             return order;
         }
 
-        public static Order PegBestOrder(string action, decimal quantity, double limitPrice, int minTradeQty, int minCompeteSize, double competeAgainstBestOffset)
+        public static Order PegBestOrder(string action, decimal quantity, double limitPrice, int minTradeQty,
+                                         int minCompeteSize, double competeAgainstBestOffset)
         {
             // ! [peg_best_order]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "PEG BEST";
-            order.LmtPrice = limitPrice;
-            order.TotalQuantity = quantity;
-            order.NotHeld = true;
-            order.MinTradeQty = minTradeQty;
-            order.MinCompeteSize = minCompeteSize;
+            order.Action                   = action;
+            order.OrderType                = "PEG BEST";
+            order.LmtPrice                 = limitPrice;
+            order.TotalQuantity            = quantity;
+            order.NotHeld                  = true;
+            order.MinTradeQty              = minTradeQty;
+            order.MinCompeteSize           = minCompeteSize;
             order.CompeteAgainstBestOffset = competeAgainstBestOffset;
             // ! [peg_best_order]
             return order;
         }
 
-        public static Order PegMidOrder(string action, decimal quantity, double limitPrice, int minTradeQty, double midOffsetAtWhole, double midOffsetAtHalf)
+        public static Order PegMidOrder(string action, decimal quantity, double limitPrice, int minTradeQty,
+                                        double midOffsetAtWhole, double midOffsetAtHalf)
         {
             // ! [peg_mid_order]
             Order order = new Order();
-            order.Action = action;
-            order.OrderType = "PEG MID";
-            order.LmtPrice = limitPrice;
-            order.TotalQuantity = quantity;
-            order.NotHeld = true;
-            order.MinTradeQty = minTradeQty;
+            order.Action           = action;
+            order.OrderType        = "PEG MID";
+            order.LmtPrice         = limitPrice;
+            order.TotalQuantity    = quantity;
+            order.NotHeld          = true;
+            order.MinTradeQty      = minTradeQty;
             order.MidOffsetAtWhole = midOffsetAtWhole;
-            order.MidOffsetAtHalf = midOffsetAtHalf;
+            order.MidOffsetAtHalf  = midOffsetAtHalf;
             // ! [peg_mid_order]
             return order;
         }

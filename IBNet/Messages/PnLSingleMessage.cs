@@ -12,13 +12,14 @@ public class PnLSingleMessage
     public double  UnrealizedPnL { get; private set; }
     public double  RealizedPnL   { get; private set; }
 
-    public PnLSingleMessage(int reqId, decimal pos, double dailyPnL, double unrealizedPnL, double realizedPnL, double value)
+    public PnLSingleMessage(int reqId, decimal pos, double dailyPnL, double unrealizedPnL, double realizedPnL,
+                            double value)
     {
-            ReqId = reqId;
-            Pos = pos;
-            DailyPnL = dailyPnL;
-            Value = value;
-            UnrealizedPnL = unrealizedPnL;
-            RealizedPnL = realizedPnL;
-        }
+        ReqId         = reqId;
+        Pos           = pos;
+        DailyPnL      = dailyPnL;
+        Value         = value;
+        UnrealizedPnL = unrealizedPnL;
+        RealizedPnL   = realizedPnL;
+    }
 }

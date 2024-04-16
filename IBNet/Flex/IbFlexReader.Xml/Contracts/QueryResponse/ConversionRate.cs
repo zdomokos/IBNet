@@ -14,6 +14,5 @@ public class ConversionRate
     [XmlAttribute(AttributeName = "toCurrency")]
     public string ToCurrency { get; set; }
 
-    [XmlAttribute(AttributeName = "rate")]
-    public string Rate { get; set; }
+    [XmlAttribute(AttributeName = "rate")] public string Rate { get; set; }
 }

@@ -5,5 +5,6 @@ using System;
 [Flags]
 public enum OpenClose
 {
-    O = 1, C = 2
+    O = 1,
+    C = 2
 }

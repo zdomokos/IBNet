@@ -14,12 +14,14 @@ namespace IBSamples
             get => isFinished;
             set => isFinished = value;
         }
-        
+
         public static int Main2(string[] args)
         {
             RequestContractDetails testImpl = new RequestContractDetails();
             testImpl.ClientSocket.eConnect("127.0.0.1", 7496, 0);
-            while (testImpl.NextOrderId <= 0) { }
+            while (testImpl.NextOrderId <= 0)
+            {
+            }
 
             //We can request the whole option's chain by giving a brief description of the contract
             //i.e. we only specify symbol, currency, secType and exchange (SMART)
@@ -27,13 +29,16 @@ namespace IBSamples
 
             testImpl.ClientSocket.reqContractDetails(1, optionContract);
 
-            while (!testImpl.isFinished) { }
+            while (!testImpl.isFinished)
+            {
+            }
+
             Thread.Sleep(10000);
             Console.WriteLine("Disconnecting...");
             testImpl.ClientSocket.eDisconnect();
             return 0;
         }
-        
+
         public override void contractDetailsEnd(int reqId)
         {
             Console.WriteLine("Finished receiving all matching contracts.");
@@ -48,6 +53,5 @@ namespace IBSamples
             Console.WriteLine($"Strike: {contractDetails.Contract.Strike}, Multiplier: {contractDetails.Contract.Multiplier}");
             Console.WriteLine("/*******     End     *************/\n");
         }
-
     }
 }

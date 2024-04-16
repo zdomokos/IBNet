@@ -9,8 +9,8 @@ public class CommissionMessage
 {
     public CommissionMessage(CommissionReport commissionReport)
     {
-            CommissionReport = commissionReport;
-        }
+        CommissionReport = commissionReport;
+    }
 
     public CommissionReport CommissionReport { get; set; }
 }

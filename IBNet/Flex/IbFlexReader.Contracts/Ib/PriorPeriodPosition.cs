@@ -12,9 +12,8 @@ public class PriorPeriodPosition : SecurityInfo
     public string  AcctAlias    { get; set; }
     public string  Model        { get; set; }
     public double? FxRateToBase { get; set; }
-        
-    [Format(Constants.DateFormat)]
-    public DateTime? Date { get; set; }
+
+    [Format(Constants.DateFormat)] public DateTime? Date { get; set; }
 
     public double? Price       { get; set; }
     public double? PriorMtmPnl { get; set; }

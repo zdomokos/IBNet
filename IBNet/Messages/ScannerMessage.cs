@@ -7,16 +7,17 @@ namespace IBNet.Messages;
 
 public class ScannerMessage
 {
-    public ScannerMessage(int reqId, int rank, ContractDetails contractDetails, string distance, string benchmark, string projection, string legsStr)
+    public ScannerMessage(int reqId, int rank, ContractDetails contractDetails, string distance, string benchmark,
+                          string projection, string legsStr)
     {
-            RequestId = reqId;
-            Rank = rank;
-            ContractDetails = contractDetails;
-            Distance = distance;
-            Benchmark = benchmark;
-            Projection = projection;
-            LegsStr = legsStr;
-        }
+        RequestId       = reqId;
+        Rank            = rank;
+        ContractDetails = contractDetails;
+        Distance        = distance;
+        Benchmark       = benchmark;
+        Projection      = projection;
+        LegsStr         = legsStr;
+    }
 
     public int RequestId { get; set; }
 

@@ -17,7 +17,11 @@ public class FlexQueryResponse
 
     [TypeConverter(typeof(ListCountConverter))]
     public List<ErrorMessage> Errors { get; set; }
-    public string MappingErrors { get;      set; }
-        
-    public override string ToString() { return $"Statements: {FlexStatements?.Count}"; }
+
+    public string MappingErrors { get; set; }
+
+    public override string ToString()
+    {
+        return $"Statements: {FlexStatements?.Count}";
+    }
 }

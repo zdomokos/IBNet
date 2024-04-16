@@ -17,17 +17,18 @@ public class OrderStatusMessage : OrderMessage
     public double  MktCapPrice   { get; private set; }
 
     public OrderStatusMessage(int orderId, string status, decimal filled, decimal remaining, double avgFillPrice,
-                              int permId, int parentId, double lastFillPrice, int clientId, string whyHeld, double mktCapPrice)
+                              int permId, int parentId, double lastFillPrice, int clientId, string whyHeld,
+                              double mktCapPrice)
     {
-            OrderId = orderId;
-            Status = status;
-            Filled = filled;
-            Remaining = remaining;
-            AvgFillPrice = avgFillPrice;
-            PermId = permId;
-            ParentId = parentId;
-            LastFillPrice = lastFillPrice;
-            ClientId = clientId;
-            WhyHeld = whyHeld;
-        }       
+        OrderId       = orderId;
+        Status        = status;
+        Filled        = filled;
+        Remaining     = remaining;
+        AvgFillPrice  = avgFillPrice;
+        PermId        = permId;
+        ParentId      = parentId;
+        LastFillPrice = lastFillPrice;
+        ClientId      = clientId;
+        WhyHeld       = whyHeld;
+    }
 }

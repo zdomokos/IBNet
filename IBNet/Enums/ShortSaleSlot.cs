@@ -10,10 +10,12 @@ public enum ShortSaleSlot
     /// e.g. retail customer or not SSHORT leg
     /// </summary>
     Unapplicable = 0,
+
     /// <summary>
     /// Clearing Broker
     /// </summary>
     ClearingBroker = 1,
+
     /// <summary>
     /// Third Party
     /// </summary>

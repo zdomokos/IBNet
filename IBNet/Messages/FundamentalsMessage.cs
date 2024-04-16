@@ -7,8 +7,8 @@ public class FundamentalsMessage
 {
     public FundamentalsMessage(string data)
     {
-            Data = data;
-        }
+        Data = data;
+    }
 
     public string Data { get; set; }
 }

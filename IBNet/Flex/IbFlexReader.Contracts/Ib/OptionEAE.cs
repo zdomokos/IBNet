@@ -31,14 +31,12 @@ public class OptionEAE
     public int?           Multiplier                { get; set; }
     public double?        Strike                    { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Expiry { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Expiry { get; set; }
 
     public PutCall? PutCall               { get; set; }
     public string   PrincipalAdjustFactor { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Date { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Date { get; set; }
 
     public string  TransactionType  { get; set; }
     public double? Quantity         { get; set; }

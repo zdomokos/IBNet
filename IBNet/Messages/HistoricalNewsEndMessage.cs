@@ -10,7 +10,7 @@ public class HistoricalNewsEndMessage
 
     public HistoricalNewsEndMessage(int requestId, bool hasMore)
     {
-            RequestId = requestId;
-            HasMore = hasMore;
-        }
+        RequestId = requestId;
+        HasMore   = hasMore;
+    }
 }

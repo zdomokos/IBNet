@@ -11,6 +11,6 @@ public class NewsProvidersMessage
 
     public NewsProvidersMessage(NewsProvider[] newsProviders)
     {
-            NewsProviders = newsProviders;
-        }
+        NewsProviders = newsProviders;
+    }
 }

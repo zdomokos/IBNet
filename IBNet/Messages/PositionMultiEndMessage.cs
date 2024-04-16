@@ -3,12 +3,12 @@
 
 namespace IBNet.Messages;
 
-public class PositionMultiEndMessage 
+public class PositionMultiEndMessage
 {
     public PositionMultiEndMessage(int reqId)
     {
-            ReqId = reqId;
-        }
+        ReqId = reqId;
+    }
 
     public int ReqId { get; set; }
 }

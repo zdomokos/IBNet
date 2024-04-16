@@ -8,7 +8,11 @@ using System.Collections.Generic;
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public class FxLots
 {
-    [TypeConverter(typeof(ListCountConverter))] public List<FxLot> FxLot { get; set; }
-        
-    public override string ToString() { return $"Count: {FxLot?.Count}"; }
+    [TypeConverter(typeof(ListCountConverter))]
+    public List<FxLot> FxLot { get; set; }
+
+    public override string ToString()
+    {
+        return $"Count: {FxLot?.Count}";
+    }
 }

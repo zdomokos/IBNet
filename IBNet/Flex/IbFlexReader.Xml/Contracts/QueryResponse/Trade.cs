@@ -41,8 +41,7 @@ public class Trade
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -134,8 +133,7 @@ public class Trade
     [XmlAttribute(AttributeName = "notes")]
     public string Notes { get; set; }
 
-    [XmlAttribute(AttributeName = "cost")]
-    public string Cost { get; set; }
+    [XmlAttribute(AttributeName = "cost")] public string Cost { get; set; }
 
     [XmlAttribute(AttributeName = "fifoPnlRealized")]
     public string FifoPnlRealized { get; set; }

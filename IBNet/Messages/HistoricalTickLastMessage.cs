@@ -15,14 +15,15 @@ public class HistoricalTickLastMessage
     public string         Exchange          { get; private set; }
     public string         SpecialConditions { get; private set; }
 
-    public HistoricalTickLastMessage(int reqId, long time, TickAttribLast tickAttribLast, double price, decimal size, string exchange, string specialConditions)
+    public HistoricalTickLastMessage(int reqId, long time, TickAttribLast tickAttribLast, double price, decimal size,
+                                     string exchange, string specialConditions)
     {
-            ReqId = reqId;
-            Time = time;
-            TickAttribLast = tickAttribLast;
-            Price = price;
-            Size = size;
-            Exchange = exchange;
-            SpecialConditions = specialConditions;
-        }
+        ReqId             = reqId;
+        Time              = time;
+        TickAttribLast    = tickAttribLast;
+        Price             = price;
+        Size              = size;
+        Exchange          = exchange;
+        SpecialConditions = specialConditions;
+    }
 }

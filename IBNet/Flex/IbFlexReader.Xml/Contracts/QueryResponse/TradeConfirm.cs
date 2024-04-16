@@ -41,8 +41,7 @@ public class TradeConfirm //: Trade
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -104,8 +103,7 @@ public class TradeConfirm //: Trade
     [XmlAttribute(AttributeName = "proceeds")]
     public string Proceeds { get; set; }
 
-    [XmlAttribute(AttributeName = "tax")]
-    public string Taxes { get; set; }
+    [XmlAttribute(AttributeName = "tax")] public string Taxes { get; set; }
 
     [XmlAttribute(AttributeName = "commission")]
     public string IbCommission { get; set; }
@@ -153,7 +151,7 @@ public class TradeConfirm //: Trade
 
     [XmlAttribute(AttributeName = "orderTime")]
     public string OrderTime { get; set; }
-        
+
     [XmlAttribute(AttributeName = "levelOfDetail")]
     public string LevelOfDetail { get; set; }
 
@@ -166,8 +164,7 @@ public class TradeConfirm //: Trade
     [XmlAttribute(AttributeName = "isAPIOrder")]
     public string IsAPIOrder { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "brokerExecutionCommission")]
     public string BrokerExecutionCommission { get; set; }

@@ -5,17 +5,18 @@ namespace IBNet.Messages;
 
 public class DeepBookMessage
 {
-    public DeepBookMessage(int tickerId, int position, int operation, int side, double price, decimal size, string marketMaker, bool isSmartDepth)
+    public DeepBookMessage(int tickerId, int position, int operation, int side, double price, decimal size,
+                           string marketMaker, bool isSmartDepth)
     {
-            RequestId = tickerId;
-            Position = position;
-            Operation = operation;
-            Side = side;
-            Price = price;
-            Size = size;
-            MarketMaker = marketMaker;
-            IsSmartDepth = isSmartDepth;
-        }
+        RequestId    = tickerId;
+        Position     = position;
+        Operation    = operation;
+        Side         = side;
+        Price        = price;
+        Size         = size;
+        MarketMaker  = marketMaker;
+        IsSmartDepth = isSmartDepth;
+    }
 
     public int RequestId { get; set; }
 

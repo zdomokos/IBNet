@@ -11,6 +11,6 @@ public class FamilyCodesMessage
 
     public FamilyCodesMessage(FamilyCode[] familyCodes)
     {
-            FamilyCodes = familyCodes;
-        }
+        FamilyCodes = familyCodes;
+    }
 }

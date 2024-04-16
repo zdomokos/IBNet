@@ -41,8 +41,7 @@ public class CorporateAction
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -119,15 +118,13 @@ public class CorporateAction
     [XmlAttribute(AttributeName = "mtmPnl")]
     public string MtmPnl { get; set; }
 
-    [XmlAttribute(AttributeName = "type")]
-    public string Type { get; set; }
+    [XmlAttribute(AttributeName = "type")] public string Type { get; set; }
 
     [XmlAttribute(AttributeName = "transactionID")]
     public string TransactionID { get; set; }
 
     [XmlAttribute(AttributeName = "levelOfDetail")]
     public string LevelOfDetail { get; set; }
-        
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 }

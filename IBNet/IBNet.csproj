@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>disable</Nullable>
-		<RootNamespace>IBNet</RootNamespace>
-		<AssemblyName>IBNet</AssemblyName>		
-		<NoWarn>CS1591,CS0168,CS1998,BL9993,CS0649,CS0436,0436</NoWarn>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="Biehler.EnumParser" Version="1.1.0" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\..\tws-api\source\csharpclient\client\CSharpAPI.csproj" />
-	</ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <RootNamespace>IBNet</RootNamespace>
+        <AssemblyName>IBNet</AssemblyName>
+        <NoWarn>CS1591,CS0168,CS1998,BL9993,CS0649,CS0436,0436</NoWarn>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Biehler.EnumParser" Version="1.1.0"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\tws-api\source\csharpclient\client\CSharpAPI.csproj"/>
+    </ItemGroup>
 </Project>

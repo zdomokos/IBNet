@@ -9,8 +9,7 @@ using IbFlexReader.Contracts.Enums;
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public class TradeConfirm : Trade
 {
-    [Format(Constants.DateFormat)]
-    public DateTime? SettleDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? SettleDate { get; set; }
 
     public Currencies? CommissionCurrency { get; set; }
 

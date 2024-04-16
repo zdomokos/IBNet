@@ -10,9 +10,9 @@ public class MarketDataTypeMessage
 
     public MarketDataTypeMessage(int requestId, int marketDataType)
     {
-            RequestId = requestId;
-            MarketDataType = marketDataType;
-        }
+        RequestId      = requestId;
+        MarketDataType = marketDataType;
+    }
 
     public int RequestId
     {

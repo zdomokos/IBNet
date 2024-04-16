@@ -11,8 +11,8 @@ public class NewsArticleMessage
 
     public NewsArticleMessage(int requestId, int articleType, string articleText)
     {
-            RequestId = requestId;
-            ArticleType = articleType;
-            ArticleText = articleText;
-        }
+        RequestId   = requestId;
+        ArticleType = articleType;
+        ArticleText = articleText;
+    }
 }

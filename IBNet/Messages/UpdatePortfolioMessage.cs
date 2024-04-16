@@ -7,17 +7,18 @@ namespace IBNet.Messages;
 
 public class UpdatePortfolioMessage
 {
-    public UpdatePortfolioMessage(Contract contract, decimal position, double marketPrice, double marketValue, double averageCost, double unrealizedPNL, double realizedPNL, string accountName)
+    public UpdatePortfolioMessage(Contract contract, decimal position, double marketPrice, double marketValue,
+                                  double averageCost, double unrealizedPNL, double realizedPNL, string accountName)
     {
-            Contract = contract;
-            Position = position;
-            MarketPrice = marketPrice;
-            MarketValue = marketValue;
-            AverageCost = averageCost;
-            UnrealizedPNL = unrealizedPNL;
-            RealizedPNL = realizedPNL;
-            AccountName = accountName;
-        }
+        Contract      = contract;
+        Position      = position;
+        MarketPrice   = marketPrice;
+        MarketValue   = marketValue;
+        AverageCost   = averageCost;
+        UnrealizedPNL = unrealizedPNL;
+        RealizedPNL   = realizedPNL;
+        AccountName   = accountName;
+    }
 
     public Contract Contract { get; set; }
 

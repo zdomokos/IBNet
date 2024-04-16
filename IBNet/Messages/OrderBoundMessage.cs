@@ -11,8 +11,8 @@ public class OrderBoundMessage
 
     public OrderBoundMessage(long orderId, int apiClientId, int apiOrderId)
     {
-            OrderId = orderId;
-            ApiClientId = apiClientId;
-            ApiOrderId = apiOrderId;
-        }
+        OrderId     = orderId;
+        ApiClientId = apiClientId;
+        ApiOrderId  = apiOrderId;
+    }
 }

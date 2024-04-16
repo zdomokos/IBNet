@@ -10,8 +10,8 @@ public class TickPriceMessage : TickGenericMessage
     public TickPriceMessage(int requestId, int field, double price, TickAttrib attribs)
         : base(requestId, field, price)
     {
-            Attribs = attribs;
-        }
+        Attribs = attribs;
+    }
 
     public TickAttrib Attribs { get; set; }
 }

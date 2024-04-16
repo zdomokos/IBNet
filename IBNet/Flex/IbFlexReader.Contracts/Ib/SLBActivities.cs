@@ -8,7 +8,11 @@ using System.Collections.Generic;
 [TypeConverter(typeof(ExpandableObjectConverter))]
 public class SLBActivities
 {
-    [TypeConverter(typeof(ListCountConverter))] public List<SLBActivity> SLBActivity { get; set; }
-        
-    public override string ToString() { return $"Count: {SLBActivity?.Count}"; }
+    [TypeConverter(typeof(ListCountConverter))]
+    public List<SLBActivity> SLBActivity { get; set; }
+
+    public override string ToString()
+    {
+        return $"Count: {SLBActivity?.Count}";
+    }
 }

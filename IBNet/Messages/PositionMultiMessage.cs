@@ -5,17 +5,18 @@ using IBApi;
 
 namespace IBNet.Messages;
 
-public class PositionMultiMessage 
+public class PositionMultiMessage
 {
-    public PositionMultiMessage(int reqId, string account, string modelCode, Contract contract, decimal pos, double avgCost)
+    public PositionMultiMessage(int reqId, string account, string modelCode, Contract contract, decimal pos,
+                                double avgCost)
     {
-            ReqId = reqId;
-            Account = account;
-            ModelCode = modelCode;
-            Contract = contract;
-            Position = pos;
-            AverageCost = avgCost;
-        }
+        ReqId       = reqId;
+        Account     = account;
+        ModelCode   = modelCode;
+        Contract    = contract;
+        Position    = pos;
+        AverageCost = avgCost;
+    }
 
     public int ReqId { get; set; }
 

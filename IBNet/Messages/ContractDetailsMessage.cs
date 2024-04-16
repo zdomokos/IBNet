@@ -9,9 +9,9 @@ public class ContractDetailsMessage
 {
     public ContractDetailsMessage(int requestId, ContractDetails contractDetails)
     {
-            RequestId = requestId;
-            ContractDetails = contractDetails;
-        }
+        RequestId       = requestId;
+        ContractDetails = contractDetails;
+    }
 
     public ContractDetails ContractDetails { get; set; }
 

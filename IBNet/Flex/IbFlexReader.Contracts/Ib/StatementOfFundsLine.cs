@@ -22,14 +22,12 @@ public class StatementOfFundsLine
     public Currencies?    Currency            { get; set; }
     public string         Cusip               { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Date { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Date { get; set; }
 
     public double? Debit       { get; set; }
     public string  Description { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Expiry { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Expiry { get; set; }
 
     public double?  FxRateToBase          { get; set; }
     public string   Isin                  { get; set; }
@@ -42,14 +40,12 @@ public class StatementOfFundsLine
     public string   PrincipalAdjustFactor { get; set; }
     public PutCall? PutCall               { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? ReportDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? ReportDate { get; set; }
 
     public string SecurityID     { get; set; }
     public string SecurityIDType { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? SettleDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? SettleDate { get; set; }
 
     public double? Strike                    { get; set; }
     public string  Symbol                    { get; set; }

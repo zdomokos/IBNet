@@ -15,7 +15,7 @@ public class Trade : SecurityInfo
     public double? FxRateToBase { get; set; }
 
     //Note: The reportDate XML attribute may contain either a date or a string, i.e. reportDate="MULTI"
-    public string ReportDate            { get; set; }
+    public string ReportDate { get; set; }
 
     [Format(Constants.DateTimeFormat, 0)]
     // alternative format
@@ -30,20 +30,21 @@ public class Trade : SecurityInfo
     {
         get
         {
-                try
-                {
-                    if (string.IsNullOrEmpty(TradeTime))
-                        TradeTime = "000000";
-                    DateTime dt = DateTime.ParseExact($"{TradeDate}:{TradeTime}", "yyyyMMdd:HHmmss", CultureInfo.InvariantCulture);
-                    return dt;
-                }
-                catch (Exception e)
-                {
-                    //e.LogError($"{TradeDate}:{TradeTime}");
-                }
-
-                return null;
+            try
+            {
+                if (string.IsNullOrEmpty(TradeTime))
+                    TradeTime = "000000";
+                DateTime dt = DateTime.ParseExact($"{TradeDate}:{TradeTime}", "yyyyMMdd:HHmmss",
+                                                  CultureInfo.InvariantCulture);
+                return dt;
             }
+            catch (Exception e)
+            {
+                //e.LogError($"{TradeDate}:{TradeTime}");
+            }
+
+            return null;
+        }
     }
 
     //Note: The settleDateTarget XML attribute may contain either a date or a string, i.e. settleDateTarget="MULTI"
@@ -67,8 +68,7 @@ public class Trade : SecurityInfo
     public double?     MtmPnl               { get; set; }
     public double?     OrigTradePrice       { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? OrigTradeDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? OrigTradeDate { get; set; }
 
     public long?    OrigTradeID         { get; set; }
     public long?    OrigOrderID         { get; set; }
@@ -83,20 +83,15 @@ public class Trade : SecurityInfo
     public string   ExchOrderId         { get; set; }
     public string   ExtExecID           { get; set; }
 
-    [Format(Constants.DateTimeFormat)]
-    public DateTime? OrderTime { get; set; }
+    [Format(Constants.DateTimeFormat)] public DateTime? OrderTime { get; set; }
 
-    [Format(Constants.DateTimeFormat)]
-    public DateTime? OpenDateTime { get; set; }
+    [Format(Constants.DateTimeFormat)] public DateTime? OpenDateTime { get; set; }
 
-    [Format(Constants.DateTimeFormat)]
-    public DateTime? HoldingPeriodDateTime { get; set; }
+    [Format(Constants.DateTimeFormat)] public DateTime? HoldingPeriodDateTime { get; set; }
 
-    [Format(Constants.DateTimeFormat)]
-    public DateTime? WhenRealized { get; set; }
+    [Format(Constants.DateTimeFormat)] public DateTime? WhenRealized { get; set; }
 
-    [Format(Constants.DateTimeFormat)]
-    public DateTime? WhenReopened { get; set; }
+    [Format(Constants.DateTimeFormat)] public DateTime? WhenReopened { get; set; }
 
     public string  LevelOfDetail    { get; set; }
     public double? ChangeInPrice    { get; set; }

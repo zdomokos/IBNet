@@ -15,8 +15,8 @@ public class GeneralTracer : TraceSwitch
     /// <param name="args">Prameter Arguments</param>
     public static void WriteLineIf(bool condition, string message, params object[] args)
     {
-            Trace.WriteLineIf(condition, string.Format(message, args));
-        }
+        Trace.WriteLineIf(condition, string.Format(message, args));
+    }
 
     /// <summary>
     /// Create New General Tracer
@@ -26,5 +26,5 @@ public class GeneralTracer : TraceSwitch
     public GeneralTracer(string displayName, string description)
         : base(displayName, description)
     {
-        }
+    }
 }

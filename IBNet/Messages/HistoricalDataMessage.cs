@@ -21,44 +21,44 @@ public class HistoricalDataMessage
         get => requestId;
         set => requestId = value;
     }
-        
+
     public string Date
     {
         get => date;
         set => date = value;
     }
-        
+
     public double Open
     {
         get => open;
         set => open = value;
     }
-        
+
 
     public double High
     {
         get => high;
         set => high = value;
     }
-        
+
     public double Low
     {
         get => low;
         set => low = value;
     }
-        
+
     public double Close
     {
         get => close;
         set => close = value;
     }
-        
+
     public decimal Volume
     {
         get => volume;
         set => volume = value;
     }
-        
+
     public int Count
     {
         get => count;
@@ -79,14 +79,14 @@ public class HistoricalDataMessage
 
     public HistoricalDataMessage(int reqId, IBApi.Bar bar)
     {
-            RequestId = reqId;
-            Date = bar.Time;
-            Open = bar.Open;
-            High = bar.High;
-            Low = bar.Low;
-            Close = bar.Close;
-            Volume = bar.Volume;
-            Count = bar.Count;
-            Wap = bar.WAP;
-        }
+        RequestId = reqId;
+        Date      = bar.Time;
+        Open      = bar.Open;
+        High      = bar.High;
+        Low       = bar.Low;
+        Close     = bar.Close;
+        Volume    = bar.Volume;
+        Count     = bar.Count;
+        Wap       = bar.WAP;
+    }
 }

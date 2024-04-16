@@ -13,12 +13,13 @@ public class HistoricalScheduleMessage
     public string              TimeZone      { get; set; }
     public HistoricalSession[] Sessions      { get; private set; }
 
-    public HistoricalScheduleMessage(int reqId, string startDateTime, string endDateTime, string timeZone, HistoricalSession[] sessions)
+    public HistoricalScheduleMessage(int reqId, string startDateTime, string endDateTime, string timeZone,
+                                     HistoricalSession[] sessions)
     {
-            ReqId = reqId;
-            StartDateTime = startDateTime;
-            EndDateTime = endDateTime;
-            TimeZone = timeZone;
-            Sessions = sessions;
-        }
+        ReqId         = reqId;
+        StartDateTime = startDateTime;
+        EndDateTime   = endDateTime;
+        TimeZone      = timeZone;
+        Sessions      = sessions;
+    }
 }

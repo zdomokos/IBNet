@@ -12,7 +12,7 @@ public class MarketRuleMessage
 
     public MarketRuleMessage(int marketRuleId, PriceIncrement[] priceIncrements)
     {
-            MarketruleId = marketRuleId;
-            PriceIncrements = priceIncrements;
-        }
+        MarketruleId    = marketRuleId;
+        PriceIncrements = priceIncrements;
+    }
 }

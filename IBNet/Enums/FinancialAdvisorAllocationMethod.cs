@@ -15,5 +15,6 @@ public class FinancialAdvisorAllocationMethod : Enumeration<FinancialAdvisorAllo
     public static FinancialAdvisorAllocationMethod None            = new("", nameof(None));
 
     public FinancialAdvisorAllocationMethod(string value, string name) : base(value, name)
-    { }
+    {
+    }
 }

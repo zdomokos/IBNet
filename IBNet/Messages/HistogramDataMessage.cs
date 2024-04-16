@@ -10,7 +10,7 @@ public class HistogramDataMessage
 
     public HistogramDataMessage(int reqId, IBApi.HistogramEntry[] data)
     {
-            ReqId = reqId;
-            Data = data;
-        }
+        ReqId = reqId;
+        Data  = data;
+    }
 }

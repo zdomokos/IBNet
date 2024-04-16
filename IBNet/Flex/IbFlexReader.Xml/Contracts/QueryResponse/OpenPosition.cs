@@ -41,8 +41,7 @@ public class OpenPosition
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -104,8 +103,7 @@ public class OpenPosition
     [XmlAttribute(AttributeName = "fifoPnlUnrealized")]
     public string FifoPnlUnrealized { get; set; }
 
-    [XmlAttribute(AttributeName = "side")]
-    public string Side { get; set; }
+    [XmlAttribute(AttributeName = "side")] public string Side { get; set; }
 
     [XmlAttribute(AttributeName = "levelOfDetail")]
     public string LevelOfDetail { get; set; }
@@ -116,8 +114,7 @@ public class OpenPosition
     [XmlAttribute(AttributeName = "holdingPeriodDateTime")]
     public string HoldingPeriodDateTime { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "originatingOrderID")]
     public string OriginatingOrderID { get; set; }

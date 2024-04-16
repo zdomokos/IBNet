@@ -113,5 +113,7 @@ public class OrderType : Enumeration<OrderType, string>
     /// </summary>
     public static OrderType LimitIfTouched = new("LIT", nameof(LimitIfTouched));
 
-    public OrderType(string value, string name) : base(value, name) { }
+    public OrderType(string value, string name) : base(value, name)
+    {
+    }
 }

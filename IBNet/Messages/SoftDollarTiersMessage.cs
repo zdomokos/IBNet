@@ -10,7 +10,7 @@ public class SoftDollarTiersMessage
 
     public SoftDollarTiersMessage(int reqId, IBApi.SoftDollarTier[] tiers)
     {
-            ReqId = reqId;
-            Tiers = tiers;
-        }
+        ReqId = reqId;
+        Tiers = tiers;
+    }
 }

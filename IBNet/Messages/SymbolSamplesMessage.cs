@@ -12,7 +12,7 @@ public class SymbolSamplesMessage
 
     public SymbolSamplesMessage(int reqId, ContractDescription[] contractDescriptions)
     {
-            ReqId = reqId;
-            ContractDescriptions = contractDescriptions;
-        }
+        ReqId                = reqId;
+        ContractDescriptions = contractDescriptions;
+    }
 }

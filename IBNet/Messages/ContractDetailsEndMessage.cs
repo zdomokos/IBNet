@@ -7,5 +7,5 @@ public class ContractDetailsEndMessage
 {
     public ContractDetailsEndMessage()
     {
-        }
+    }
 }

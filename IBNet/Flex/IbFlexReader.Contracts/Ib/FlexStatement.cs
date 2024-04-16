@@ -33,19 +33,20 @@ public class FlexStatement
     public UnbundledCommissionDetails UnbundledCommissionDetails { get; set; }
     public string                     AccountId                  { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? FromDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? FromDate { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? ToDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? ToDate { get; set; }
 
     public string Period { get; set; }
 
-    [Format(Constants.DateTimeFormat)]
-    public DateTime? WhenGenerated { get; set; }
+    [Format(Constants.DateTimeFormat)] public DateTime? WhenGenerated { get; set; }
 
     public FxPositions                  FxPositions                  { get; set; }
     public FxTransactions               FxTransactions               { get; set; }
     public FifoPerformanceSummaryInBase FifoPerformanceSummaryInBase { get; set; }
-    public override string                       ToString()                   { return $"AccontId: {AccountId}"; }
+
+    public override string ToString()
+    {
+        return $"AccontId: {AccountId}";
+    }
 }

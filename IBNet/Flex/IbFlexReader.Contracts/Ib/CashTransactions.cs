@@ -10,6 +10,9 @@ public class CashTransactions
 {
     [TypeConverter(typeof(ListCountConverter))]
     public List<CashTransaction> CashTransaction { get; set; }
-        
-    public override string ToString() { return $"Count: {CashTransaction?.Count}"; }
+
+    public override string ToString()
+    {
+        return $"Count: {CashTransaction?.Count}";
+    }
 }

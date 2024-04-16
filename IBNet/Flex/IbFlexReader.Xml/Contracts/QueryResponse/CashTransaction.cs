@@ -41,8 +41,7 @@ public class CashTransaction
     [XmlAttribute(AttributeName = "cusip")]
     public string Cusip { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "listingExchange")]
     public string ListingExchange { get; set; }
@@ -83,14 +82,12 @@ public class CashTransaction
     [XmlAttribute(AttributeName = "amount")]
     public string Amount { get; set; }
 
-    [XmlAttribute(AttributeName = "type")]
-    public string Type { get; set; }
+    [XmlAttribute(AttributeName = "type")] public string Type { get; set; }
 
     [XmlAttribute(AttributeName = "tradeID")]
     public string TradeID { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "transactionID")]
     public string TransactionID { get; set; }

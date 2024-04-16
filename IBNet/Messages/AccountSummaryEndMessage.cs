@@ -3,12 +3,12 @@
 
 namespace IBNet.Messages;
 
-public class AccountSummaryEndMessage 
+public class AccountSummaryEndMessage
 {
     public AccountSummaryEndMessage(int requestId)
     {
-            RequestId = requestId;
-        }
+        RequestId = requestId;
+    }
 
     public int RequestId { get; set; }
 }

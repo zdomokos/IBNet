@@ -27,11 +27,9 @@ public class OpenPosition : SecurityInfo
     public LongShort? Side              { get; set; }
     public string     LevelOfDetail     { get; set; }
 
-    [Format(Constants.DateTimeFormat)]
-    public DateTime? OpenDateTime { get; set; }
+    [Format(Constants.DateTimeFormat)] public DateTime? OpenDateTime { get; set; }
 
-    [Format(Constants.DateTimeFormat)]
-    public DateTime? HoldingPeriodDateTime { get; set; }
+    [Format(Constants.DateTimeFormat)] public DateTime? HoldingPeriodDateTime { get; set; }
 
     public long?   OriginatingOrderID       { get; set; }
     public long?   OriginatingTransactionID { get; set; }

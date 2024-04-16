@@ -13,14 +13,16 @@ public class SecurityDefinitionOptionParameterMessage
     public HashSet<string> Expirations     { get; private set; }
     public HashSet<double> Strikes         { get; private set; }
 
-    public SecurityDefinitionOptionParameterMessage(int reqId, string exchange, int underlyingConId, string tradingClass, string multiplier, HashSet<string> expirations, HashSet<double> strikes)
+    public SecurityDefinitionOptionParameterMessage(int reqId, string exchange, int underlyingConId,
+                                                    string tradingClass, string multiplier, HashSet<string> expirations,
+                                                    HashSet<double> strikes)
     {
-            ReqId = reqId;
-            Exchange = exchange;
-            UnderlyingConId = underlyingConId;
-            TradingClass = tradingClass;
-            Multiplier = multiplier;
-            Expirations = expirations;
-            Strikes = strikes;
-        }
+        ReqId           = reqId;
+        Exchange        = exchange;
+        UnderlyingConId = underlyingConId;
+        TradingClass    = tradingClass;
+        Multiplier      = multiplier;
+        Expirations     = expirations;
+        Strikes         = strikes;
+    }
 }

@@ -21,14 +21,11 @@ public class AccountInformation
     public string      RegisteredRepName   { get; set; }
     public string      RegisteredRepPhone  { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? DateOpened { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? DateOpened { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? DateFunded { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? DateFunded { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? DateClosed { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? DateClosed { get; set; }
 
     public string Street                       { get; set; }
     public string Street2                      { get; set; }

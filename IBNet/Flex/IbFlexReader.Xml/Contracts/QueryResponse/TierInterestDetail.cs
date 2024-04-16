@@ -20,8 +20,7 @@ public class TierInterestDetail
     [XmlAttribute(AttributeName = "fxRateToBase")]
     public string FxRateToBase { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "toAcct")]
     public string ToAcct { get; set; }
@@ -41,8 +40,7 @@ public class TierInterestDetail
     [XmlAttribute(AttributeName = "securitiesInterest")]
     public string SecuritiesInterest { get; set; }
 
-    [XmlAttribute(AttributeName = "rate")]
-    public string Rate { get; set; }
+    [XmlAttribute(AttributeName = "rate")] public string Rate { get; set; }
 
     [XmlAttribute(AttributeName = "totalPrincipal")]
     public string TotalPrincipal { get; set; }

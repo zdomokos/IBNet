@@ -6,6 +6,5 @@ using System.Xml.Serialization;
 [XmlRoot(ElementName = "FxLots")]
 public class FxLots
 {
-    [XmlElement(ElementName = "FxLot")]
-    public List<FxLot> FxLot { get; set; }
+    [XmlElement(ElementName = "FxLot")] public List<FxLot> FxLot { get; set; }
 }

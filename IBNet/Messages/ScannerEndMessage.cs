@@ -7,8 +7,8 @@ public class ScannerEndMessage
 {
     public ScannerEndMessage(int requestId)
     {
-             RequestId = requestId;
-        }
+        RequestId = requestId;
+    }
 
     public int RequestId { get; set; }
 }

@@ -13,5 +13,6 @@ public class FADataType : Enumeration<FADataType, int>
     public static FADataType Aliases  = new(3, nameof(Aliases));
 
     public FADataType(int value, string name) : base(value, name)
-    { }
+    {
+    }
 }

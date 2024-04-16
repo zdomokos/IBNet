@@ -9,6 +9,5 @@ public class FxPositions
     [XmlElement(ElementName = "FxPosition")]
     public List<FxPosition> FxPosition { get; set; }
 
-    [XmlElement(ElementName = "FxLots")]
-    public FxLots FxLots { get; set; }
+    [XmlElement(ElementName = "FxLots")] public FxLots FxLots { get; set; }
 }

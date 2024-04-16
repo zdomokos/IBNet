@@ -10,6 +10,9 @@ public class CorporateActions
 {
     [TypeConverter(typeof(ListCountConverter))]
     public List<CorporateAction> CorporateAction { get; set; }
-        
-    public override string ToString() { return $"Count: {CorporateAction?.Count}"; }
+
+    public override string ToString()
+    {
+        return $"Count: {CorporateAction?.Count}";
+    }
 }

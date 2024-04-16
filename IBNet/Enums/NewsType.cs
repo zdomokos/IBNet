@@ -10,10 +10,12 @@ public enum NewsType
     /// Reqular news bulletin
     /// </summary>
     Regular = 1,
+
     /// <summary>
     /// Exchange no longer available for trading
     /// </summary>
     ExchangeUnavailable = 2,
+
     /// <summary>
     /// Exchange is available for trading
     /// </summary>

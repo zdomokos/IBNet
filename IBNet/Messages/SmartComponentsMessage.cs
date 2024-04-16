@@ -11,8 +11,8 @@ public class SmartComponentsMessage
 
     public SmartComponentsMessage(int bitNumber, string exchange, char exchangeChar)
     {
-            BitNumber = bitNumber;
-            Exchange = exchange;
-            ExchangeChar = exchangeChar;
-        }
+        BitNumber    = bitNumber;
+        Exchange     = exchange;
+        ExchangeChar = exchangeChar;
+    }
 }

@@ -9,6 +9,6 @@ public class MktDepthExchangesMessage
 
     public MktDepthExchangesMessage(IBApi.DepthMktDataDescription[] descriptions)
     {
-            Descriptions = descriptions;
-        }
+        Descriptions = descriptions;
+    }
 }

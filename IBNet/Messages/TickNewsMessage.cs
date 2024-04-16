@@ -12,13 +12,14 @@ public class TickNewsMessage
     public string Headline     { get; private set; }
     public string ExtraData    { get; private set; }
 
-    public TickNewsMessage(int tickerId, long timeStamp, string providerCode, string articleId, string headline, string extraData)
+    public TickNewsMessage(int tickerId, long timeStamp, string providerCode, string articleId, string headline,
+                           string extraData)
     {
-            TickerId = tickerId;
-            TimeStamp = timeStamp;
-            ProviderCode = providerCode;
-            ArticleId = articleId;
-            Headline = headline;
-            ExtraData = extraData;
-        }
+        TickerId     = tickerId;
+        TimeStamp    = timeStamp;
+        ProviderCode = providerCode;
+        ArticleId    = articleId;
+        Headline     = headline;
+        ExtraData    = extraData;
+    }
 }

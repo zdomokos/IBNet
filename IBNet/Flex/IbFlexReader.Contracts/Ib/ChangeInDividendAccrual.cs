@@ -16,8 +16,7 @@ public class ChangeInDividendAccrual : SecurityInfo
     //Note: The reportDate XML attribute may contain either a date or a string, i.e. reportDate="MULTI"
     public string ReportDate { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Date { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Date { get; set; }
 
     public string  ExDate        { get; set; }
     public string  PayDate       { get; set; }

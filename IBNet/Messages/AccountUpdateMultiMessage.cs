@@ -3,16 +3,17 @@
 
 namespace IBNet.Messages;
 
-public class AccountUpdateMultiMessage 
+public class AccountUpdateMultiMessage
 {
-    public AccountUpdateMultiMessage(int reqId, string account, string modelCode, string key, string value, string currency)
+    public AccountUpdateMultiMessage(int reqId, string account, string modelCode, string key, string value,
+                                     string currency)
     {
-            Account = account;
-            ModelCode = modelCode;
-            Key = key;
-            Value = value;
-            Currency = currency;
-        }
+        Account   = account;
+        ModelCode = modelCode;
+        Key       = key;
+        Value     = value;
+        Currency  = currency;
+    }
 
     public int ReqId { get; set; }
 

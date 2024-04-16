@@ -18,12 +18,12 @@ public class Future : Contract
     /// <param name="expiry">Expiry for a future contract. See <see cref="Contract.Expiry"/>.</param>
     public Future(string symbol, string exchange, string expiry)
     {
-            Symbol = symbol;
-            Exchange = exchange;
-            SecType = SecurityType.Future.Value;
-            Currency = "USD";
-            LastTradeDateOrContractMonth = expiry;
-        }
+        Symbol                       = symbol;
+        Exchange                     = exchange;
+        SecType                      = SecurityType.Future.Value;
+        Currency                     = "USD";
+        LastTradeDateOrContractMonth = expiry;
+    }
 
     /// <summary>
     /// Create a Future Contract for a specific exchange
@@ -34,12 +34,12 @@ public class Future : Contract
     /// <param name="currency">Currency for a future contract. See <see cref="Contract.Currency"/>.</param>
     public Future(string symbol, string exchange, string expiry, string currency)
     {
-            Symbol = symbol;
-            Exchange = exchange;
-            SecType = SecurityType.Future.Value;
-            Currency = currency;
-            LastTradeDateOrContractMonth = expiry;
-        }
+        Symbol                       = symbol;
+        Exchange                     = exchange;
+        SecType                      = SecurityType.Future.Value;
+        Currency                     = currency;
+        LastTradeDateOrContractMonth = expiry;
+    }
 
     /// <summary>
     /// Create a Future Contract for a specific exchange
@@ -51,11 +51,11 @@ public class Future : Contract
     /// <param name="multiplier">Multiplier for a future contract. See <see cref="Contract.Multiplier"/>.</param>
     public Future(string symbol, string exchange, string expiry, string currency, double multiplier)
     {
-            Symbol = symbol;
-            Exchange = exchange;
-            SecType = SecurityType.Future.Value;
-            Currency = currency;
-            LastTradeDateOrContractMonth = expiry;
-            Multiplier = multiplier.ToString();
-        }
+        Symbol                       = symbol;
+        Exchange                     = exchange;
+        SecType                      = SecurityType.Future.Value;
+        Currency                     = currency;
+        LastTradeDateOrContractMonth = expiry;
+        Multiplier                   = multiplier.ToString();
+    }
 }

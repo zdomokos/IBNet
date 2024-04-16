@@ -44,8 +44,7 @@ public class FxPosition
     [XmlAttribute(AttributeName = "unrealizedPL")]
     public string UnrealizedPL { get; set; }
 
-    [XmlAttribute(AttributeName = "code")]
-    public string Code { get; set; }
+    [XmlAttribute(AttributeName = "code")] public string Code { get; set; }
 
     [XmlAttribute(AttributeName = "lotDescription")]
     public string LotDescription { get; set; }

@@ -12,12 +12,11 @@ public class Transfer : SecurityInfo
     public string  AcctAlias    { get; set; }
     public string  Model        { get; set; }
     public double? FxRateToBase { get; set; }
-        
+
     //Note: The reportDate XML attribute may contain either a date or a string, i.e. reportDate="MULTI"
     public string ReportDate { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Date { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Date { get; set; }
 
     [Format(Constants.DateTimeFormat, 0)]
     // alternative format

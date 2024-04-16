@@ -3,15 +3,15 @@
 
 namespace IBNet.Messages;
 
-public class AccountValueMessage 
+public class AccountValueMessage
 {
     public AccountValueMessage(string key, string value, string currency, string accountName)
     {
-            Key = key;
-            Value = value;
-            Currency = currency;
-            AccountName = accountName;
-        }
+        Key         = key;
+        Value       = value;
+        Currency    = currency;
+        AccountName = accountName;
+    }
 
     public string Key { get; set; }
 

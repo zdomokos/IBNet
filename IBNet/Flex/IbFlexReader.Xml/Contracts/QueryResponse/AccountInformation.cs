@@ -25,8 +25,7 @@ public class AccountInformation
     [XmlAttribute(AttributeName = "currency")]
     public string Currency { get; set; }
 
-    [XmlAttribute(AttributeName = "name")]
-    public string Name { get; set; }
+    [XmlAttribute(AttributeName = "name")] public string Name { get; set; }
 
     [XmlAttribute(AttributeName = "accountType")]
     public string AccountType { get; set; }
@@ -61,8 +60,7 @@ public class AccountInformation
     [XmlAttribute(AttributeName = "street2")]
     public string Street2 { get; set; }
 
-    [XmlAttribute(AttributeName = "city")]
-    public string City { get; set; }
+    [XmlAttribute(AttributeName = "city")] public string City { get; set; }
 
     [XmlAttribute(AttributeName = "state")]
     public string State { get; set; }

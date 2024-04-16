@@ -16,15 +16,16 @@ public class TickByTickAllLastMessage
     public string         Exchange          { get; private set; }
     public string         SpecialConditions { get; private set; }
 
-    public TickByTickAllLastMessage(int reqId, int tickType, long time, double price, decimal size, TickAttribLast tickAttribLast, string exchange, string specialConditions)
+    public TickByTickAllLastMessage(int reqId, int tickType, long time, double price, decimal size,
+                                    TickAttribLast tickAttribLast, string exchange, string specialConditions)
     {
-            ReqId = reqId;
-            TickType = tickType;
-            Time = time;
-            Price = price;
-            Size = size;
-            TickAttribLast = tickAttribLast;
-            Exchange = exchange;
-            SpecialConditions = specialConditions;
-        }
+        ReqId             = reqId;
+        TickType          = tickType;
+        Time              = time;
+        Price             = price;
+        Size              = size;
+        TickAttribLast    = tickAttribLast;
+        Exchange          = exchange;
+        SpecialConditions = specialConditions;
+    }
 }

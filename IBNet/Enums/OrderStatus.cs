@@ -81,5 +81,6 @@ public class OrderStatus : Enumeration<OrderStatus, string>
     public static OrderStatus None = new("", nameof(None));
 
     public OrderStatus(string value, string name) : base(value, name)
-    { }
+    {
+    }
 }

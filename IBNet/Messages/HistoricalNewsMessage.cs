@@ -13,10 +13,10 @@ public class HistoricalNewsMessage
 
     public HistoricalNewsMessage(int requestId, string time, string providerCode, string articleId, string headline)
     {
-            RequestId = requestId;
-            Time = time;
-            ProviderCode = providerCode;
-            ArticleId = articleId;
-            Headline = headline;
-        }
+        RequestId    = requestId;
+        Time         = time;
+        ProviderCode = providerCode;
+        ArticleId    = articleId;
+        Headline     = headline;
+    }
 }

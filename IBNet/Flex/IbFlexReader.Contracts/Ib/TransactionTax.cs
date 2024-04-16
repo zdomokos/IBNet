@@ -31,14 +31,12 @@ public class TransactionTax
     public int?           Multiplier                { get; set; }
     public double?        Strike                    { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Expiry { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Expiry { get; set; }
 
     public PutCall? PutCall               { get; set; }
     public string   PrincipalAdjustFactor { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? Date { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? Date { get; set; }
 
     public string TaxDescription { get; set; }
 

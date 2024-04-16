@@ -12,13 +12,13 @@ namespace Ztg.Loraq.Broker.IB
     public class TWSMessageCode : Enumeration<TWSMessageCode>
     {
         public static TWSMessageCode ErrorMsg0 = new TWSMessageCode(0, nameof(ErrorMsg0), Cat.System, "Error.", "");
-    
+
         // System Message Codes
         public static TWSMessageCode ErrorMsg1100 = new TWSMessageCode(1100, nameof(ErrorMsg1100), Cat.System, "Connectivity between IB and the TWS has been lost.", "Your TWS/IB Gateway has been disconnected from IB servers. This can occur because of an internet connectivity issue, a nightly reset of the IB servers, or a competing session.");
         public static TWSMessageCode ErrorMsg1101 = new TWSMessageCode(1101, nameof(ErrorMsg1101), Cat.System, "Connectivity between IB and TWS has been restored- data lost.*", "The TWS/IB Gateway has successfully reconnected to IB's servers. Your market data requests have been lost and need to be re-submitted.");
         public static TWSMessageCode ErrorMsg1102 = new TWSMessageCode(1102, nameof(ErrorMsg1102), Cat.System, "Connectivity between IB and TWS has been restored- data maintained.", "The TWS/IB Gateway has successfully reconnected to IB's servers. Your market data requests have been recovered and there is no need for you to re-submit them.");
         public static TWSMessageCode ErrorMsg1300 = new TWSMessageCode(1300, nameof(ErrorMsg1300), Cat.System, "TWS socket port has been reset and this connection is being dropped. Please reconnect on the new port - <port_num>", "The port number in the TWS/IBG settings has been changed during an active API connection.");
-    
+
         // Warning Message Codes
         public static TWSMessageCode ErrorMsg2100 = new TWSMessageCode(2100, nameof(ErrorMsg2100), Cat.Warning, "New account data requested from TWS. API client has been unsubscribed from account data.", "The TWS only allows one IBApi.EClient.reqAccountUpdates request at a time. If the client application attempts to subscribe to a second account without canceling the previous subscription, the new request will override the old one and the TWS will send this message notifying so.");
         public static TWSMessageCode ErrorMsg2101 = new TWSMessageCode(2101, nameof(ErrorMsg2101), Cat.Warning, "Unable to subscribe to account as the following clients are subscribed to a different account.", "If a client application invokes IBApi.EClient.reqAccountUpdates when there is an active subscription started by a different client, the TWS will reject the new subscription request with this message.");
@@ -32,13 +32,13 @@ namespace Ztg.Loraq.Broker.IB
         public static TWSMessageCode ErrorMsg2109 = new TWSMessageCode(2109, nameof(ErrorMsg2109), Cat.Warning, "Order Event Warning: Attribute \"Outside Regular Trading Hours\" is ignored based on the order type and destination. PlaceOrder is now processed.", "Indicates the outsideRth flag was set for an order for which there is not a regular vs outside regular trading hour distinction");
         public static TWSMessageCode ErrorMsg2110 = new TWSMessageCode(2110, nameof(ErrorMsg2110), Cat.Warning, "Connectivity between TWS and server is broken. It will be restored automatically.", "Indicates a connectivity problem between TWS or IBG and the IB server. This will usually only occur during the IB nightly server reset; cases at other times indicate a problem in the local ISP connectivity.");
         public static TWSMessageCode ErrorMsg2137 = new TWSMessageCode(2137, nameof(ErrorMsg2137), Cat.Warning, "Cross Side Warning", "This warning message occurs in TWS version 955 and higher. It occurs when an order will change the position in an account from long to short or from short to long. To bypass the warning, a new feature has been added to IB Gateway 956 (or higher) and TWS 957 (or higher) so that once can go to Global Configuration > Messages and disable the \"Cross Side Warning\".");
-    
+
         // Client Error Codes
         public static TWSMessageCode ErrorMsg501 = new TWSMessageCode(501, nameof(ErrorMsg501), Cat.Client, "Already Connected.", "Your client application is already connected to the TWS.");
         public static TWSMessageCode ErrorMsg502 = new TWSMessageCode(502, nameof(ErrorMsg502), Cat.Client, "Couldn't connect to TWS. Confirm that \"Enable ActiveX and Socket Clients\" is enabled and connection port is the same as \"Socket Port\" on the TWS \"Edit->Global Configuration...->API->Settings\" menu.", "When you receive this error message it is either because you have not enabled API connectivity in the TWS and/or you are trying to connect on the wrong port. Refer to the TWS' API Settings as explained in the error message. See also Connectivity");
         public static TWSMessageCode ErrorMsg503 = new TWSMessageCode(503, nameof(ErrorMsg503), Cat.Client, "The TWS is out of date and must be upgraded.", "Indicates TWS or IBG is too old for use with the current API version. Can also be triggered if the TWS version does not support a specific API function.");
         public static TWSMessageCode ErrorMsg504 = new TWSMessageCode(504, nameof(ErrorMsg504), Cat.Client, "Not connected.", "You are trying to perform a request without properly connecting and/or after connection to the TWS has been broken probably due to an unhandled exception within your client application.");
-        
+
         // TWS error codes
         public static TWSMessageCode ErrorMsg100   = new TWSMessageCode(100, nameof(ErrorMsg100), Cat.Tws, "Max rate of messages per second has been exceeded.", "The client application has exceeded the rate of 50 messages/second. The TWS will likely disconnect the client application after this message.");
         public static TWSMessageCode ErrorMsg101   = new TWSMessageCode(101, nameof(ErrorMsg101), Cat.Tws, "Max number of tickers has been reached.", "The current number of active market data subscriptions in TWS and the API altogether has been exceeded. This number is calculated based on a formula which is based on the equity, commissions, and quote booster packs in an account. Active lines can be checked in Tws using the Ctrl-Alt-= combination");
@@ -311,7 +311,7 @@ namespace Ztg.Loraq.Broker.IB
         public static TWSMessageCode ErrorMsg10252 = new TWSMessageCode(10252, nameof(ErrorMsg10252), Cat.Tws, "This non-close-position order doesn't support fractional shares trading", "");
         public static TWSMessageCode ErrorMsg10253 = new TWSMessageCode(10253, nameof(ErrorMsg10253), Cat.Tws, "Clear Away orders are not supported for multi-leg combo with attached hedge.", "");
         public static TWSMessageCode ErrorMsg10254 = new TWSMessageCode(10254, nameof(ErrorMsg10254), Cat.Tws, "Invalid Order: bond expired", "");
-    
+
         public enum Cat
         {
             System,
@@ -319,20 +319,21 @@ namespace Ztg.Loraq.Broker.IB
             Client,
             Tws,
         }
-    
+
         public TWSMessageCode(int value, string name, Cat t, string message, string notes) : base(value, name)
         {
             Category = t;
             Message  = message;
             Notes    = notes;
         }
-    
+
         public Cat Category { get; }
         public string   Message  { get; }
         public string   Notes    { get; }
-        
+
         public static implicit operator int(TWSMessageCode err)  => err.Value;
         public static explicit operator TWSMessageCode(int code) => FromValue(code);
     }
 }
 */
+

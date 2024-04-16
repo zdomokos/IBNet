@@ -13,5 +13,7 @@ public class RealTimeBarType : Enumeration<RealTimeBarType, string>
     public static RealTimeBarType Bid      = new("BID", nameof(Bid));
     public static RealTimeBarType Ask      = new("ASK", nameof(Ask));
 
-    public RealTimeBarType(string value, string name) : base(value, name) { }
+    public RealTimeBarType(string value, string name) : base(value, name)
+    {
+    }
 }

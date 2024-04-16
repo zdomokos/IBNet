@@ -22,5 +22,6 @@ public class SecurityType : Enumeration<SecurityType, string>
     public static SecurityType Undefined    = new("", nameof(Undefined));
 
     public SecurityType(string value, string name) : base(value, name)
-    { }
+    {
+    }
 }

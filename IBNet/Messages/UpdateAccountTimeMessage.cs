@@ -7,8 +7,8 @@ public class UpdateAccountTimeMessage
 {
     public UpdateAccountTimeMessage(string timestamp)
     {
-            Timestamp = timestamp;
-        }
+        Timestamp = timestamp;
+    }
 
     public string Timestamp { get; set; }
 }

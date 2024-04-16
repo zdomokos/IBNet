@@ -12,9 +12,9 @@ public class HistoricalTickMessage
 
     public HistoricalTickMessage(int reqId, long time, double price, decimal size)
     {
-            ReqId = reqId;
-            Time = time;
-            Price = price;
-            Size = size;
-        }
+        ReqId = reqId;
+        Time  = time;
+        Price = price;
+        Size  = size;
+    }
 }

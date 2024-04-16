@@ -14,7 +14,7 @@ namespace IBSamples
      *  - Often the quickest way is by looking for it in the TWS and looking at its description there (double click).
      *  - The TWS' symbol corresponds to the API's localSymbol. Keep this in mind when defining Futures or Options.
      *  - The TWS' underlying's symbol can usually be mapped to the API's symbol.
-     *  
+     *
      * Any stock or option symbols displayed are for illustrative purposes only and are not intended to portray a recommendation.
      */
     public class ContractSamples
@@ -26,8 +26,8 @@ namespace IBSamples
         {
             //! [cashcontract]
             Contract contract = new Contract();
-            contract.Symbol = "EUR";
-            contract.SecType = "CASH";
+            contract.Symbol   = "EUR";
+            contract.SecType  = "CASH";
             contract.Currency = "GBP";
             contract.Exchange = "IDEALPRO";
             //! [cashcontract]
@@ -38,8 +38,8 @@ namespace IBSamples
         {
             //! [indcontract]
             Contract contract = new Contract();
-            contract.Symbol = "DAX";
-            contract.SecType = "IND";
+            contract.Symbol   = "DAX";
+            contract.SecType  = "IND";
             contract.Currency = "EUR";
             contract.Exchange = "DTB";
             //! [indcontract]
@@ -50,8 +50,8 @@ namespace IBSamples
         {
             //! [cfdcontract]
             Contract contract = new Contract();
-            contract.Symbol = "IBDE30";
-            contract.SecType = "CFD";
+            contract.Symbol   = "IBDE30";
+            contract.SecType  = "CFD";
             contract.Currency = "EUR";
             contract.Exchange = "SMART";
             //! [cfdcontract]
@@ -62,8 +62,8 @@ namespace IBSamples
         {
             //! [usstockcfd]
             Contract contract = new Contract();
-            contract.Symbol = "IBM";
-            contract.SecType = "CFD";
+            contract.Symbol   = "IBM";
+            contract.SecType  = "CFD";
             contract.Currency = "USD";
             contract.Exchange = "SMART";
             //! [usstockcfd]
@@ -74,8 +74,8 @@ namespace IBSamples
         {
             //! [europeanstockcfd]
             Contract contract = new Contract();
-            contract.Symbol = "BMW";
-            contract.SecType = "CFD";
+            contract.Symbol   = "BMW";
+            contract.SecType  = "CFD";
             contract.Currency = "EUR";
             contract.Exchange = "SMART";
             //! [europeanstockcfd]
@@ -86,8 +86,8 @@ namespace IBSamples
         {
             //! [cashcfd]
             Contract contract = new Contract();
-            contract.Symbol = "EUR";
-            contract.SecType = "CFD";
+            contract.Symbol   = "EUR";
+            contract.SecType  = "CFD";
             contract.Currency = "USD";
             contract.Exchange = "SMART";
             //! [cashcfd]
@@ -97,10 +97,10 @@ namespace IBSamples
         public static Contract EuropeanStock()
         {
             Contract contract = new Contract();
-            contract.Symbol = "NOKIA";
-            contract.SecType = "STK";
-            contract.Currency = "EUR";
-            contract.Exchange = "SMART";
+            contract.Symbol      = "NOKIA";
+            contract.SecType     = "STK";
+            contract.Currency    = "EUR";
+            contract.Exchange    = "SMART";
             contract.PrimaryExch = "HEX";
             return contract;
         }
@@ -108,14 +108,14 @@ namespace IBSamples
         public static Contract OptionAtIse()
         {
             Contract contract = new Contract();
-            contract.Symbol = "BPX";
-            contract.SecType = "OPT";
-            contract.Currency = "USD";
-            contract.Exchange = "ISE";
+            contract.Symbol                       = "BPX";
+            contract.SecType                      = "OPT";
+            contract.Currency                     = "USD";
+            contract.Exchange                     = "ISE";
             contract.LastTradeDateOrContractMonth = "20160916";
-            contract.Right = "C";
-            contract.Strike = 65;
-            contract.Multiplier = "100";
+            contract.Right                        = "C";
+            contract.Strike                       = 65;
+            contract.Multiplier                   = "100";
             return contract;
         }
 
@@ -124,8 +124,8 @@ namespace IBSamples
             //! [bondwithcusip]
             Contract contract = new Contract();
             // enter CUSIP as symbol
-            contract.Symbol = "912828C57";
-            contract.SecType = "BOND";
+            contract.Symbol   = "912828C57";
+            contract.SecType  = "BOND";
             contract.Exchange = "SMART";
             contract.Currency = "USD";
             //! [bondwithcusip]
@@ -136,7 +136,7 @@ namespace IBSamples
         {
             //! [bond]
             Contract contract = new Contract();
-            contract.ConId = 285191782;
+            contract.ConId    = 285191782;
             contract.Exchange = "SMART";
             //! [bond]
             return contract;
@@ -146,8 +146,8 @@ namespace IBSamples
         {
             //! [fundcontract]
             Contract contract = new Contract();
-            contract.Symbol = "VINIX";
-            contract.SecType = "FUND";
+            contract.Symbol   = "VINIX";
+            contract.SecType  = "FUND";
             contract.Exchange = "FUNDSERV";
             contract.Currency = "USD";
             //! [fundcontract]
@@ -158,8 +158,8 @@ namespace IBSamples
         {
             //! [commoditycontract]
             Contract contract = new Contract();
-            contract.Symbol = "XAUUSD";
-            contract.SecType = "CMDTY";
+            contract.Symbol   = "XAUUSD";
+            contract.SecType  = "CMDTY";
             contract.Exchange = "SMART";
             contract.Currency = "USD";
             //! [commoditycontract]
@@ -170,8 +170,8 @@ namespace IBSamples
         {
             //! [stkcontract]
             Contract contract = new Contract();
-            contract.Symbol = "SPY";
-            contract.SecType = "STK";
+            contract.Symbol   = "SPY";
+            contract.SecType  = "STK";
             contract.Currency = "USD";
             contract.Exchange = "ARCA";
             //! [stkcontract]
@@ -182,8 +182,8 @@ namespace IBSamples
         {
             //! [etfcontract]
             Contract contract = new Contract();
-            contract.Symbol = "QQQ";
-            contract.SecType = "STK";
+            contract.Symbol   = "QQQ";
+            contract.SecType  = "STK";
             contract.Currency = "USD";
             contract.Exchange = "SMART";
             //! [etfcontract]
@@ -194,10 +194,10 @@ namespace IBSamples
         {
             //! [stkcontractwithprimary]
             Contract contract = new Contract();
-            contract.Symbol = "SPY";
-            contract.SecType = "STK";
-            contract.Currency = "USD";
-            contract.Exchange = "SMART";
+            contract.Symbol      = "SPY";
+            contract.SecType     = "STK";
+            contract.Currency    = "USD";
+            contract.Exchange    = "SMART";
             contract.PrimaryExch = "ARCA";
             //! [stkcontractwithprimary]
             return contract;
@@ -207,8 +207,8 @@ namespace IBSamples
         public static Contract USStockAtSmart()
         {
             Contract contract = new Contract();
-            contract.Symbol = "IBM";
-            contract.SecType = "STK";
+            contract.Symbol   = "IBM";
+            contract.SecType  = "STK";
             contract.Currency = "USD";
             contract.Exchange = "SMART";
             return contract;
@@ -218,14 +218,14 @@ namespace IBSamples
         {
             //! [optcontract_us]
             Contract contract = new Contract();
-            contract.Symbol = "GOOG";
-            contract.SecType = "OPT";
-            contract.Exchange = "SMART";
-            contract.Currency = "USD";
+            contract.Symbol                       = "GOOG";
+            contract.SecType                      = "OPT";
+            contract.Exchange                     = "SMART";
+            contract.Currency                     = "USD";
             contract.LastTradeDateOrContractMonth = "20170120";
-            contract.Strike = 615;
-            contract.Right = "C";
-            contract.Multiplier = "100";
+            contract.Strike                       = 615;
+            contract.Right                        = "C";
+            contract.Multiplier                   = "100";
             //! [optcontract_us]
             return contract;
         }
@@ -234,14 +234,14 @@ namespace IBSamples
         {
             //! [optcontract]
             Contract contract = new Contract();
-            contract.Symbol = "GOOG";
-            contract.SecType = "OPT";
-            contract.Exchange = "BOX";
-            contract.Currency = "USD";
+            contract.Symbol                       = "GOOG";
+            contract.SecType                      = "OPT";
+            contract.Exchange                     = "BOX";
+            contract.Currency                     = "USD";
             contract.LastTradeDateOrContractMonth = "20170120";
-            contract.Strike = 615;
-            contract.Right = "C";
-            contract.Multiplier = "100";
+            contract.Strike                       = 615;
+            contract.Right                        = "C";
+            contract.Multiplier                   = "100";
             //! [optcontract]
             return contract;
         }
@@ -254,15 +254,15 @@ namespace IBSamples
         {
             //! [optcontract_tradingclass]
             Contract contract = new Contract();
-            contract.Symbol = "SANT";
-            contract.SecType = "OPT";
-            contract.Exchange = "MEFFRV";
-            contract.Currency = "EUR";
+            contract.Symbol                       = "SANT";
+            contract.SecType                      = "OPT";
+            contract.Exchange                     = "MEFFRV";
+            contract.Currency                     = "EUR";
             contract.LastTradeDateOrContractMonth = "20190621";
-            contract.Strike = 7.5;
-            contract.Right = "C";
-            contract.Multiplier = "100";
-            contract.TradingClass = "SANEU";
+            contract.Strike                       = 7.5;
+            contract.Right                        = "C";
+            contract.Multiplier                   = "100";
+            contract.TradingClass                 = "SANEU";
             //! [optcontract_tradingclass]
             return contract;
         }
@@ -276,25 +276,25 @@ namespace IBSamples
             Contract contract = new Contract();
             //Watch out for the spaces within the local symbol!
             contract.LocalSymbol = "P BMW  JUL 20  4650";
-            contract.SecType = "OPT";
-            contract.Exchange = "DTB";
-            contract.Currency = "EUR";
+            contract.SecType     = "OPT";
+            contract.Exchange    = "DTB";
+            contract.Currency    = "EUR";
             //! [optcontract_localsymbol]
             return contract;
         }
 
         /*
-		 * Dutch Warrants (IOPTs) can be defined using the local symbol or conid
-		 */
+         * Dutch Warrants (IOPTs) can be defined using the local symbol or conid
+         */
 
         public static Contract DutchWarrant()
         {
             //! [ioptcontract]
             Contract contract = new Contract();
             contract.LocalSymbol = "B881G";
-            contract.SecType = "IOPT";
-            contract.Exchange = "SBF";
-            contract.Currency = "EUR";
+            contract.SecType     = "IOPT";
+            contract.Exchange    = "SBF";
+            contract.Currency    = "EUR";
             //! [ioptcontract]
             return contract;
         }
@@ -307,10 +307,10 @@ namespace IBSamples
         {
             //! [futcontract]
             Contract contract = new Contract();
-            contract.Symbol = "ES";
-            contract.SecType = "FUT";
-            contract.Exchange = "GLOBEX";
-            contract.Currency = "USD";
+            contract.Symbol                       = "ES";
+            contract.SecType                      = "FUT";
+            contract.Exchange                     = "GLOBEX";
+            contract.Currency                     = "USD";
             contract.LastTradeDateOrContractMonth = "201803";
             //! [futcontract]
             return contract;
@@ -318,15 +318,15 @@ namespace IBSamples
 
         /*
          * Rather than giving expiration dates we can also provide the local symbol
-         * attributes such as symbol, currency, strike, etc. 
+         * attributes such as symbol, currency, strike, etc.
          */
         public static Contract FutureWithLocalSymbol()
         {
             //! [futcontract_local_symbol]
             Contract contract = new Contract();
-            contract.SecType = "FUT";
-            contract.Exchange = "GLOBEX";
-            contract.Currency = "USD";
+            contract.SecType     = "FUT";
+            contract.Exchange    = "GLOBEX";
+            contract.Currency    = "USD";
             contract.LocalSymbol = "ESU6";
             //! [futcontract_local_symbol]
             return contract;
@@ -336,12 +336,12 @@ namespace IBSamples
         {
             //! [futcontract_multiplier]
             Contract contract = new Contract();
-            contract.Symbol = "DAX";
-            contract.SecType = "FUT";
-            contract.Exchange = "DTB";
-            contract.Currency = "EUR";
+            contract.Symbol                       = "DAX";
+            contract.SecType                      = "FUT";
+            contract.Exchange                     = "DTB";
+            contract.Currency                     = "EUR";
             contract.LastTradeDateOrContractMonth = "201609";
-            contract.Multiplier = "5";
+            contract.Multiplier                   = "5";
             //! [futcontract_multiplier]
             return contract;
         }
@@ -352,9 +352,9 @@ namespace IBSamples
         public static Contract WrongContract()
         {
             Contract contract = new Contract();
-            contract.Symbol = " IJR ";
-            contract.ConId = 9579976;
-            contract.SecType = "STK";
+            contract.Symbol   = " IJR ";
+            contract.ConId    = 9579976;
+            contract.SecType  = "STK";
             contract.Exchange = "SMART";
             contract.Currency = "USD";
             return contract;
@@ -364,46 +364,46 @@ namespace IBSamples
         {
             //! [fopcontract]
             Contract contract = new Contract();
-            contract.Symbol = "ES";
-            contract.SecType = "FOP";
-            contract.Exchange = "GLOBEX";
-            contract.Currency = "USD";
+            contract.Symbol                       = "ES";
+            contract.SecType                      = "FOP";
+            contract.Exchange                     = "GLOBEX";
+            contract.Currency                     = "USD";
             contract.LastTradeDateOrContractMonth = "20180316";
-            contract.Strike = 2800;
-            contract.Right = "C";
-            contract.Multiplier = "50";
+            contract.Strike                       = 2800;
+            contract.Right                        = "C";
+            contract.Multiplier                   = "50";
             //! [fopcontract]
             return contract;
         }
-		
-		public static Contract Warrants()
+
+        public static Contract Warrants()
         {
             //! [warcontract]
             Contract contract = new Contract();
-            contract.Symbol = "GOOG";
-            contract.SecType = "WAR";
-            contract.Exchange = "FWB";
-            contract.Currency = "EUR";
+            contract.Symbol                       = "GOOG";
+            contract.SecType                      = "WAR";
+            contract.Exchange                     = "FWB";
+            contract.Currency                     = "EUR";
             contract.LastTradeDateOrContractMonth = "20201117";
-            contract.Strike = 1500.0;
-            contract.Right = "C";
-            contract.Multiplier = "0.01";
+            contract.Strike                       = 1500.0;
+            contract.Right                        = "C";
+            contract.Multiplier                   = "0.01";
             //! [warcontract]
             return contract;
         }
 
         /*
          * It is also possible to define contracts based on their ISIN (IBKR STK sample).
-         * 
+         *
          */
         public static Contract ByISIN()
         {
             Contract contract = new Contract();
             contract.SecIdType = "ISIN";
-            contract.SecId = "US45841N1072";
-            contract.Exchange = "SMART";
-            contract.Currency = "USD";
-            contract.SecType = "STK";
+            contract.SecId     = "US45841N1072";
+            contract.Exchange  = "SMART";
+            contract.Currency  = "USD";
+            contract.SecType   = "STK";
             return contract;
         }
 
@@ -417,8 +417,8 @@ namespace IBSamples
         public static Contract ByConId()
         {
             Contract contract = new Contract();
-            contract.SecType = "CASH";
-            contract.ConId = 12087792;
+            contract.SecType  = "CASH";
+            contract.ConId    = 12087792;
             contract.Exchange = "IDEALPRO";
             return contract;
         }
@@ -433,8 +433,8 @@ namespace IBSamples
         {
             //! [optionforquery]
             Contract contract = new Contract();
-            contract.Symbol = "FISV";
-            contract.SecType = "OPT";
+            contract.Symbol   = "FISV";
+            contract.SecType  = "OPT";
             contract.Exchange = "SMART";
             contract.Currency = "USD";
             //! [optionforquery]
@@ -445,21 +445,21 @@ namespace IBSamples
         {
             //! [bagoptcontract]
             Contract contract = new Contract();
-            contract.Symbol = "DBK";
-            contract.SecType = "BAG";
+            contract.Symbol   = "DBK";
+            contract.SecType  = "BAG";
             contract.Currency = "EUR";
             contract.Exchange = "DTB";
 
             ComboLeg leg1 = new ComboLeg();
-            leg1.ConId = 197397509;//DBK JUN 15 '18 C
-            leg1.Ratio = 1;
-            leg1.Action = "BUY";
+            leg1.ConId    = 197397509; //DBK JUN 15 '18 C
+            leg1.Ratio    = 1;
+            leg1.Action   = "BUY";
             leg1.Exchange = "DTB";
 
             ComboLeg leg2 = new ComboLeg();
-            leg2.ConId = 197397584;//DBK JUN 15 '18 P
-            leg2.Ratio = 1;
-            leg2.Action = "SELL";
+            leg2.ConId    = 197397584; //DBK JUN 15 '18 P
+            leg2.Ratio    = 1;
+            leg2.Action   = "SELL";
             leg2.Exchange = "DTB";
 
             contract.ComboLegs = new List<ComboLeg>();
@@ -478,21 +478,21 @@ namespace IBSamples
         {
             //! [bagstkcontract]
             Contract contract = new Contract();
-            contract.Symbol = "IBKR,MCD";
-            contract.SecType = "BAG";
+            contract.Symbol   = "IBKR,MCD";
+            contract.SecType  = "BAG";
             contract.Currency = "USD";
             contract.Exchange = "SMART";
 
             ComboLeg leg1 = new ComboLeg();
-            leg1.ConId = 43645865;//IBKR STK
-            leg1.Ratio = 1;
-            leg1.Action = "BUY";
+            leg1.ConId    = 43645865; //IBKR STK
+            leg1.Ratio    = 1;
+            leg1.Action   = "BUY";
             leg1.Exchange = "SMART";
 
             ComboLeg leg2 = new ComboLeg();
-            leg2.ConId = 9408;//MCD STK
-            leg2.Ratio = 1;
-            leg2.Action = "SELL";
+            leg2.ConId    = 9408; //MCD STK
+            leg2.Ratio    = 1;
+            leg2.Action   = "SELL";
             leg2.Exchange = "SMART";
 
             contract.ComboLegs = new List<ComboLeg>();
@@ -511,21 +511,21 @@ namespace IBSamples
         {
             //! [bagfutcontract]
             Contract contract = new Contract();
-            contract.Symbol = "VIX";
-            contract.SecType = "BAG";
+            contract.Symbol   = "VIX";
+            contract.SecType  = "BAG";
             contract.Currency = "USD";
             contract.Exchange = "CFE";
 
             ComboLeg leg1 = new ComboLeg();
-            leg1.ConId = 195538625;//VIX FUT 20160217
-            leg1.Ratio = 1;
-            leg1.Action = "BUY";
+            leg1.ConId    = 195538625; //VIX FUT 20160217
+            leg1.Ratio    = 1;
+            leg1.Action   = "BUY";
             leg1.Exchange = "CFE";
 
             ComboLeg leg2 = new ComboLeg();
-            leg2.ConId = 197436571;//VIX FUT 20160316
-            leg2.Ratio = 1;
-            leg2.Action = "SELL";
+            leg2.ConId    = 197436571; //VIX FUT 20160316
+            leg2.Ratio    = 1;
+            leg2.Action   = "SELL";
             leg2.Exchange = "CFE";
 
             contract.ComboLegs = new List<ComboLeg>();
@@ -539,21 +539,22 @@ namespace IBSamples
         {
             //! [smartfuturespread]
             Contract contract = new Contract();
-            contract.Symbol = "WTI"; // WTI,COIL spread. Symbol can be defined as first leg symbol ("WTI") or currency ("USD").
-            contract.SecType = "BAG";
+            contract.Symbol =
+                "WTI"; // WTI,COIL spread. Symbol can be defined as first leg symbol ("WTI") or currency ("USD").
+            contract.SecType  = "BAG";
             contract.Currency = "USD";
             contract.Exchange = "SMART";
 
             ComboLeg leg1 = new ComboLeg();
-            leg1.ConId = 55928698;//WTI future June 2017
-            leg1.Ratio = 1;
-            leg1.Action = "BUY";
+            leg1.ConId    = 55928698; //WTI future June 2017
+            leg1.Ratio    = 1;
+            leg1.Action   = "BUY";
             leg1.Exchange = "IPE";
 
             ComboLeg leg2 = new ComboLeg();
-            leg2.ConId = 55850663;//COIL future June 2017
-            leg2.Ratio = 1;
-            leg2.Action = "SELL";
+            leg2.ConId    = 55850663; //COIL future June 2017
+            leg2.Ratio    = 1;
+            leg2.Action   = "SELL";
             leg2.Exchange = "IPE";
 
             contract.ComboLegs = new List<ComboLeg>();
@@ -568,21 +569,21 @@ namespace IBSamples
         {
             //! [intcmdfutcontract]
             Contract contract = new Contract();
-            contract.Symbol = "CL.BZ";
-            contract.SecType = "BAG";
+            contract.Symbol   = "CL.BZ";
+            contract.SecType  = "BAG";
             contract.Currency = "USD";
             contract.Exchange = "NYMEX";
 
             ComboLeg leg1 = new ComboLeg();
-            leg1.ConId = 47207310; //CL Dec'16 @NYMEX
-            leg1.Ratio = 1;
-            leg1.Action = "BUY";
+            leg1.ConId    = 47207310; //CL Dec'16 @NYMEX
+            leg1.Ratio    = 1;
+            leg1.Action   = "BUY";
             leg1.Exchange = "NYMEX";
 
             ComboLeg leg2 = new ComboLeg();
-            leg2.ConId = 47195961; //BZ Dec'16 @NYMEX
-            leg2.Ratio = 1;
-            leg2.Action = "SELL";
+            leg2.ConId    = 47195961; //BZ Dec'16 @NYMEX
+            leg2.Ratio    = 1;
+            leg2.Action   = "SELL";
             leg2.Exchange = "NYMEX";
 
             contract.ComboLegs = new List<ComboLeg>();
@@ -596,7 +597,7 @@ namespace IBSamples
         {
             //! [newsFeedforquery]
             Contract contract = new Contract();
-            contract.SecType = "NEWS";
+            contract.SecType  = "NEWS";
             contract.Exchange = "BRF"; //Briefing Trader
             //! [newsFeedforquery]
             return contract;
@@ -606,8 +607,8 @@ namespace IBSamples
         {
             //! [newscontractbt]
             Contract contract = new Contract();
-            contract.Symbol = "BRF:BRF_ALL"; //BroadTape All News
-            contract.SecType = "NEWS";
+            contract.Symbol   = "BRF:BRF_ALL"; //BroadTape All News
+            contract.SecType  = "NEWS";
             contract.Exchange = "BRF"; //Briefing Trader
             //! [newscontractbt]
             return contract;
@@ -617,8 +618,8 @@ namespace IBSamples
         {
             //! [newscontractbz]
             Contract contract = new Contract();
-            contract.Symbol = "BZ:BZ_ALL"; //BroadTape All News
-            contract.SecType = "NEWS";
+            contract.Symbol   = "BZ:BZ_ALL"; //BroadTape All News
+            contract.SecType  = "NEWS";
             contract.Exchange = "BZ"; //Benzinga Pro
             //! [newscontractbz]
             return contract;
@@ -628,10 +629,10 @@ namespace IBSamples
         {
             //! [newscontractfly]
             Contract contract = new Contract();
-            contract.Symbol = "FLY:FLY_ALL"; //BroadTape All News
-            contract.SecType = "NEWS";
+            contract.Symbol   = "FLY:FLY_ALL"; //BroadTape All News
+            contract.SecType  = "NEWS";
             contract.Exchange = "FLY"; //Fly on the Wall
-                                       //! [newscontractfly]
+            //! [newscontractfly]
             return contract;
         }
 
@@ -639,8 +640,8 @@ namespace IBSamples
         {
             //! [continuousfuturescontract]
             Contract contract = new Contract();
-            contract.Symbol = "ES";
-            contract.SecType = "CONTFUT";
+            contract.Symbol   = "ES";
+            contract.SecType  = "CONTFUT";
             contract.Exchange = "GLOBEX";
             //! [continuousfuturescontract]
             return contract;
@@ -650,21 +651,21 @@ namespace IBSamples
         {
             //! [contandexpiringfut]
             Contract contract = new Contract();
-            contract.Symbol = "ES";
-            contract.SecType = "FUT+CONTFUT";
+            contract.Symbol   = "ES";
+            contract.SecType  = "FUT+CONTFUT";
             contract.Exchange = "GLOBEX";
             //! [contandexpiringfut]
             return contract;
         }
-	    
-	public static Contract JefferiesContract()
+
+        public static Contract JefferiesContract()
         {
             //! [jefferies_contract]
             Contract contract = new Contract();
-            contract.Symbol = "AAPL";
-            contract.SecType = "STK";
+            contract.Symbol   = "AAPL";
+            contract.SecType  = "STK";
             contract.Exchange = "JEFFALGO"; // must be direct-routed to JEFFALGO
-            contract.Currency = "USD"; // only available for US stocks
+            contract.Currency = "USD";      // only available for US stocks
             //! [jefferies_contract]
             return contract;
         }
@@ -673,22 +674,22 @@ namespace IBSamples
         {
             //! [csfb_contract]
             Contract contract = new Contract();
-            contract.Symbol = "IBKR";
-            contract.SecType = "STK";
+            contract.Symbol   = "IBKR";
+            contract.SecType  = "STK";
             contract.Exchange = "CSFBALGO"; // must be direct-routed to CSFBALGO
-            contract.Currency = "USD"; // only available for US stocks
+            contract.Currency = "USD";      // only available for US stocks
             //! [csfb_contract]
             return contract;
         }
-		
-		public static Contract IBKRATSContract()
+
+        public static Contract IBKRATSContract()
         {
             //! [ibkrats_contract]
             Contract contract = new Contract();
-            contract.Symbol = "SPY";
-            contract.SecType = "STK";
-            contract.Exchange = "IBKRATS"; 
-            contract.Currency = "USD"; 
+            contract.Symbol   = "SPY";
+            contract.SecType  = "STK";
+            contract.Exchange = "IBKRATS";
+            contract.Currency = "USD";
             //! [ibkrats_contract]
             return contract;
         }
@@ -697,8 +698,8 @@ namespace IBSamples
         {
             //! [crypto_contract]
             Contract contract = new Contract();
-            contract.Symbol = "ETH";
-            contract.SecType = "CRYPTO";
+            contract.Symbol   = "ETH";
+            contract.SecType  = "CRYPTO";
             contract.Exchange = "PAXOS";
             contract.Currency = "USD";
             //! [crypto_contract]
@@ -709,13 +710,12 @@ namespace IBSamples
         {
             //! [stock_with_IPO_price]
             Contract contract = new Contract();
-            contract.Symbol = "EMCGU";
-            contract.SecType = "STK";
+            contract.Symbol   = "EMCGU";
+            contract.SecType  = "STK";
             contract.Exchange = "SMART";
             contract.Currency = "USD";
             //! [stock_with_IPO_price]
             return contract;
         }
-
     }
 }

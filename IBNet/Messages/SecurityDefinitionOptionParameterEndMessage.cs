@@ -9,6 +9,6 @@ public class SecurityDefinitionOptionParameterEndMessage
 
     public SecurityDefinitionOptionParameterEndMessage(int reqId)
     {
-            this.reqId = reqId;
-        }
+        this.reqId = reqId;
+    }
 }

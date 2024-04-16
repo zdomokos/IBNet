@@ -35,8 +35,7 @@ public class Lot
     [XmlAttribute(AttributeName = "conid")]
     public string Conid { get; set; }
 
-    [XmlAttribute(AttributeName = "cost")]
-    public string Cost { get; set; }
+    [XmlAttribute(AttributeName = "cost")] public string Cost { get; set; }
 
     [XmlAttribute(AttributeName = "currency")]
     public string Currency { get; set; }
@@ -86,8 +85,7 @@ public class Lot
     [XmlAttribute(AttributeName = "isAPIOrder")]
     public string IsAPIOrder { get; set; }
 
-    [XmlAttribute(AttributeName = "isin")]
-    public string Isin { get; set; }
+    [XmlAttribute(AttributeName = "isin")] public string Isin { get; set; }
 
     [XmlAttribute(AttributeName = "issuer")]
     public string Issuer { get; set; }
@@ -214,25 +212,25 @@ public class Lot
 
     [XmlAttribute(AttributeName = "whenReopened")]
     public string WhenReopened { get; set; }
-        
-    [XmlAttribute(AttributeName = "serialNumber")] 
+
+    [XmlAttribute(AttributeName = "serialNumber")]
     public string SerialNumber { get; set; }
-        
-    [XmlAttribute(AttributeName = "tradeDate")] 
+
+    [XmlAttribute(AttributeName = "tradeDate")]
     public string TradeDate { get; set; }
-        
-    [XmlAttribute(AttributeName = "deliveryType")] 
+
+    [XmlAttribute(AttributeName = "deliveryType")]
     public string DeliveryType { get; set; }
-        
-    [XmlAttribute(AttributeName = "commodityType")] 
+
+    [XmlAttribute(AttributeName = "commodityType")]
     public string CommodityType { get; set; }
-        
-    [XmlAttribute(AttributeName = "fineness")] 
+
+    [XmlAttribute(AttributeName = "fineness")]
     public string Fineness { get; set; }
-        
-    [XmlAttribute(AttributeName = "weight")] 
+
+    [XmlAttribute(AttributeName = "weight")]
     public string Weight { get; set; }
-        
-    [XmlAttribute(AttributeName = "accruedInt")] 
+
+    [XmlAttribute(AttributeName = "accruedInt")]
     public string AccruedInt { get; set; }
 }

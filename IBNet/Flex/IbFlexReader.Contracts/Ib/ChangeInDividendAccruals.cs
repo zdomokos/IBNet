@@ -10,6 +10,9 @@ public class ChangeInDividendAccruals
 {
     [TypeConverter(typeof(ListCountConverter))]
     public List<ChangeInDividendAccrual> ChangeInDividendAccrual { get; set; }
-        
-    public override string ToString() { return $"Count: {ChangeInDividendAccrual?.Count}"; }
+
+    public override string ToString()
+    {
+        return $"Count: {ChangeInDividendAccrual?.Count}";
+    }
 }

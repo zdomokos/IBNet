@@ -51,8 +51,7 @@ public class FlexStatement
     [XmlElement(ElementName = "SLBActivities")]
     public SLBActivities SLBActivities { get; set; }
 
-    [XmlElement(ElementName = "SLBFees")]
-    public SLBFees SLBFees { get; set; }
+    [XmlElement(ElementName = "SLBFees")] public SLBFees SLBFees { get; set; }
 
     [XmlElement(ElementName = "StmtFunds")]
     public StmtFunds StatementOfFunds { get; set; }
@@ -63,8 +62,7 @@ public class FlexStatement
     [XmlElement(ElementName = "TradeConfirms")]
     public TradeConfirms TradeConfirms { get; set; }
 
-    [XmlElement(ElementName = "Trades")]
-    public Trades Trades { get; set; }
+    [XmlElement(ElementName = "Trades")] public Trades Trades { get; set; }
 
     [XmlElement(ElementName = "TransactionTaxes")]
     public TransactionTaxes TransactionTaxes { get; set; }
@@ -95,7 +93,7 @@ public class FlexStatement
 
     [XmlElement(ElementName = "FxTransactions")]
     public FxTransactions FxTransactions { get; set; }
-        
+
     [XmlElement(ElementName = "FifoPerformanceSummaryInBase")]
     public FifoPerformanceSummaryInBase FifoPerformanceSummaryInBase { get; set; }
 }

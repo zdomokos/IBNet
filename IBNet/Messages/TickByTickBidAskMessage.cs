@@ -15,14 +15,15 @@ public class TickByTickBidAskMessage
     public decimal          AskSize          { get; private set; }
     public TickAttribBidAsk TickAttribBidAsk { get; private set; }
 
-    public TickByTickBidAskMessage(int reqId, long time, double bidPrice, double askPrice, decimal bidSize, decimal askSize, TickAttribBidAsk tickAttribBidAsk)
+    public TickByTickBidAskMessage(int reqId, long time, double bidPrice, double askPrice, decimal bidSize,
+                                   decimal askSize, TickAttribBidAsk tickAttribBidAsk)
     {
-            ReqId = reqId;
-            Time = time;
-            BidPrice = bidPrice;
-            AskPrice = askPrice;
-            BidSize = bidSize;
-            AskSize = askSize;
-            TickAttribBidAsk = tickAttribBidAsk;
-        }
+        ReqId            = reqId;
+        Time             = time;
+        BidPrice         = bidPrice;
+        AskPrice         = askPrice;
+        BidSize          = bidSize;
+        AskSize          = askSize;
+        TickAttribBidAsk = tickAttribBidAsk;
+    }
 }

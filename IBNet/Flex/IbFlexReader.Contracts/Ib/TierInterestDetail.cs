@@ -29,8 +29,7 @@ public class TierInterestDetail
     public double?     BalanceThreshold     { get; set; }
     public string      TierBreak            { get; set; }
 
-    [Format(Constants.DateFormat)]
-    public DateTime? ValueDate { get; set; }
+    [Format(Constants.DateFormat)] public DateTime? ValueDate { get; set; }
 
     public string InterestType { get; set; }
 }

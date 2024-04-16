@@ -7,8 +7,8 @@ public class ScannerParametersMessage
 {
     public ScannerParametersMessage(string data)
     {
-            XmlData = data;
-        }
+        XmlData = data;
+    }
 
     public string XmlData { get; set; }
 }
