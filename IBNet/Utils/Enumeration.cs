@@ -50,7 +50,7 @@ public abstract class Enumeration<TEnumeration, TValue> : IComparable<TEnumerati
         return Value.CompareTo(other.Value);
     }
 
-    public override sealed string ToString()
+    public sealed override string ToString()
     {
         return DisplayName;
     }

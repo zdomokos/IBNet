@@ -4,7 +4,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <NoWarn>CS1591,CS0168,CS1998,BL9993,CS0649,CS0436,0436</NoWarn>
+        <NoWarn>$(NoWarn);CS1591;CS0168;CS1998;BL9993;CS0649;CS0436;0436;</NoWarn>
     </PropertyGroup>
     <ItemGroup>
         <Compile Remove="Common\**"/>

@@ -847,7 +847,7 @@ namespace IBSamples
             //TestAlgoSamples(client, nextOrderId);
             //Thread.Sleep(30000);
             //! [cancelorder]
-            client.cancelOrder(nextOrderId - 1, "");
+            client.cancelOrder(nextOrderId - 1, new OrderCancel());
             //! [cancelorder]
             /*** Cancel all orders for all accounts ***/
             //! [reqglobalcancel]
@@ -877,7 +877,7 @@ namespace IBSamples
             Thread.Sleep(3000);
 
             //! [cancel_order_with_manual_order_cancel_time]
-            client.cancelOrder(nextOrderId - 1, "20220314 19:00:00");
+            client.cancelOrder(nextOrderId - 1, new OrderCancel());//"20220314 19:00:00"));
             //! [cancel_order_with_manual_order_cancel_time]
 
             //! [pegbest_up_to_mid_order_submission]

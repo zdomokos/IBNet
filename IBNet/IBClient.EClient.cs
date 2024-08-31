@@ -173,7 +173,7 @@ public partial class IBClient
     public void CancelOrder(int orderId)
     {
         lock (this)
-            ClientSocket.cancelOrder(orderId, "");
+            ClientSocket.cancelOrder(orderId, new OrderCancel());
     }
 
     /// <summary>
