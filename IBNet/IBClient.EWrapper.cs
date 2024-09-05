@@ -287,6 +287,7 @@ public partial class IBClient : EWrapper
     void EWrapper.nextValidId(int orderId)
     {
         var tmp = NextValidId;
+        NextOrderId = orderId;
 
         if (tmp != null)
         {
@@ -295,8 +296,6 @@ public partial class IBClient : EWrapper
             else
                 tmp(new ConnectionStatusMessage(true));
         }
-
-        NextOrderId = orderId;
     }
 
     public event Action<int, DeltaNeutralContract> DeltaNeutralValidation;
