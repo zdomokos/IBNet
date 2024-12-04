@@ -12,7 +12,7 @@
         <None Remove="Common\**"/>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="NUnit" Version="4.0.1"/>
+        <PackageReference Include="NUnit" Version="4.*"/>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\IBNet\IBNet.csproj"/>
