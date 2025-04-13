@@ -11,7 +11,7 @@ stocks, options, futures, and forex.
 
 **[Event Handling](https://github.com/zdomokos/IBNet/tree/master/IBNet/Messages):** Implements events for EWrapper callbacks. 
 
-**[IB Flex Reports](https://github.com/zdomokos/IBNet/tree/master/IBNet/Flex/IbFlexReader):** Provides functionality to handle IB Flex Reports.
+**[IB Flex Reports](https://github.com/zdomokos/IBNet/tree/master/IBNet/Flex):** Provides functionality to handle IB Flex Reports.
 
 ## Installation
 To install IBNet, clone the repository and build the solution:
