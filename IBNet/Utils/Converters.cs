@@ -14,10 +14,6 @@ public class ListCountConverter : ExpandableObjectConverter
             return $"Count: {list.Count}";
         }
 
-        return base.ConvertTo(
-                              context,
-                              culture,
-                              value,
-                              destinationType);
+        return base.ConvertTo( context, culture, value, destinationType);
     }
 }

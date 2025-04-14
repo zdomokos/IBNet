@@ -13,8 +13,7 @@ public class IBType
         Value = value;
     }
 
-    public string Name { get; }
-
+    public string Name  { get; }
     public object Value { get; }
 
     public override string ToString()

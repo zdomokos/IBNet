@@ -5,24 +5,12 @@ namespace IBNet.Messages;
 
 public abstract class MarketDataMessage
 {
-    protected int requestId;
-    protected int field;
-
     public MarketDataMessage(int requestId, int field)
     {
         RequestId = requestId;
         Field     = field;
     }
 
-    public int RequestId
-    {
-        get => requestId;
-        set => requestId = value;
-    }
-
-    public int Field
-    {
-        get => field;
-        set => field = value;
-    }
+    public int RequestId { get; set; }
+    public int Field { get; set; }
 }

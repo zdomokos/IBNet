@@ -5,10 +5,10 @@ namespace IBNet.Messages;
 
 public class HistoricalTickEndMessage
 {
-    public int ReqId { get; private set; }
-
     public HistoricalTickEndMessage(int reqId)
     {
         ReqId = reqId;
     }
+    
+    public int ReqId { get; private set; }
 }

@@ -5,7 +5,11 @@ namespace IBNet.Messages;
 
 public class RealTimeBarMessage : HistoricalDataMessage
 {
-    public long Timestamp { get; set; }
+    static DateTime UnixTimestampToDateTime(long unixTimestamp)
+    {
+        DateTime unixBaseTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        return unixBaseTime.AddSeconds(unixTimestamp);
+    }
 
     public RealTimeBarMessage(int reqId, long date, double open, double high, double low, double close, decimal volume,
                               decimal WAP, int count)
@@ -15,10 +19,7 @@ public class RealTimeBarMessage : HistoricalDataMessage
     {
         Timestamp = date;
     }
+    
+    public long Timestamp { get; set; }
 
-    static DateTime UnixTimestampToDateTime(long unixTimestamp)
-    {
-        DateTime unixBaseTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-        return unixBaseTime.AddSeconds(unixTimestamp);
-    }
 }

@@ -16,13 +16,9 @@ public class ErrorMessage
     }
 
     public string AdvancedOrderRejectJson { get; set; }
-
-    public string Message { get; set; }
-
-    public int ErrorCode { get; set; }
-
-
-    public int RequestId { get; set; }
+    public string Message                 { get; set; }
+    public int    ErrorCode               { get; set; }
+    public int    RequestId               { get; set; }
 
     public override string ToString()
     {

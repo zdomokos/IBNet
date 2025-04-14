@@ -11,7 +11,6 @@ public class AdvisorDataMessage
         Data       = data;
     }
 
-    public int FaDataType { get; set; }
-
-    public string Data { get; set; }
+    public int    FaDataType { get; set; }
+    public string Data       { get; set; }
 }

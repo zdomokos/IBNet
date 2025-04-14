@@ -15,11 +15,8 @@ public class PositionMessage
         AverageCost = avgCost;
     }
 
-    public string Account { get; set; }
-
-    public Contract Contract { get; set; }
-
-    public decimal Position { get; set; }
-
-    public double AverageCost { get; set; }
+    public string   Account     { get; set; }
+    public Contract Contract    { get; set; }
+    public decimal  Position    { get; set; }
+    public double   AverageCost { get; set; }
 }

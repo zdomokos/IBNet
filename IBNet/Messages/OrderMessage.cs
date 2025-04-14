@@ -5,11 +5,5 @@ namespace IBNet.Messages;
 
 public abstract class OrderMessage
 {
-    protected int orderId;
-
-    public int OrderId
-    {
-        get => orderId;
-        set => orderId = value;
-    }
+    public int OrderId { get; set; }
 }

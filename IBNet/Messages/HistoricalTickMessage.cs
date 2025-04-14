@@ -5,11 +5,6 @@ namespace IBNet.Messages;
 
 public class HistoricalTickMessage
 {
-    public int     ReqId { get; private set; }
-    public long    Time  { get; private set; }
-    public double  Price { get; private set; }
-    public decimal Size  { get; private set; }
-
     public HistoricalTickMessage(int reqId, long time, double price, decimal size)
     {
         ReqId = reqId;
@@ -17,4 +12,9 @@ public class HistoricalTickMessage
         Price = price;
         Size  = size;
     }
+    
+    public int     ReqId { get; private set; }
+    public long    Time  { get; private set; }
+    public double  Price { get; private set; }
+    public decimal Size  { get; private set; }
 }

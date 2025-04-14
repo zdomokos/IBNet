@@ -5,24 +5,12 @@ namespace IBNet.Messages;
 
 public class MarketDataTypeMessage
 {
-    protected int requestId;
-    protected int marketDataType;
-
     public MarketDataTypeMessage(int requestId, int marketDataType)
     {
         RequestId      = requestId;
         MarketDataType = marketDataType;
     }
 
-    public int RequestId
-    {
-        get => requestId;
-        set => requestId = value;
-    }
-
-    public int MarketDataType
-    {
-        get => marketDataType;
-        set => marketDataType = value;
-    }
+    public int RequestId { get; set; }
+    public int MarketDataType { get; set; }
 }

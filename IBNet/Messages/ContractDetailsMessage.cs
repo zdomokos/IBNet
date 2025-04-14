@@ -14,6 +14,5 @@ public class ContractDetailsMessage
     }
 
     public ContractDetails ContractDetails { get; set; }
-
-    public int RequestId { get; set; }
+    public int             RequestId       { get; set; }
 }

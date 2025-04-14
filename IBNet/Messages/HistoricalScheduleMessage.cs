@@ -7,12 +7,6 @@ namespace IBNet.Messages;
 
 public class HistoricalScheduleMessage
 {
-    public int                 ReqId         { get; set; }
-    public string              StartDateTime { get; set; }
-    public string              EndDateTime   { get; set; }
-    public string              TimeZone      { get; set; }
-    public HistoricalSession[] Sessions      { get; private set; }
-
     public HistoricalScheduleMessage(int reqId, string startDateTime, string endDateTime, string timeZone,
                                      HistoricalSession[] sessions)
     {
@@ -22,4 +16,10 @@ public class HistoricalScheduleMessage
         TimeZone      = timeZone;
         Sessions      = sessions;
     }
+    
+    public int                 ReqId         { get; set; }
+    public string              StartDateTime { get; set; }
+    public string              EndDateTime   { get; set; }
+    public string              TimeZone      { get; set; }
+    public HistoricalSession[] Sessions      { get; private set; }
 }

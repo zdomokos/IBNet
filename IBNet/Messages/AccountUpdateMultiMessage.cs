@@ -15,15 +15,10 @@ public class AccountUpdateMultiMessage
         Currency  = currency;
     }
 
-    public int ReqId { get; set; }
-
-    public string Account { get; set; }
-
+    public int    ReqId     { get; set; }
+    public string Account   { get; set; }
     public string ModelCode { get; set; }
-
-    public string Key { get; set; }
-
-    public string Value { get; set; }
-
-    public string Currency { get; set; }
+    public string Key       { get; set; }
+    public string Value     { get; set; }
+    public string Currency  { get; set; }
 }

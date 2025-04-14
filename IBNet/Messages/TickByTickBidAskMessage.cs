@@ -7,14 +7,6 @@ namespace IBNet.Messages;
 
 public class TickByTickBidAskMessage
 {
-    public int              ReqId            { get; private set; }
-    public long             Time             { get; private set; }
-    public double           BidPrice         { get; private set; }
-    public double           AskPrice         { get; private set; }
-    public decimal          BidSize          { get; private set; }
-    public decimal          AskSize          { get; private set; }
-    public TickAttribBidAsk TickAttribBidAsk { get; private set; }
-
     public TickByTickBidAskMessage(int reqId, long time, double bidPrice, double askPrice, decimal bidSize,
                                    decimal askSize, TickAttribBidAsk tickAttribBidAsk)
     {
@@ -26,4 +18,12 @@ public class TickByTickBidAskMessage
         AskSize          = askSize;
         TickAttribBidAsk = tickAttribBidAsk;
     }
+    
+    public int              ReqId            { get; private set; }
+    public long             Time             { get; private set; }
+    public double           BidPrice         { get; private set; }
+    public double           AskPrice         { get; private set; }
+    public decimal          BidSize          { get; private set; }
+    public decimal          AskSize          { get; private set; }
+    public TickAttribBidAsk TickAttribBidAsk { get; private set; }
 }

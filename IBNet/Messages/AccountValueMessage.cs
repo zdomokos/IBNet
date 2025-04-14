@@ -13,11 +13,8 @@ public class AccountValueMessage
         AccountName = accountName;
     }
 
-    public string Key { get; set; }
-
-    public string Value { get; set; }
-
-    public string Currency { get; set; }
-
+    public string Key         { get; set; }
+    public string Value       { get; set; }
+    public string Currency    { get; set; }
     public string AccountName { get; set; }
 }

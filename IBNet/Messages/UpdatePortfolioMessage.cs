@@ -20,19 +20,12 @@ public class UpdatePortfolioMessage
         AccountName   = accountName;
     }
 
-    public Contract Contract { get; set; }
-
-    public decimal Position { get; set; }
-
-    public double MarketPrice { get; set; }
-
-    public double MarketValue { get; set; }
-
-    public double AverageCost { get; set; }
-
-    public double UnrealizedPNL { get; set; }
-
-    public double RealizedPNL { get; set; }
-
-    public string AccountName { get; set; }
+    public Contract Contract      { get; set; }
+    public decimal  Position      { get; set; }
+    public double   MarketPrice   { get; set; }
+    public double   MarketValue   { get; set; }
+    public double   AverageCost   { get; set; }
+    public double   UnrealizedPNL { get; set; }
+    public double   RealizedPNL   { get; set; }
+    public string   AccountName   { get; set; }
 }

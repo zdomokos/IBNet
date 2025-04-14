@@ -14,9 +14,7 @@ public class ExecutionMessage
         Execution = execution;
     }
 
-    public Contract Contract { get; set; }
-
+    public Contract  Contract  { get; set; }
     public Execution Execution { get; set; }
-
-    public int ReqId { get; set; }
+    public int       ReqId     { get; set; }
 }

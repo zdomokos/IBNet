@@ -5,11 +5,6 @@ namespace IBNet.Messages;
 
 public class PnLMessage
 {
-    public int    ReqId         { get; private set; }
-    public double DailyPnL      { get; private set; }
-    public double UnrealizedPnL { get; private set; }
-    public double RealizedPnL   { get; private set; }
-
     public PnLMessage(int reqId, double dailyPnL, double unrealizedPnL, double realizedPnL)
     {
         ReqId         = reqId;
@@ -17,4 +12,9 @@ public class PnLMessage
         UnrealizedPnL = unrealizedPnL;
         RealizedPnL   = realizedPnL;
     }
+    
+    public int    ReqId         { get; private set; }
+    public double DailyPnL      { get; private set; }
+    public double UnrealizedPnL { get; private set; }
+    public double RealizedPnL   { get; private set; }
 }

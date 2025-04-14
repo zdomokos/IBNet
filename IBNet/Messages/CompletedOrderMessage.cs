@@ -14,9 +14,7 @@ public class CompletedOrderMessage
         OrderState = orderState;
     }
 
-    public Contract Contract { get; set; }
-
-    public Order Order { get; set; }
-
+    public Contract   Contract   { get; set; }
+    public Order      Order      { get; set; }
     public OrderState OrderState { get; set; }
 }

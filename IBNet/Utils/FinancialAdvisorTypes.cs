@@ -20,8 +20,7 @@ public class AccountAlias
     }
 
     public string Account { get; set; }
-
-    public string Alias { get; set; }
+    public string Alias   { get; set; }
 }
 
 public class AdvisorGroup
@@ -61,11 +60,9 @@ public class AdvisorGroup
             Accounts.Add(s);
     }
 
-    public string Name { get; set; }
-
-    public string DefaultMethod { get; set; }
-
-    public List<string> Accounts { get; set; }
+    public string       Name          { get; set; }
+    public string       DefaultMethod { get; set; }
+    public List<string> Accounts      { get; set; }
 }
 
 public class AllocationProfile
@@ -122,10 +119,8 @@ public class AllocationProfile
         }
     }
 
-    public string Name { get; set; }
-
-    public int Type { get; set; }
-
+    public string           Name        { get; set; }
+    public int              Type        { get; set; }
     public List<Allocation> Allocations { get; set; }
 }
 
@@ -146,6 +141,5 @@ public class Allocation
     }
 
     public string Account { get; set; }
-
-    public double Amount { get; set; }
+    public double Amount  { get; set; }
 }

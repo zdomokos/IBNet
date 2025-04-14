@@ -18,15 +18,10 @@ public class PositionMultiMessage
         AverageCost = avgCost;
     }
 
-    public int ReqId { get; set; }
-
-    public string Account { get; set; }
-
-    public string ModelCode { get; set; }
-
-    public Contract Contract { get; set; }
-
-    public decimal Position { get; set; }
-
-    public double AverageCost { get; set; }
+    public int      ReqId       { get; set; }
+    public string   Account     { get; set; }
+    public string   ModelCode   { get; set; }
+    public Contract Contract    { get; set; }
+    public decimal  Position    { get; set; }
+    public double   AverageCost { get; set; }
 }

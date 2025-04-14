@@ -18,19 +18,12 @@ public class DeepBookMessage
         IsSmartDepth = isSmartDepth;
     }
 
-    public int RequestId { get; set; }
-
-    public int Position { get; set; }
-
-    public int Operation { get; set; }
-
-    public int Side { get; set; }
-
-    public double Price { get; set; }
-
-    public decimal Size { get; set; }
-
-    public string MarketMaker { get; set; }
-
-    public bool IsSmartDepth { get; set; }
+    public int     RequestId    { get; set; }
+    public int     Position     { get; set; }
+    public int     Operation    { get; set; }
+    public int     Side         { get; set; }
+    public double  Price        { get; set; }
+    public decimal Size         { get; set; }
+    public string  MarketMaker  { get; set; }
+    public bool    IsSmartDepth { get; set; }
 }

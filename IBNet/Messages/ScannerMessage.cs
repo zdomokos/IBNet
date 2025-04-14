@@ -19,19 +19,11 @@ public class ScannerMessage
         LegsStr         = legsStr;
     }
 
-    public int RequestId { get; set; }
-
-    public int Rank { get; set; }
-
+    public int             RequestId       { get; set; }
+    public int             Rank            { get; set; }
     public ContractDetails ContractDetails { get; set; }
-
-    public string Distance { get; set; }
-
-    public string Benchmark { get; set; }
-
-
-    public string Projection { get; set; }
-
-
-    public string LegsStr { get; set; }
+    public string          Distance        { get; set; }
+    public string          Benchmark       { get; set; }
+    public string          Projection      { get; set; }
+    public string          LegsStr         { get; set; }
 }

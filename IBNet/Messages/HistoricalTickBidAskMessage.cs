@@ -7,14 +7,6 @@ namespace IBNet.Messages;
 
 public class HistoricalTickBidAskMessage
 {
-    public int              ReqId            { get; set; }
-    public long             Time             { get; set; }
-    public TickAttribBidAsk TickAttribBidAsk { get; set; }
-    public double           PriceBid         { get; set; }
-    public double           PriceAsk         { get; set; }
-    public decimal          SizeBid          { get; set; }
-    public decimal          SizeAsk          { get; set; }
-
     public HistoricalTickBidAskMessage(int reqId, long time, TickAttribBidAsk tickAttribBidAsk, double priceBid,
                                        double priceAsk, decimal sizeBid, decimal sizeAsk)
     {
@@ -26,4 +18,12 @@ public class HistoricalTickBidAskMessage
         SizeBid          = sizeBid;
         SizeAsk          = sizeAsk;
     }
+    
+    public int              ReqId            { get; set; }
+    public long             Time             { get; set; }
+    public TickAttribBidAsk TickAttribBidAsk { get; set; }
+    public double           PriceBid         { get; set; }
+    public double           PriceAsk         { get; set; }
+    public decimal          SizeBid          { get; set; }
+    public decimal          SizeAsk          { get; set; }
 }
