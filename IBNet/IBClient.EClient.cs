@@ -64,7 +64,7 @@ public partial class IBClient
                                                             reader.processMsgs();
                                                         }
                                                     })
-                                         { IsBackground = true };
+                                         { IsBackground = true, Name = "IBClient Message Dispatch" };
                 _messageDispatchThread.Start();
             }
             catch (Exception ex)
